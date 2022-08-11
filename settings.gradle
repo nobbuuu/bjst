@@ -1,4 +1,4 @@
-rootProject.name = "Xiaobei"
+rootProject.name = "LuckyRupee"
 include ':app'
 includeBuild("version")
 include ':base'

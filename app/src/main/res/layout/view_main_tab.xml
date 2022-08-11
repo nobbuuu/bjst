@@ -16,6 +16,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/tabImgIv"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="center_horizontal"
+        android:tag="icon_lottie"
+        android:src="@mipmap/payment_select"
+        android:layout_marginTop="@dimen/dp_4"
+        app:layout_constraintBottom_toTopOf="@id/tabTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
 
@@ -25,19 +40,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/text_norm_black"
-        android:textSize="@dimen/dp_10"
+        android:textSize="@dimen/sp_11"
+        android:layout_marginTop="3dp"
+        android:text="REPAYMENT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lottieView" />
+        app:layout_constraintTop_toBottomOf="@+id/tabImgIv" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/tabUnread"
         android:layout_width="6dp"
         android:layout_height="6dp"
         android:src="@drawable/shape_circle_bg"
-        android:visibility="gone"
-        app:layout_constraintCircle="@id/lottieView"
+        app:layout_constraintCircle="@id/tabImgIv"
         app:layout_constraintCircleAngle="45"
         app:layout_constraintCircleRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +63,7 @@
     <com.ruffian.library.widget.RTextView
         android:id="@+id/tabUnreadCount"
         style="@style/common_badge"
-        app:layout_constraintCircle="@id/lottieView"
+        app:layout_constraintCircle="@id/tabImgIv"
         app:layout_constraintCircleAngle="45"
         app:layout_constraintCircleRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"

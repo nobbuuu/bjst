@@ -23,7 +23,9 @@ object TabManager {
                         MAIN_TAB_AREA,
                         R.id.tab_lottie_1,
                         R.string.title_area,
-                        "lottie_home.json"
+                        "lottie_home.json",
+                        selectImg = R.mipmap.home_select,
+                        normalImg = R.mipmap.home_normal
                     )
                 )
                 add(
@@ -31,15 +33,9 @@ object TabManager {
                         MAIN_TAB_SQUARE,
                         R.id.tab_lottie_2,
                         R.string.title_square,
-                        "lottie_category.json"
-                    )
-                )
-                add(
-                    TabItem(
-                        MAIN_TAB_MESSAGE,
-                        R.id.tab_lottie_3,
-                        R.string.title_message,
-                        "lottie_rank.json"
+                        "lottie_category.json",
+                        selectImg = R.mipmap.payment_select,
+                        normalImg = R.mipmap.payment_normal
                     )
                 )
                 add(
@@ -47,7 +43,9 @@ object TabManager {
                         MAIN_TAB_MINE,
                         R.id.tab_lottie_5,
                         R.string.title_mine,
-                        "lottie_mine.json"
+                        "lottie_mine.json",
+                        selectImg = R.mipmap.mine_select,
+                        normalImg = R.mipmap.mine_normal
                     )
                 )
             }

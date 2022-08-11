@@ -12,6 +12,8 @@ data class TabItem(
     val id: Int,
     @StringRes val text: Int,
     val lottieFile: String,
+    val normalImg: Int,
+    val selectImg: Int,
     val unRead: Boolean = false,
     val unReadCount: Int = 0
 )

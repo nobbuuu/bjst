@@ -23,7 +23,7 @@
     <color name="color_transparent">#00000000</color>
 
     <!--【黑色】颜色的主色调-->
-    <color name="text_norm_black">#2D3132</color>
+    <color name="text_norm_black">#ff292d32</color>
     <!--【灰色色】占位时的灰色-->
     <color name="text_norm_gray">#EFEFEF</color>
 
@@ -81,7 +81,7 @@
     <color name="list_dividert">#E6E6E6</color>
 
     <color name="defaut_divider">#FAFAFA</color>
-    <color name="regular_green">#01C581</color>
+    <color name="regular_green">#ff009f00</color>
     <color name="green_profit">#4BE2AC</color>
     <color name="red_profit">#F85F69</color>
     <color name="common_bg">#FFF4F4F4</color>

@@ -72,9 +72,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
                 R.id.navigation_square -> {
                     curPos = MAIN_TAB_SQUARE
                 }
-                R.id.navigation_message -> {
-                    curPos = MAIN_TAB_MESSAGE
-                }
                 R.id.navigation_mine -> {
                     curPos = MAIN_TAB_MINE
                 }
@@ -103,7 +100,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
         when (curPos) {
             MAIN_TAB_AREA -> controller.navigate(R.id.navigation_area)
             MAIN_TAB_SQUARE -> controller.navigate(R.id.navigation_square)
-            MAIN_TAB_MESSAGE -> controller.navigate(R.id.navigation_message)
             MAIN_TAB_MINE -> controller.navigate(R.id.navigation_mine)
         }
     }

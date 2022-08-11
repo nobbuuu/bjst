@@ -16,11 +16,6 @@
         android:name="com.dream.bjst.square.SquareFragment"
         android:label="@string/title_square"
         tools:layout="@layout/fragment_square" />
-    <fixFragment
-        android:id="@+id/navigation_message"
-        android:name="com.dream.bjst.message.MessageFragment"
-        android:label="@string/title_message"
-        tools:layout="@layout/fragment_message" />
 
     <fixFragment
         android:id="@+id/navigation_mine"

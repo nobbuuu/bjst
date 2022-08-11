@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
@@ -19,11 +20,13 @@ class MainTabView @JvmOverloads constructor(
     private val tvName: TextView
     private val tvUnread: TextView
     private val tvRedPoint: View
+    private var tabImagIv: ImageView
 
     init {
         gravity = Gravity.CENTER
         val rootView = View.inflate(context, R.layout.view_main_tab, null)
         lottieIcon = rootView.findViewById(R.id.lottieView)
+        tabImagIv = rootView.findViewById(R.id.tabImgIv)
         tvName = rootView.findViewById(R.id.tabTitle)
         tvUnread = rootView.findViewById(R.id.tabUnreadCount)
         tvRedPoint = rootView.findViewById(R.id.tabUnread)
@@ -74,12 +77,14 @@ class MainTabView @JvmOverloads constructor(
         super.setSelected(selected)
         try {
             if (selected) {
-                tvName.setTextColor(ContextCompat.getColor(context, R.color.regular_red))
+                tvName.setTextColor(ContextCompat.getColor(context, R.color.regular_green))
+                tabImagIv.setImageResource(item.selectImg)
                 lottieIcon.playAnimation()
             } else {
                 lottieIcon.cancelAnimation()
                 lottieIcon.frame = 0
-                tvName.setTextColor(ContextCompat.getColor(context, R.color.regular_black))
+                tvName.setTextColor(ContextCompat.getColor(context, R.color.text_norm_black))
+                tabImagIv.setImageResource(item.normalImg)
             }
         } catch (ignored: Exception) {
         }

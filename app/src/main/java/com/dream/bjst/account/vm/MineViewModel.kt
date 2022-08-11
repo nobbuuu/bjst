@@ -1,4 +1,4 @@
-package com.dream.bjst.square.vm
+package com.dream.bjst.account.vm
 
 import com.tcl.base.common.BaseViewModel
 
@@ -7,5 +7,5 @@ import com.tcl.base.common.BaseViewModel
  *@date   2022/1/26
  *description
  */
-class SquareViewModel : BaseViewModel() {
+class MineViewModel : BaseViewModel() {
 }

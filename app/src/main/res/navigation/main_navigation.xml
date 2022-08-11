@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@+id/navigation_area">
+    app:startDestination="@+id/navigation_loan">
 
     <fixFragment
-        android:id="@+id/navigation_area"
-        android:name="com.dream.bjst.home.ui.HomeFragment"
+        android:id="@+id/navigation_loan"
+        android:name="com.dream.bjst.loan.ui.LoanFragment"
         android:label="@string/title_area"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_loan" />
 
     <fixFragment
-        android:id="@+id/navigation_square"
-        android:name="com.dream.bjst.square.SquareFragment"
+        android:id="@+id/navigation_repayment"
+        android:name="com.dream.bjst.repayment.ui.RepaymentFragment"
         android:label="@string/title_square"
-        tools:layout="@layout/fragment_square" />
+        tools:layout="@layout/fragment_repayment" />
 
     <fixFragment
-        android:id="@+id/navigation_mine"
-        android:name="com.dream.bjst.mine.MineFragment"
+        android:id="@+id/navigation_account"
+        android:name="com.dream.bjst.account.ui.AccountFragment"
         android:label="@string/title_mine"
-        tools:layout="@layout/fragment_mine" />
+        tools:layout="@layout/fragment_account" />
 </navigation>

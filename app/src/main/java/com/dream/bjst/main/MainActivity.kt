@@ -21,7 +21,7 @@ import com.tcl.tclzjpro.main.FixFragmentNavigator
  */
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
     var lastPos = -1
-    var curPos = MAIN_TAB_AREA
+    var curPos = MAIN_TAB_LOAN
     private lateinit var controller: NavController
 
     init {
@@ -66,26 +66,26 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
         })
         controller.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.navigation_area -> {
-                    curPos = MAIN_TAB_AREA
+                R.id.navigation_loan-> {
+                    curPos = MAIN_TAB_LOAN
                 }
-                R.id.navigation_square -> {
-                    curPos = MAIN_TAB_SQUARE
+                R.id.navigation_repayment -> {
+                    curPos = MAIN_TAB_REPAYMENT
                 }
-                R.id.navigation_mine -> {
-                    curPos = MAIN_TAB_MINE
+                R.id.navigation_account-> {
+                    curPos = MAIN_TAB_ACCOUNT
                 }
             }
             mBinding.mainTab.selectTab(mBinding.mainTab.getTabAt(curPos))
         }
     }
     override fun onBlockBackPressed(): Boolean {
-        return curPos != MAIN_TAB_AREA
+        return curPos != MAIN_TAB_LOAN
     }
 
     override fun doOnBlockBackPressed() {
         super.doOnBlockBackPressed()
-        findNavController(R.id.main_container).navigate(R.id.navigation_area)
+        findNavController(R.id.main_container).navigate(R.id.navigation_loan)
     }
     /**监听新的intent*/
     override fun onNewIntent(intent: Intent?) {
@@ -98,9 +98,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
     /**根据下标切换页面*/
     private fun switchTab(curPos: Int) {
         when (curPos) {
-            MAIN_TAB_AREA -> controller.navigate(R.id.navigation_area)
-            MAIN_TAB_SQUARE -> controller.navigate(R.id.navigation_square)
-            MAIN_TAB_MINE -> controller.navigate(R.id.navigation_mine)
+            MAIN_TAB_LOAN -> controller.navigate(R.id.navigation_loan)
+            MAIN_TAB_REPAYMENT -> controller.navigate(R.id.navigation_repayment)
+            MAIN_TAB_ACCOUNT -> controller.navigate(R.id.navigation_account)
         }
     }
     override fun onResume() {

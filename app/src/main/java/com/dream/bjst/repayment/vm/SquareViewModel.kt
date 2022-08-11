@@ -1,4 +1,4 @@
-package com.dream.bjst.message.vm
+package com.dream.bjst.repayment.vm
 
 import com.tcl.base.common.BaseViewModel
 
@@ -7,5 +7,5 @@ import com.tcl.base.common.BaseViewModel
  *@date   2022/1/26
  *description
  */
-class MessageViewModel : BaseViewModel() {
+class SquareViewModel : BaseViewModel() {
 }

@@ -1,4 +1,4 @@
-package com.dream.bjst.home.vm
+package com.dream.bjst.loan.vm
 
 import com.tcl.base.common.BaseViewModel
 

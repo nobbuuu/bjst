@@ -44,7 +44,7 @@
                 android:layout_marginTop="@dimen/dp_12"
                 android:text="8019872373"
                 android:textColor="#ff000000"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_12" />
             />
 
             <com.ruffian.library.widget.RImageView

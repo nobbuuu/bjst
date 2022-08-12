@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".account.ui.AboutUsActivity">
+<View
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_44"
+    android:background="@color/white"/>
+    <com.hjq.bar.TitleBar
+        android:id="@+id/about_us_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_25"
+        app:title="About Us"
+        app:titleStyle="bold"
+        android:background="@color/white"/>
+    <com.ruffian.library.widget.RImageView
+        android:layout_width="91dp"
+        android:layout_height="@dimen/dp_60"
+        android:src="@mipmap/repidicon"
+        android:layout_marginTop="74dp"
+        android:layout_gravity="center_horizontal"
+        />
+    <com.ruffian.library.widget.RImageView
+        android:layout_width="99dp"
+        android:layout_height="@dimen/dp_18"
+        android:src="@mipmap/rapidcoin"
+        android:layout_marginTop="@dimen/dp_18"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <com.ruffian.library.widget.RTextView
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="38dp"
+        android:gravity="center"
+        android:text="Rapid Coin is a personal loan App which provide super fast loan with simple and secure procedure. You can get urgent cash assistance with easy credit quickly. Your credit scores would increase instantly after you repay on time."
+        android:textColor="#ff666666"
+        android:textDirection="firstStrong"
+        android:textSize="18sp" />
+
+</LinearLayout>

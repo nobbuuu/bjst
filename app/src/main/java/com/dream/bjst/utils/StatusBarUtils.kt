@@ -5,10 +5,10 @@ import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ColorUtils
 import com.dream.bjst.R
 
-class StatusBarUtils {
+ class StatusBarUtils {
     fun adjustWindow(activity: Activity, isLight: Boolean) {
         if (isLight) {
-            BarUtils.setStatusBarColor(activity, ColorUtils.getColor(R.color.white))
+            BarUtils.setStatusBarColor(activity, ColorUtils.getColor(R.color.black))
         } else {
             BarUtils.setStatusBarColor(activity, ColorUtils.getColor(R.color.transparent))
         }

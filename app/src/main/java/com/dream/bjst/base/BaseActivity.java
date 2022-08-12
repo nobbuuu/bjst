@@ -269,7 +269,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @return
      */
 
-    public String getPackageName() {
+    public String getPackName() {
 
       // 获取PackageManager的实例
 
@@ -279,7 +279,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         PackageInfo packinfo = null;
         try {
-            packinfo = packagemanager.getPackageInfo(getPackageName(), 0);
+            packinfo = packagemanager.getPackageInfo(this.getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

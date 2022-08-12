@@ -1,41 +1,41 @@
 package com.dream.bjst.account.ui;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
 import android.view.View;
 
 import com.dream.bjst.R;
 import com.dream.bjst.base.BaseActivity;
 import com.dream.bjst.utils.StatusBarUtils;
 import com.hjq.bar.TitleBar;
-import com.ruffian.library.widget.RTextView;
 
-public class AccountSettingActivity extends BaseActivity {
-    TitleBar mTitleBar;
-    RTextView versionTv;
+public class AboutUsActivity extends BaseActivity {
+     TitleBar mAboutUsTitle;
 
     @Override
     protected int initLayout() {
         //调整状态栏的字体颜色为黑色
         new StatusBarUtils().adjustWindow(this,true);
-        return R.layout.activity_account_setting;
+        return R.layout.activity_about_us;
     }
 
     @Override
     protected void initView() {
-        mTitleBar = fvbi(R.id.account_my_setting_title);
-        versionTv = fvbi(R.id.setting_version);
+    mAboutUsTitle=fvbi(R.id.about_us_title);
     }
 
     @Override
     protected void initData() {
-        //获取标题栏的返回按钮
-        mTitleBar.getLeftView().setOnClickListener(new View.OnClickListener() {
+      event();
+    }
+
+    private void event() {
+        mAboutUsTitle.getLeftView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        //获取安卓版本号
-        versionTv.setText(getVersionCode() + ". 0. 0");
-
     }
 }

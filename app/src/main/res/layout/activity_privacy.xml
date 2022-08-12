@@ -92,7 +92,7 @@ You can choose to agree or disagree, but after disagree, we will not be able to 
 
             android:layout_width="66dp"
             android:layout_height="@dimen/dp_16"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="@dimen/dp_20"
             android:text="Location"
             android:textColor="#ff333333"
@@ -113,7 +113,7 @@ You can choose to agree or disagree, but after disagree, we will not be able to 
 
             android:layout_width="66dp"
             android:layout_height="@dimen/dp_16"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_20"
             android:text="Phone"
             android:textColor="#ff333333"
@@ -134,7 +134,7 @@ You can choose to agree or disagree, but after disagree, we will not be able to 
 
             android:layout_width="66dp"
             android:layout_height="@dimen/dp_16"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_20"
             android:text="Camera"
             android:textColor="#ff333333"
@@ -155,7 +155,7 @@ You can choose to agree or disagree, but after disagree, we will not be able to 
 
             android:layout_width="66dp"
             android:layout_height="@dimen/dp_16"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_20"
             android:text="Storage"
             android:textColor="#ff333333"

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".account.ui.AccountSettingActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:background="@color/white" />
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/account_delete_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_25"
+        app:title="Delete individual data"
+        app:titleSize="@dimen/sp_18"
+        app:titleStyle="bold" />
+    <com.ruffian.library.widget.RTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="left"
+        android:layout_marginTop="@dimen/dp_44"
+        android:layout_marginRight="@dimen/dp_35"
+        android:layout_marginLeft="@dimen/dp_35"
+        android:textSize="@dimen/sp_18"
+        android:text="Please send an email to XXXX@yyy.com with title :'Delete individual data'. Please provide your phone number, pan number and aadhaar number which you registered in our app. We will delete your date within 7 working days if you don't have any debt in our app."
+        />
+        />
+
+</LinearLayout>

@@ -44,12 +44,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         //显示/隐藏标题栏
         if (!isShowTitle) {
-            getSupportActionBar().hide();
+            this.getSupportActionBar().hide();
         }
 
         //显示隐藏状态栏
         if (!isShowStatusBar) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
         //设置布局

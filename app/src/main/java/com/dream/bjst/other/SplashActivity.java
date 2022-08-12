@@ -27,7 +27,7 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void initData() {
         //是否显示状态栏
-        setShowStatusBar(true);
+        setShowStatusBar(false);
 
         mHandler.postDelayed(new Runnable() {
             @Override

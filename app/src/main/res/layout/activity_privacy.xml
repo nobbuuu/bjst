@@ -40,7 +40,7 @@
 
         <LinearLayout
             android:layout_width="355dp"
-            android:layout_height="758dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="3dp"
             android:background="@drawable/shap_privace_background"
@@ -59,9 +59,30 @@
 
             <com.ruffian.library.widget.RTextView
                 android:layout_width="338dp"
-                android:layout_height="273dp"
+                android:layout_height="wrap_content"
                 android:text="lucky rupee access the user's all SMS (which includes address of message, body of message, date received, read or not, sending status, sent or received) information to monitor financial transactions and upload on our servers.\n We are only monitor the income of the user, track and analyze financial expenses and determine the credit worthiness of the customer for instant credit disbursal.\n We just access the user's SMS during loan application processes, and do not store your personal SMS.\n
 You can choose to agree or disagree, but after disagree, we will not be able to provide you with loan services."
+                android:textColor="#ff666666"
+                android:padding="@dimen/dp_5"
+                android:lineSpacingExtra="@dimen/dp_5"
+                android:textSize="13sp" />
+
+            //
+            <com.ruffian.library.widget.RTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                android:text="Contact List"
+                android:textColor="#ff333333"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <com.ruffian.library.widget.RTextView
+                android:layout_width="338dp"
+                android:layout_height="273dp"
+                android:lineSpacingExtra="@dimen/dp_5"
+                android:padding="@dimen/dp_5"
+                android:text="As a part of the loan journey facilitated through Lucky Rupee, we collect, upload to Lucky Rupee servers, store and monitors your contact List(which includes name, phone number, account type, contact last modified, favourites and other optional data ) to enable you to autofill the data during the loan application process. This information is also required for the purposes of risk analysis, to enable us to detect credible references, assess your risk profile and further determine your loan eligibility. We just access the user's Contact list during loan application processes. If your loan overdued and you were out of touch, the borrowing institution will attempt to contact you via the contacts in your address book if necessary. You can choose to agree or disagree, but after disagree, we will not be able to provide you with loan services; if there is no Contacts List information, we will not be able to assess your risk and credit."
                 android:textColor="#ff666666"
                 android:textSize="13sp" />
         </LinearLayout>

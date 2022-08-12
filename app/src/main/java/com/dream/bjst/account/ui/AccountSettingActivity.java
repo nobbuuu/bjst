@@ -18,8 +18,8 @@ public class AccountSettingActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        mTitleBar=fvbi(R.id.account_my_setting_title);
-        versionTv=fvbi(R.id.setting_version);
+        mTitleBar = fvbi(R.id.account_my_setting_title);
+        versionTv = fvbi(R.id.setting_version);
     }
 
     @Override
@@ -30,8 +30,8 @@ public class AccountSettingActivity extends BaseActivity {
                 onBackPressed();
             }
         });
-        //
-        versionTv.setText(getVersionCode()+".0.0");
+        //获取安卓版本号
+        versionTv.setText(getVersionCode() + ". 0. 0");
 
     }
 }

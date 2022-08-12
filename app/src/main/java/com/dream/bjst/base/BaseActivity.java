@@ -244,11 +244,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public int getVersionCode() {
 
-// 获取PackageManager的实例
+    // 获取PackageManager的实例
 
         PackageManager packagemanager = getPackageManager();
 
-// getPackageName()是你当前类的包名，0代表是获取版本信息
+      // getPackageName()是你当前类的包名，0代表是获取版本信息
 
         PackageInfo packInfo = null;
         try {
@@ -269,13 +269,13 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @return
      */
 
-    public String getapkname() {
+    public String getPackageName() {
 
-// 获取packagemanager的实例
+      // 获取PackageManager的实例
 
         PackageManager packagemanager = getPackageManager();
 
-// getpackagename()是你当前类的包名，0代表是获取版本信息
+      // getPackageName()是你当前类的包名，0代表是获取版本信息
 
         PackageInfo packinfo = null;
         try {

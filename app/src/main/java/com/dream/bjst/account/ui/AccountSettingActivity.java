@@ -24,6 +24,7 @@ public class AccountSettingActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        //获取标题栏的返回按钮
         mTitleBar.getLeftView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

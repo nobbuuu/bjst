@@ -29,9 +29,9 @@
         android:layout_marginRight="@dimen/dp_35"
         android:layout_marginLeft="@dimen/dp_35"
         android:textSize="@dimen/sp_18"
+        android:lineSpacingExtra="@dimen/dp_5"
         android:textColor="#666666"
-        android:text="Please send an email to XXXX@yyy.com with title :'Delete individual data'. Please provide your phone number, pan number and aadhaar number which you registered in our app. We will delete your date within 7 working days if you don't have any debt in our app."
-        />
+        android:text="Please send an email to XXXX@yyy.com with title :'Delete individual data'.\nPlease provide your phone number, pan number and aadhaar number which you registered in our app.\nWe will delete your date within 7 working days if you don't have any debt in our app."
         />
 
 </LinearLayout>

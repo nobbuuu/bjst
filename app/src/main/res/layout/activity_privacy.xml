@@ -60,14 +60,15 @@
             <com.ruffian.library.widget.RTextView
                 android:layout_width="338dp"
                 android:layout_height="wrap_content"
+                android:lineSpacingExtra="@dimen/dp_5"
+                android:padding="@dimen/dp_5"
                 android:text="lucky rupee access the user's all SMS (which includes address of message, body of message, date received, read or not, sending status, sent or received) information to monitor financial transactions and upload on our servers.\n We are only monitor the income of the user, track and analyze financial expenses and determine the credit worthiness of the customer for instant credit disbursal.\n We just access the user's SMS during loan application processes, and do not store your personal SMS.\n
 You can choose to agree or disagree, but after disagree, we will not be able to provide you with loan services."
                 android:textColor="#ff666666"
-                android:padding="@dimen/dp_5"
-                android:lineSpacingExtra="@dimen/dp_5"
                 android:textSize="13sp" />
 
             //
+
             <com.ruffian.library.widget.RTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,6 +87,131 @@ You can choose to agree or disagree, but after disagree, we will not be able to 
                 android:textColor="#ff666666"
                 android:textSize="13sp" />
         </LinearLayout>
+
+        <com.ruffian.library.widget.RTextView
+
+            android:layout_width="66dp"
+            android:layout_height="@dimen/dp_16"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="Location"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="335dp"
+            android:layout_height="84dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="9dp"
+            android:text="Lucky Rupee track the current location to check the availability of our services and approve the application. We access your location only when the app is in use and not while it is in the background."
+            android:textColor="#ff666666"
+            android:textSize="13sp" />
+        //
+
+        <com.ruffian.library.widget.RTextView
+
+            android:layout_width="66dp"
+            android:layout_height="@dimen/dp_16"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="Phone"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="335dp"
+            android:layout_height="84dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="9dp"
+            android:text="Lucky Rupee track the current location to check the availability of our services and approve the application. We access your location only when the app is in use and not while it is in the background."
+            android:textColor="#ff666666"
+            android:textSize="13sp" />
+        //
+
+        <com.ruffian.library.widget.RTextView
+
+            android:layout_width="66dp"
+            android:layout_height="@dimen/dp_16"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="Camera"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="335dp"
+            android:layout_height="84dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="9dp"
+            android:text="Lucky Rupee track the current location to check the availability of our services and approve the application. We access your location only when the app is in use and not while it is in the background."
+            android:textColor="#ff666666"
+            android:textSize="13sp" />
+        //
+
+        <com.ruffian.library.widget.RTextView
+
+            android:layout_width="66dp"
+            android:layout_height="@dimen/dp_16"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="Storage"
+            android:textColor="#ff333333"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="335dp"
+            android:layout_height="84dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="9dp"
+            android:text="Allow you to upload documents and pictures for loan application."
+            android:textColor="#ff666666"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="47dp"
+            android:orientation="horizontal">
+
+            <com.ruffian.library.widget.RImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:src="@mipmap/unselect" />
+
+            <com.ruffian.library.widget.RTextView
+
+                android:layout_width="283dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="@dimen/dp_17"
+                android:text="Accept Terms Conditions and Privacy Policy and to receive notification from SMS and email"
+                android:textColor="#fff7002d"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="@dimen/dp_335"
+            android:layout_height="@dimen/dp_44"
+            android:layout_gravity="center_horizontal"
+            android:background="#ff009b12"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="Please check the abo"
+            android:textColor="@color/white" />
+        <Button
+            android:layout_width="@dimen/dp_335"
+            android:layout_height="@dimen/dp_44"
+            android:layout_gravity="center_horizontal"
+            android:background="#EDF9EE"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="Disagree"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:textColor="#ff009b12" />
+
     </LinearLayout>
 
 

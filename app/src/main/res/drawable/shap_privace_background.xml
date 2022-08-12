@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <!--填充色-->
-    <solid android:color="#ffffff" />
+    <solid android:color="#EDF9EE" />
     <!--边线颜色-->
     <stroke
         android:width="@dimen/dp_2"

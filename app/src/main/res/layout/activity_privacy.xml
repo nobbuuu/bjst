@@ -183,9 +183,17 @@ You can choose to agree or disagree, but after disagree, we will not be able to 
                 android:layout_height="30dp"
                 android:layout_marginLeft="@dimen/dp_20"
                 android:src="@mipmap/unselect" />
+            <!-- //找到控件
+                    mtv1 = findViewById(R.id.sleep_tv_1);
+                    mtv2 = findViewById(R.id.sleep_tv_2);
 
+                    //中划线
+                    mtv1.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);  //中划线，会有锯齿
+                    mtv1.getPaint().setAntiAlias(true);                     //消除锯齿
+
+                    //下划线
+                    mtv2.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);-->
             <com.ruffian.library.widget.RTextView
-
                 android:layout_width="283dp"
                 android:layout_height="36dp"
                 android:layout_marginLeft="@dimen/dp_17"
@@ -198,18 +206,19 @@ You can choose to agree or disagree, but after disagree, we will not be able to 
             android:layout_width="@dimen/dp_335"
             android:layout_height="@dimen/dp_44"
             android:layout_gravity="center_horizontal"
-            android:background="#ff009b12"
             android:layout_marginTop="@dimen/dp_10"
+            android:background="#ff009b12"
             android:text="Please check the abo"
             android:textColor="@color/white" />
+
         <Button
             android:layout_width="@dimen/dp_335"
             android:layout_height="@dimen/dp_44"
             android:layout_gravity="center_horizontal"
-            android:background="#EDF9EE"
             android:layout_marginTop="@dimen/dp_10"
-            android:text="Disagree"
             android:layout_marginBottom="@dimen/dp_20"
+            android:background="#EDF9EE"
+            android:text="Disagree"
             android:textColor="#ff009b12" />
 
     </LinearLayout>

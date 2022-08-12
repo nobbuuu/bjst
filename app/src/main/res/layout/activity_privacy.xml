@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -36,6 +37,34 @@
             android:text="Dear User,\n Lucky Rupee will require the access of below data to determine the credit risk, prevent frauds, and check your creditworthiness for instant approval.\n Please go through each permission that explains how and why we collect the details.\n We use secure HTTPS APIs and cryptographic techniques to encrypt and transfer your information and all data resides on our proprietary local servers(https://api.luckyrupee.com) for the utmost privacy.\n DISCLOSURE TO THIRD PARTIES We will share Your information with only our registered third parties including our regulated financial partners for provision of Services on the Website/ App.\n And we will not share it with any third party without the user's permission, and will delete it completely after terminating our service with the user.\n See Privacy Policy for more details. How to Delete individual data？ Log into your account and click 'account', then 'Delete individual data'"
             android:textColor="#666666"
             android:textSize="@dimen/sp_13" />
+
+        <LinearLayout
+            android:layout_width="355dp"
+            android:layout_height="758dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/shap_privace_background"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_5">
+
+            <com.ruffian.library.widget.RTextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                android:text="SMS"
+                android:textColor="#ff333333"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <com.ruffian.library.widget.RTextView
+                android:layout_width="338dp"
+                android:layout_height="273dp"
+                android:text="lucky rupee access the user's all SMS (which includes address of message, body of message, date received, read or not, sending status, sent or received) information to monitor financial transactions and upload on our servers.\n We are only monitor the income of the user, track and analyze financial expenses and determine the credit worthiness of the customer for instant credit disbursal.\n We just access the user's SMS during loan application processes, and do not store your personal SMS.\n
+You can choose to agree or disagree, but after disagree, we will not be able to provide you with loan services."
+                android:textColor="#ff666666"
+                android:textSize="13sp" />
+        </LinearLayout>
     </LinearLayout>
 
 

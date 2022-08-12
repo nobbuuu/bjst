@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".account.ui.PrivacyActivity">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_44"
+            android:background="@color/white" />
+
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_25"
+            android:gravity="center_horizontal"
+            android:text="Prominent disclosure"
+            android:textColor="#333333"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold" />
+
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:lineSpacingExtra="@dimen/dp_4"
+            android:padding="@dimen/dp_10"
+            android:text="Dear User,\n Lucky Rupee will require the access of below data to determine the credit risk, prevent frauds, and check your creditworthiness for instant approval.\n Please go through each permission that explains how and why we collect the details.\n We use secure HTTPS APIs and cryptographic techniques to encrypt and transfer your information and all data resides on our proprietary local servers(https://api.luckyrupee.com) for the utmost privacy.\n DISCLOSURE TO THIRD PARTIES We will share Your information with only our registered third parties including our regulated financial partners for provision of Services on the Website/ App.\n And we will not share it with any third party without the user's permission, and will delete it completely after terminating our service with the user.\n See Privacy Policy for more details. How to Delete individual data？ Log into your account and click 'account', then 'Delete individual data'"
+            android:textColor="#666666"
+            android:textSize="@dimen/sp_13" />
+    </LinearLayout>
+
+
+</ScrollView>

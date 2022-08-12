@@ -36,12 +36,13 @@
     <com.ruffian.library.widget.RTextView
         android:layout_width="305dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="38dp"
         android:gravity="left"
+        android:padding="@dimen/dp_5"
         android:lineSpacingExtra="@dimen/dp_5"
         android:text="Rapid Coin is a personal loan App which provide super fast loan with simple and secure procedure. You can get urgent cash assistance with easy credit quickly.\n Your credit scores would increase instantly after you repay on time."
-        android:textColor="#ff666666"
+        android:textColor="#666666"
         android:textDirection="firstStrong"
         android:textSize="18sp" />
 

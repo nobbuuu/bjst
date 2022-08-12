@@ -3,30 +3,35 @@
     package="com.dream.bjst">
 
     <application
+        android:name=".app.MyApp"
         android:allowBackup="false"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:name=".app.MyApp"
         android:requestLegacyExternalStorage="true"
-        android:theme="@style/Theme.CbgBase" >
+        android:theme="@style/Theme.CbgBase">
+
+        <activity
+            android:name=".account.ui.AccountSettingActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="design_width_in_dp"
             android:value="375" />
         <meta-data
             android:name="design_height_in_dp"
-            android:value="812" />
-        <!--全面屏适配-->
+            android:value="812" /> <!-- 全面屏适配 -->
         <meta-data
             android:name="android.max_aspect"
-            android:value="2.2" />
-        <!-- 华为刘海屏区域使用 -->
+            android:value="2.2" /> <!-- 华为刘海屏区域使用 -->
         <meta-data
             android:name="android.notch_support"
             android:value="true" />
-        <activity android:name="com.dream.bjst.other.LaunchActivity"/>
-        <activity android:name="com.dream.bjst.main.MainActivity">
+
+        <activity android:name=".main.MainActivity" />
+        <activity android:name=".other.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

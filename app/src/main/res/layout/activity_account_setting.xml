@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".account.ui.AccountSettingActivity">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_44"
+            android:background="@color/white" />
+
+        <com.hjq.bar.TitleBar
+            android:id="@+id/account_my_setting_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_25"
+            app:title="My settings"
+            app:titleSize="@dimen/sp_18"
+            app:titleStyle="bold" />
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.ruffian.library.widget.RImageView
+                android:id="@+id/account_icon"
+                android:layout_width="@dimen/dp_84"
+                android:layout_height="@dimen/dp_84"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="@dimen/dp_18"
+                android:src="@mipmap/account_icon" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/account_name"
+                android:layout_width="@dimen/dp_93"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginLeft="@dimen/dp_19"
+                android:layout_marginTop="@dimen/dp_34"
+                android:layout_toRightOf="@id/account_icon"
+                android:text="User name"
+                android:textColor="#ff000000"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/account_id"
+                android:layout_width="@dimen/dp_86"
+                android:layout_height="@dimen/dp_15"
+                android:layout_below="@id/account_name"
+                android:layout_alignLeft="@id/account_name"
+                android:layout_marginTop="@dimen/dp_12"
+                android:text="8019872373"
+                android:textColor="#837E7E"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
+        <!--app版本号-->
+        <View
+            android:layout_width="@dimen/dp_335"
+            android:layout_height="@dimen/dp_1"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_19"
+            android:background="#ffcccccc" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_44"
+            android:orientation="horizontal">
+
+            <com.ruffian.library.widget.RTextView
+
+                android:layout_width="@dimen/dp_87"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:text="App Version"
+                android:textColor="#ff000000"
+                android:textSize="@dimen/sp_15" />
+
+            <com.ruffian.library.widget.RTextView
+                android:layout_width="@dimen/dp_41"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="V 1.0.0"
+                android:textColor="#ffff9935"
+                android:textSize="@dimen/sp_13" />
+        </LinearLayout>
+        <!--Customer Service Ema-->
+        <View
+            android:layout_width="@dimen/dp_335"
+            android:layout_height="@dimen/dp_1"
+            android:layout_gravity="center"
+            android:background="#ffcccccc" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_44"
+            android:orientation="horizontal">
+
+            <com.ruffian.library.widget.RTextView
+
+                android:layout_width="@dimen/dp_87"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Customer Service Ema"
+                android:textColor="#ff000000"
+                android:textSize="@dimen/sp_15" />
+
+            <com.ruffian.library.widget.RTextView
+                android:layout_width="@dimen/dp_41"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="ajsdklfjksldafa@gmil"
+                android:textColor="#ffff9935"
+                android:textSize="@dimen/sp_13" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/dp_335"
+            android:layout_height="@dimen/dp_1"
+            android:layout_gravity="center"
+            android:background="#ffcccccc" />
+
+        <Button
+            android:layout_width="@dimen/dp_335"
+            android:layout_height="@dimen/dp_44"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_416"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginBottom="@dimen/dp_78"
+            android:background="#ff009b12"
+            android:text="Logout"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</ScrollView>

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
@@ -198,35 +200,94 @@ public abstract class BaseActivity extends AppCompatActivity {
         //activity管理
         ActivityCollector.removeActivity(this);
     }
-    protected <T extends View> T fvbi(int resId){        return (T) findViewById(resId);
-    }    /**
+
+    protected <T extends View> T fvbi(int resId) {
+        return (T) findViewById(resId);
+    }
+
+    /**
      * Intent跳转
+     *
      * @param context
      * @param clazz
      */
-    public void toClass(Context context,Class<? extends BaseActivity> clazz){
-        toClass(context,clazz,null);
-    }    /**
+    public void toClass(Context context, Class<? extends BaseActivity> clazz) {
+        toClass(context, clazz, null);
+    }
+
+    /**
      * Intent带值跳转
+     *
      * @param context
      * @param clazz
      * @param bundle
      */
-    public void toClass(Context context, Class<? extends BaseActivity> clazz, Bundle bundle){
-        Intent intent = new Intent(context,clazz);
+    public void toClass(Context context, Class<? extends BaseActivity> clazz, Bundle bundle) {
+        Intent intent = new Intent(context, clazz);
         intent.putExtras(bundle);
         startActivity(intent);
-    }    /**
+    }
+
+    /**
      * 带返回值的跳转
+     *
      * @param context
      * @param clazz
      * @param bundle
      * @param reuqestCode
      */
-    public void toClass(Context context,Class<? extends BaseActivity> clazz,Bundle bundle,int reuqestCode){
-        Intent intent = new Intent(context,clazz);
+    public void toClass(Context context, Class<? extends BaseActivity> clazz, Bundle bundle, int reuqestCode) {
+        Intent intent = new Intent(context, clazz);
         intent.putExtras(bundle);
-        startActivityForResult(intent,reuqestCode);
+        startActivityForResult(intent, reuqestCode);
+    }
+
+    public int getVersionCode() {
+
+// 获取PackageManager的实例
+
+        PackageManager packagemanager = getPackageManager();
+
+// getPackageName()是你当前类的包名，0代表是获取版本信息
+
+        PackageInfo packInfo = null;
+        try {
+            packInfo = packagemanager.getPackageInfo(getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        int version = packInfo.versionCode;
+
+        return version;
+
+    }
+
+    /**
+     * 获取版本名
+     *
+     * @return
+     */
+
+    public String getapkname() {
+
+// 获取packagemanager的实例
+
+        PackageManager packagemanager = getPackageManager();
+
+// getpackagename()是你当前类的包名，0代表是获取版本信息
+
+        PackageInfo packinfo = null;
+        try {
+            packinfo = packagemanager.getPackageInfo(getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String version = packinfo.versionName;
+
+        return version;
+
     }
 
 

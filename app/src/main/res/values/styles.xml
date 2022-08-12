@@ -658,4 +658,11 @@
         <item name="android:maxLines">2</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <!--设置popupWindow样式-->
+    <!--themes.xml | styles.xml-->
+    <style name="pw_bottom_anim_style">
+        <item name="android:windowEnterAnimation">@anim/pw_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/pw_bottom_out</item>
+    </style>
+
 </resources>

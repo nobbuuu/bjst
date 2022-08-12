@@ -12,7 +12,7 @@ import com.ruffian.library.widget.RImageView;
 
 public class AccountFragment extends BaseFragment {
     RImageView settingImage;
-    LinearLayout aboutUsLayout,deleteDataLayout,privacyLayout;
+    LinearLayout aboutUsLayout,deleteDataLayout,privacyLayout,chatServiceLayout;
     @Override
     protected int setLayout() {
         return R.layout.fragment_account;
@@ -24,6 +24,7 @@ public class AccountFragment extends BaseFragment {
         aboutUsLayout=fvbi(R.id.account_about_us);
         deleteDataLayout=fvbi(R.id.account_delete_individual_data);
         privacyLayout=fvbi(R.id.account_privacy_police);
+        chatServiceLayout=fvbi(R.id.account_customer_service);
     }
 
     @Override
@@ -55,6 +56,13 @@ public class AccountFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MyAppKt.getMApplication(),PrivacyActivity.class));
+            }
+        });
+        //顾客聊天服务
+        chatServiceLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyAppKt.getMApplication(),ChatMessageActivity.class));
             }
         });
     }

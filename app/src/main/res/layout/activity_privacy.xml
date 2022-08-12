@@ -114,18 +114,18 @@ You can choose to agree or disagree, but after disagree, we will not be able to 
             android:layout_width="66dp"
             android:layout_height="@dimen/dp_16"
             android:layout_marginLeft="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_10"
             android:text="Phone"
             android:textColor="#ff333333"
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <TextView
+        <com.ruffian.library.widget.RTextView
             android:layout_width="335dp"
-            android:layout_height="84dp"
+            android:layout_height="147dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="9dp"
-            android:text="Lucky Rupee track the current location to check the availability of our services and approve the application. We access your location only when the app is in use and not while it is in the background."
+            android:text="Collect and monitor specific information about your device including your hardware model, operating System and version, unique device identifier, user profile information, wi- fi information, mobile network Information to uniquely identify the devices and ensure that unauthorised devices are not able to act on your behalf helping us to prevent frauds."
             android:textColor="#ff666666"
             android:textSize="13sp" />
         //
@@ -135,18 +135,18 @@ You can choose to agree or disagree, but after disagree, we will not be able to 
             android:layout_width="66dp"
             android:layout_height="@dimen/dp_16"
             android:layout_marginLeft="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_10"
             android:text="Camera"
             android:textColor="#ff333333"
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <TextView
+        <com.ruffian.library.widget.RTextView
             android:layout_width="335dp"
-            android:layout_height="84dp"
+            android:layout_height="42dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="9dp"
-            android:text="Lucky Rupee track the current location to check the availability of our services and approve the application. We access your location only when the app is in use and not while it is in the background."
+            android:text="Allow you to capture images like your face or documents for eKYC or loan application."
             android:textColor="#ff666666"
             android:textSize="13sp" />
         //
@@ -162,9 +162,9 @@ You can choose to agree or disagree, but after disagree, we will not be able to 
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <TextView
+        <com.ruffian.library.widget.RTextView
             android:layout_width="335dp"
-            android:layout_height="84dp"
+            android:layout_height="42dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="9dp"
             android:text="Allow you to upload documents and pictures for loan application."
@@ -175,10 +175,11 @@ You can choose to agree or disagree, but after disagree, we will not be able to 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="47dp"
+            android:layout_marginTop="@dimen/dp_20"
             android:orientation="horizontal">
 
             <com.ruffian.library.widget.RImageView
+                android:id="@+id/privacy_unselect_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="@dimen/dp_20"
@@ -194,15 +195,18 @@ You can choose to agree or disagree, but after disagree, we will not be able to 
                     //下划线
                     mtv2.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);-->
             <com.ruffian.library.widget.RTextView
+                android:id="@+id/privacy_policy_tv"
                 android:layout_width="283dp"
                 android:layout_height="36dp"
                 android:layout_marginLeft="@dimen/dp_17"
+                android:autoLink="all"
                 android:text="Accept Terms Conditions and Privacy Policy and to receive notification from SMS and email"
                 android:textColor="#fff7002d"
                 android:textSize="11sp" />
         </LinearLayout>
 
         <Button
+            android:id="@+id/privacy_check_button"
             android:layout_width="@dimen/dp_335"
             android:layout_height="@dimen/dp_44"
             android:layout_gravity="center_horizontal"
@@ -212,6 +216,7 @@ You can choose to agree or disagree, but after disagree, we will not be able to 
             android:textColor="@color/white" />
 
         <Button
+            android:id="@+id/privacy_disagree_button"
             android:layout_width="@dimen/dp_335"
             android:layout_height="@dimen/dp_44"
             android:layout_gravity="center_horizontal"

@@ -174,7 +174,7 @@
                     android:src="@mipmap/account_custermer_service" />
 
                 <com.ruffian.library.widget.RTextView
-
+                    android:id="@+id/account_chat_service"
                     android:layout_width="@dimen/dp_94"
                     android:layout_height="@dimen/dp_16"
                     android:layout_gravity="center_vertical"

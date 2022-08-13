@@ -2,10 +2,17 @@ package com.dream.bjst.account.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,8 +58,11 @@ public class PrivacyActivity extends BaseActivity {
     @Override
     protected void initData() {
         //利用H5给网络协议添加超链接
-        privacyTv.setText(Html.fromHtml(" Accept " + "<a href=\"http://www.baidu.com\">Terms & Conditions</a>" + " and " + "<a href=\"http://www.baidu.com\">Privacy Policy</a>" + "and to receive notification from SMS and email"), TextView.BufferType.NORMAL);
-        privacyTv.setMovementMethod(LinkMovementMethod.getInstance());
+
+        callService("Accept Terms Conditions and Privacy Policy and to receive notification from SMS and email",privacyTv);
+        //callService("Accept Terms Conditions and Privacy Policy and to receive notification from SMS and email",privacyTv);
+//        privacyTv.setText(Html.fromHtml(" Accept " + "<u href=\"http://www.baidu.com\">Terms & Conditions</u>" + " and " + "<u href=\"http://www.baidu.com\">Privacy Policy</u>" + "and to receive notification from SMS and email"), TextView.BufferType.NORMAL);
+//        privacyTv.setMovementMethod(LinkMovementMethod.getInstance());
         event();
     }
 
@@ -97,10 +107,10 @@ public class PrivacyActivity extends BaseActivity {
             }
         });
     }
-
     /**
      * 显示弹窗方法
      */
+    @SuppressLint("ResourceType")
     private void showPopWindow() {
         // 加载弹窗布局
         pwView = LayoutInflater.from(this).inflate(R.layout.item_popupwindow_privacy, null, false);
@@ -115,6 +125,22 @@ public class PrivacyActivity extends BaseActivity {
                 windowAlpha(1f);
             }
         });
+        //设置popupWindow里面的未选中按钮
+        RImageView unselectImage=pwView.findViewById(R.id.privacy_popup_unselect_image);
+         unselectImage.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 if (isClick==false){
+                     unselectImage.setImageResource(R.mipmap.unselect);
+                     isClick=true;
+                 }else {
+                     unselectImage.setImageResource(R.mipmap.select);
+                     isClick=false;
+                 }
+             }
+         });
+
+
         // 设置 popupWindow
         popupWindow.setFocusable(true);// 取得焦点
         //点击外部消失
@@ -124,7 +150,7 @@ public class PrivacyActivity extends BaseActivity {
         // 加载弹窗动画
         popupWindow.setAnimationStyle(R.style.pw_bottom_anim_style);
        //从底部显示
-        popupWindow.showAtLocation(pwView, Gravity.BOTTOM, 0, 20);
+        popupWindow.showAtLocation(pwView, Gravity.BOTTOM, 0, 0);
         windowAlpha(0.5f);
     // 设置弹窗关闭监听——恢复亮度
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -140,6 +166,37 @@ public class PrivacyActivity extends BaseActivity {
         WindowManager.LayoutParams attributes = getWindow().getAttributes();
         attributes.alpha = alpha;
         getWindow().setAttributes(attributes);
+    }
+
+    /**
+     *
+     * @param content   文字内容
+     * @param textView  加载文字的textview
+     */
+
+    private void callService(String content, TextView textView) {
+        SpannableStringBuilder builder = new SpannableStringBuilder(content);
+
+        int i = content.indexOf("P");//截取文字开始的下标
+        ToastUtils.showShort(i+"");
+        builder.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                //点击后的操作
+                ToastUtils.showShort("点击了");
+                //CommonUtils.call(mContext, "12351");
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(getResources().getColor(R.color.greed_4E));       //设置文字颜色
+                ds.setUnderlineText(true);      //设置下划线//根据需要添加
+            }
+        }, i, i + 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setHighlightColor(Color.TRANSPARENT); //设置点击后的颜色为透明，否则会一直出现高亮
+        textView.setText(builder);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
 

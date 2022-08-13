@@ -140,7 +140,7 @@ public class PrivacyActivity extends BaseActivity {
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isClick==false){
+                if (isClick==true){
                 ToastUtils.showShort("Please check this box and continue");
                 }else {
                     ToastUtils.showShort("请测试登录");

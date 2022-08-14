@@ -14,6 +14,9 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.CbgBase">
         <activity
+            android:name=".RepaymentDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".account.ui.ChatMessageActivity"
             android:exported="false" />
         <activity

@@ -15,6 +15,7 @@ import com.dream.bjst.bean.OverduedBean;
 import com.dream.bjst.bean.RepaymentBean;
 import com.dream.bjst.repayment.adapter.EmptyAdapter;
 import com.dream.bjst.repayment.adapter.RePaymentAdapter;
+import com.dream.bjst.repayment.adapter.RePaymentInAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.List;
 public class RepaymentFragment extends BaseFragment {
     RecyclerView mRecyclerView;
     private RePaymentAdapter mRePaymentAdapter;
+    private RePaymentInAdapter mRePaymentInAdapter;
     private List<RepaymentBean> mList;
 
     @Override
@@ -37,6 +39,7 @@ public class RepaymentFragment extends BaseFragment {
     @Override
     protected void initData() {
         mRePaymentAdapter = new RePaymentAdapter();
+        mRePaymentInAdapter=new RePaymentInAdapter();
         // 显示空布局
         mRePaymentAdapter.setEmptyView(getEmptyView());
         mRecyclerView.setAdapter(mRePaymentAdapter);
@@ -46,13 +49,14 @@ public class RepaymentFragment extends BaseFragment {
     private void setData() {
         mList = new ArrayList<>();
         List<OverduedBean> inList = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             inList.add(new OverduedBean("Overdued"));
         }
         for (int i = 0; i < 10; i++) {
             mList.add(new RepaymentBean(inList));
         }
         mRePaymentAdapter.setList(mList);
+        mRePaymentInAdapter.setList(inList);
     }
 
     @Override

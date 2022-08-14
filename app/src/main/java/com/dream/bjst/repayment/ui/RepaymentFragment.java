@@ -29,7 +29,7 @@ public class RepaymentFragment extends BaseFragment {
     @Override
     protected void initData() {
         mList=new ArrayList<>();
-        getData();
+        //getData();
         mEmptyAdapter= new EmptyAdapter(MyAppKt.getMApplication(),mList);
        // 显示空布局
         mEmptyAdapter.showEmptyView(true);

@@ -30,7 +30,6 @@ public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> 
     private static final int TYPE_ITEM = 1;
     // 空布局的ViewType
     private static final int TYPE_EMPTY = 2;
-
     private Context mContext;
 
     // 数据
@@ -103,7 +102,7 @@ public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> 
     @Override
     public int getItemViewType(int position) {
         if (isEmptyPosition(position)) {
-            // 空布局
+            //空布局
             return TYPE_EMPTY;
         } else {
             return TYPE_ITEM;

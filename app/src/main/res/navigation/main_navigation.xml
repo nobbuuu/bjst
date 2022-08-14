@@ -15,7 +15,11 @@
         android:id="@+id/navigation_repayment"
         android:name="com.dream.bjst.repayment.ui.RepaymentFragment"
         android:label="@string/title_square"
-        tools:layout="@layout/fragment_repayment" />
+        tools:layout="@layout/fragment_repayment" >
+        <action
+            android:id="@+id/repayment_to_navigation_loan"
+            app:destination="@id/navigation_loan" />
+    </fixFragment>
 
     <fixFragment
         android:id="@+id/navigation_account"

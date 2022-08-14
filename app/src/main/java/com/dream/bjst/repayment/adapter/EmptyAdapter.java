@@ -1,8 +1,6 @@
 package com.dream.bjst.repayment.adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +8,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dream.bjst.R;
-import com.dream.bjst.app.MyAppKt;
-import com.dream.bjst.loan.ui.LoanFragment;
-import com.dream.bjst.main.MainActivity;
-
 import java.util.List;
 
 /**
@@ -47,13 +42,12 @@ public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //parent.setBackgroundResource(R.mipmap.ic_launcher);
         if (viewType == TYPE_EMPTY) {
             // 创建空布局item
             return new ViewHolder(getEmptyView(parent));
         } else {
             // 创建普通的item
-            View view = LayoutInflater.from(mContext).inflate(R.layout.item_repayment_data, parent, false);
+            View view = LayoutInflater.from(mContext).inflate(R.layout.item_repayment_out, parent, false);
             return new ViewHolder(view);
         }
     }
@@ -67,9 +61,7 @@ public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> 
         btnLoadData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyAppKt.getMApplication(),MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//为待启动的Activity指定FLAG_ACTIVITY_NEW_TASK标记位。
-                MyAppKt.getMApplication().startActivity(intent);//使用ApplicationContext开启便准模式下的axtivity会出现错误
+                Navigation.findNavController(v).navigate(R.id.repayment_to_navigation_loan);
             }
         });
         return view;
@@ -143,7 +135,7 @@ public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvItem = itemView.findViewById(R.id.tv_item);
+            tvItem = itemView.findViewById(R.id.repayment_name);
         }
     }
 

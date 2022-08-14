@@ -17,11 +17,12 @@
         android:text="Repayment"
         android:textColor="#ff000000"
         android:textSize="@dimen/sp_18" />
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/repayment_rv_plan"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/repayment_rv_plan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     />
 
 

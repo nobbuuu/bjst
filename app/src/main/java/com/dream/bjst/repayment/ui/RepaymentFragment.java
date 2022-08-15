@@ -74,12 +74,7 @@ public class RepaymentFragment extends BaseFragment {
                 startActivity(new Intent(MyAppKt.getMApplication(),RepaymentDetailActivity.class));
             }
         });
-//        mRePaymentAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
-//            @Override
-//            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
-//                startActivity(new Intent(MyAppKt.getMApplication(),RepaymentDetailActivity.class));
-//            }
-//        });
+
         mRePaymentAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {

@@ -245,6 +245,7 @@
             android:background="#ffdddddd" />
 
         <Button
+            android:id="@+id/confirm_pay_button"
             android:layout_width="@dimen/dp_335"
             android:layout_height="@dimen/dp_44"
             android:layout_gravity="center_horizontal"
@@ -323,18 +324,35 @@
                 android:id="@+id/digital_et"
                 android:layout_width="304dp"
                 android:layout_height="39dp"
+                android:inputType="number"
+                android:maxLength="12"
+                android:maxLines="1"
                 android:layout_below="@+id/title_utr"
                 android:layout_alignLeft="@id/title_utr"
                 android:background="@drawable/shap_account_background"
                 android:hint="Must be 12 digitals" />
 
             <com.ruffian.library.widget.RTextView
+                android:id="@+id/notion_tv"
+                android:layout_width="112dp"
+                android:layout_height="14dp"
+                android:text="Enter the correct No."
+                android:layout_below="@id/digital_et"
+                android:textColor="#FF0000"
+                android:textSize="12sp"
+                android:visibility="invisible"
+                android:layout_alignLeft="@id/title_utr"
+                android:layout_marginTop="@dimen/dp_5"
+                />
+
+            <com.ruffian.library.widget.RTextView
                 android:id="@+id/title_screenshot"
                 android:layout_width="118dp"
                 android:layout_height="25dp"
-                android:layout_below="@id/digital_et"
+                android:layout_below="@id/notion_tv"
                 android:layout_alignLeft="@id/title_utr"
                 android:text="UTR Screenshot"
+                android:layout_marginTop="@dimen/dp_5"
                 android:textColor="#ff333333"
                 android:textSize="15sp"
                 android:textStyle="bold" />

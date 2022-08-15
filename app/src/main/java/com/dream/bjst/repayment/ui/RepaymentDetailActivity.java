@@ -145,6 +145,7 @@ public class RepaymentDetailActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         mPhotoManager.checkPermissionAndChosePhoto();
+                        myDialog.dismiss();
                     }
                 });
 
@@ -152,6 +153,7 @@ public class RepaymentDetailActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         mPhotoManager.checkPermissionAndCamera();
+                        myDialog.dismiss();
                     }
                 });
             }

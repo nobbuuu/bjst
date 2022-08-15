@@ -21,6 +21,7 @@ import com.dream.bjst.bean.RepaymentBean;
 import com.dream.bjst.repayment.adapter.EmptyAdapter;
 import com.dream.bjst.repayment.adapter.RePaymentAdapter;
 import com.dream.bjst.repayment.adapter.RePaymentInAdapter;
+import com.dream.bjst.utils.StatusBarUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,8 @@ public class RepaymentFragment extends BaseFragment {
 
     @Override
     protected int setLayout() {
+        //调整状态栏的字体颜色为黑色
+        new StatusBarUtils().adjustWindow(getActivity(), true);
         return R.layout.fragment_repayment;
     }
 

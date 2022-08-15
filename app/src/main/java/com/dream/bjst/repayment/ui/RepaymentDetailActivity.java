@@ -75,7 +75,7 @@ public class RepaymentDetailActivity extends BaseActivity {
         mPayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent());
+                startActivity(new Intent(RepaymentDetailActivity.this,ExtendRePaymentActivity.class));
             }
         });
     }

@@ -9,12 +9,17 @@ object Constant {
     const val URL_KEY = "nretail-tsale-api-name"
     var LOGIN_SHOW_DIALOG = false
     var LOGIN_SHOW_MSG = ""
-    const val PERMISSION_STORAGE_REQUEST_CODE = 0x00000012
 
     var isAccountLogin = false //密码登录
     var isNewest = false //是否最新版本号
 
     const val BACK_CLICK = "clickBack"
+
+    // 申请相机权限的requestCode
+    const val PERMISSION_CAMERA_REQUEST_CODE = 0x00000011
+    const val PERMISSION_STORAGE_REQUEST_CODE = 0x00000012
+    const val CAMERA_REQUEST_CODE = 0x00000013
+    const val CHOOSE_PHOTO_CODE = 0x00000014
 
 }
 

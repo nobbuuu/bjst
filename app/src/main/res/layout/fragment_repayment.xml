@@ -15,47 +15,16 @@
         android:layout_height="@dimen/dp_25"
         android:layout_gravity="center_horizontal"
         android:text="Repayment"
+        android:layout_marginBottom="@dimen/dp_20"
         android:textColor="#ff000000"
         android:textSize="@dimen/sp_18" />
 
-    <RelativeLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/repayment_rv_plan"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.ruffian.library.widget.RImageView
-            android:id="@+id/repayment_null_box"
-            android:layout_width="@dimen/dp_71"
-            android:layout_height="@dimen/dp_71"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_165"
-            android:src="@mipmap/nullbox" />
-
-        <com.ruffian.library.widget.RTextView
-            android:id="@+id/repayment_tv_plan"
-            android:layout_width="@dimen/dp_148"
-            android:layout_height="@dimen/dp_18"
-            android:layout_below="@id/repayment_null_box"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_22"
-            android:text="No repayment plan"
-            android:gravity="center_horizontal"
-            android:textColor="#ff333333"
-            android:textSize="15sp"
-            tools:ignore="MissingClass" />
-
-        <Button
-            android:layout_width="138dp"
-            android:layout_height="@dimen/dp_44"
-            android:background="#ff009b12"
-            android:text="Get loan"
-            android:textColor="@color/white"
-            android:shadowRadius="4"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/repayment_tv_plan"
-            android:layout_marginTop="@dimen/dp_40"
-            />
-
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    />
 
 
 </LinearLayout>

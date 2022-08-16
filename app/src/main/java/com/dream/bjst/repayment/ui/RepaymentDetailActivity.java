@@ -11,6 +11,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+
 import androidx.annotation.Nullable;
 import com.blankj.utilcode.util.ToastUtils;
 import com.dream.bjst.R;
@@ -24,6 +26,7 @@ import com.hjq.bar.TitleBar;
 import com.ruffian.library.widget.REditText;
 import com.ruffian.library.widget.RImageView;
 import com.ruffian.library.widget.RTextView;
+import com.tcl.base.utils.MmkvUtil;
 import com.tcl.base.utils.PhotoUtils;
 import java.io.File;
 
@@ -32,9 +35,14 @@ public class RepaymentDetailActivity extends BaseActivity {
     private REditText mDigitalEt;
     private RTextView notionTv;
     private Button mPayButton, mRepaidSubmitButton;
-    private String inputContent;
-    private RImageView mRImageView;
+    private RImageView mRImageView,mFooterArrow,mHeaderArrow;
     private PhotoManager mPhotoManager;
+
+    private RelativeLayout mHeaderLayout,mFooterLayout;
+    //输入框里面的内容
+    CharSequence temp;
+    int startEdit;
+    int endEdit;
 
     @Override
     protected int initLayout() {
@@ -52,17 +60,41 @@ public class RepaymentDetailActivity extends BaseActivity {
         mPayButton = fvbi(R.id.confirm_pay_button);
         mRepaidSubmitButton = fvbi(R.id.repaid_submit_button);
         mRImageView = fvbi(R.id.add_picture_camera_iv);
+        //尾部局箭头
+        mFooterArrow=fvbi(R.id.footer_arrow);
+        mHeaderArrow=fvbi(R.id.header_arrow);
+
+        //这里是设置头布局和尾部局的显示隐藏
+        mHeaderLayout=fvbi(R.id.header_rv);
+        mFooterLayout=fvbi(R.id.footer_rv);
+        //显示存储数据
+        mDigitalEt.setText(MmkvUtil.INSTANCE.decodeString("digital"));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ToastUtils.showShort(MmkvUtil.INSTANCE.decodeString("digital"));
+        mDigitalEt.setText(MmkvUtil.INSTANCE.decodeString("digital"));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDigitalEt.setText(MmkvUtil.INSTANCE.decodeString("digital"));
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        mDigitalEt.setText(MmkvUtil.INSTANCE.decodeString("digital"));
     }
 
     @Override
     protected void initData() {
         event();
-
-        inputContent = mDigitalEt.getText().toString();
         mDigitalEt.addTextChangedListener(new TextWatcher() {
-            CharSequence temp;
-            int startEdit;
-            int endEdit;
+
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -73,15 +105,6 @@ public class RepaymentDetailActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 temp = s;
-//                if (count<12){
-//                    notionTv.setVisibility(View.VISIBLE);
-//                    notionTv.setText("Enter the correct No.");
-//                    ToastUtils.showShort(count);
-//                }else if (count==12){
-//                    notionTv.setVisibility(View.VISIBLE);
-//                    notionTv.setText("Enter is correct！");
-//                    notionTv.setTextColor(R.color.green_color_background);
-//                }else return;
             }
 
 
@@ -97,13 +120,16 @@ public class RepaymentDetailActivity extends BaseActivity {
                     mDigitalEt.setText(s);
                     mDigitalEt.setSelection(tempSelection);
                     ToastUtils.showShort("你输入的字已经超过了！");
+
                 } else if (temp.length() < 12) {
                     notionTv.setVisibility(View.VISIBLE);
                     notionTv.setText("Enter the correct No.");
+
                 } else {
                     notionTv.setVisibility(View.VISIBLE);
                     notionTv.setText("Enter is correct！");
                     notionTv.setTextColor(R.color.green_color_background);
+
                 }
 
 
@@ -131,7 +157,7 @@ public class RepaymentDetailActivity extends BaseActivity {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
-
+                MmkvUtil.INSTANCE.encode("digital",temp);
             }
         });
         //点击上传UTR_picture
@@ -158,6 +184,28 @@ public class RepaymentDetailActivity extends BaseActivity {
                 });
             }
         });
+
+        //设置头布局和尾部局的显示和隐藏
+        mHeaderArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHeaderLayout.setVisibility(View.GONE);
+                mFooterArrow.setImageResource(R.mipmap.ic_up_two_level);
+                mFooterLayout.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        //设置头布局和尾部局的显示和隐藏
+        mFooterArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mFooterLayout.setVisibility(View.GONE);
+                mHeaderLayout.setVisibility(View.VISIBLE);
+                mHeaderArrow.setImageResource(R.mipmap.ic_up_one_level);
+            }
+        });
+
     }
 
     @Override

@@ -43,6 +43,13 @@ public class ChatMessageActivity extends BaseActivity {
             }
         });
         event();
+        getInternetData();
+    }
+
+    private void getInternetData() {
+        //In Rxjava3 , Automatic close request
+
+
 
     }
 
@@ -52,7 +59,7 @@ public class ChatMessageActivity extends BaseActivity {
         mWebView.setWebViewClient(new MyClient());
         mWebView.setWebChromeClient(new MyWebChromeClient());
         //加载网络url
-        mWebView.loadUrl("https://m.baidu.com");
+        mWebView.loadUrl("http://150.158.186.237/page/app/room.html?customerId=10993&userName=User993&userPhone=2364965504&customerUId=10001_ptWDXGtthlc9E1d3s4ih993");
     }
     private class MyClient extends WebViewClient {
         //监听到页面发生跳转的情况，默认打开web浏览器

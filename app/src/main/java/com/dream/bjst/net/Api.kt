@@ -1,6 +1,7 @@
 package com.dream.bjst.net
 
 import com.dream.bjst.bean.UserInfo
+
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse
 
@@ -20,5 +21,6 @@ object Api {
             .toResponse<List<UserInfo>>()
             .await()
     }
+
 
 }

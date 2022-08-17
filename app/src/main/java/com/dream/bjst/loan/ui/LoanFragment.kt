@@ -5,11 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dream.bjst.bean.EmptyBean
 import com.dream.bjst.databinding.FragmentLoanBinding
 import com.dream.bjst.loan.adapter.OtherLoanAdapter
-import com.tcl.base.common.BaseViewModel
+import com.dream.bjst.loan.vm.LoanViewModel
 import com.tcl.base.common.ui.BaseFragment
 import com.tcl.base.weiget.recylerview.RecycleViewDivider
 
-class LoanFragment : BaseFragment<BaseViewModel, FragmentLoanBinding>() {
+class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     private val otherLoanAdapter = OtherLoanAdapter()
     override fun initView(savedInstanceState: Bundle?) {
@@ -22,6 +22,15 @@ class LoanFragment : BaseFragment<BaseViewModel, FragmentLoanBinding>() {
             data.add(EmptyBean())
         }
         otherLoanAdapter.setList(data)
+
+        viewModel.login()
+    }
+
+    override fun startObserve() {
+        super.startObserve()
+        viewModel.loginResult.observe(this){
+
+        }
     }
 
 }

@@ -25,7 +25,9 @@ public class EncryptUtil {
     //单例
     public static EncryptUtil Instance;
 
-    private EncryptUtil(){}
+    private EncryptUtil(){
+
+    }
 
     //双重锁
     public static EncryptUtil getInstance(){

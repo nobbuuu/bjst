@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 import com.dream.bjst.R;
 import com.dream.bjst.base.BaseActivity;
 import com.dream.bjst.net.Url;
+import com.dream.bjst.utils.EncryptUtil;
 import com.dream.bjst.utils.StatusBarUtils;
 import com.hjq.bar.TitleBar;
 import com.rxjava.rxlife.RxLife;
@@ -50,16 +51,16 @@ public class ChatMessageActivity extends BaseActivity {
     }
 
     private void getInternetData() {
-
-        RxHttp.postBody(Url.cnsTestUrl + "/core/app/fetchCustomerCareInfo&"+"token=poiuytrggeqwr22fbc")
-                .asString()
-
-                .to(RxLife.to(this))
-                        .subscribe(s->{
-                            Log.i(TAG, "getInternetData: "+s);
-                        },throwable ->{
-
-                        } );
+        Log.i(TAG, "getInternetData: "+ EncryptUtil.getInstance().DESencode(Url.cnsTestUrl+""));
+//        RxHttp.postBody(Url.cnsTestUrl + "/core/app/fetchCustomerCareInfo&"+"token=poiuytrggeqwr22fbc")
+//                .asString()
+//
+//                .to(RxLife.to(this))
+//                        .subscribe(s->{
+//                            Log.i(TAG, "getInternetData: "+s);
+//                        },throwable ->{
+//
+//                        } );
 
 //        RxHttp.get(Url.cnsTestUrl + "/core/app/fetchCustomerCareInfo")
 //                .asString()

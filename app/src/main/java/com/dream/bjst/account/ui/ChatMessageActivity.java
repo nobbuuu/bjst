@@ -1,9 +1,6 @@
 package com.dream.bjst.account.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -16,6 +13,9 @@ import com.dream.bjst.R;
 import com.dream.bjst.base.BaseActivity;
 import com.dream.bjst.utils.StatusBarUtils;
 import com.hjq.bar.TitleBar;
+import com.rxjava.rxlife.RxLife;
+import rxhttp.wrapper.param.RxHttp;
+
 
 public class ChatMessageActivity extends BaseActivity {
     TitleBar mTitleBar;
@@ -47,8 +47,14 @@ public class ChatMessageActivity extends BaseActivity {
     }
 
     private void getInternetData() {
-        //In Rxjava3 , Automatic close request
+        RxHttp.get("/service/...")
+                .asString()
+                .to(RxLife.to(this))  //The Activity destroys and automatically closes the request
+                .subscribe(s -> {
+                    //Default IO thread
+                }, throwable -> {
 
+                });
 
 
     }
@@ -84,7 +90,7 @@ public class ChatMessageActivity extends BaseActivity {
         }
     }
 
-    class MyWebChromeClient extends WebChromeClient {
+    public class MyWebChromeClient extends WebChromeClient {
         //监听网页进度 newProgress进度值在0-100
         @Override
         public void onProgressChanged(WebView view, int newProgress) {

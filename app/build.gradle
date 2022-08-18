@@ -41,7 +41,11 @@ android {
                 jniLibs.srcDirs = ['libs']
             }
         }
-
+        kapt {
+            arguments {
+                arg("rxhttp_rxjava", "3.1.5")
+            }
+        }
     }
 
     buildTypes {
@@ -121,8 +125,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.android.support:cardview-v7:23.1.1'
 
-
-
     testImplementation Testing.jUnit
     androidTestImplementation Testing.androidJunit
     androidTestImplementation Testing.espresso
@@ -142,7 +144,6 @@ dependencies {
     implementation ThreeParty.MarqueeView
 
     implementation ThreeParty.quicklogin
-
 
     implementation ThreeParty.luBan
     implementation ThreeParty.tencent.WeChatSdk

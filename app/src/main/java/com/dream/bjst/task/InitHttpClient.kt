@@ -42,32 +42,33 @@ class InitHttpClient : MainTask() {
                             add(HttpMockInterceptor())
                         }
                     }
-                RxHttp.init(RxHttpManager.init(mContext as Application, interceptors))
                 val file = File(mContext.cacheDir, "netCache")
-                RxHttpPlugins.setCache(file, 10 * 1024 * 1024, 60 * 1000)
-                RxHttp.setDebug(BuildConfig.DEBUG, true)
-                RxHttp.setOnParamAssembly { param ->
-                    //根据不同请求添加不同参数，子线程执行，每次发送请求前都会被回调
-                    //如果希望部分请求不回调这里，发请求前调用Param.setAssemblyEnabled(false)即可
-                    param.addHeader("User-Agent", userAgent)
-                        .addHeader("platform", "platform_tcl_shop")
-                        .addHeader("storeUuid", storeUuid)//先用tclplus的数据，等后面通了，再用thome的数据
-                        .addHeader("t-id", "TCL")
-                        .addHeader("terminalType", "02")
-                        .apply {
-                            val accessToken = MmkvUtil.decryptGet(UserManager.getAccessTokenKey())
-                            if (!accessToken.isNullOrEmpty()) {
-                                addHeader("accessToken", accessToken)
+                RxHttpPlugins.init(RxHttpManager.init(mContext as Application, interceptors))
+                    .setDebug(BuildConfig.DEBUG, true)
+                    .setCache(file, 10 * 1024 * 1024, 60 * 1000)
+                    .setOnParamAssembly { param ->
+                        //根据不同请求添加不同参数，子线程执行，每次发送请求前都会被回调
+                        //如果希望部分请求不回调这里，发请求前调用Param.setAssemblyEnabled(false)即可
+                        param.addHeader("User-Agent", userAgent)
+                            .addHeader("platform", "platform_tcl_shop")
+                            .addHeader("storeUuid", storeUuid)//先用tclplus的数据，等后面通了，再用thome的数据
+                            .addHeader("t-id", "TCL")
+                            .addHeader("terminalType", "02")
+                            .apply {
+                                val accessToken =
+                                    MmkvUtil.decryptGet(UserManager.getAccessTokenKey())
+                                if (!accessToken.isNullOrEmpty()) {
+                                    addHeader("accessToken", accessToken)
+                                }
                             }
-                        }
-                        .addHeader("appVersion", AppUtils.getAppVersionName())
-                        .addHeader("source", "app")
-                        .addHeader(
-                            "pubChannel",
-                            RomUtils.getRomInfo().name
-                        )//例如：xiaomi，huawei，appstore
-                        .addHeader("t-platform-type", "android")
-                }
+                            .addHeader("appVersion", AppUtils.getAppVersionName())
+                            .addHeader("source", "app")
+                            .addHeader(
+                                "pubChannel",
+                                RomUtils.getRomInfo().name
+                            )//例如：xiaomi，huawei，appstore
+                            .addHeader("t-platform-type", "android")
+                    }
             }
             else -> {
                 throw Exception("Context must be Application")

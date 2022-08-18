@@ -37,6 +37,7 @@ object AndroidX {
         const val lifecycle_ext = "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
         const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
         const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+        const val lifecycleKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
         const val viewModelSavedState =
             "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
         const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"

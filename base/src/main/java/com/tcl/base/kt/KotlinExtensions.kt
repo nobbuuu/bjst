@@ -42,7 +42,7 @@ val Throwable.errorCode: String
     get() {
         return when (this) {
             is HttpStatusCodeException -> {//请求失败异常
-                statusCode
+                statusCode.toString()
             }
             is ParseException -> {  // ParseException异常表明请求成功，但是数据不正确
                 this.errorCode
@@ -59,7 +59,7 @@ val Throwable.errorMsg: String
         var errorMsg = handleNetworkException(this)  //网络异常
         if (this is HttpStatusCodeException) {               //请求失败异常
             val code = this.statusCode
-            if ("416" == code) {
+            if ("416" == code.toString()) {
                 errorMsg = "请求范围不符合要求"
             }
         } else if (this is JsonSyntaxException) {  //请求成功，但Json语法异常,导致解析失败

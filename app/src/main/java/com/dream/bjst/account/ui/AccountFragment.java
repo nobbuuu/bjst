@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.dream.bjst.R;
 import com.dream.bjst.app.MyAppKt;
 import com.dream.bjst.base.BaseFragment;
+import com.dream.bjst.utils.StatusBarUtils;
 import com.ruffian.library.widget.RImageView;
 
 public class AccountFragment extends BaseFragment {
@@ -15,6 +15,8 @@ public class AccountFragment extends BaseFragment {
     LinearLayout aboutUsLayout,deleteDataLayout,privacyLayout,chatServiceLayout;
     @Override
     protected int setLayout() {
+        //调整状态栏的字体颜色为黑色
+        new StatusBarUtils().adjustWindow(getActivity(), true);
         return R.layout.fragment_account;
     }
 

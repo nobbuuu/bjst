@@ -10,7 +10,7 @@ object ThreeParty {
     const val quicklogin = "io.github.yidun:quicklogin:3.0.6.5"
     const val XPopUp = "com.lxj:xpopup:2.2.23"
     const val Okio = "com.squareup.okio:okio:3.0.0-alpha.4"
-    const val OkHttp = "com.squareup.okhttp3:okhttp:4.9.0"
+    const val OkHttp = "com.squareup.okhttp3:okhttp:4.10.0"
     const val fastJson = "com.alibaba:fastjson:1.2.75"
     const val permissionSupportByGuoLin = "com.permissionx.guolindev:permission-support:1.4.0"
     const val luBan = "top.zibin:Luban:1.1.8"
@@ -23,6 +23,7 @@ object ThreeParty {
     val mdDialog = MdDialog
     val tingYun = TingYun
     val dokit = Dokit
+    val rxJava = RxJava
     const val PHUONGHUYNH_COMPRESSOR = "com.github.phuonghuynh:compressor:1.13"
     const val Glide = "com.github.bumptech.glide:glide:4.11.0"
     const val GlideCompiler = "com.github.bumptech.glide:compiler:4.11.0"
@@ -95,16 +96,29 @@ object ThreeParty {
     const val ultraViewPager = "com.alibaba.android:ultraviewpager:1.0.7.8"
 
     object RxHttp {
-        private const val version = "2.5.5"
+        private const val version = "2.9.2"
+        // https://github.com/liujingxing/okhttp-RxHttp，
+        const val base = "com.github.liujingxing.rxhttp:rxhttp:$version"
+        const val compiler = "com.github.liujingxing.rxhttp:rxhttp-compiler:$version"
+        //    kapt 'com.ljx.rxhttp:rxhttp-compiler:2.4.1' //生成RxHttp类，纯Java项目，请使用annotationProcessor代替kapt
+        //https://github.com/liujingxing/RxLife-Coroutine
+
+        /*private const val version = "2.5.5"
 
         // https://github.com/liujingxing/okhttp-RxHttp，
         const val base = "com.ljx.rxhttp:rxhttp:$version"
         const val compiler = "com.ljx.rxhttp:rxhttp-compiler:$version"
 
         //    kapt 'com.ljx.rxhttp:rxhttp-compiler:2.4.1' //生成RxHttp类，纯Java项目，请使用annotationProcessor代替kapt
-        //https://github.com/liujingxing/RxLife-Coroutine
+        //https://github.com/liujingxing/RxLife-Coroutine*/
         //管理协程生命周期，页面销毁，关闭请求
         const val coroutine = "com.ljx.rxlife:rxlife-coroutine:2.0.1"
+    }
+
+    object RxJava {//供java调用
+        const val base =  "io.reactivex.rxjava3:rxjava:3.1.5"
+        const val rxAndroid =  "io.reactivex.rxjava3:rxandroid:3.0.0"
+        const val rxLife =  "com.github.liujingxing.rxlife:rxlife-rxjava3:2.2.2"
     }
 
     object Tencent {

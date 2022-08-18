@@ -4,5 +4,5 @@
  * description
  */
 object Kotlin {
-    const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:1.5.10"
+    const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:1.7.10"
 }

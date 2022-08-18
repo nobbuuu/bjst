@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent">
 
     <com.hjq.bar.TitleBar
-        android:id="@+id/title_bar"
+        android:id="@+id/titleBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="50dp"
+        app:leftIcon="@mipmap/ic_back_black"
+        app:title="Loan records" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/loanRecords"
         android:layout_width="match_parent"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_height="match_parent"/>
 </LinearLayout>

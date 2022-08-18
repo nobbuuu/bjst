@@ -7,6 +7,8 @@ import com.dream.bjst.databinding.FragmentLoanBinding
 import com.dream.bjst.loan.adapter.OtherLoanAdapter
 import com.dream.bjst.loan.vm.LoanViewModel
 import com.tcl.base.common.ui.BaseFragment
+import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.weiget.recylerview.RecycleViewDivider
 
 class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
@@ -22,7 +24,9 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             data.add(EmptyBean())
         }
         otherLoanAdapter.setList(data)
-
+        mBinding.ordersLay.ktClick {
+            ktStartActivity(LoanRecordsActivity::class)
+        }
         viewModel.login()
     }
 

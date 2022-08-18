@@ -11,9 +11,12 @@ import android.webkit.WebViewClient;
 
 import com.dream.bjst.R;
 import com.dream.bjst.base.BaseActivity;
+import com.dream.bjst.net.Url;
 import com.dream.bjst.utils.StatusBarUtils;
 import com.hjq.bar.TitleBar;
 import com.rxjava.rxlife.RxLife;
+
+import okhttp3.FormBody;
 import rxhttp.wrapper.param.RxHttp;
 
 
@@ -47,14 +50,26 @@ public class ChatMessageActivity extends BaseActivity {
     }
 
     private void getInternetData() {
-        RxHttp.get("/service/...")
-                .asString()
-                .to(RxLife.to(this))  //The Activity destroys and automatically closes the request
-                .subscribe(s -> {
-                    //Default IO thread
-                }, throwable -> {
 
-                });
+        RxHttp.postBody(Url.cnsTestUrl + "/core/app/fetchCustomerCareInfo&"+"token=poiuytrggeqwr22fbc")
+                .asString()
+
+                .to(RxLife.to(this))
+                        .subscribe(s->{
+                            Log.i(TAG, "getInternetData: "+s);
+                        },throwable ->{
+
+                        } );
+
+//        RxHttp.get(Url.cnsTestUrl + "/core/app/fetchCustomerCareInfo")
+//                .asString()
+//                .to(RxLife.to(this))  //The Activity destroys and automatically closes the request
+//                .subscribe(s -> {
+//                    //Default IO thread
+//                    Log.i(TAG, "getInternetData: " + s);
+//                }, throwable -> {
+//
+//                });
 
 
     }
@@ -67,6 +82,7 @@ public class ChatMessageActivity extends BaseActivity {
         //加载网络url
         mWebView.loadUrl("http://150.158.186.237/page/app/room.html?customerId=10993&userName=User993&userPhone=2364965504&customerUId=10001_ptWDXGtthlc9E1d3s4ih993");
     }
+
     private class MyClient extends WebViewClient {
         //监听到页面发生跳转的情况，默认打开web浏览器
         @Override
@@ -75,12 +91,14 @@ public class ChatMessageActivity extends BaseActivity {
             view.loadUrl(request.getUrl().toString());
             return true;
         }
+
         //页面开始加载
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
             Log.e(TAG, "onPageStarted: ");
         }
+
         //页面加载完成的回调方法
         @Override
         public void onPageFinished(WebView view, String url) {
@@ -108,7 +126,7 @@ public class ChatMessageActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         //如果用户按的是返回键 并且WebView页面可以返回
-        if (keyCode==event.KEYCODE_BACK&&mWebView.canGoBack()){
+        if (keyCode == event.KEYCODE_BACK && mWebView.canGoBack()) {
             //让WebView返回
             mWebView.goBack();
             return true;

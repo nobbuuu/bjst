@@ -100,17 +100,6 @@ object ThreeParty {
         // https://github.com/liujingxing/okhttp-RxHttp，
         const val base = "com.github.liujingxing.rxhttp:rxhttp:$version"
         const val compiler = "com.github.liujingxing.rxhttp:rxhttp-compiler:$version"
-        //    kapt 'com.ljx.rxhttp:rxhttp-compiler:2.4.1' //生成RxHttp类，纯Java项目，请使用annotationProcessor代替kapt
-        //https://github.com/liujingxing/RxLife-Coroutine
-
-        /*private const val version = "2.5.5"
-
-        // https://github.com/liujingxing/okhttp-RxHttp，
-        const val base = "com.ljx.rxhttp:rxhttp:$version"
-        const val compiler = "com.ljx.rxhttp:rxhttp-compiler:$version"
-
-        //    kapt 'com.ljx.rxhttp:rxhttp-compiler:2.4.1' //生成RxHttp类，纯Java项目，请使用annotationProcessor代替kapt
-        //https://github.com/liujingxing/RxLife-Coroutine*/
         //管理协程生命周期，页面销毁，关闭请求
         const val coroutine = "com.ljx.rxlife:rxlife-coroutine:2.0.1"
     }

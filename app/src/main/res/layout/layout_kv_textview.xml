@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/dk_color_666666"
+        android:textSize="@dimen/sp_13"
+        tools:text="标搜索题：" />
+
+    <TextView
+        android:id="@+id/contentTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="参谋"
+        android:textColor="@color/dk_color_666666"
+        android:textSize="@dimen/sp_13" />
+
+</LinearLayout>

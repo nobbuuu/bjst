@@ -665,4 +665,9 @@
         <item name="android:windowExitAnimation">@anim/pw_bottom_out</item>
     </style>
 
+    <declare-styleable name="LrKvView">
+        <attr name="lrTitle" format="string|reference" />
+        <attr name="lrText" format="string|reference" />
+    </declare-styleable>
+    
 </resources>

@@ -86,6 +86,7 @@
     <color name="red_profit">#F85F69</color>
     <color name="common_bg">#FFF4F4F4</color>
     <color name="black_profit">#333333</color>
+    <color name="black_60">#66000000</color>
     <color name="gray_profit">#99333333</color>
 
     <color name="greed_4E">#41A98F</color>

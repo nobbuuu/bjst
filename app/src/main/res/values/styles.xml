@@ -669,5 +669,15 @@
         <attr name="lrTitle" format="string|reference" />
         <attr name="lrText" format="string|reference" />
     </declare-styleable>
-    
+
+    <declare-styleable name="startEndLayout">
+        <attr name="startText" format="string|reference" />
+        <attr name="startTextSize" format="integer|reference" />
+        <attr name="startTextColor" format="color|reference" />
+        <attr name="endText" format="string|reference" />
+        <attr name="endTextSize" format="integer|reference" />
+        <attr name="endTextColor" format="color|reference" />
+        <attr name="isDivider" format="boolean|reference" />
+    </declare-styleable>
+
 </resources>

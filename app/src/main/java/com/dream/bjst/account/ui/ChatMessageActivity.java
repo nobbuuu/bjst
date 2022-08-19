@@ -51,7 +51,11 @@ public class ChatMessageActivity extends BaseActivity {
     }
 
     private void getInternetData() {
-        Log.i(TAG, "getInternetData: "+ EncryptUtil.getInstance().DESencode(Url.cnsTestUrl+""));
+        String str = "/core/app/fetchCustomerCareInfo";
+        String encrypt = EncryptUtil.encrypt(str);
+        Log.i(TAG, "getInternetData: "+encrypt);
+        String decrypt = EncryptUtil.decrypt(encrypt);
+        Log.i(TAG, "getInternetData: "+decrypt);
 //        RxHttp.postBody(Url.cnsTestUrl + "/core/app/fetchCustomerCareInfo&"+"token=poiuytrggeqwr22fbc")
 //                .asString()
 //

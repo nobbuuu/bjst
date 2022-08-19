@@ -6,7 +6,12 @@ import com.tcl.base.utils.encipher.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 
@@ -15,132 +20,115 @@ import java.security.SecureRandom;
  **/
 public class EncryptUtil {
 
-    public static final String DES = "DES";
-    /**DES*/
-    public int keysizeDES = 0;
+    private static final String PASSWORD_CRYPT_KEY = "poiuytrggeqwr22fbc";
+    private final static String DES = "DES";
 
-    /**编码格式；默认使用uft-8*/
-    public String charset = "utf-8";
-
-    //单例
-    public static EncryptUtil Instance;
-
-    private EncryptUtil(){
-
-    }
-
-    //双重锁
-    public static EncryptUtil getInstance(){
-        if(Instance == null){
-            synchronized (EncryptUtil.class){
-                if(Instance == null){
-                    Instance = new EncryptUtil();
-                }
-            }
-        }
-        return Instance;
-    }
 
     /**
-     * 使用KeyGenerator双向加密，DES/AES，注意这里转化为字符串的时候是将2进制转为16进制格式的字符串，不是直接转，因为会出错
-     * @param res 加密的原文
-     * @param algorithm 加密使用的算法名称
-     * @param key  加密的秘钥
-     * @param keysize
-     * @param isEncode
+     * 密码解密
      * @return
+     * @throws Exception
      */
-    private String keyGeneratorES(String res,String algorithm,String key,int keysize,boolean isEncode){
+    public static String decrypt(String src) {
         try {
-            KeyGenerator kg = KeyGenerator.getInstance(algorithm);
-            if (keysize == 0) {
-                byte[] keyBytes = charset==null?key.getBytes():key.getBytes(charset);
-                kg.init(new SecureRandom(keyBytes));
-            }else if (key==null) {
-                kg.init(keysize);
-            }else {
-                byte[] keyBytes = charset==null?key.getBytes():key.getBytes(charset);
-                kg.init(keysize, new SecureRandom(keyBytes));
-            }
-            SecretKey sk = kg.generateKey();
-            SecretKeySpec sks = new SecretKeySpec(sk.getEncoded(), algorithm);
-            Cipher cipher = Cipher.getInstance(algorithm);
-            if (isEncode) {
-                cipher.init(Cipher.ENCRYPT_MODE, sks);
-                byte[] resBytes = charset==null?res.getBytes():res.getBytes(charset);
-                return parseByte2HexStr(cipher.doFinal(resBytes));
-            }else {
-                cipher.init(Cipher.DECRYPT_MODE, sks);
-                return new String(cipher.doFinal(parseHexStr2Byte(res)));
-            }
+            return new String(decrypt(hex2byte(src.getBytes()), PASSWORD_CRYPT_KEY.getBytes()));
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return null;
     }
 
-    /**将二进制转换成16进制 */
-    public static String parseByte2HexStr(byte buf[]) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < buf.length; i++) {
-            String hex = Integer.toHexString(buf[i] & 0xFF);
-            if (hex.length() == 1) {
-                hex = '0' + hex;
-            }
-            sb.append(hex.toUpperCase());
+    /**
+     * 密码加密
+     * @return
+     * @throws Exception
+     */
+    public static String encrypt(String src) {
+        try {
+            return byte2hex(encrypt(src.getBytes(), PASSWORD_CRYPT_KEY.getBytes()));
+        } catch (Exception e) {
         }
-        return sb.toString();
+        return null;
     }
 
-    /**将16进制转换为二进制*/
-    public static byte[] parseHexStr2Byte(String hexStr) {
-        if (hexStr.length() < 1)
-            return null;
-        byte[] result = new byte[hexStr.length() / 2];
-        for (int i = 0; i < hexStr.length() / 2; i++) {
-            int high = Integer.parseInt(hexStr.substring(i * 2, i * 2 + 1), 16);
-            int low = Integer.parseInt(hexStr.substring(i * 2 + 1, i * 2 + 2), 16);
-            result[i] = (byte) (high * 16 + low);
+    /**
+     * 加密
+     *
+     * @param src 数据源
+     * @param key 密钥，长度必须是8的倍数
+     * @return 返回加密后的数据
+     * @throws Exception
+     */
+    private static byte[] encrypt(byte[] src, byte[] key) throws Exception {
+        // DES算法要求有一个可信任的随机数源
+        SecureRandom sr = new SecureRandom();
+        // 从原始密匙数据创建DESKeySpec对象
+        DESKeySpec dks = new DESKeySpec(key);
+        // 创建一个密匙工厂，然后用它把DESKeySpec转换成一个SecretKey对象
+        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DES);
+        SecretKey securekey = keyFactory.generateSecret(dks);
+        // Cipher对象实际完成加密操作
+        Cipher cipher = Cipher.getInstance(DES);
+        // 用密匙初始化Cipher对象
+        cipher.init(Cipher.ENCRYPT_MODE, securekey, sr);
+        // 现在，获取数据并加密正式执行加密操作
+        return cipher.doFinal(src);
+    }
+
+    /**
+     * 解密
+     *
+     * @param src 数据源
+     * @param key 密钥，长度必须是8的倍数
+     * @return 返回解密后的原始数据
+     * @throws Exception
+     */
+    private static byte[] decrypt(byte[] src, byte[] key) throws Exception {
+        // DES算法要求有一个可信任的随机数源
+        SecureRandom sr = new SecureRandom();
+        // 从原始密匙数据创建一个DESKeySpec对象
+        DESKeySpec dks = new DESKeySpec(key);
+        // 创建一个密匙工厂，然后用它把DESKeySpec对象转换成一个SecretKey对象
+        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DES);
+        SecretKey securekey = keyFactory.generateSecret(dks);
+        // Cipher对象实际完成解密操作
+        Cipher cipher = Cipher.getInstance(DES);
+        // 用密匙初始化Cipher对象
+        cipher.init(Cipher.DECRYPT_MODE, securekey, sr);
+        // 现在，获取数据并解密正式执行解密操作
+        return cipher.doFinal(src);
+    }
+
+    /**
+     * 字符串转二进制
+     * @param b
+     * @return
+     */
+    private static byte[] hex2byte(byte[] b) {
+        if ((b.length % 2) != 0)
+            throw new IllegalArgumentException("长度不是偶数");
+        byte[] b2 = new byte[b.length / 2];
+        for (int n = 0; n < b.length; n += 2) {
+            String item = new String(b, n, 2);
+            b2[n / 2] = (byte) Integer.parseInt(item, 16);
         }
-        return result;
+        return b2;
     }
 
     /**
-     * 使用Base64进行加密
-     * @param res 密文
-     * @return String
+     * 二行制转字符串
+     * @param b
+     * @return
      */
-    public String Base64Encode(String res){
-        return Base64.encode(res.getBytes(StandardCharsets.UTF_8));
+    private static String byte2hex(byte[] b) {
+        String hs = "";
+        String stmp = "";
+        for (int n = 0; n < b.length; n++) {
+            stmp = (java.lang.Integer.toHexString(b[n] & 0XFF));
+            if (stmp.length() == 1)
+                hs = hs + "0" + stmp;
+            else
+                hs = hs + stmp;
+        }
+        return hs.toUpperCase();
     }
-
-    /**
-     * 使用Base64进行解密
-     * @param res 密文
-     * @return String
-     */
-    public String Base64Decode(String res) {
-        return new String(Base64.decode(res));
-    }
-
-    /**
-     * 使用DES加密算法进行加密（可逆）
-     * @param res 需要加密的原文
-     * @return String
-     */
-    public String DESencode(String res) {
-        return keyGeneratorES(res, DES, CommonConstant.SECRET_KEY, keysizeDES, true);
-    }
-    /**
-     * 对使用DES加密算法的密文进行解密（可逆）
-     * @param res 需要解密的密文
-     * @return String
-     */
-    public String DESdecode(String res) {
-        return keyGeneratorES(res, DES, CommonConstant.SECRET_KEY, keysizeDES, false);
-    }
-
-//如何使用加密 String password = EncryptUtil.getInstance().DESencode(chkDatabase.getPassword());
-//如何使用解密 String password = EncryptUtil.getInstance().DESdecode(chkDatabase.getPassword());
-
 }

@@ -12,8 +12,10 @@ import com.tcl.base.utils.MmkvUtil
 import com.tcl.launcher.task.MainTask
 import com.dream.bjst.other.security.EncryptTShopInterceptor
 import okhttp3.Interceptor
+
 import rxhttp.RxHttpPlugins
 import rxhttp.wrapper.param.RxHttp
+
 import java.io.File
 
 /**

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="27dp"
+        android:text="Loan Information"
+        android:textColor="@color/color_333"
+        android:textSize="20sp" />
+
+    <com.dream.bjst.widget.StartEndLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:endText="₹ 50,000"
+        app:startText="Loan Amount" />
+</LinearLayout>

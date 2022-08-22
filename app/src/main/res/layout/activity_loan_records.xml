@@ -8,7 +8,7 @@
     <com.hjq.bar.TitleBar
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/dp_50"
         app:leftIcon="@mipmap/ic_back_black"
         app:title="Loan records" />
 

@@ -8,7 +8,7 @@
         android:id="@+id/main_container"
         android:name="com.dream.bjst.main.WindowNavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/dp_0"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/main_tab"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -18,7 +18,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/shadow"
         android:layout_width="match_parent"
-        android:layout_height="4dp"
+        android:layout_height="@dimen/dp_4"
         android:scaleType="fitXY"
         android:src="@mipmap/bg_shadow"
         app:layout_constraintBottom_toTopOf="@+id/main_tab"
@@ -28,13 +28,13 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/main_tab"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:elevation="1dp"
+        android:layout_height="@dimen/dp_52"
+        android:elevation="@dimen/dp_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:tabBackground="@android:color/transparent"
-        app:tabIndicatorHeight="0dp"
+        app:tabIndicatorHeight="@dimen/dp_0"
         app:tabRippleColor="@android:color/transparent" />
 
 

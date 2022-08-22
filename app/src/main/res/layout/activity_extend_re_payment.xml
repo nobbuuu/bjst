@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_25"
             android:textColor="#ff000000"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp_18"
             app:title="Extend"
             app:titleStyle="bold" />
 
@@ -36,32 +36,32 @@
             android:background="@drawable/shap_account_background">
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="181dp"
+                android:layout_width="@dimen/dp_181"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="Total Repayment Amount"
                 android:textColor="#ff666666"
-                android:layout_marginLeft="13dp"
-                android:textSize="15sp" />
+                android:layout_marginLeft="@dimen/dp_13"
+                android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="80dp"
+                android:layout_width="@dimen/dp_80"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp_17"
                 android:gravity="center_vertical"
                 android:text="₹ 6,200"
                 android:textColor="#ff009b12"
-                android:textSize="22sp" />
+                android:textSize="@dimen/sp_22" />
         </RelativeLayout>
 
         <com.ruffian.library.widget.RTextView
-            android:layout_width="131dp"
+            android:layout_width="@dimen/dp_131"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_20"
             android:text="Repayment Details"
             android:textColor="#ff666666"
-            android:textSize="15sp" />
+            android:textSize="@dimen/sp_15" />
 
         <View
             android:layout_width="@dimen/dp_335"
@@ -75,23 +75,23 @@
 
             <com.ruffian.library.widget.RTextView
 
-                android:layout_width="95dp"
+                android:layout_width="@dimen/dp_95"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/dp_20"
                 android:text="Loan Amount"
                 android:textColor="#ff666666"
-                android:textSize="15sp" />
+                android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="50dp"
+                android:layout_width="@dimen/dp_50"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_20"
                 android:text="₹6,000"
                 android:textColor="#ff000000"
-                android:textSize="15sp" />
+                android:textSize="@dimen/sp_15" />
         </RelativeLayout>
 
         <View
@@ -112,7 +112,7 @@
                 android:layout_marginLeft="@dimen/dp_20"
                 android:text="Expiration Time"
                 android:textColor="#ff666666"
-                android:textSize="15sp" />
+                android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
                 android:layout_width="wrap_content"
@@ -122,7 +122,7 @@
                 android:layout_marginRight="@dimen/dp_20"
                 android:text="2021-12-01"
                 android:textColor="#ff000000"
-                android:textSize="15sp" />
+                android:textSize="@dimen/sp_15" />
         </RelativeLayout>
 
         <View
@@ -143,17 +143,17 @@
                 android:layout_marginLeft="@dimen/dp_20"
                 android:text="Extend Payment Period"
                 android:textColor="#ff666666"
-                android:textSize="15sp" />
+                android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="50dp"
+                android:layout_width="@dimen/dp_50"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_20"
                 android:text="7 Days"
                 android:textColor="#ff000000"
-                android:textSize="15sp" />
+                android:textSize="@dimen/sp_15" />
         </RelativeLayout>
 
         <View
@@ -174,7 +174,7 @@
                 android:layout_marginLeft="@dimen/dp_20"
                 android:text="Due Time After Extension"
                 android:textColor="#ff666666"
-                android:textSize="15sp" />
+                android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
                 android:layout_width="wrap_content"
@@ -184,7 +184,7 @@
                 android:layout_marginRight="@dimen/dp_20"
                 android:text="2021-12-07"
                 android:textColor="#ff000000"
-                android:textSize="15sp" />
+                android:textSize="@dimen/sp_15" />
         </RelativeLayout>
 
         <View
@@ -205,17 +205,17 @@
                 android:layout_marginLeft="@dimen/dp_20"
                 android:text="Overdue Amount"
                 android:textColor="#ff666666"
-                android:textSize="15sp" />
+                android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="50dp"
+                android:layout_width="@dimen/dp_50"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_20"
                 android:text="  ₹ 600"
                 android:textColor="#ff000000"
-                android:textSize="15sp" />
+                android:textSize="@dimen/sp_15" />
         </RelativeLayout>
 
         <View
@@ -236,17 +236,17 @@
                 android:layout_marginLeft="@dimen/dp_20"
                 android:text="Extend Repayment Fee"
                 android:textColor="#ff666666"
-                android:textSize="15sp" />
+                android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="50dp"
+                android:layout_width="@dimen/dp_50"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_20"
                 android:text="₹2000"
                 android:textColor="#ff000000"
-                android:textSize="15sp" />
+                android:textSize="@dimen/sp_15" />
         </RelativeLayout>
 
         <View

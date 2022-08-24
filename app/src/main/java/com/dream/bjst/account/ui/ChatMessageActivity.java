@@ -11,14 +11,8 @@ import android.webkit.WebViewClient;
 
 import com.dream.bjst.R;
 import com.dream.bjst.base.BaseActivity;
-import com.dream.bjst.net.Url;
-import com.dream.bjst.utils.EncryptUtil;
 import com.dream.bjst.utils.StatusBarUtils;
 import com.hjq.bar.TitleBar;
-import com.rxjava.rxlife.RxLife;
-
-import okhttp3.FormBody;
-import rxhttp.wrapper.param.RxHttp;
 
 
 public class ChatMessageActivity extends BaseActivity {
@@ -51,11 +45,7 @@ public class ChatMessageActivity extends BaseActivity {
     }
 
     private void getInternetData() {
-        String str = "/core/app/fetchCustomerCareInfo";
-        String encrypt = EncryptUtil.encrypt(str);
-        Log.i(TAG, "getInternetData: "+encrypt);
-        String decrypt = EncryptUtil.decrypt(encrypt);
-        Log.i(TAG, "getInternetData: "+decrypt);
+
 //        RxHttp.postBody(Url.cnsTestUrl + "/core/app/fetchCustomerCareInfo&"+"token=poiuytrggeqwr22fbc")
 //                .asString()
 //

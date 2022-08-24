@@ -12,11 +12,13 @@ import com.dream.bjst.other.security.EncryptTShopHelper.REGISTERED
 import com.dream.bjst.other.security.EncryptTShopHelper.UPDATE_USER
 import com.dream.bjst.other.security.EncryptTShopHelper.VERIFY_CODE
 import com.dream.bjst.other.security.EncryptTShopHelper.WX_BIND_PHONE
+import com.dream.bjst.utils.RandomUtils
 import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.RequestBody
 import okhttp3.Response
 import okio.Buffer
+import org.json.JSONObject
 import rxhttp.wrapper.utils.LogUtil
 import java.io.File
 import java.net.URLEncoder
@@ -24,7 +26,19 @@ import java.net.URLEncoder
 
 class EncryptTShopInterceptor : Interceptor {
 
-    private val tShopEncryptPaths = listOf(LOGIN,REGISTERED,VERIFY_CODE,CHANGE_PASSWORD,CHECK_ACCOUNT_STATUS,CHANGE_BIND,WX_BIND_PHONE,CHECK_PHONE_SMS,JUDGE_PHONE_IS_BANDED,UPDATE_USER,GET_PHONE_SMS)
+    private val tShopEncryptPaths = listOf(
+        LOGIN,
+        REGISTERED,
+        VERIFY_CODE,
+        CHANGE_PASSWORD,
+        CHECK_ACCOUNT_STATUS,
+        CHANGE_BIND,
+        WX_BIND_PHONE,
+        CHECK_PHONE_SMS,
+        JUDGE_PHONE_IS_BANDED,
+        UPDATE_USER,
+        GET_PHONE_SMS
+    )
 
 
     private fun isTShopEncryptPath(url: String): Boolean {
@@ -37,7 +51,9 @@ class EncryptTShopInterceptor : Interceptor {
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
+
         try {
+
             return responseEncrypt(chain)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -56,7 +72,7 @@ class EncryptTShopInterceptor : Interceptor {
             }
         }
 
-        if (EncryptTShopHelper.isEncryption && isTShopEncryptPath(urlString) ) {
+        if (EncryptTShopHelper.isEncryption && isTShopEncryptPath(urlString)) {
             val queryParameterNames = url.queryParameterNames
             val urlBuilder = StringBuilder(urlString)
             //处理URL参数
@@ -82,6 +98,11 @@ class EncryptTShopInterceptor : Interceptor {
                             val value = EncryptTShopHelper.encryptBySection(data = value(index))
                             newFormBody.add(name, value)
                         }
+                        val json = JSONObject()
+                        RandomUtils.getRomParam().keys().forEach { key ->
+                            val value = json.get(key).toString()
+                            newFormBody.add(key, value)
+                        }
                         val body = newFormBody.build()
                         newBuilder.method(request.method, body)
                     }
@@ -90,14 +111,17 @@ class EncryptTShopInterceptor : Interceptor {
                         writeTo(buf)
                         val readUtf8 = buf.readUtf8()
                         val contentType = contentType()
-                        newBuilder.method(request.method, RequestBody.create(contentType,
-                            EncryptTShopHelper.encryptJSONBySection(data = readUtf8)
-                        ))
+                        newBuilder.method(
+                            request.method, RequestBody.create(
+                                contentType,
+                                EncryptTShopHelper.encryptJSONBySection(data = readUtf8)
+                            )
+                        )
                     }
                 }
             }
             val newRequest = newBuilder.url(urlBuilder.toString()).build()
-            if(LogUtil.isDebug()){
+            if (LogUtil.isDebug()) {
                 LogUtil.log(newRequest, TclCookieStore(File("")))
             }
             return chain.proceed(newRequest)

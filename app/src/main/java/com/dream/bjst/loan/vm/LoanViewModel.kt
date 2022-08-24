@@ -12,12 +12,12 @@ import com.tcl.base.event.SingleLiveEvent
  */
 class LoanViewModel : BaseViewModel() {
     val loginResult = SingleLiveEvent<List<UserInfo>>()
-    fun login(){
-        rxLaunchUI({
-            val  result = Api.getAdsPictures()
-            loginResult.postValue(result)
-        }, errorBlock = {
-
-        })
-    }
+//    fun login(){
+//        rxLaunchUI({
+//            val  result = Api.getAdsPictures()
+//            loginResult.postValue(result)
+//        }, errorBlock = {
+//
+//        })
+//    }
 }

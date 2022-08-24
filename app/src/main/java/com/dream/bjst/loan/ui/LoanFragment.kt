@@ -27,7 +27,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         mBinding.ordersLay.ktClick {
             ktStartActivity(LoanRecordsActivity::class)
         }
-        viewModel.login()
+        viewModel.loginResult
     }
 
     override fun startObserve() {

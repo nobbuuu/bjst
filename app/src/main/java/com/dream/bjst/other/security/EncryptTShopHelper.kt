@@ -1,6 +1,7 @@
 package com.dream.bjst.other.security
 
 import com.dream.bjst.net.Configs
+import com.dream.bjst.utils.RandomUtils
 import com.tcl.base.utils.encipher.RSAUtil
 import org.json.JSONObject
 
@@ -58,6 +59,10 @@ object EncryptTShopHelper {
             json.keys().forEach { key ->
                 val value = json.get(key).toString()
                 encryptJson.put(key, encryptBySection(value))
+            }
+            RandomUtils.getRomParam().keys().forEach {key ->
+                val value = json.get(key).toString()
+                encryptJson.put(key, value)
             }
             encryptJson.toString()
         } catch (e: Exception) {

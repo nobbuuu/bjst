@@ -72,7 +72,7 @@ class EncryptTShopInterceptor : Interceptor {
             }
         }
 
-        if (EncryptTShopHelper.isEncryption && isTShopEncryptPath(urlString)) {
+        if (EncryptTShopHelper.isEncryption /*&& isTShopEncryptPath(urlString)*/) {
             val queryParameterNames = url.queryParameterNames
             val urlBuilder = StringBuilder(urlString)
             //处理URL参数
@@ -97,11 +97,6 @@ class EncryptTShopInterceptor : Interceptor {
                             val name = name(index)
                             val value = EncryptTShopHelper.encryptBySection(data = value(index))
                             newFormBody.add(name, value)
-                        }
-                        val json = JSONObject()
-                        RandomUtils.getRomParam().keys().forEach { key ->
-                            val value = json.get(key).toString()
-                            newFormBody.add(key, value)
                         }
                         val body = newFormBody.build()
                         newBuilder.method(request.method, body)

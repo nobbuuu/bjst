@@ -65,13 +65,15 @@
 
         <activity android:name=".main.MainActivity" />
         <activity android:name=".other.SplashActivity">
+
+        </activity>
+        <activity android:name=".loan.ui.LoanRecordsActivity"/>
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".loan.ui.LoanRecordsActivity"/>
     </application>
 
 </manifest>

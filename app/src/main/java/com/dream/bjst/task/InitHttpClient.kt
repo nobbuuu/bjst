@@ -49,27 +49,9 @@ class InitHttpClient : MainTask() {
                     .setDebug(BuildConfig.DEBUG, true)
                     .setCache(file, 10 * 1024 * 1024, 60 * 1000)
                     .setOnParamAssembly { param ->
-                        //根据不同请求添加不同参数，子线程执行，每次发送请求前都会被回调
-                        //如果希望部分请求不回调这里，发请求前调用Param.setAssemblyEnabled(false)即可
-                        param.addHeader("User-Agent", userAgent)
-                            .addHeader("platform", "platform_tcl_shop")
-                            .addHeader("storeUuid", storeUuid)//先用tclplus的数据，等后面通了，再用thome的数据
-                            .addHeader("t-id", "TCL")
-                            .addHeader("terminalType", "02")
-                            .apply {
-                                val accessToken =
-                                    MmkvUtil.decryptGet(UserManager.getAccessTokenKey())
-                                if (!accessToken.isNullOrEmpty()) {
-                                    addHeader("accessToken", accessToken)
-                                }
-                            }
-                            .addHeader("appVersion", AppUtils.getAppVersionName())
-                            .addHeader("source", "app")
-                            .addHeader(
-                                "pubChannel",
-                                RomUtils.getRomInfo().name
-                            )//例如：xiaomi，huawei，appstore
-                            .addHeader("t-platform-type", "android")
+                        param.addHeader("D4BCB1B5B0B1A6ABB5A4A4ABB5A1A0BCABA0BBBFB1BA", UserManager.getAccessToken())
+                            .addHeader("9091829D9791BD90", "10022")//设备编号，暂时写死
+                            .addHeader("poiuytrggeqwr22fbc", "2")//加密key,2:参数层级
                     }
             }
             else -> {

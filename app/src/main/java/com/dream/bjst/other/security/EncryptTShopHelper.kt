@@ -1,7 +1,8 @@
 package com.dream.bjst.other.security
 
+import android.util.Log
 import com.dream.bjst.net.Configs
-import com.dream.bjst.utils.EncryptUtil
+import com.tcl.base.rxnetword.EncryptUtil
 import com.dream.bjst.utils.RandomUtils
 import com.tcl.base.utils.encipher.RSAUtil
 import org.json.JSONObject
@@ -60,17 +61,22 @@ object EncryptTShopHelper {
         return RSAUtil.publicEncrypt(RSA_PUBLIC_KEY, data)
     }
 
-    fun encryptJSONBySection(
-        data: String
-    ): String {
+    fun encryptJSONBySection(data: String): String {
         return try {
             val json = JSONObject(data)
             val encryptJson = JSONObject(data)
             json.keys().forEach { key ->
                 val value = json.get(key).toString()
-                encryptJson.put(key, encryptBySection(value))
+                encryptJson.put(key, value)
             }
-            EncryptUtil.encryptBody(encryptJson.toString())
+            Log.d("http", "bodyJson = $encryptJson")
+            val enStr = EncryptUtil.encode(encryptJson.toString())
+            val param = JSONObject()
+            RandomUtils.getRandomParam().forEach {
+                param.put(it.key, it.value)
+            }
+            param.put(EncryptUtil.key, enStr)
+            param.toString()
         } catch (e: Exception) {
             e.printStackTrace()
             data

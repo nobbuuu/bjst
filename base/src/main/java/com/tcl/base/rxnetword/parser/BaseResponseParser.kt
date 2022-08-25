@@ -1,5 +1,9 @@
 package com.tcl.base.rxnetword.parser
 
+import android.util.Log
+import com.blankj.utilcode.util.GsonUtils
+import com.google.gson.reflect.TypeToken
+import com.tcl.base.rxnetword.EncryptUtil
 import rxhttp.wrapper.entity.ParameterizedTypeImpl
 import rxhttp.wrapper.exception.ParseException
 import rxhttp.wrapper.parse.AbstractParser
@@ -37,8 +41,11 @@ open class BaseResponseParser<T> : AbstractParser<T> {
     @Throws(IOException::class)
     override fun onParse(response: okhttp3.Response): T {
 
-        val type: Type = ParameterizedTypeImpl[BaseResponse::class.java, mType] //获取泛型类型
-        val data: BaseResponse<T> = response.convert(type)
+        val type: Type = ParameterizedTypeImpl[BaseEncryptResponse::class.java, mType] //获取泛型类型
+        val encryptResponse: BaseEncryptResponse = response.convert(type)
+        val result = EncryptUtil.decode(encryptResponse.poiuytrggeqwr22fbc)
+        Log.d("http", "result = $result")
+        val data: BaseResponse<T> = GsonUtils.fromJson(result, object : TypeToken<T>() {}.type)
         var t = data.data //获取data字段
 
 //        val headers = response.headers

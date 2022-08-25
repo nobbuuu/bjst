@@ -8,25 +8,26 @@ import java.io.Serializable
  * Time: 13:16
  */
 class Response<T> : Serializable {
-    var code: String = ""
-    var msg: String? = null
-    var data: T? = null
+    var `979B9091`: String = ""//code
+    var `998793`: String? = null//msg
+    var `998793B79A`: String? = null//msgCn
+    var `90958095`: T? = null//data
 
 
     fun isSuccess(): Boolean {
-        return if (data != null && data is SuccessCodeOverrideType) {
-            code == SuccessCodeOverrideType::class.java.cast(data)?.getSuccessCode()
+        return if (`90958095` != null && `90958095` is SuccessCodeOverrideType) {
+            `979B9091` == SuccessCodeOverrideType::class.java.cast(`90958095`)?.getSuccessCode()
         } else {
-            code == "200" || code == "0"
+            `979B9091` == "200" || `979B9091` == "0"
         }
     }
 
-    fun isBusinessException(): Boolean = code.startsWith("KY")
+    fun isBusinessException(): Boolean = `979B9091`.startsWith("KY")
 
-    fun isTokenTimeOut(): Boolean = code == "403"
+    fun isTokenTimeOut(): Boolean = `979B9091` == "403"
 
-    fun isMultiDeviceLogin(): Boolean = code == "406"
+    fun isMultiDeviceLogin(): Boolean = `979B9091` == "406"
 
-    fun isNotSaleManException(): Boolean = code == "407"
+    fun isNotSaleManException(): Boolean = `979B9091` == "407"
 
 }

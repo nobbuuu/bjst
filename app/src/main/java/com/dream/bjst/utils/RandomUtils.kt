@@ -9,7 +9,6 @@ import org.json.JSONObject
  */
 object RandomUtils {
     val ramOrigin = listOf(
-        "_",
         "0",
         "1",
         "2",
@@ -47,16 +46,21 @@ object RandomUtils {
         "z"
     )
     val ramSum = listOf(1, 2, 3, 4)
-    fun getRomParam(): JSONObject {
-        val obj = JSONObject()
+    fun getRandomParam(): HashMap<String, String> {
+        val obj = HashMap<String, String>()
         repeat(ramSum.random()) {
             var key = ""
             var value = ""
             repeat(8) {
-                key += ramOrigin.random().toString()
-                value += ramOrigin.random().toString()
+                if (it == 4) {
+                    key += "_"
+                    value += "_"
+                } else {
+                    key += ramOrigin.random().toString()
+                    value += ramOrigin.random().toString()
+                }
             }
-            obj.put(key, value)
+            obj[key] = value
         }
         return obj
     }

@@ -40,6 +40,7 @@
             android:src="@mipmap/rapid_icon" />
 
         <TextView
+            android:id="@+id/stepTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_34"
@@ -47,7 +48,86 @@
             android:textColor="@color/black"
             android:textSize="15sp" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/codeLay"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/codeEdt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_28"
+                android:background="@null"
+                android:gravity="center"
+                android:minWidth="@dimen/dp_242"
+                android:textColor="@color/color_333"
+                android:textSize="15sp"
+                android:text="123456"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/codeLine"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/color_6c"
+                app:layout_constraintEnd_toEndOf="@+id/codeEdt"
+                app:layout_constraintStart_toStartOf="@+id/codeEdt"
+                app:layout_constraintTop_toBottomOf="@+id/codeEdt" />
+
+            <LinearLayout
+                android:id="@+id/retryLay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/codeLine">
+
+                <TextView
+                    android:id="@+id/cantReceive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Can't receive OTP ? "
+                    android:textColor="@color/colorBlack666"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tryVoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Try Voice OTP"
+                    android:textColor="@color/color_389830"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/resendTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_25"
+                android:paddingStart="15dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="8dp"
+                android:text="Resend OTP"
+                android:textColor="@color/color_389830"
+                android:textSize="15sp"
+                app:corner_radius="@dimen/dp_4"
+                app:border_width_normal="1.5dp"
+                app:border_color_normal="@color/color_389830"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/retryLay" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/phoneLay"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_44"
             android:layout_marginStart="@dimen/dp_20"
@@ -76,6 +156,7 @@
                 android:layout_marginStart="15dp"
                 android:background="@null"
                 android:hint=" 10 digit mobile number"
+                android:text="1234567890"
                 android:textColor="@color/color_333"
                 android:textColorHint="@color/colorBlack666"
                 android:textSize="@dimen/sp_13"

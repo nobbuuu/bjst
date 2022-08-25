@@ -1,7 +1,5 @@
-package com.dream.bjst.utils
+package com.tcl.base.rxnetword
 
-import com.blankj.utilcode.util.GsonUtils
-import com.dream.bjst.bean.UserInfo
 import com.google.gson.reflect.TypeToken
 import rxhttp.wrapper.utils.GsonUtil
 import java.util.*

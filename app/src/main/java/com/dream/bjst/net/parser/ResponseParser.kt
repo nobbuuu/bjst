@@ -1,9 +1,15 @@
 package com.dream.bjst.net.parser
 
+import android.util.Log
+import com.blankj.utilcode.util.GsonUtils
+import com.google.gson.reflect.TypeToken
+import com.tcl.base.rxnetword.EncryptUtil
 import com.tcl.base.rxnetword.exception.BusinessException
 import com.tcl.base.rxnetword.exception.MultiDevicesException
 import com.tcl.base.rxnetword.exception.NotSaleManException
 import com.tcl.base.rxnetword.exception.TokenTimeOutException
+import com.tcl.base.rxnetword.parser.BaseEncryptResponse
+import com.tcl.base.rxnetword.parser.BaseResponse
 import rxhttp.wrapper.annotation.Parser
 import rxhttp.wrapper.entity.ParameterizedTypeImpl
 import rxhttp.wrapper.exception.ParseException
@@ -46,8 +52,12 @@ open class ResponseParser<T> : AbstractParser<T> {
         val strType: Type = ParameterizedTypeImpl[String::class.java, mType]
         val originalStr: String = response.convert(strType)
 
-        val  type: Type = ParameterizedTypeImpl[Response::class.java, mType] //获取泛型类型
-        val  responseData = JsonUtil.getObject<Response<T>>(originalStr, type)
+        val encryptType: Type = ParameterizedTypeImpl[BaseEncryptResponse::class.java, mType]
+        val encryptResponse = JsonUtil.getObject<BaseEncryptResponse>(originalStr, encryptType)
+        val result = EncryptUtil.decode(encryptResponse?.poiuytrggeqwr22fbc)
+        Log.d("http", "result = $result")
+
+        val responseData: Response<T> = GsonUtils.fromJson(result, object : TypeToken<Response<T>>() {}.type)
 
         if (responseData == null) {
             val specialResponse =
@@ -58,9 +68,9 @@ open class ResponseParser<T> : AbstractParser<T> {
             when {
                 specialResponse.isMultiDeviceLogin() -> {
                     throw MultiDevicesException(
-                        specialResponse.code,
-                        specialResponse.data.toString(),
-                        specialResponse.msg ?: ""
+                        specialResponse.`979B9091`,
+                        specialResponse.`90958095`.toString(),
+                        specialResponse.`998793` ?: ""
                     )
                 }
                 else ->
@@ -69,26 +79,32 @@ open class ResponseParser<T> : AbstractParser<T> {
         } else {
             when {
                 responseData.isNotSaleManException() -> {
-                    throw NotSaleManException(responseData.code, responseData.msg ?: "")
+                    throw NotSaleManException(responseData.`979B9091`, responseData.`998793` ?: "")
                 }
                 responseData.isMultiDeviceLogin() -> {
                     throw MultiDevicesException(
-                        responseData.code,
-                        responseData.data.toString(),
+                        responseData.`979B9091`,
+                        responseData.`90958095`.toString(),
                         response.message
                     )
                 }
                 responseData.isBusinessException() -> {
-                    throw BusinessException(responseData.code, responseData.msg ?: "报错信息为空")
+                    throw BusinessException(
+                        responseData.`979B9091`,
+                        responseData.`998793` ?: "报错信息为空"
+                    )
                 }
                 responseData.isTokenTimeOut() -> {
-                    throw TokenTimeOutException(responseData.code, responseData.msg ?: "")
+                    throw TokenTimeOutException(
+                        responseData.`979B9091`,
+                        responseData.`998793` ?: ""
+                    )
                 }
                 !(responseData.isSuccess()) -> {
-                    throw ParseException(responseData.code, responseData.msg, response)
+                    throw ParseException(responseData.`979B9091`, responseData.`998793`, response)
                 }
                 else -> {
-                    var t = responseData.data //获取data字段
+                    var t = responseData.`90958095` //获取data字段
 
                     if (t == null) {
                         if (mType === String::class.java) {
@@ -102,7 +118,7 @@ open class ResponseParser<T> : AbstractParser<T> {
                             return t
                         } else {
                             throw ParseException(
-                                responseData.code,
+                                responseData.`979B9091`,
                                 "data 为null，请用String接收",
                                 response
                             )

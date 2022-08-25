@@ -1,8 +1,5 @@
 package com.dream.bjst.account.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.view.View;
 
 import com.dream.bjst.R;

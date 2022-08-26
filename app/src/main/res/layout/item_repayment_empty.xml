@@ -40,12 +40,12 @@
             android:text="No repayment plan"
             android:gravity="center_horizontal"
             android:textColor="#ff333333"
-            android:textSize="15sp"
+            android:textSize="@dimen/sp_15"
             tools:ignore="MissingClass" />
 
         <Button
             android:id="@+id/btn_load_data"
-            android:layout_width="138dp"
+            android:layout_width="@dimen/dp_138"
             android:layout_height="@dimen/dp_44"
             android:layout_below="@id/repayment_tv_plan"
             android:layout_centerHorizontal="true"

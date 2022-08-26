@@ -8,8 +8,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieView"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
         android:layout_gravity="center_horizontal"
         android:tag="icon_lottie"
         app:layout_constraintBottom_toTopOf="@id/tabTitle"
@@ -21,8 +21,8 @@
 
     <ImageView
         android:id="@+id/tabImgIv"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="@dimen/dp_28"
+        android:layout_height="@dimen/dp_28"
         android:layout_gravity="center_horizontal"
         android:tag="icon_lottie"
         android:src="@mipmap/payment_select"
@@ -41,7 +41,7 @@
         android:layout_gravity="center_horizontal"
         android:textColor="@color/text_norm_black"
         android:textSize="@dimen/sp_11"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="@dimen/dp_3"
         android:text="REPAYMENT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,12 +50,12 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/tabUnread"
-        android:layout_width="6dp"
-        android:layout_height="6dp"
+        android:layout_width="@dimen/dp_6"
+        android:layout_height="@dimen/dp_6"
         android:src="@drawable/shape_circle_bg"
         app:layout_constraintCircle="@id/tabImgIv"
         app:layout_constraintCircleAngle="45"
-        app:layout_constraintCircleRadius="12dp"
+        app:layout_constraintCircleRadius="@dimen/dp_12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
@@ -65,7 +65,7 @@
         style="@style/common_badge"
         app:layout_constraintCircle="@id/tabImgIv"
         app:layout_constraintCircleAngle="45"
-        app:layout_constraintCircleRadius="12dp"
+        app:layout_constraintCircleRadius="@dimen/dp_12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:text_color_normal="@color/white"

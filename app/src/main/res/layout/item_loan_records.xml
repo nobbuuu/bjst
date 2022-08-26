@@ -12,7 +12,7 @@
         android:textColor="@color/black"
         android:layout_marginTop="@dimen/dp_28"
         android:layout_marginStart="@dimen/dp_35"
-        android:textSize="15sp"
+        android:textSize="@dimen/sp_15"
         />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/loanRecordsRv"

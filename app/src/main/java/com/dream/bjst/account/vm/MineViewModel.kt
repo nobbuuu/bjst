@@ -8,4 +8,5 @@ import com.tcl.base.common.BaseViewModel
  *description
  */
 class MineViewModel : BaseViewModel() {
+
 }

@@ -79,7 +79,7 @@
             <com.ruffian.library.widget.RTextView
 
                 android:layout_width="@dimen/dp_94"
-                android:layout_height="@dimen/dp_16"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/dp_17"
                 android:layout_weight="8"
@@ -111,7 +111,7 @@
             android:padding="@dimen/dp_2">
             <!--account_re_enter-->
             <LinearLayout
-                android:id="@+id/account_re_enter"
+                android:id="@+id/account_re_enter_rv"
                 android:layout_width="@dimen/dp_335"
                 android:layout_height="@dimen/dp_60"
                 android:layout_gravity="center_horizontal"
@@ -130,7 +130,7 @@
                 <com.ruffian.library.widget.RTextView
 
                     android:layout_width="@dimen/dp_94"
-                    android:layout_height="@dimen/dp_16"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/dp_17"
                     android:layout_weight="8"
@@ -138,6 +138,14 @@
                     android:text="Re-enter A/C No."
                     android:textColor="#ff000000"
                     android:textSize="@dimen/sp_15" />
+
+                <com.ruffian.library.widget.RImageView
+                    android:layout_width="@dimen/dp_22"
+                    android:layout_height="@dimen/dp_22"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/redadus" />
+
 
                 <com.ruffian.library.widget.RImageView
                     android:layout_width="@dimen/dp_24"
@@ -176,7 +184,7 @@
                 <com.ruffian.library.widget.RTextView
                     android:id="@+id/account_chat_service"
                     android:layout_width="@dimen/dp_94"
-                    android:layout_height="@dimen/dp_16"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/dp_17"
                     android:layout_weight="8"
@@ -222,7 +230,7 @@
                 <com.ruffian.library.widget.RTextView
 
                     android:layout_width="@dimen/dp_94"
-                    android:layout_height="@dimen/dp_16"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/dp_17"
                     android:layout_weight="8"
@@ -268,7 +276,7 @@
                 <com.ruffian.library.widget.RTextView
 
                     android:layout_width="@dimen/dp_94"
-                    android:layout_height="@dimen/dp_16"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/dp_17"
                     android:layout_weight="8"
@@ -315,7 +323,7 @@
                 <com.ruffian.library.widget.RTextView
 
                     android:layout_width="@dimen/dp_94"
-                    android:layout_height="@dimen/dp_16"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/dp_17"
                     android:layout_weight="8"

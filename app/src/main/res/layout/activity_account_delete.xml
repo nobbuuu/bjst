@@ -21,6 +21,7 @@
         app:titleSize="@dimen/sp_18"
         app:titleStyle="bold" />
     <com.ruffian.library.widget.RTextView
+        android:id="@+id/delete_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

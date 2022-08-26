@@ -22,7 +22,7 @@
         android:layout_marginStart="@dimen/dp_10"
         android:text="ACEloan ACEloan"
         android:textColor="@color/black"
-        android:textSize="13sp"
+        android:textSize="@dimen/sp_13"
         app:layout_constraintBottom_toBottomOf="@+id/loanImg"
         app:layout_constraintStart_toEndOf="@+id/loanImg"
         app:layout_constraintTop_toTopOf="@+id/loanImg" />
@@ -45,7 +45,7 @@
         android:layout_marginEnd="@dimen/dp_18"
         android:text=" ₹ 10,000"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="@dimen/sp_18"
         app:layout_constraintBottom_toBottomOf="@+id/loanImg"
         app:layout_constraintEnd_toStartOf="@+id/loanCb"
         app:layout_constraintTop_toTopOf="@+id/loanImg" />

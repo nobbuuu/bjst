@@ -137,16 +137,16 @@
             android:visibility="gone"
             app:border_color_normal="@color/color_6c"
             app:border_width_normal="1.5dp"
-            app:corner_radius="4dp">
+            app:corner_radius="@dimen/dp_4">
 
-            <TextView
+            <com.ruffian.library.widget.RTextView
                 android:id="@+id/countriesCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="@dimen/dp_15"
                 android:text="+91"
                 android:textColor="@color/color_333"
-                android:textSize="15sp"
+                android:textSize="@dimen/sp_15"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -155,7 +155,7 @@
                 android:id="@+id/phoneEdt"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="@dimen/dp_15"
                 android:background="@null"
                 android:hint=" 10 digit mobile number"
                 android:text="1234567890"

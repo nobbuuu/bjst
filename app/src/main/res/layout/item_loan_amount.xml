@@ -13,7 +13,7 @@
         android:layout_marginBottom="@dimen/dp_18"
         android:text="₹ 500"
         android:textColor="@color/black"
-        android:textSize="22sp"
+        android:textSize="@dimen/sp_22"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

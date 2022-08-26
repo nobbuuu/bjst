@@ -51,13 +51,13 @@
 
 
         <com.ruffian.library.widget.RTextView
-            android:layout_width="335dp"
-            android:layout_height="42dp"
+            android:layout_width="@dimen/dp_335"
+            android:layout_height="@dimen/dp_42"
           android:layout_gravity="center"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="@dimen/dp_9"
             android:text="by continuing, I agree to the terms and conditions."
             android:textColor="#ff666666"
-            android:textSize="13sp" />
+            android:textSize="@dimen/sp_13" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -68,8 +68,8 @@
 
             <com.ruffian.library.widget.RImageView
                 android:id="@+id/privacy_popup_unselect_image"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
                 android:layout_marginLeft="@dimen/dp_20"
                 android:src="@mipmap/unselect" />
             <!-- //找到控件
@@ -84,8 +84,8 @@
                     mtv2.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);-->
             <com.ruffian.library.widget.RTextView
                 android:id="@+id/privacy_policy_tv"
-                android:layout_width="283dp"
-                android:layout_height="36dp"
+                android:layout_width="@dimen/dp_283"
+                android:layout_height="@dimen/dp_36"
                 android:layout_marginLeft="@dimen/dp_17"
                 android:text="I have read and agreed with the terms above"
                 android:textColor="#fff7002d"

@@ -12,11 +12,11 @@
         android:layout_gravity="center_horizontal"
         android:text="Amount"
         android:textColor="@color/color_333"
-        android:textSize="20sp" />
+        android:textSize="@dimen/sp_20" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/dp_1"
         android:layout_marginTop="@dimen/dp_19"
         android:background="@color/_xpopup_list_divider" />
 

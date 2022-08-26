@@ -1,6 +1,7 @@
 package com.dream.bjst.account.ui;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.view.View;
 
 import com.dream.bjst.R;
@@ -29,6 +30,18 @@ public class AccountDeleteActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+       new Thread(new Runnable() {
+           @Override
+           public void run() {
+               try {
+                   Thread.sleep(1000);
+               } catch (InterruptedException e) {
+                   e.printStackTrace();
+               }
+               startActivity(new Intent(AccountDeleteActivity.this,DeleteProgressActivity.class));
+
+           }
+       }).start();
     event();
     }
 
@@ -40,7 +53,7 @@ public class AccountDeleteActivity extends BaseActivity {
             }
         });
 
-        //
+        //点击文案删除数据
         deleteContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

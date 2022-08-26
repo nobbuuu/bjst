@@ -20,7 +20,11 @@ class DeleteProgressActivity : BaseActivity<DeleteProgressViewModel, ActivityDel
                  mBinding.deleteProgressBar.setProgress(i)
                   Thread.sleep(1000)
                   if (i==100){
+                      runOnUiThread(){
+
                       mBinding.deteTv.text="All your date has been cleared!"
+                      Thread.interrupted()
+                      }
                   }
               }
           }.start()

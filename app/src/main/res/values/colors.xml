@@ -62,6 +62,12 @@
     <color name="color_60_2D3">#992D3132</color>
     <color name="color_40_2D3">#662D3132</color>
 
+    <!--设置认证界面的背景颜色切换-->
+    <color name="color_identify_unselect">#F6F6F6</color>
+    <color name="color_identify_select">#F8FFF0</color>
+
+
+
 
     <color name="regular_black">#FF2D3132</color>
     <color name="regular_black2">#992D3132</color>

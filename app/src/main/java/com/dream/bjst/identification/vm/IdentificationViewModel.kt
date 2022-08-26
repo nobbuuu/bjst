@@ -1,0 +1,11 @@
+package com.dream.bjst.identification.vm
+
+import com.tcl.base.common.BaseViewModel
+
+/**
+ * 创建日期：2022-08-27 on 0:59
+ * 描述:衣带渐宽终不悔、为伊消得人憔悴
+ * 作者:HeGuiCun Administrator
+ */
+class IdentificationViewModel :BaseViewModel() {
+}

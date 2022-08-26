@@ -1,7 +1,10 @@
 package com.dream.bjst.login
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
+import android.os.Looper.getMainLooper
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.TextPaint
@@ -14,6 +17,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.dream.bjst.R
 import com.dream.bjst.bean.PhoneCodeParam
 import com.dream.bjst.databinding.ActivityLoginBinding
+import com.dream.bjst.identification.IdentificationActivity
 import com.dream.bjst.loan.vm.LoginViewModel
 import com.dream.bjst.main.MainActivity
 import com.tcl.base.common.ui.BaseActivity
@@ -24,7 +28,7 @@ import com.tcl.base.kt.ktToastShow
 class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
     var isSendCode = false
-    val mHandler = Handler(mainLooper)
+    val mHandler = Handler(Looper.getMainLooper())
     var countdown = 60
     var codeType = 0
     override fun initView(savedInstanceState: Bundle?) {
@@ -165,7 +169,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
         }
         viewModel.loginResult.observe(this) {
-            ktStartActivity(MainActivity::class)
+            ktStartActivity(IdentificationActivity::class)
         }
     }
 

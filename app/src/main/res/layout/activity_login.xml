@@ -15,7 +15,7 @@
         <com.hjq.bar.TitleBar
             android:id="@+id/titleBar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
+            android:layout_height="@dimen/dp_44"
             app:leftIcon="@mipmap/ic_back_black" />
 
         <ProgressBar
@@ -51,7 +51,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/codeLay"
             android:layout_width="match_parent"
-            android:visibility="gone"
             android:layout_height="wrap_content">
 
             <EditText
@@ -97,7 +96,7 @@
                     android:textSize="11sp" />
 
                 <TextView
-                    android:id="@+id/tryVoice"
+                    android:id="@+id/voiceTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Try Voice OTP"
@@ -114,10 +113,12 @@
                 android:paddingTop="8dp"
                 android:paddingEnd="15dp"
                 android:paddingBottom="8dp"
-                android:text="Resend OTP"
+                android:text="Send OTP"
                 android:textColor="@color/color_389830"
+                app:text_color_pressed="@color/color_389830_50"
                 android:textSize="15sp"
                 app:corner_radius="@dimen/dp_4"
+                app:border_color_pressed="@color/color_389830_50"
                 app:border_width_normal="1.5dp"
                 app:border_color_normal="@color/color_389830"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -133,6 +134,7 @@
             android:layout_marginStart="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_48"
             android:layout_marginEnd="@dimen/dp_20"
+            android:visibility="gone"
             app:border_color_normal="@color/color_6c"
             app:border_width_normal="1.5dp"
             app:corner_radius="@dimen/dp_4">
@@ -202,7 +204,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
-        android:text="Agree《User services》《Privacy Policy》"
+        android:text="Agree《User services》&amp;《Privacy Policy》"
         android:textColor="#ff666666"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="@+id/loginCb"

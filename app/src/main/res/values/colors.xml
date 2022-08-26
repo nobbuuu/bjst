@@ -18,7 +18,7 @@
     <!--状态栏颜色-->
     <color name="colorPrimaryDark">#E64C3D</color>
     <!--一般控件的选中效果默认采用该颜色-->
-    <color name="colorAccent">#E64C3D</color>
+    <color name="colorAccent">#389830</color>
     <color name="colorControlNormal">#9a9a9a</color>
     <color name="color_transparent">#00000000</color>
 

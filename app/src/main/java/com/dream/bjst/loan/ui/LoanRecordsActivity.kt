@@ -12,15 +12,11 @@ import com.tcl.base.common.ui.BaseActivity
 
 class LoanRecordsActivity:BaseActivity<BaseViewModel,ActivityLoanRecordsBinding>() {
 
-    override fun initStateBar(stateBarColor: Int, isLightMode: Boolean, fakeView: View?) {
-        super.initStateBar(ColorUtils.getColor(R.color.white), true, mBinding.titleBar)
-    }
     val mLoanRecordsAdapter = LoanRecordsAdapter()
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.loanRecords.apply {
             adapter = mLoanRecordsAdapter
         }
-
     }
 
     override fun initData() {

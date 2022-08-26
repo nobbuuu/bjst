@@ -55,7 +55,6 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding>(var config: Ac
         //注册 UI事件
         registorDefUIChange()
         initTitleBar()
-        initStateBar()
         initView(savedInstanceState)
         startObserve()
         initData()
@@ -70,7 +69,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding>(var config: Ac
     open fun layoutId(): Int = 0
     open fun initStateBar(
         @ColorInt stateBarColor: Int = ColorUtils.getColor(R.color.white),
-        isLightMode: Boolean = true,
+        isLightMode: Boolean = false,
         fakeView: View? = null
     ) {
         BarUtils.setStatusBarColor(this, stateBarColor)
@@ -135,7 +134,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding>(var config: Ac
         titleBar?.let {
             titleBar.leftIcon = ContextCompat.getDrawable(
                 this,
-                if (isWhileIcon) R.mipmap.ic_back_white else R.mipmap.ic_black
+                if (isWhileIcon) R.mipmap.ic_back_white else R.mipmap.ic_back_black
             )
             titleBar.setOnTitleBarListener(object : OnTitleBarListener {
                 override fun onLeftClick(v: View?) {

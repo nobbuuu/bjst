@@ -48,6 +48,8 @@ class LoginViewModel : BaseViewModel() {
             //缓存token
             MmkvUtil.encode(UserManager.getAccessTokenKey(), result.`809B9F919A`)
             loginResult.postValue(result)
+        }, errorBlock = {
+            it.message?.ktToastShow()
         })
     }
 }

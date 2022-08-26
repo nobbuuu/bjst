@@ -52,13 +52,11 @@ open class ResponseReturnParser<T> : AbstractParser<Response<T>> {
 
         val strType: Type = ParameterizedTypeImpl[String::class.java, mType]
         val originalStr: String = response.convert(strType)
-
-        val encryptType: Type = ParameterizedTypeImpl[BaseEncryptResponse::class.java, mType]
-        val encryptResponse = JsonUtil.getObject<BaseEncryptResponse>(originalStr, encryptType)
+        val encryptResponse = GsonUtils.fromJson(originalStr, BaseEncryptResponse::class.java)
         val result = EncryptUtil.decode(encryptResponse?.poiuytrggeqwr22fbc)
+        val  type: Type = ParameterizedTypeImpl[Response::class.java, mType] //获取泛型类型
         Log.d("http", "result = $result")
-
-        val responseData: Response<T> = GsonUtils.fromJson(result, object : TypeToken<Response<T>>() {}.type)
+        val responseData =JsonUtil.getObject<Response<T>>(result, type)
 
         if (responseData == null) {
             val specialResponse =
@@ -66,9 +64,9 @@ open class ResponseReturnParser<T> : AbstractParser<Response<T>> {
             when {
                 specialResponse.isMultiDeviceLogin() -> {
                     throw MultiDevicesException(
-                        specialResponse.`979B9091`,
-                        specialResponse.`90958095`.toString(),
-                        specialResponse.`998793` ?: ""
+                        specialResponse.code,
+                        specialResponse.data.toString(),
+                        specialResponse.msg ?: ""
                     )
                 }
                 else ->
@@ -78,22 +76,22 @@ open class ResponseReturnParser<T> : AbstractParser<Response<T>> {
             //获取data字段
             when {
                 responseData.isNotSaleManException() -> {
-                    throw NotSaleManException(responseData.`979B9091`, responseData.`998793` ?: "")
+                    throw NotSaleManException(responseData.code, responseData.msg ?: "")
                 }
                 responseData.isMultiDeviceLogin() -> {
-                    throw MultiDevicesException(responseData.`979B9091`,responseData.`90958095`.toString(),response.message)
+                    throw MultiDevicesException(responseData.code,responseData.data.toString(),response.message)
                 }
                 responseData.isBusinessException() -> {
-                    throw BusinessException(responseData.`979B9091`, responseData.`998793` ?: "报错信息为空")
+                    throw BusinessException(responseData.code, responseData.msg ?: "报错信息为空")
                 }
                 responseData.isTokenTimeOut() -> {
-                    throw TokenTimeOutException(responseData.`979B9091`, responseData.`998793` ?: "")
+                    throw TokenTimeOutException(responseData.code, responseData.msg ?: "")
                 }
                 !(responseData.isSuccess()) -> {
-                    throw ParseException(responseData.`979B9091`, responseData.`998793`, response)
+                    throw ParseException(responseData.code, responseData.msg, response)
                 }
                 else -> {
-                    val t = responseData.`90958095` //获取data字段
+                    val t = responseData.data //获取data字段
                     //data 为Obj || list
                     if(isNoDataType(mType) || isNoDataType(getDataIsListItemType(mType))){
                         return responseData
@@ -104,7 +102,7 @@ open class ResponseReturnParser<T> : AbstractParser<Response<T>> {
                             responseData
                         } else {
                             throw ParseException(
-                                responseData.`979B9091`,
+                                responseData.code,
                                 "data 为null，请用String接收",
                                 response
                             )

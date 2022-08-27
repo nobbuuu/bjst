@@ -51,6 +51,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/codeLay"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content">
 
             <EditText
@@ -106,13 +107,12 @@
 
             <com.ruffian.library.widget.RTextView
                 android:id="@+id/resendTv"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp_120"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_25"
-                android:paddingStart="15dp"
                 android:paddingTop="8dp"
-                android:paddingEnd="15dp"
                 android:paddingBottom="8dp"
+                android:gravity="center"
                 android:text="Send OTP"
                 android:textColor="@color/color_389830"
                 app:text_color_pressed="@color/color_389830_50"
@@ -134,7 +134,6 @@
             android:layout_marginStart="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_48"
             android:layout_marginEnd="@dimen/dp_20"
-            android:visibility="gone"
             app:border_color_normal="@color/color_6c"
             app:border_width_normal="1.5dp"
             app:corner_radius="@dimen/dp_4">

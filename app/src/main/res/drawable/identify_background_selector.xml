@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--未点击时背景颜色-->
-    <item android:drawable="@color/color_identify_unselect" android:state_pressed="false" />
-    <!--点击时背景颜色-->
-    <item android:drawable="@color/color_identify_select" android:state_pressed="true" />
+<!--    &lt;!&ndash;未点击时背景颜色&ndash;&gt;-->
+<!--    <item android:drawable="@color/color_identify_unselect" android:state_pressed="false" />-->
+<!--    &lt;!&ndash;点击时背景颜色&ndash;&gt;-->
+<!--    <item android:drawable="@color/color_identify_select" android:state_pressed="true" />-->
+
 </selector>

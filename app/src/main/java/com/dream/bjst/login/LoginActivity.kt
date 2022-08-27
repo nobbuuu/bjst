@@ -1,25 +1,22 @@
 package com.dream.bjst.login
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
-import android.os.Looper.getMainLooper
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.view.View
+import android.widget.TextView
 import androidx.core.view.isVisible
 import com.blankj.utilcode.util.ColorUtils
 import com.blankj.utilcode.util.GsonUtils
-import com.blankj.utilcode.util.LogUtils
 import com.dream.bjst.R
 import com.dream.bjst.bean.PhoneCodeParam
 import com.dream.bjst.databinding.ActivityLoginBinding
 import com.dream.bjst.identification.IdentificationActivity
 import com.dream.bjst.loan.vm.LoginViewModel
-import com.dream.bjst.main.MainActivity
+import com.dream.bjst.utils.SendCodeUtils
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
@@ -27,10 +24,9 @@ import com.tcl.base.kt.ktToastShow
 
 class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
-    var isSendCode = false
-    val mHandler = Handler(Looper.getMainLooper())
-    var countdown = 60
-    var codeType = 0
+    private var isSendCode = false
+    private val sendList = arrayListOf<SendCodeUtils>()
+    private var codeType = 0
     override fun initView(savedInstanceState: Bundle?) {
 
         mBinding.nextTv.ktClick {
@@ -52,60 +48,20 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
         mBinding.resendTv.ktClick {
             codeType = 1
-            when (mBinding.resendTv.text.toString()) {
-                "Send OTP" -> {
-                    sendCode()
-                }
-                "Resend OTP" -> {
-                    sendCode()
-                }
-                else -> {
-
-                }
-            }
+            sendCode()
         }
 
         mBinding.voiceTv.ktClick {
             codeType = 2
-            when (mBinding.voiceTv.text.toString()) {
-                "Try Voice  OTP" -> {
-                    sendCode()
-                }
-                "Resend" -> {
-                    sendCode()
-                }
-                else -> {
-
-                }
-            }
+            sendCode()
         }
-
         initPolicyUi()
     }
 
-    private val mRunnable = object : Runnable {
-        override fun run() {
-            if (countdown >= 0) {
-                when (codeType) {
-                    1 -> {
-                        mBinding.resendTv.text = countdown--.toString() + "S"
-                    }
-                    2 -> {
-                        mBinding.voiceTv.text = countdown--.toString() + "S"
-                    }
-                }
-                mHandler.postDelayed(this, 1000)
-            } else {
-                countdown = 60
-                when (codeType) {
-                    1 -> {
-                        mBinding.resendTv.text = "Resend OTP"
-                    }
-                    2 -> {
-                        mBinding.voiceTv.text = "Resend"
-                    }
-                }
-            }
+    override fun onPause() {
+        super.onPause()
+        sendList.forEach {
+            it.onPause()
         }
     }
 
@@ -122,7 +78,6 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 )
             )
             viewModel.sendCode(param)
-            mHandler.post(mRunnable)
         } else {
             "please input mobile number".ktToastShow()
         }
@@ -166,7 +121,9 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     override fun startObserve() {
         super.startObserve()
         viewModel.sendCode.observe(this) {
-
+            val tv = if (codeType == 1) mBinding.resendTv else mBinding.voiceTv
+            val str = if (codeType == 1) "Resend OTP" else "Resend"
+            sendList.add(SendCodeUtils(tv, Handler(mainLooper), str).start())
         }
         viewModel.loginResult.observe(this) {
             ktStartActivity(IdentificationActivity::class)

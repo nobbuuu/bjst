@@ -23,6 +23,15 @@ class IdentificationActivity :
                     //设置Authentication
                     mBinding.authenticationRv.setBackgroundResource(R.color.color_identify_select)
                     mBinding.identifyAuthenticationArrow.setImageResource(R.mipmap.itentify_select_arrow)
+                    //
+                    mBinding.facialRv.setBackgroundResource(R.color.color_identify_unselect)
+                    mBinding.facialAuthenticationArrow.setImageResource(R.mipmap.itentify_unselect_arrow)
+                    //
+                    mBinding.emergencyContactRv.setBackgroundResource(R.color.color_identify_unselect)
+                    mBinding.emergencyContactArrow.setImageResource(R.mipmap.itentify_unselect_arrow)
+                    //
+                    mBinding.bankCountRv.setBackgroundResource(R.color.color_identify_unselect)
+                    mBinding.bankCountArrow.setImageResource(R.mipmap.itentify_unselect_arrow)
                     temp=true
                 }
                 true -> {

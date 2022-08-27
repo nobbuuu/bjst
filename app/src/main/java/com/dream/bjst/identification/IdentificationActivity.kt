@@ -16,6 +16,7 @@ class IdentificationActivity :
         mBinding.identifyTitle.ktClick {
             onBackPressed()
         }
+        //Authentication
         mBinding.authenticationRv.ktClick {
             when(temp){
                 false -> {
@@ -31,6 +32,56 @@ class IdentificationActivity :
                 }
             }
 
+        }
+        //Facial verification
+        mBinding.facialRv.ktClick {
+
+            when(temp){
+               false -> {
+                   //设置Facial verification
+                   mBinding.facialRv.setBackgroundResource(R.color.color_identify_select)
+                   mBinding.facialAuthenticationArrow.setImageResource(R.mipmap.itentify_select_arrow)
+                   temp=true
+               }
+                true -> {
+                    mBinding.facialRv.setBackgroundResource(R.color.color_identify_unselect)
+                    mBinding.facialAuthenticationArrow.setImageResource(R.mipmap.itentify_unselect_arrow)
+                    temp=false
+                }
+            }
+
+        }
+        //Emergency contact
+        mBinding.emergencyContactRv.ktClick {
+            when(temp){
+                //Emergency contact
+                false -> {
+                    mBinding.emergencyContactRv.setBackgroundResource(R.color.color_identify_select)
+                    mBinding.emergencyContactArrow.setImageResource(R.mipmap.itentify_select_arrow)
+                    temp=true
+                }
+                true -> {
+                    mBinding.emergencyContactRv.setBackgroundResource(R.color.color_identify_unselect)
+                    mBinding.emergencyContactArrow.setImageResource(R.mipmap.itentify_unselect_arrow)
+                    temp=false
+                }
+            }
+        }
+        //bankAccount
+        mBinding.bankCountRv.ktClick {
+            when(temp){
+
+                false -> {
+                    mBinding.bankCountRv.setBackgroundResource(R.color.color_identify_select)
+                    mBinding.bankCountArrow.setImageResource(R.mipmap.itentify_select_arrow)
+                    temp=true
+                }
+                true->{
+                    mBinding.bankCountRv.setBackgroundResource(R.color.color_identify_unselect)
+                    mBinding.bankCountArrow.setImageResource(R.mipmap.itentify_unselect_arrow)
+                    temp=false
+                }
+            }
         }
     }
 

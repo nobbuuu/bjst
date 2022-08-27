@@ -1,6 +1,8 @@
 package com.dream.bjst.identification.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dream.bjst.R
 
@@ -32,6 +34,7 @@ class IdentificationActivity :
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun initData() {
         mBinding.identifyRecyclerview.layoutManager = GridLayoutManager(this, 2)
         repeat(4) {
@@ -40,7 +43,9 @@ class IdentificationActivity :
         identifyAdapter.setList(mNameList)
         mBinding.identifyRecyclerview.adapter = identifyAdapter
         identifyAdapter.setOnItemClickListener { adapter, view, position ->
-            "${position}".ktToastShow()
+//            "${position}".ktToastShow()
+
+
 
         }
 

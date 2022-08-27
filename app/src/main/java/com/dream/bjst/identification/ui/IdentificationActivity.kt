@@ -1,4 +1,4 @@
-package com.dream.bjst.identification
+package com.dream.bjst.identification.ui
 
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
@@ -28,7 +28,7 @@ class IdentificationActivity :
         }
 
         mBinding.identifyGetLoanBtn.ktClick {
-            ktStartActivity(MainActivity::class)
+            ktStartActivity(ActivityApproveIdCard::class)
         }
     }
 

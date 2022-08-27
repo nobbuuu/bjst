@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/rootLay"
-        tools:context=".identification.IdentificationActivity">
+        tools:context=".identification.ui.IdentificationActivity">
 
         <com.hjq.bar.TitleBar
             android:id="@+id/identify_title"

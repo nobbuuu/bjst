@@ -2,4 +2,14 @@
     <string name="title_area">LOAN</string>
     <string name="title_square">REPAYMENT</string>
     <string name="title_mine">ACCOUNT</string>
+
+
+    <string-array name="identify_name">
+        <item name="Authentication">Authentication </item>
+        <item name="Facial Verification">Facial Verification</item>
+        <item name="Emergency Contact">Emergency Contact</item>
+        <item name="Bank Account">Bank Account</item>
+
+
+    </string-array>
 </resources>

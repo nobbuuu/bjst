@@ -17,15 +17,11 @@ import com.dream.bjst.R;
  * 描述:衣带渐宽终不悔、为伊消得人憔悴
  * 作者:HeGuiCun Administrator
  */
-public class MyDialog {
+public class PhotoSelectDialog {
 
     public final static int PICK_AVATAR = 1;
 
-
-
     public Dialog mDialog;
-    public TextView dialog_message;
-    public TextView dialog_title;
     public TextView positive;
     public TextView negative;
 
@@ -36,7 +32,7 @@ public class MyDialog {
 
 
 
-    public MyDialog(Context context, int type) {
+    public PhotoSelectDialog(Context context, int type) {
 
         if (PICK_AVATAR == type) {
             LayoutInflater inflater = LayoutInflater.from(context);

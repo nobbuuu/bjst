@@ -14,9 +14,9 @@ import com.tcl.base.kt.ktToastShow
 
 class IdentificationActivity :
     BaseActivity<IdentificationViewModel, ActivityIdentificationBinding>() {
-    val mNameList:MutableList<identifyBean> = ArrayList()
+    val mNameList: MutableList<identifyBean> = ArrayList()
 
-     var identifyAdapter=IdentifyAdapter()
+    var identifyAdapter = IdentifyAdapter()
 
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.identifyTitle.ktClick {
@@ -25,15 +25,14 @@ class IdentificationActivity :
     }
 
     override fun initData() {
-        mBinding.identifyRecyclerview.layoutManager=GridLayoutManager(this,2)
-       repeat(4){
-         mNameList.add(identifyBean(R.mipmap.identify_bank,"Authentication"))
-     }
+        mBinding.identifyRecyclerview.layoutManager = GridLayoutManager(this, 2)
+        repeat(4) {
+            mNameList.add(identifyBean(R.mipmap.identify_bank, "Authentication"))
+        }
         identifyAdapter.setList(mNameList)
-        mBinding.identifyRecyclerview.adapter=identifyAdapter
-        //点击事件
+        mBinding.identifyRecyclerview.adapter = identifyAdapter
         identifyAdapter.setOnItemClickListener { adapter, view, position ->
-        "${position}".ktToastShow()
+            "${position}".ktToastShow()
 
         }
 
@@ -41,7 +40,6 @@ class IdentificationActivity :
     }
 
     override fun initDataOnResume() {
-
 
 
     }

@@ -14,6 +14,7 @@ import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.R
 import com.dream.bjst.bean.PhoneCodeParam
 import com.dream.bjst.databinding.ActivityLoginBinding
+import com.dream.bjst.dialog.VoiceDialog
 import com.dream.bjst.identification.IdentificationActivity
 import com.dream.bjst.loan.vm.LoginViewModel
 import com.dream.bjst.utils.SendCodeUtils
@@ -52,8 +53,10 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         }
 
         mBinding.voiceTv.ktClick {
-            codeType = 2
-            sendCode()
+            VoiceDialog(this) {
+                codeType = 2
+                sendCode()
+            }.show()
         }
         initPolicyUi()
     }

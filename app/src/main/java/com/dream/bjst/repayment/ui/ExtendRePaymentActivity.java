@@ -16,7 +16,7 @@ public class ExtendRePaymentActivity extends BaseActivity {
     @Override
     protected int initLayout() {
         //调整状态栏的字体颜色为黑色
-        new StatusBarUtils().adjustWindow(this, true);
+        StatusBarUtils.adjustWindow(this, true);
         return R.layout.activity_extend_re_payment;
     }
 

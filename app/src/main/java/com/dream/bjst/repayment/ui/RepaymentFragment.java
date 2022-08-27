@@ -35,7 +35,7 @@ public class RepaymentFragment extends BaseFragment {
     @Override
     protected int setLayout() {
         //调整状态栏的字体颜色为黑色
-        new StatusBarUtils().adjustWindow(getActivity(), true);
+        StatusBarUtils.adjustWindow(getActivity(), true);
         return R.layout.fragment_repayment;
     }
 

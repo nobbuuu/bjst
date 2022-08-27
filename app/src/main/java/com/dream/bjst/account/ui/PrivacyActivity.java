@@ -44,7 +44,7 @@ public class PrivacyActivity extends BaseActivity {
     @Override
     protected int initLayout() {
         //改变状态栏文字的颜色
-        new StatusBarUtils().adjustWindow(this, true);
+        StatusBarUtils.adjustWindow(this, true);
         return R.layout.activity_privacy;
     }
 

@@ -4,34 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".account.ui.AboutUsActivity">
-<View
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_44"
-    android:background="@color/white"/>
+
     <com.hjq.bar.TitleBar
         android:id="@+id/about_us_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_25"
+        android:layout_height="@dimen/dp_44"
+        android:background="@color/white"
         app:title="About Us"
-        app:titleStyle="bold"
-        android:background="@color/white"/>
+        app:titleStyle="bold" />
+
     <com.ruffian.library.widget.RImageView
         android:layout_width="91dp"
         android:layout_height="@dimen/dp_60"
-        android:src="@mipmap/repidicon"
-        android:layout_marginTop="74dp"
         android:layout_gravity="center_horizontal"
-        />
+        android:layout_marginTop="74dp"
+        android:src="@mipmap/repidicon" />
+
     <com.ruffian.library.widget.RImageView
         android:layout_width="@dimen/dp_99"
         android:layout_height="@dimen/dp_18"
-        android:src="@mipmap/rapidcoin"
-        android:layout_marginTop="@dimen/dp_18"
         android:layout_gravity="center_horizontal"
-        />
+        android:layout_marginTop="@dimen/dp_18"
+        android:src="@mipmap/rapidcoin" />
 
     <com.ruffian.library.widget.RTextView
         android:layout_width="@dimen/dp_305"
@@ -39,8 +36,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dp_38"
         android:gravity="left"
-        android:padding="@dimen/dp_5"
         android:lineSpacingExtra="@dimen/dp_5"
+        android:padding="@dimen/dp_5"
         android:text="Rapid Coin is a personal loan App which provide super fast loan with simple and secure procedure. You can get urgent cash assistance with easy credit quickly.\n Your credit scores would increase instantly after you repay on time."
         android:textColor="#666666"
         android:textDirection="firstStrong"

@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
-
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topLay"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_179"
+            android:layout_height="wrap_content"
             android:background="@mipmap/accountbg">
 
             <com.ruffian.library.widget.RImageView
@@ -21,42 +20,54 @@
                 android:layout_width="@dimen/dp_84"
                 android:layout_height="@dimen/dp_84"
                 android:layout_marginLeft="@dimen/dp_24"
-                android:layout_marginTop="@dimen/dp_67"
-                android:src="@mipmap/account_icon" />
+                android:layout_marginTop="@dimen/dp_23"
+                android:src="@mipmap/account_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <com.ruffian.library.widget.RTextView
-                android:id="@+id/account_name"
-                android:layout_width="@dimen/dp_93"
-                android:layout_height="@dimen/dp_18"
-                android:layout_marginLeft="@dimen/dp_28"
-                android:layout_marginTop="@dimen/dp_87"
-                android:layout_toRightOf="@id/account_icon"
-                android:text="User name"
-                android:textColor="#ff000000"
-                android:textSize="@dimen/sp_16" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_28"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/account_icon"
+                app:layout_constraintStart_toEndOf="@+id/account_icon"
+                app:layout_constraintTop_toTopOf="@+id/account_icon">
 
-            <com.ruffian.library.widget.RTextView
-                android:id="@+id/account_id"
-                android:layout_width="@dimen/dp_86"
-                android:layout_height="@dimen/dp_15"
-                android:layout_below="@id/account_name"
-                android:layout_alignLeft="@id/account_name"
-                android:layout_marginTop="@dimen/dp_12"
-                android:text="8019872373"
-                android:textColor="#ff000000"
-                android:textSize="@dimen/sp_12" />
-            />
+                <com.ruffian.library.widget.RTextView
+                    android:id="@+id/account_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User name"
+                    android:textColor="#ff000000"
+                    android:textSize="@dimen/sp_16" />
+
+                <com.ruffian.library.widget.RTextView
+                    android:id="@+id/account_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/account_name"
+                    android:layout_alignLeft="@id/account_name"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:text="8019872373"
+                    android:textColor="#ff000000"
+                    android:textSize="@dimen/sp_12" />
+                />
+            </LinearLayout>
 
             <com.ruffian.library.widget.RImageView
                 android:id="@+id/account_setting"
                 android:layout_width="@dimen/dp_35"
                 android:layout_height="@dimen/dp_35"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="@dimen/dp_53"
+                android:layout_marginTop="@dimen/dp_9"
                 android:layout_marginRight="@dimen/dp_20"
-                android:src="@mipmap/account_setting" />
+                android:src="@mipmap/account_setting"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_goneMarginTop="@dimen/dp_9" />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <!--account_loan_record-->
         <LinearLayout
             android:id="@+id/account_loan_record"

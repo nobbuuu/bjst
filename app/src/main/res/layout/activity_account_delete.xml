@@ -8,15 +8,10 @@
     android:orientation="vertical"
     tools:context=".account.ui.AccountSettingActivity">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_44"
-        android:background="@color/white" />
-
     <com.hjq.bar.TitleBar
         android:id="@+id/account_delete_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_25"
+        android:layout_height="@dimen/dp_44"
         app:title="Delete individual data"
         app:titleSize="@dimen/sp_18"
         app:titleStyle="bold" />

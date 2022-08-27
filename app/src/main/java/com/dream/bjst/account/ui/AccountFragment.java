@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.didichuxing.doraemonkit.util.ToastUtils;
 import com.dream.bjst.R;
 import com.dream.bjst.app.MyAppKt;
@@ -14,25 +16,25 @@ import com.ruffian.library.widget.RImageView;
 
 public class AccountFragment extends BaseFragment {
     RImageView settingImage;
-    LinearLayout aboutUsLayout,deleteDataLayout,privacyLayout,chatServiceLayout,loanRecordLayout
-            ,identificationLayout;
+    LinearLayout aboutUsLayout, deleteDataLayout, privacyLayout, chatServiceLayout, loanRecordLayout, identificationLayout;
+    private ConstraintLayout topLay;
+
     @Override
     protected int setLayout() {
-        //调整状态栏的字体颜色为黑色
-        new StatusBarUtils().adjustWindow(getActivity(), true);
+        StatusBarUtils.adjustWindow(requireActivity(),R.color.color_F8FFF0, topLay);
         return R.layout.fragment_account;
     }
 
     @Override
     protected void initView() {
-        settingImage=fvbi(R.id.account_setting);
-        aboutUsLayout=fvbi(R.id.account_about_us);
-        deleteDataLayout=fvbi(R.id.account_delete_individual_data);
-        privacyLayout=fvbi(R.id.account_privacy_police);
-        chatServiceLayout=fvbi(R.id.account_customer_service);
-        loanRecordLayout=fvbi(R.id.account_loan_record);
-        identificationLayout=fvbi(R.id.account_re_enter_rv);
-
+        settingImage = fvbi(R.id.account_setting);
+        aboutUsLayout = fvbi(R.id.account_about_us);
+        deleteDataLayout = fvbi(R.id.account_delete_individual_data);
+        privacyLayout = fvbi(R.id.account_privacy_police);
+        chatServiceLayout = fvbi(R.id.account_customer_service);
+        loanRecordLayout = fvbi(R.id.account_loan_record);
+        identificationLayout = fvbi(R.id.account_re_enter_rv);
+        topLay = fvbi(R.id.topLay);
     }
 
     @Override
@@ -41,21 +43,21 @@ public class AccountFragment extends BaseFragment {
         settingImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyAppKt.getMApplication(),AccountSettingActivity.class));
+                startActivity(new Intent(MyAppKt.getMApplication(), AccountSettingActivity.class));
             }
         });
         //关于我们
         aboutUsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            startActivity(new Intent(MyAppKt.getMApplication(),AboutUsActivity.class));
+                startActivity(new Intent(MyAppKt.getMApplication(), AboutUsActivity.class));
             }
         });
         //删除数据
         deleteDataLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyAppKt.getMApplication(),AccountDeleteActivity.class));
+                startActivity(new Intent(MyAppKt.getMApplication(), AccountDeleteActivity.class));
 
             }
         });
@@ -63,14 +65,14 @@ public class AccountFragment extends BaseFragment {
         privacyLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyAppKt.getMApplication(),PrivacyActivity.class));
+                startActivity(new Intent(MyAppKt.getMApplication(), PrivacyActivity.class));
             }
         });
         //顾客聊天服务
         chatServiceLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyAppKt.getMApplication(),ChatMessageActivity.class));
+                startActivity(new Intent(MyAppKt.getMApplication(), ChatMessageActivity.class));
             }
         });
         //进入贷款记录界面

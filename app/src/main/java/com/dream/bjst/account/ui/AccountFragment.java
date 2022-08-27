@@ -10,6 +10,7 @@ import com.didichuxing.doraemonkit.util.ToastUtils;
 import com.dream.bjst.R;
 import com.dream.bjst.app.MyAppKt;
 import com.dream.bjst.base.BaseFragment;
+import com.dream.bjst.identification.IdentificationActivity;
 import com.dream.bjst.loan.ui.LoanRecordsActivity;
 import com.dream.bjst.utils.StatusBarUtils;
 import com.ruffian.library.widget.RImageView;
@@ -21,7 +22,6 @@ public class AccountFragment extends BaseFragment {
 
     @Override
     protected int setLayout() {
-        StatusBarUtils.adjustWindow(requireActivity(),R.color.color_F8FFF0, topLay);
         return R.layout.fragment_account;
     }
 
@@ -35,6 +35,7 @@ public class AccountFragment extends BaseFragment {
         loanRecordLayout = fvbi(R.id.account_loan_record);
         identificationLayout = fvbi(R.id.account_re_enter_rv);
         topLay = fvbi(R.id.topLay);
+        StatusBarUtils.adjustWindow(requireActivity(),R.color.color_F8FFF0, topLay);
     }
 
     @Override
@@ -86,8 +87,8 @@ public class AccountFragment extends BaseFragment {
         identificationLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(MyAppKt.getMApplication(), LoanRecordsActivity.class));
-                ToastUtils.showLong("认证界面还没有完善");
+          startActivity(new Intent(MyAppKt.getMApplication(), IdentificationActivity.class));
+
 
             }
         });

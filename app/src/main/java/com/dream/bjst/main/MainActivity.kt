@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.ColorUtils
 import com.dream.bjst.R
 import com.dream.bjst.databinding.ActivityMainBinding
 import com.dream.bjst.main.menu.*
@@ -19,7 +20,7 @@ import com.tcl.tclzjpro.main.FixFragmentNavigator
  *@date   2021/12/8
  *description
  */
-class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
+class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     var lastPos = -1
     var curPos = MAIN_TAB_LOAN
     private lateinit var controller: NavController
@@ -29,13 +30,13 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
     }
 
     override fun initStateBar(stateBarColor: Int, isLightMode: Boolean, fakeView: View?) {
-        BarUtils.setStatusBarLightMode(this, true)
+        super.initStateBar(ColorUtils.getColor(R.color.white), false, fakeView)
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        isFullScreen()
         controller = findNavController(R.id.main_container)
-        val fragment = supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
+        val fragment =
+            supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
         val navigator = FixFragmentNavigator(this, supportFragmentManager, fragment.id)
         controller.navigatorProvider.addNavigator(navigator)
         controller.setGraph(R.navigation.main_navigation)
@@ -66,19 +67,23 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
         })
         controller.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.navigation_loan-> {
+                R.id.navigation_loan -> {
                     curPos = MAIN_TAB_LOAN
+                    BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.white))
                 }
                 R.id.navigation_repayment -> {
                     curPos = MAIN_TAB_REPAYMENT
+                    BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.white))
                 }
-                R.id.navigation_account-> {
+                R.id.navigation_account -> {
                     curPos = MAIN_TAB_ACCOUNT
+                    BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.color_F8FFF0))
                 }
             }
             mBinding.mainTab.selectTab(mBinding.mainTab.getTabAt(curPos))
         }
     }
+
     override fun onBlockBackPressed(): Boolean {
         return curPos != MAIN_TAB_LOAN
     }
@@ -87,6 +92,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
         super.doOnBlockBackPressed()
         findNavController(R.id.main_container).navigate(R.id.navigation_loan)
     }
+
     /**监听新的intent*/
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
@@ -95,6 +101,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
             switchTab(position)
         }
     }
+
     /**根据下标切换页面*/
     private fun switchTab(curPos: Int) {
         when (curPos) {
@@ -103,6 +110,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(){
             MAIN_TAB_ACCOUNT -> controller.navigate(R.id.navigation_account)
         }
     }
+
     override fun onResume() {
         super.onResume()
         val index = mBinding.mainTab.selectedTabPosition

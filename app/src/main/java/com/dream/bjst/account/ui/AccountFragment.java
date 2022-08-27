@@ -21,7 +21,6 @@ public class AccountFragment extends BaseFragment {
 
     @Override
     protected int setLayout() {
-        StatusBarUtils.adjustWindow(requireActivity(),R.color.color_F8FFF0, topLay);
         return R.layout.fragment_account;
     }
 
@@ -35,6 +34,7 @@ public class AccountFragment extends BaseFragment {
         loanRecordLayout = fvbi(R.id.account_loan_record);
         identificationLayout = fvbi(R.id.account_re_enter_rv);
         topLay = fvbi(R.id.topLay);
+        StatusBarUtils.adjustWindow(requireActivity(),R.color.color_F8FFF0, topLay);
     }
 
     @Override

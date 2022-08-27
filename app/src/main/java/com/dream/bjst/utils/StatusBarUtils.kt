@@ -12,9 +12,9 @@ object StatusBarUtils {
      * 沉浸式状态栏
      */
     @JvmStatic
-    fun adjustWindow(activity: Activity, color: Int = R.color.transparent, view: View) {
+    fun adjustWindow(activity: Activity, color: Int = R.color.white, view: View? = null) {
         BarUtils.setStatusBarColor(activity, ColorUtils.getColor(color))
-        view.setPadding(0, BarUtils.getStatusBarHeight(), 0, 0)
+        view?.setPadding(0, BarUtils.getStatusBarHeight(), 0, 0)
     }
 
     @JvmStatic

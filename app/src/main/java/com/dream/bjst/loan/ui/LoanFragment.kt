@@ -2,6 +2,7 @@ package com.dream.bjst.loan.ui
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.blankj.utilcode.util.BarUtils
 import com.dream.bjst.bean.EmptyBean
 import com.dream.bjst.databinding.FragmentLoanBinding
 import com.dream.bjst.loan.adapter.OtherLoanAdapter
@@ -15,12 +16,13 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     private val otherLoanAdapter = OtherLoanAdapter()
     override fun initView(savedInstanceState: Bundle?) {
+        BarUtils.addMarginTopEqualStatusBarHeight(mBinding.userIcon)
         mBinding.otherLoanRv.apply {
             adapter = otherLoanAdapter
-            addItemDecoration(RecycleViewDivider(requireContext(),LinearLayoutManager.VERTICAL))
+            addItemDecoration(RecycleViewDivider(requireContext(), LinearLayoutManager.VERTICAL))
         }
         val data = arrayListOf<EmptyBean>()
-        repeat(15){
+        repeat(15) {
             data.add(EmptyBean())
         }
         otherLoanAdapter.setList(data)
@@ -32,7 +34,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     override fun startObserve() {
         super.startObserve()
-        viewModel.loginResult.observe(this){
+        viewModel.loginResult.observe(this) {
 
         }
     }

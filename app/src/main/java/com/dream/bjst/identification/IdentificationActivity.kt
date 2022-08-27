@@ -8,9 +8,11 @@ import com.dream.bjst.databinding.ActivityIdentificationBinding
 import com.dream.bjst.identification.adapter.IdentifyAdapter
 import com.dream.bjst.identification.bean.identifyBean
 import com.dream.bjst.identification.vm.IdentificationViewModel
+import com.dream.bjst.main.MainActivity
 import com.dream.bjst.utils.StatusBarUtils
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.ktToastShow
 
 class IdentificationActivity :
@@ -23,6 +25,10 @@ class IdentificationActivity :
         StatusBarUtils.adjustWindow(this, color = R.color.color_F8FFF0, mBinding.rootLay)
         mBinding.identifyTitle.ktClick {
             onBackPressed()
+        }
+
+        mBinding.identifyGetLoanBtn.ktClick {
+            ktStartActivity(MainActivity::class)
         }
     }
 

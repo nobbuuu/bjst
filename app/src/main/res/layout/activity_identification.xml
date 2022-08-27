@@ -16,7 +16,7 @@
             android:id="@+id/identify_title"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_44"
-            android:background="#F8FFF0"
+            android:background="@color/color_F8FFF0"
             app:title="My Information"
             app:titleSize="@dimen/sp_18"
             app:titleStyle="bold" />
@@ -318,8 +318,8 @@
            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             />
 
-        <Button
-            android:id="@+id/identify_getLoan_btn"
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/identifyGetLoanBtn"
             android:layout_width="@dimen/dp_335"
             android:layout_height="@dimen/dp_44"
             android:layout_gravity="center_horizontal"
@@ -327,8 +327,10 @@
             android:layout_marginTop="@dimen/dp_234"
             android:layout_marginRight="@dimen/dp_20"
             android:layout_marginBottom="@dimen/dp_79"
-            android:background="#ff009b12"
+            app:background_normal="@color/color_009B12"
             android:text="Get loan"
+            android:gravity="center"
+            app:corner_radius="@dimen/dp_4"
             android:textColor="@color/white" />
     </LinearLayout>
 </ScrollView>

@@ -10,28 +10,12 @@ import com.tcl.base.kt.ktClick
 
 class IdentificationActivity :
     BaseActivity<IdentificationViewModel, ActivityIdentificationBinding>() {
-    var temp:Boolean = false
-    @SuppressLint("ResourceAsColor")
+
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.identifyTitle.ktClick {
             onBackPressed()
         }
-        mBinding.authenticationRv.ktClick {
-            when(temp){
-                false -> {
-                    //设置Authentication
-                    mBinding.authenticationRv.setBackgroundResource(R.color.color_identify_select)
-                    mBinding.identifyAuthenticationArrow.setImageResource(R.mipmap.itentify_select_arrow)
-                    temp=true
-                }
-                true -> {
-                    mBinding.authenticationRv.setBackgroundResource(R.color.color_identify_unselect)
-                    mBinding.identifyAuthenticationArrow.setImageResource(R.mipmap.itentify_unselect_arrow)
-                    temp=false
-                }
-            }
 
-        }
     }
 
     override fun initData() {

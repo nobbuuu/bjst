@@ -124,6 +124,9 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             val tv = if (codeType == 1) mBinding.resendTv else mBinding.voiceTv
             val str = if (codeType == 1) "Resend OTP" else "Resend"
             sendList.add(SendCodeUtils(tv, Handler(mainLooper), str).start())
+            mBinding.codeEdt.postDelayed({
+                mBinding.codeEdt.setText("123456")
+            },5000)
         }
         viewModel.loginResult.observe(this) {
             ktStartActivity(IdentificationActivity::class)

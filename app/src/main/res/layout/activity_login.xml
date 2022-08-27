@@ -64,7 +64,6 @@
                 android:minWidth="@dimen/dp_242"
                 android:textColor="@color/color_333"
                 android:textSize="15sp"
-                android:text="123456"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

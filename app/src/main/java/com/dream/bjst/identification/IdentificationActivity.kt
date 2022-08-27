@@ -1,8 +1,6 @@
 package com.dream.bjst.identification
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import com.dream.bjst.R
 import com.dream.bjst.databinding.ActivityIdentificationBinding
 import com.dream.bjst.identification.vm.IdentificationViewModel
 import com.tcl.base.common.ui.BaseActivity

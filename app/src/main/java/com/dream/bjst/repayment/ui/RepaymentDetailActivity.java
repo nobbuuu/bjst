@@ -19,7 +19,7 @@ import com.dream.bjst.R;
 import com.dream.bjst.base.BaseActivity;
 import com.dream.bjst.common.Constant;
 import com.dream.bjst.utils.FileUtils;
-import com.dream.bjst.utils.MyDialog;
+import com.dream.bjst.utils.PhotoSelectDialog;
 import com.dream.bjst.utils.PhotoManager;
 import com.dream.bjst.utils.StatusBarUtils;
 import com.hjq.bar.TitleBar;
@@ -165,21 +165,21 @@ public class RepaymentDetailActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //这里上传头
-                MyDialog myDialog = new MyDialog(RepaymentDetailActivity.this, MyDialog.PICK_AVATAR);
-                myDialog.show();
-                myDialog.mSelectPicture.setOnClickListener(new View.OnClickListener() {
+                PhotoSelectDialog photoSelectDialog = new PhotoSelectDialog(RepaymentDetailActivity.this, PhotoSelectDialog.PICK_AVATAR);
+                photoSelectDialog.show();
+                photoSelectDialog.mSelectPicture.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         mPhotoManager.checkPermissionAndChosePhoto();
-                        myDialog.dismiss();
+                        photoSelectDialog.dismiss();
                     }
                 });
 
-                myDialog.mSelectCamera.setOnClickListener(new View.OnClickListener() {
+                photoSelectDialog.mSelectCamera.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         mPhotoManager.checkPermissionAndCamera();
-                        myDialog.dismiss();
+                        photoSelectDialog.dismiss();
                     }
                 });
             }

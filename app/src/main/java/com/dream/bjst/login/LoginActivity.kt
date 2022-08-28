@@ -7,7 +7,6 @@ import android.text.SpannableStringBuilder
 import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.view.View
-import android.widget.TextView
 import androidx.core.view.isVisible
 import com.blankj.utilcode.util.ColorUtils
 import com.blankj.utilcode.util.GsonUtils
@@ -15,7 +14,7 @@ import com.dream.bjst.R
 import com.dream.bjst.bean.PhoneCodeParam
 import com.dream.bjst.databinding.ActivityLoginBinding
 import com.dream.bjst.dialog.VoiceDialog
-import com.dream.bjst.identification.IdentificationActivity
+import com.dream.bjst.identification.ui.IdentificationActivity
 import com.dream.bjst.loan.vm.LoginViewModel
 import com.dream.bjst.utils.SendCodeUtils
 import com.tcl.base.common.ui.BaseActivity

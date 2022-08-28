@@ -327,6 +327,7 @@
         <item name="background_normal">@color/color_transparent</item>
         <item name="background_pressed">@color/text_main_red_color</item>
     </style>
+
     <style name="gray_stroke_button2" parent="btn_config">
         <item name="text_color_normal">#2D3132</item>
         <item name="text_color_pressed">@color/white</item>
@@ -479,7 +480,7 @@
     </style>
 
 
-    <style name="myDialog" parent="@android:style/Theme.Holo.Dialog">
+    <style name="photoSelectDialog" parent="@android:style/Theme.Holo.Dialog">
         <!-- 是否有边框 -->
         <item name="android:windowFrame">@null</item>
         <!--是否在悬浮Activity之上  -->
@@ -665,6 +666,20 @@
         <item name="android:windowExitAnimation">@anim/pw_bottom_out</item>
     </style>
 
+    <!--sure_btn-->
+    <style name="sure_btn">
+        <item name="android:layout_height">@dimen/dp_44</item>
+        <item name="android:layout_marginStart">@dimen/dp_20</item>
+        <item name="android:layout_marginEnd">@dimen/dp_20</item>
+        <item name="android:textSize">@dimen/sp_15</item>
+        <item name="background_normal">@color/color_389830</item>
+        <item name="background_pressed">@color/color_389830_50</item>
+        <item name="text_color_normal">@color/white</item>
+        <item name="text_color_pressed">@color/white_50</item>
+        <item name="corner_radius">@dimen/dp_4</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <declare-styleable name="LrKvView">
         <attr name="lrTitle" format="string|reference" />
         <attr name="lrText" format="string|reference" />
@@ -679,5 +694,6 @@
         <attr name="endTextColor" format="color|reference" />
         <attr name="isDivider" format="boolean|reference" />
     </declare-styleable>
+
 
 </resources>

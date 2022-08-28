@@ -1,9 +1,9 @@
 package com.dream.bjst.repayment.ui;
 
 
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -13,7 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.blankj.utilcode.util.ToastUtils;
 import com.dream.bjst.R;
 import com.dream.bjst.base.BaseActivity;
@@ -28,6 +30,7 @@ import com.ruffian.library.widget.RImageView;
 import com.ruffian.library.widget.RTextView;
 import com.tcl.base.utils.MmkvUtil;
 import com.tcl.base.utils.PhotoUtils;
+
 import java.io.File;
 
 public class RepaymentDetailActivity extends BaseActivity {
@@ -35,10 +38,10 @@ public class RepaymentDetailActivity extends BaseActivity {
     private REditText mDigitalEt;
     private RTextView notionTv;
     private Button mPayButton, mRepaidSubmitButton;
-    private RImageView mRImageView,mFooterArrow,mHeaderArrow;
+    private RImageView mRImageView, mFooterArrow, mHeaderArrow;
     private PhotoManager mPhotoManager;
 
-    private RelativeLayout mHeaderLayout,mFooterLayout;
+    private RelativeLayout mHeaderLayout, mFooterLayout;
     //输入框里面的内容
     CharSequence temp;
     int startEdit;
@@ -61,12 +64,12 @@ public class RepaymentDetailActivity extends BaseActivity {
         mRepaidSubmitButton = fvbi(R.id.repaid_submit_button);
         mRImageView = fvbi(R.id.add_picture_camera_iv);
         //尾部局箭头
-        mFooterArrow=fvbi(R.id.footer_arrow);
-        mHeaderArrow=fvbi(R.id.header_arrow);
+        mFooterArrow = fvbi(R.id.footer_arrow);
+        mHeaderArrow = fvbi(R.id.header_arrow);
 
         //这里是设置头布局和尾部局的显示隐藏
-        mHeaderLayout=fvbi(R.id.header_rv);
-        mFooterLayout=fvbi(R.id.footer_rv);
+        mHeaderLayout = fvbi(R.id.header_rv);
+        mFooterLayout = fvbi(R.id.footer_rv);
         //显示存储数据
         mDigitalEt.setText(MmkvUtil.INSTANCE.decodeString("digital"));
     }
@@ -157,7 +160,7 @@ public class RepaymentDetailActivity extends BaseActivity {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
-                MmkvUtil.INSTANCE.encode("digital",temp);
+                MmkvUtil.INSTANCE.encode("digital", temp);
             }
         });
         //点击上传UTR_picture
@@ -209,14 +212,42 @@ public class RepaymentDetailActivity extends BaseActivity {
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == Constant.PERMISSION_CAMERA_REQUEST_CODE) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+            ) {
+                //允许权限，有调起相机拍照。
+                mPhotoManager.openCamera();
+            } else {
+                //拒绝权限，弹出提示框。
+                ToastUtils.showShort("The photo permission is denied");
+            }
+        }
+
+        if (requestCode == Constant.PERMISSION_STORAGE_REQUEST_CODE) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+            ) {
+                //允许权限
+                mPhotoManager.goPhotoAlbum();
+            } else {
+                //拒绝权限，弹出提示框。
+                ToastUtils.showShort("The storage permission is denied");
+            }
+        }
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK){
-            if (requestCode == Constant.CAMERA_REQUEST_CODE){
+        if (resultCode == RESULT_OK) {
+            if (requestCode == Constant.CAMERA_REQUEST_CODE) {
                 if (mPhotoManager.isAndroidQ) {
                     // Android 10 使用图片uri加载
-                    Bitmap  bitmap = mPhotoManager.getBitmapFromUri(mPhotoManager.mCameraUri);
-                    if (bitmap != null){
+                    Bitmap bitmap = mPhotoManager.getBitmapFromUri(mPhotoManager.mCameraUri);
+                    if (bitmap != null) {
                         upLoadFile(bitmap);
                     }
 
@@ -227,9 +258,9 @@ public class RepaymentDetailActivity extends BaseActivity {
                 }
             }
 
-            if (requestCode == Constant.CHOOSE_PHOTO_CODE){
+            if (requestCode == Constant.CHOOSE_PHOTO_CODE) {
                 Uri result = data.getData();
-                if (result!= null){
+                if (result != null) {
                     String path = PhotoUtils.getPath(this, result);
                     Bitmap rotateBitmap = BitmapFactory.decodeFile(path);
                     upLoadFile(rotateBitmap);

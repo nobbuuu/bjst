@@ -320,6 +320,16 @@ class PhotoManager (activity: Activity){
         return null
     }
 
+    fun getBitmapWithCamara():Bitmap?{
+        return if (isAndroidQ) {
+            // Android 10 使用图片uri加载
+            getBitmapFromUri(mCameraUri)
+        } else {
+            // 使用图片路径加载
+            rotateBitmap(BitmapFactory.decodeFile(mCameraImagePath))
+        }
+    }
+
     fun rotateBitmap(bitmap: Bitmap): Bitmap? {
         val bitmapC = ImageUtils.compressBySampleSize(bitmap, 2, true)
         val matrix = Matrix()

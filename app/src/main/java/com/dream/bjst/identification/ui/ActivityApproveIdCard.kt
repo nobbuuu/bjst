@@ -1,6 +1,7 @@
 package com.dream.bjst.identification.ui
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -12,12 +13,13 @@ import com.dream.bjst.utils.PhotoManager
 import com.dream.bjst.utils.PhotoSelectDialog
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.ktToastShow
 import com.tcl.base.utils.PhotoUtils.getPath
 
 class ActivityApproveIdCard :
     BaseActivity<IdentificationViewModel, ActivityCertificationIdcardBinding>() {
     lateinit var mPhotoManager: PhotoManager
-    lateinit var photoDialog :PhotoSelectDialog
+    lateinit var photoDialog: PhotoSelectDialog
     private var type = 0
     override fun initView(savedInstanceState: Bundle?) {
         mPhotoManager = PhotoManager(this)
@@ -50,25 +52,53 @@ class ActivityApproveIdCard :
     override fun initDataOnResume() {
     }
 
+    /**
+     * 处理权限申请的回调。
+     */
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            Constant.PERMISSION_CAMERA_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty()
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    //允许权限，有调起相机拍照。
+                    mPhotoManager.openCamera()
+                } else {
+                    //拒绝权限，弹出提示框。
+                    "The photo permission is denied".ktToastShow()
+                }
+            }
+
+            Constant.PERMISSION_STORAGE_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty()
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    //允许权限
+                    mPhotoManager.goPhotoAlbum()
+                } else {
+                    //拒绝权限，弹出提示框。
+                    "The storage permission is denied".ktToastShow()
+                }
+            }
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             if (requestCode == Constant.CAMERA_REQUEST_CODE) {
-                if (mPhotoManager.isAndroidQ) {
-                    // Android 10 使用图片uri加载
-                    val bitmap = mPhotoManager.getBitmapFromUri(mPhotoManager.mCameraUri)
-                    bitmap?.let { upLoadFile(it) }
-                } else {
-                    // 使用图片路径加载
-                    val rotateBitmap =
-                        mPhotoManager.rotateBitmap(BitmapFactory.decodeFile(mPhotoManager.mCameraImagePath))
-                    upLoadFile(rotateBitmap)
+                mPhotoManager.getBitmapWithCamara()?.let {
+                    upLoadFile(it)
                 }
             }
             if (requestCode == Constant.CHOOSE_PHOTO_CODE) {
-                val result = data!!.data
-                if (result != null) {
-                    val path = getPath(this, result)
+                data?.data?.let {
+                    val path = getPath(this, it)
                     val rotateBitmap = BitmapFactory.decodeFile(path)
                     upLoadFile(rotateBitmap)
                 }
@@ -79,14 +109,14 @@ class ActivityApproveIdCard :
     private fun upLoadFile(bitmap: Bitmap?) {
         val rotateBitmap = mPhotoManager.rotateBitmap(bitmap!!)
         //显示图片
-        when(type){
-            1 ->{
+        when (type) {
+            1 -> {
                 mBinding.frontIv.setImageBitmap(rotateBitmap)
             }
-            2 ->{
+            2 -> {
                 mBinding.backIv.setImageBitmap(rotateBitmap)
             }
-            3 ->{
+            3 -> {
                 mBinding.panCardIv.setImageBitmap(rotateBitmap)
             }
         }

@@ -43,7 +43,7 @@ class IdentificationActivity :
         identifyAdapter.setList(mNameList)
         mBinding.identifyRecyclerview.adapter = identifyAdapter
         identifyAdapter.setOnItemClickListener { adapter, view, position ->
-            "${position}".ktToastShow()
+
             when(position){
                 0->{
                     ktStartActivity(ActivityApproveIdCard::class)

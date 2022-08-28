@@ -6,11 +6,10 @@ import android.widget.LinearLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.didichuxing.doraemonkit.util.ToastUtils;
 import com.dream.bjst.R;
 import com.dream.bjst.app.MyAppKt;
 import com.dream.bjst.base.BaseFragment;
-import com.dream.bjst.identification.IdentificationActivity;
+import com.dream.bjst.identification.ui.IdentificationActivity;
 import com.dream.bjst.loan.ui.LoanRecordsActivity;
 import com.dream.bjst.utils.StatusBarUtils;
 import com.ruffian.library.widget.RImageView;

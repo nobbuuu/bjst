@@ -6,10 +6,10 @@ import android.widget.LinearLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.didichuxing.doraemonkit.util.ToastUtils;
 import com.dream.bjst.R;
 import com.dream.bjst.app.MyAppKt;
 import com.dream.bjst.base.BaseFragment;
+import com.dream.bjst.identification.ui.IdentificationActivity;
 import com.dream.bjst.loan.ui.LoanRecordsActivity;
 import com.dream.bjst.utils.StatusBarUtils;
 import com.ruffian.library.widget.RImageView;
@@ -86,8 +86,8 @@ public class AccountFragment extends BaseFragment {
         identificationLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(MyAppKt.getMApplication(), LoanRecordsActivity.class));
-                ToastUtils.showLong("认证界面还没有完善");
+          startActivity(new Intent(MyAppKt.getMApplication(), IdentificationActivity.class));
+
 
             }
         });

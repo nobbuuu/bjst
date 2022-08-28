@@ -51,6 +51,12 @@ class IdentificationActivity :
                 1->{
                   ktStartActivity(LivenessDetectionActivity::class)
                 }
+                2->{
+
+                }
+                3->{
+                    
+                }
             }
 
 

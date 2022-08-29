@@ -3,15 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="wrap_content"
-    android:layout_margin="@dimen/dp_10"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_10">
 
     <RelativeLayout
         android:id="@+id/item_authentication_rv"
         android:layout_width="@dimen/dp_160"
         android:layout_height="@dimen/dp_110"
         android:layout_weight="1"
-
         android:background="@color/color_identify_unselect"
         tools:ignore="MissingConstraints">
 

@@ -37,28 +37,8 @@ class IdentificationActivity :
         repeat(4) {
             mNameList.add(identifyBean(R.mipmap.identify_bank, "Authentication"))
         }
-        mBinding.identifyRecyclerview.adapter = identifyAdapter
         identifyAdapter.setList(mNameList)
-        identifyAdapter.setOnItemClickListener { adapter, view, position ->
-
-            when(position){
-                0->{
-                    ktStartActivity(ApproveIdCardActivity::class)
-                }
-                1->{
-                  ktStartActivity(LivenessDetectionActivity::class)
-                }
-                2->{
-
-                }
-                3->{
-                    
-                }
-            }
-
-
-
-        }
+        mBinding.identifyRecyclerview.adapter = identifyAdapter
 
 
     }

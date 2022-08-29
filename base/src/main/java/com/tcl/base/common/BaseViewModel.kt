@@ -42,8 +42,8 @@ open class BaseViewModel : AndroidViewModel(Utils.getApp()), LifecycleObserver {
     fun rxLaunchUI(
         block: suspend CoroutineScope.() -> Unit,
         errorBlock: ((Throwable) -> Unit)? = null,
-        showToast: Boolean = false,
-        showDialog: Boolean = false,
+        showToast: Boolean = true,
+        showDialog: Boolean = true,
         finalBlock: (() -> Unit)? = null
     ) {
         if (showDialog) {

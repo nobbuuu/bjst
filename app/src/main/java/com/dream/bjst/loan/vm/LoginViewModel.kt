@@ -46,7 +46,8 @@ class LoginViewModel : BaseViewModel() {
             )
             val result = Api.loginOrRegByOtp(param)
             //缓存token
-            MmkvUtil.encode(UserManager.getAccessTokenKey(), result.`809B9F919A`)
+            UserManager.setAccessToken(result.`809B9F919A`)
+            UserManager.setUserNo(result.`9D90`)
             loginResult.postValue(result)
         }, errorBlock = {
             it.message?.ktToastShow()

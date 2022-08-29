@@ -1,6 +1,7 @@
 package com.tcl.base.utils
 
 import android.os.Parcelable
+import com.tcl.base.rxnetword.EncryptUtil
 import com.tcl.base.utils.encipher.DesUtil
 import com.tencent.mmkv.MMKV
 import java.util.*
@@ -103,9 +104,8 @@ object MmkvUtil {
     /**加密保存*/
     fun encryptSave(key: String, content: String) {
         try {
-            //加密后处再存放 added by tanksu on 20210413
             if (content.isNotEmpty())
-                mmkv?.encode(key, DesUtil.encrypt(content))
+                mmkv?.encode(key, EncryptUtil.encode(content))
             else
                 mmkv?.encode(key, "")?.toString()
         } catch (e: Exception) {
@@ -119,7 +119,7 @@ object MmkvUtil {
         try {
             val newValue = decodeString(key) ?: ""
             if (newValue.isNotEmpty())
-                spValue = DesUtil.decrypt(newValue)
+                spValue = EncryptUtil.decode(newValue)
         } catch (e: Exception) {
             e.printStackTrace()
         }

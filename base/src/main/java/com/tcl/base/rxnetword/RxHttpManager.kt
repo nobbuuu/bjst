@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 object RxHttpManager {
     fun init(context: Application, interceptors: List<Interceptor>): OkHttpClient? {
-       val timeout = 20L
+       val timeout = 60L
         val file = File(context.externalCacheDir, "RxHttpCookie")
         var client: OkHttpClient? = null
         try {

@@ -6,6 +6,7 @@ import com.dream.bjst.bean.UserInfo
 import com.dream.bjst.common.MmkvConstant.KEY_ACCESS_TOKEN
 import com.dream.bjst.common.MmkvConstant.KEY_ACCOUNTID
 import com.dream.bjst.common.MmkvConstant.KEY_REFRESH_TOKEN
+import com.dream.bjst.common.MmkvConstant.KEY_USERNO
 import com.dream.bjst.common.MmkvConstant.KEY_VISIBLE_INVITE
 import com.dream.bjst.common.MmkvConstant.KEY_VISIBLE_MYMONEY
 import com.dream.bjst.common.MmkvConstant.KEY_VISIBLE_PARTNER
@@ -29,7 +30,7 @@ object UserManager {
         LogUtils.iTag("tanksu", "本地储存的用户信息--->${userInfo}")
         if (userInfo?.isNotEmpty() == true) {
             userInfoBean = GsonUtil.fromJson(userInfo, UserInfo::class.java)
-            mCustomerLiveData.postValue( userInfoBean)
+            mCustomerLiveData.postValue(userInfoBean)
         } else {
             userInfoBean = null
             mCustomerLiveData.postValue(userInfoBean)
@@ -38,10 +39,7 @@ object UserManager {
 
     /**是否登录APP了，取决于accesstoken有没有值*/
     fun isLogin(): Boolean {
-        val access = MmkvUtil.decryptGet(getAccessTokenKey())
-        val result = access?.isNotEmptyOrNullString() ?: false
-        LogUtils.i("tanksu", "result:$result ,accessToken->$access")
-        return result
+        return getAccessToken().isNotEmpty()
     }
 
     /**更新用户信息*/
@@ -59,7 +57,17 @@ object UserManager {
 
     /**获取token*/
     fun getAccessToken(): String {
-        return MmkvUtil.decryptGet(getAccessTokenKey()) ?: ""
+        return MmkvUtil.decodeString(getAccessTokenKey()) ?: ""
+    }
+
+    /**缓存token*/
+    fun setAccessToken(token: String) {
+        MmkvUtil.encryptSave(getAccessTokenKey(), token)
+    }
+
+    /**缓存userNo*/
+    fun setUserNo(value: String) {
+        MmkvUtil.encode(getUserNoKey(), value)
     }
 
     /**获取AccountId*/
@@ -67,9 +75,15 @@ object UserManager {
         return MmkvUtil.decryptGet(getAccountIdKey()) ?: ""
     }
 
+    /**获取userNo*/
+    fun getUserNo(): String {
+        return MmkvUtil.decodeString(getUserNoKey()) ?: ""
+    }
+
     /**清空本地数据*/
     fun clearUserInfo() {
         MmkvUtil.removeKey(getAccessTokenKey())
+        MmkvUtil.removeKey(getUserNoKey())
         MmkvUtil.removeKey(MmkvConstant.KEY_USER_INFO)
         MmkvUtil.removeKey(getAccountIdKey())
         MmkvUtil.removeKey(KEY_VISIBLE_INVITE)
@@ -83,11 +97,12 @@ object UserManager {
 
     /**获取唯一的前缀key，可以用来区分多账号*/
     fun getUserUniquePreKey(): String {
-        return "tzj_"
+        return "rapid_"
     }
 
     fun getAccessTokenKey() = "${getUserUniquePreKey()}_${KEY_ACCESS_TOKEN}"
     fun getRefreshTokenKey() = "${getUserUniquePreKey()}_${KEY_REFRESH_TOKEN}"
     fun getAccountIdKey() = "${getUserUniquePreKey()}_${KEY_ACCOUNTID}"
+    fun getUserNoKey() = "${getUserUniquePreKey()}_${KEY_USERNO}"
 
 }

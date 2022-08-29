@@ -1,6 +1,7 @@
 package com.dream.bjst.net
 
 import com.dream.bjst.bean.LoginBean
+import com.dream.bjst.identification.bean.IdCardInfoBean
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse
 
@@ -36,11 +37,36 @@ object Api {
     /**
      * 上传身份证前照
      */
-    suspend fun idCardFrontOcr(param: String): LoginBean {
+
+    suspend fun idCardFrontOcr(param: String): IdCardInfoBean {
         //customer/kyc/idCardFrontOcr
         return RxHttp.postJson("/DB978187809B999186DB9F8D97DB9D90B7958690B2869B9A80BB9786")
             .addAll(param)
-            .toResponse<LoginBean>()
+            .toResponse<IdCardInfoBean>()
+            .await()
+    }
+
+    /**
+     * 上传身份证背照
+     */
+
+    suspend fun idCardBackOcr(param: String): IdCardInfoBean {
+        //customer/kyc/idCardBackOcr
+        return RxHttp.postJson("/DB978187809B999186DB9F8D97DB9D90B7958690B695979FBB9786")
+            .addAll(param)
+            .toResponse<IdCardInfoBean>()
+            .await()
+    }
+
+    /**
+     * 上传PAN卡照片
+     */
+
+    suspend fun panOcr(param: String): IdCardInfoBean {
+        //customer/kyc/idCardBackOcr
+        return RxHttp.postJson("/DB978187809B999186DB9F8D97DB84959ABB9786")
+            .addAll(param)
+            .toResponse<IdCardInfoBean>()
             .await()
     }
 

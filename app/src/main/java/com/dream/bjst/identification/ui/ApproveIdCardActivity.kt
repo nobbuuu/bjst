@@ -15,6 +15,7 @@ import com.dream.bjst.utils.PhotoManager
 import com.dream.bjst.utils.PhotoSelectDialog
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.ktToastShow
 import com.tcl.base.utils.PhotoUtils.getPath
 
@@ -49,6 +50,9 @@ class ApproveIdCardActivity :
     }
 
     override fun initData() {
+        mBinding.sureBtn.ktClick {
+            ktStartActivity(LivenessDetectionActivity::class)
+        }
     }
 
     override fun initDataOnResume() {

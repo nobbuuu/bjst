@@ -29,6 +29,13 @@ fun String.encodePhone(): String {
 }
 
 /**
+ * 字符串去掉换行符，空格等
+ */
+fun String.remove(format: String = "\\\\s*|\\t|\\r|\\n"): String {
+    return Pattern.compile(format).matcher(this).replaceAll("")
+}
+
+/**
  * Description: 手机号校验
  * Param:
  * Return: 只校验第一位为1，后面可以是0-9的数字，有10位

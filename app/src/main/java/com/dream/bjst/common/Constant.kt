@@ -71,6 +71,7 @@ object MmkvConstant {
     const val KEY_VISIBLE_WALLET = "visible_wallet"
     const val KEY_VISIBLE_PROFIT = "visible_profit"
     const val KEY_ACCOUNTID = "accountId"
+    const val KEY_USERNO = "userNo"
     const val KEY_ADDRESS_INFO = "addressInfo"
     const val KEY_USER_IDCARD = "user_idcard"
     const val KEY_USER_TYPE = "user_type"

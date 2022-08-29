@@ -5,25 +5,28 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.LogUtils
 import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityCertificationIdcardBinding
+import com.dream.bjst.identification.bean.IdCardInfoParam
 import com.dream.bjst.identification.vm.IdentificationViewModel
 import com.dream.bjst.utils.BitmapUtils
 import com.dream.bjst.utils.FileUtils.bitmap2File
 import com.dream.bjst.utils.PhotoManager
 import com.dream.bjst.utils.PhotoSelectDialog
 import com.tcl.base.common.ui.BaseActivity
-import com.tcl.base.kt.ktClick
-import com.tcl.base.kt.ktStartActivity
-import com.tcl.base.kt.ktToastShow
+import com.tcl.base.kt.*
 import com.tcl.base.utils.PhotoUtils.getPath
+import java.io.ByteArrayOutputStream
+import java.util.zip.GZIPOutputStream
 
 class ApproveIdCardActivity :
     BaseActivity<IdentificationViewModel, ActivityCertificationIdcardBinding>() {
     lateinit var mPhotoManager: PhotoManager
     lateinit var photoDialog: PhotoSelectDialog
     private var type = 0
+    private var tempBitmap: Bitmap? = null
     override fun initView(savedInstanceState: Bundle?) {
         mPhotoManager = PhotoManager(this)
         photoDialog = PhotoSelectDialog(this, PhotoSelectDialog.PICK_AVATAR)
@@ -56,6 +59,24 @@ class ApproveIdCardActivity :
     }
 
     override fun initDataOnResume() {
+    }
+
+    override fun startObserve() {
+        super.startObserve()
+        viewModel.idCardInfo.observe(this) {
+
+            when (type) {
+                1 -> {
+                    mBinding.frontIv.setImageBitmap(tempBitmap)
+                }
+                2 -> {
+                    mBinding.backIv.setImageBitmap(tempBitmap)
+                }
+                3 -> {
+                    mBinding.panCardIv.setImageBitmap(tempBitmap)
+                }
+            }
+        }
     }
 
     /**
@@ -113,25 +134,36 @@ class ApproveIdCardActivity :
     }
 
     private fun upLoadFile(bitmap: Bitmap?) {
+        val base64 = BitmapUtils.bitmapToBase64(bitmap).remove()
+//        LogUtils.dTag("base64Str",base64)
+        val bitmapStr = compress(base64)
         //显示图片
         when (type) {
             1 -> {
-                mBinding.frontIv.setImageBitmap(bitmap)
+                viewModel.idCardFrontOcr(GsonUtils.toJson(IdCardInfoParam(`9D99959391B6958791C2C0` = bitmapStr.nullToEmpty())))
             }
             2 -> {
-                mBinding.backIv.setImageBitmap(bitmap)
+                viewModel.idCardBackOcr(GsonUtils.toJson(IdCardInfoParam(`9D99959391B6958791C2C0` = bitmapStr.nullToEmpty())))
             }
             3 -> {
-                mBinding.panCardIv.setImageBitmap(bitmap)
+                viewModel.panOcr(GsonUtils.toJson(IdCardInfoParam(`9D99959391B6958791C2C0` = bitmapStr.nullToEmpty())))
             }
         }
-        val base64 = BitmapUtils.bitmapToBase64(bitmap)
-        LogUtils.dTag("basss",base64)
-       /* val file = bitmap2File(
-            rotateBitmap!!,
-            filesDir.path,
-            "tempAvatar.png"
-        )*/
-        //上传图片
+        /* val file = bitmap2File(
+             rotateBitmap!!,
+             filesDir.path,
+             "tempAvatar.png"
+         )*/
+    }
+
+    fun compress(str: String?): String? {
+        if (str.isNullOrEmpty()) {
+            return str
+        }
+        val o = ByteArrayOutputStream()
+        val g = GZIPOutputStream(o)
+        g.write(str.toByteArray(charset("utf-8")))
+        g.close()
+        return o.toString("ISO-8859-1")
     }
 }

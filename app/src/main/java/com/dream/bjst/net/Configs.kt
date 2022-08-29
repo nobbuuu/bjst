@@ -19,7 +19,7 @@ object Configs {
     /**后台 的URL链接*/
     private const val URL_APP_PRODUCT = "http://danguang.com"
     private const val URL_APP_UAT = "https://prepc.tclo2o.cn"
-    private const val URL_APP_TEST = "http://115.238.46.58:20222"
+    private const val URL_APP_TEST = "http://115.238.46.58:20002"
 
     /**HTML 的URL链接*/
     private const val URL_HTML_APP_PRODUCT = "https://m.tcl.com/seller-app-h5"

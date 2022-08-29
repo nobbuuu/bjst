@@ -4,6 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
+import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.StringUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -27,12 +30,11 @@ public class BitmapUtils {
         try {
             if (bitmap != null) {
                 baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
-
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
                 baos.flush();
                 baos.close();
-
                 byte[] bitmapBytes = baos.toByteArray();
+                LogUtils.dTag("imgCompress",bitmapBytes.length);
                 result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
             }
         } catch (IOException e) {

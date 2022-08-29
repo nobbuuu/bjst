@@ -1,6 +1,7 @@
 package com.dream.bjst.net.parser
 
 import com.google.gson.annotations.SerializedName
+import com.tcl.base.app.BaseConstant
 import java.io.Serializable
 
 /**
@@ -33,7 +34,7 @@ class Response<T> : Serializable {
 
     fun isBusinessException(): Boolean = code.startsWith("KY")
 
-    fun isTokenTimeOut(): Boolean = code == "403"
+    fun isTokenTimeOut(): Boolean = code == BaseConstant.LOGOUT_STATUS_CODE.toString()
 
     fun isMultiDeviceLogin(): Boolean = code == "406"
 

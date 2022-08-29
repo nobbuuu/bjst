@@ -46,5 +46,29 @@ object Api {
             .await()
     }
 
+    /**
+     * 上传身份证背照
+     */
+
+    suspend fun idCardBackOcr(param: String): IdCardInfoBean {
+        //customer/kyc/idCardBackOcr
+        return RxHttp.postJson("/DB978187809B999186DB9F8D97DB9D90B7958690B695979FBB9786")
+            .addAll(param)
+            .toResponse<IdCardInfoBean>()
+            .await()
+    }
+
+    /**
+     * 上传PAN卡照片
+     */
+
+    suspend fun panOcr(param: String): IdCardInfoBean {
+        //customer/kyc/idCardBackOcr
+        return RxHttp.postJson("/DB978187809B999186DB9F8D97DB84959ABB9786")
+            .addAll(param)
+            .toResponse<IdCardInfoBean>()
+            .await()
+    }
+
 
 }

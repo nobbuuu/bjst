@@ -50,8 +50,11 @@ class InitHttpClient : MainTask() {
                     .setDebug(BuildConfig.DEBUG, true)
                     .setCache(file, 10 * 1024 * 1024, 60 * 1000)
                     .setOnParamAssembly { param ->
-                        param.addHeader("D4BCB1B5B0B1A6ABB5A4A4ABB5A1A0BCABA0BBBFB1BA", UserManager.getAccessToken())
-                            .addHeader("9091829D9791BD90", "10022")//设备编号，暂时写死
+                        param.addHeader(
+                            "Cookie",
+                            "D4BCB1B5B0B1A6ABB5A4A4ABB5A1A0BCABA0BBBFB1BA=" + UserManager.getAccessToken()
+                        )
+                            .addHeader("Cookie", "9091829D9791BD90=10022")//设备编号，暂时写死
                             .addHeader("poiuytrggeqwr22fbc", "2")//加密key,2:参数层级
                             .apply {
                                 //请求header可以全局传1-4个随机的key-value进来，可以使得每个包的header数量不一样

@@ -16,7 +16,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.dream.bjst.R;
-import com.dream.bjst.app.MyAppKt;
 import com.dream.bjst.base.BaseFragment;
 import com.dream.bjst.bean.OverduedBean;
 import com.dream.bjst.bean.RepaymentBean;
@@ -76,14 +75,14 @@ public class RepaymentFragment extends BaseFragment {
         mRePaymentInAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
-                startActivity(new Intent(MyAppKt.getMApplication(),RepaymentDetailActivity.class));
+                startActivity(new Intent(getActivity(),RepaymentDetailActivity.class));
             }
         });
 
         mRePaymentAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                startActivity(new Intent(MyAppKt.getMApplication(),RepaymentDetailActivity.class));
+                startActivity(new Intent(getActivity(),RepaymentDetailActivity.class));
             }
         });
     }

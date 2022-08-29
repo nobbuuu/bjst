@@ -7,7 +7,6 @@ import android.widget.LinearLayout;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.dream.bjst.R;
-import com.dream.bjst.app.MyAppKt;
 import com.dream.bjst.base.BaseFragment;
 import com.dream.bjst.identification.ui.IdentificationActivity;
 import com.dream.bjst.loan.ui.LoanRecordsActivity;
@@ -43,21 +42,21 @@ public class AccountFragment extends BaseFragment {
         settingImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyAppKt.getMApplication(), AccountSettingActivity.class));
+                startActivity(new Intent(getActivity(), AccountSettingActivity.class));
             }
         });
         //关于我们
         aboutUsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyAppKt.getMApplication(), AboutUsActivity.class));
+                startActivity(new Intent(getActivity(), AboutUsActivity.class));
             }
         });
         //删除数据
         deleteDataLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyAppKt.getMApplication(), AccountDeleteActivity.class));
+                startActivity(new Intent(getActivity(), AccountDeleteActivity.class));
 
             }
         });
@@ -65,28 +64,28 @@ public class AccountFragment extends BaseFragment {
         privacyLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyAppKt.getMApplication(), PrivacyActivity.class));
+                startActivity(new Intent(getActivity(), PrivacyActivity.class));
             }
         });
         //顾客聊天服务
         chatServiceLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyAppKt.getMApplication(), ChatMessageActivity.class));
+                startActivity(new Intent(getActivity(), ChatMessageActivity.class));
             }
         });
         //进入贷款记录界面
         loanRecordLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyAppKt.getMApplication(), LoanRecordsActivity.class));
+                startActivity(new Intent(getActivity(), LoanRecordsActivity.class));
             }
         });
         //进入认证界面
         identificationLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-          startActivity(new Intent(MyAppKt.getMApplication(), IdentificationActivity.class));
+          startActivity(new Intent(getActivity(), IdentificationActivity.class));
 
 
             }

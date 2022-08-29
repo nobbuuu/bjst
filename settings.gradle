@@ -3,3 +3,4 @@ include ':app'
 includeBuild("version")
 include ':base'
 include ':launcher'
+include ':DFLivenessLibrary'

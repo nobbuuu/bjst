@@ -57,6 +57,7 @@ dependencies {
     api AndroidX.lifecyle.lifecycle_ext
 
     api ThreeParty.tencent.Mmkv
+    implementation project(path: ':DFLivenessLibrary')
 
     testImplementation Testing.jUnit
     androidTestImplementation Testing.androidJunit

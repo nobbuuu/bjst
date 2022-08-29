@@ -11,17 +11,16 @@ import com.tcl.launcher.TaskDispatcher
 import com.tencent.mmkv.MMKV
 
 
-/**
- * Author: tiaozi
- * Date : 2021/6/3
- * Drc:
- */
-lateinit var mApplication: Application
-
+    /**
+     * Author: tiaozi
+     * Date : 2021/6/3
+     * Drc:
+     */
+    lateinit var mApplication: Application
 @Suppress("UNREACHABLE_CODE")
-class MyApp : BaseApplication() {
-
+class MyApp : BaseApplication()  {
     lateinit var browserJsActivityStack: MutableList<Activity>
+
 
     override fun onCreate() {
         super.onCreate()

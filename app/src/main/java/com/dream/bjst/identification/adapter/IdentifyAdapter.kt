@@ -9,13 +9,17 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.dream.bjst.R
 import com.dream.bjst.identification.bean.identifyBean
+import com.dream.bjst.identification.ui.ApproveIdCardActivity
+import com.dream.bjst.identification.ui.LivenessDetectionActivity
 import com.ruffian.library.widget.RImageView
 import com.ruffian.library.widget.RTextView
+import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.ktStartActivity
+import com.tcl.base.kt.ktToastShow
 
 class IdentifyAdapter :
     BaseQuickAdapter<identifyBean, BaseViewHolder>(R.layout.item_identification_recyclerview) {
     val mNameList: MutableList<identifyBean> = ArrayList()
-    var temp: Boolean = false
 
 
     override fun convert(holder: BaseViewHolder, item: identifyBean) {
@@ -49,28 +53,46 @@ class IdentifyAdapter :
             .setText(mNameList.get(holder.adapterPosition).name)
         //item点击事件
 
-        holder.itemView.setOnClickListener(View.OnClickListener {
+        holder.itemView.ktClick{
 
-            when (temp) {
-                false -> {
-                    holder.getView<RelativeLayout>(R.id.item_authentication_rv)
-                        .setBackgroundResource(R.color.color_identify_select)
-                    holder.getView<RImageView>(R.id.identify_authentication_arrow)
-                        .setImageResource(R.mipmap.itentify_select_arrow)
-                    temp = true
-                }
-                true -> {
-                    holder.getView<RelativeLayout>(R.id.item_authentication_rv)
-                        .setBackgroundResource(R.color.color_identify_unselect)
-                    holder.getView<RImageView>(R.id.identify_authentication_arrow)
-                        .setImageResource(R.mipmap.itentify_unselect_arrow)
-                    temp = false
-                }
-            }
+                  when(holder.adapterPosition){
+                      0->{
+                          context.ktStartActivity(ApproveIdCardActivity::class)
+                          holder.getView<RelativeLayout>(R.id.item_authentication_rv)
+                              .setBackgroundResource(R.color.color_identify_select)
+                          holder.getView<RImageView>(R.id.identify_authentication_arrow)
+                              .setImageResource(R.mipmap.itentify_select_arrow)
+                      }
+                      1->{
+                          context.ktStartActivity(LivenessDetectionActivity::class)
+                          holder.getView<RelativeLayout>(R.id.item_authentication_rv)
+                              .setBackgroundResource(R.color.color_identify_select)
+                          holder.getView<RImageView>(R.id.identify_authentication_arrow)
+                              .setImageResource(R.mipmap.itentify_select_arrow)
+                      }
+                     2->{
+//                          context.ktStartActivity(LivenessDetectionActivity::class)
+                          holder.getView<RelativeLayout>(R.id.item_authentication_rv)
+                              .setBackgroundResource(R.color.color_identify_select)
+                          holder.getView<RImageView>(R.id.identify_authentication_arrow)
+                              .setImageResource(R.mipmap.itentify_select_arrow)
+                      }
+                      3->{
+//                          context.ktStartActivity(LivenessDetectionActivity::class)
+                          holder.getView<RelativeLayout>(R.id.item_authentication_rv)
+                              .setBackgroundResource(R.color.color_identify_select)
+                          holder.getView<RImageView>(R.id.identify_authentication_arrow)
+                              .setImageResource(R.mipmap.itentify_select_arrow)
+                      }
+                  }
 
 
-        })
+
+
+
+        }
 
 
     }
+
 }

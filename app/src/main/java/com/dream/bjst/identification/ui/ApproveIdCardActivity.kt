@@ -5,9 +5,11 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import com.blankj.utilcode.util.LogUtils
 import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityCertificationIdcardBinding
 import com.dream.bjst.identification.vm.IdentificationViewModel
+import com.dream.bjst.utils.BitmapUtils
 import com.dream.bjst.utils.FileUtils.bitmap2File
 import com.dream.bjst.utils.PhotoManager
 import com.dream.bjst.utils.PhotoSelectDialog
@@ -16,7 +18,7 @@ import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktToastShow
 import com.tcl.base.utils.PhotoUtils.getPath
 
-class ActivityApproveIdCard :
+class ApproveIdCardActivity :
     BaseActivity<IdentificationViewModel, ActivityCertificationIdcardBinding>() {
     lateinit var mPhotoManager: PhotoManager
     lateinit var photoDialog: PhotoSelectDialog
@@ -107,24 +109,25 @@ class ActivityApproveIdCard :
     }
 
     private fun upLoadFile(bitmap: Bitmap?) {
-        val rotateBitmap = mPhotoManager.rotateBitmap(bitmap!!)
         //显示图片
         when (type) {
             1 -> {
-                mBinding.frontIv.setImageBitmap(rotateBitmap)
+                mBinding.frontIv.setImageBitmap(bitmap)
             }
             2 -> {
-                mBinding.backIv.setImageBitmap(rotateBitmap)
+                mBinding.backIv.setImageBitmap(bitmap)
             }
             3 -> {
-                mBinding.panCardIv.setImageBitmap(rotateBitmap)
+                mBinding.panCardIv.setImageBitmap(bitmap)
             }
         }
-        val file = bitmap2File(
+        val base64 = BitmapUtils.bitmapToBase64(bitmap)
+        LogUtils.dTag("basss",base64)
+       /* val file = bitmap2File(
             rotateBitmap!!,
             filesDir.path,
             "tempAvatar.png"
-        )
+        )*/
         //上传图片
     }
 }

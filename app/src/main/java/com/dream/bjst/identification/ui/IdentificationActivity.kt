@@ -2,7 +2,6 @@ package com.dream.bjst.identification.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dream.bjst.R
 
@@ -10,12 +9,10 @@ import com.dream.bjst.databinding.ActivityIdentificationBinding
 import com.dream.bjst.identification.adapter.IdentifyAdapter
 import com.dream.bjst.identification.bean.identifyBean
 import com.dream.bjst.identification.vm.IdentificationViewModel
-import com.dream.bjst.main.MainActivity
 import com.dream.bjst.utils.StatusBarUtils
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
-import com.tcl.base.kt.ktToastShow
 
 class IdentificationActivity :
     BaseActivity<IdentificationViewModel, ActivityIdentificationBinding>() {
@@ -30,7 +27,7 @@ class IdentificationActivity :
         }
 
         mBinding.identifyGetLoanBtn.ktClick {
-            ktStartActivity(ActivityApproveIdCard::class)
+            ktStartActivity(ApproveIdCardActivity::class)
         }
     }
 
@@ -46,7 +43,7 @@ class IdentificationActivity :
 
             when(position){
                 0->{
-                    ktStartActivity(ActivityApproveIdCard::class)
+                    ktStartActivity(ApproveIdCardActivity::class)
                 }
                 1->{
                   ktStartActivity(LivenessDetectionActivity::class)

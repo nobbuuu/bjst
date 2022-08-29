@@ -54,7 +54,7 @@
         <activity
             android:name=".login.LoginActivity"
             android:exported="false" />
-        <activity android:name=".identification.ui.ActivityApproveIdCard"
+        <activity android:name=".identification.ui.ApproveIdCardActivity"
             android:exported="false"/>
 
         <meta-data

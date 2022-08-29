@@ -33,5 +33,16 @@ object Api {
             .await()
     }
 
+    /**
+     * 上传身份证前照
+     */
+    suspend fun idCardFrontOcr(param: String): LoginBean {
+        //customer/kyc/idCardFrontOcr
+        return RxHttp.postJson("/DB978187809B999186DB9F8D97DB9D90B7958690B2869B9A80BB9786")
+            .addAll(param)
+            .toResponse<LoginBean>()
+            .await()
+    }
+
 
 }

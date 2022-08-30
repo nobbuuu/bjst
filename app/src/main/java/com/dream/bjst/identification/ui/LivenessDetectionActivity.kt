@@ -38,6 +38,7 @@ class LivenessDetectionActivity :
         intent.putExtra(
             DFSilentLivenessActivity.KEY_HINT_MESSAGE_NO_FACE,
             "Please place your face inside the circle"
+
         )
         intent.putExtra(
             DFSilentLivenessActivity.KEY_HINT_MESSAGE_FACE_NOT_VALID,

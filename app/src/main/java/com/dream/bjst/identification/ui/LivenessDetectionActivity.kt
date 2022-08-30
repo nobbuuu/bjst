@@ -1,18 +1,13 @@
 package com.dream.bjst.identification.ui
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
-import com.dfsdk.liveness.DFLivenessSDK
 import com.dream.bjst.app.MyApp
 import com.dream.bjst.databinding.ActivityLivenessDetectionBinding
 import com.dream.bjst.identification.vm.LivenessDetectionViewModel
-import com.liveness.dflivenesslibrary.DFProductResult
-import com.liveness.dflivenesslibrary.DFTransferResultInterface
+import com.dream.bjst.utils.DetectionFacialUtils
 import com.liveness.dflivenesslibrary.liveness.DFSilentLivenessActivity
-import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 
@@ -22,10 +17,11 @@ class LivenessDetectionActivity :
     val KEY_TO_DETECT_REQUEST_CODE = 1
 
     override fun initView(savedInstanceState: Bundle?) {
-     mBinding.titleLive.leftView.ktClick {
-         onBackPressed()
-     }
+//     mBinding.titleLive.leftView.ktClick {
+//         onBackPressed()
+//     }
         initDetection()
+        DetectionFacialUtils().requestCameraPermission(this);
     }
 
     private fun initDetection() {
@@ -73,5 +69,14 @@ class LivenessDetectionActivity :
             val livenessEncryptResult = it.getLivenessEncryptResult()
         }
 
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        DetectionFacialUtils().onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
 }

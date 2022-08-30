@@ -34,9 +34,9 @@ class IdentificationActivity :
     @SuppressLint("ResourceAsColor")
     override fun initData() {
         mBinding.identifyRecyclerview.layoutManager = GridLayoutManager(this, 2)
-        repeat(4) {
-            mNameList.add(identifyBean(R.mipmap.identify_bank, "Authentication"))
-        }
+//        repeat(4) {
+//            mNameList.add(identifyBean(R.mipmap.identify_bank, "Authentication"))
+//        }
         identifyAdapter.setList(mNameList)
         mBinding.identifyRecyclerview.adapter = identifyAdapter
 

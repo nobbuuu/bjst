@@ -30,8 +30,7 @@ class LivenessDetectionActivity :
 
     private fun initDetection() {
         val bundle = Bundle()
-        val intent = Intent()
-        intent.setClass(this, DFSilentLivenessActivity::class.java)
+        val intent = Intent(this, DFSilentLivenessActivity::class.java)
         intent.putExtras(bundle)
         //Enable to get image result
         intent.putExtra(DFSilentLivenessActivity.KEY_DETECT_IMAGE_RESULT, true)

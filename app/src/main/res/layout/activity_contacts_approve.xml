@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        app:lineVisible="true"
+        app:title="Emergency Contacts (3/4)"
+        app:titleSize="@dimen/sp_18"
+        app:titleStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/dp_20"
+        android:paddingEnd="@dimen/dp_20">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_30"
+            android:text="contacts-1"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <com.dream.bjst.widget.StartEndLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startText="Relationship"
+            app:startTextSize="15sp"
+            app:endText="Selection relation"
+            app:endTextSize="13sp"
+            app:isSelect="true" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -19,8 +19,8 @@ public class DFNetworkUtil {
     // he/she is real person if score smaller than the threshold.
     private static final double ANTI_HACK_THRESHOLD = 0.98f;
     // Contact to Accuauth to get the correct value of API_ID& API_SECRET
-    public static final String API_ID = "BuildConfig.API_ID";
-    public static final String API_SECRET = "BuildConfig.API_SECRET";
+    public static final String API_ID = "";
+    public static final String API_SECRET = "";
 
     public static DFNetResult doAntiHack(byte[] data) {
         HashMap<String, byte[]> hashMap = new HashMap<>(1);

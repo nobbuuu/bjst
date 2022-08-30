@@ -24,8 +24,8 @@ lateinit var mApplication: Application
 
 @Suppress("UNREACHABLE_CODE")
 class MyApp : BaseApplication(), DFTransferResultInterface {
-    lateinit var browserJsActivityStack: MutableList<Activity>
-lateinit var mResult: DFProductResult
+    var browserJsActivityStack: MutableList<Activity>? = null
+    var mResult: DFProductResult? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -52,7 +52,7 @@ lateinit var mResult: DFProductResult
         }
     }
 
-    override fun getResult(): DFProductResult {
+    override fun getResult(): DFProductResult? {
         return mResult
     }
 }

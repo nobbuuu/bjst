@@ -55,30 +55,22 @@ class LivenessDetectionActivity :
 
     }
 
-    override fun startActivityForResult(intent: Intent?, requestCode: Int) {
-        super.startActivityForResult(intent, requestCode)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        MyApp().mResult?.let {
+            val imageResultArr = it.getLivenessImageResults()
 
-        var mResult: DFProductResult = MyApp().result
-        Log.i(TAG, "onActivityResult: " + mResult)
-
-        ///get key frame
-
-        var imageResultArr = mResult.livenessImageResults
-        if (imageResultArr != null) {
-            var size = imageResultArr.size;
-            if (size > 0) {
-
-                var imageResult: DFLivenessSDK.DFLivenessImageResult = imageResultArr[0];
-                var imageBitmap: Bitmap =
-                    BitmapFactory.decodeByteArray(imageResult.image, 0, imageResult.image.size);
-
-
+            if (imageResultArr != null) {
+                val size = imageResultArr.size;
+                if (size > 0) {
+                    val imageResult = imageResultArr[0];
+                    val imageBitmap = BitmapFactory.decodeByteArray(imageResult.image, 0, imageResult.image.size);
+                }
             }
+
+            // the encrypt buffer which is used to send to anti-hack API
+            val livenessEncryptResult = it.getLivenessEncryptResult()
         }
 
-        // the encrypt buffer which is used to send to anti-hack API .getLivenessEncryptResult()
-        var livenessEncryptResult: ByteArray? = mResult.livenessEncryptResult
     }
-
-
 }

@@ -13,8 +13,6 @@ android {
     defaultConfig {
         minSdkVersion BuildConfig.minSdkVersion
         targetSdkVersion BuildConfig.targetSdkVersion
-        versionCode BuildConfig.versionCode
-        versionName BuildConfig.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -57,7 +55,7 @@ dependencies {
     api AndroidX.lifecyle.lifecycle_ext
 
     api ThreeParty.tencent.Mmkv
-    implementation project(path: ':DFLivenessLibrary')
+
 
     testImplementation Testing.jUnit
     androidTestImplementation Testing.androidJunit

@@ -19,7 +19,7 @@ import java.util.List;
 
 public class CameraBase {
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private static final boolean DEBUG_PREVIEW_SIZE = false;
     private static final String TAG = "CameraOverlapFragment";
     protected Camera mCamera = null;

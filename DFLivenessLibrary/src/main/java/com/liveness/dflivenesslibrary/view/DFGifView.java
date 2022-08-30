@@ -219,6 +219,7 @@ public class DFGifView extends View {
     @SuppressLint("NewApi")
     @Override
     protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
+
         super.onVisibilityChanged(changedView, visibility);
         mVisible = visibility == View.VISIBLE;
         invalidateView();

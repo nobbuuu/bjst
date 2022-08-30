@@ -26,7 +26,6 @@ import java.util.concurrent.TimeUnit;
 
 public class DFLivenessBaseProcess implements PreviewCallback {
     private static final String TAG = "DFLivenessBaseProcess";
-    //TODO will changed to use the web return value
     private static final int DETECT_WAIT_TIME = 1000;
     private static final boolean DEBUG_PREVIEW = false;
 

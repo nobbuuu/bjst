@@ -22,9 +22,9 @@ class LivenessDetectionActivity :
     val KEY_TO_DETECT_REQUEST_CODE = 1
 
     override fun initView(savedInstanceState: Bundle?) {
-//     mBinding.titleLive.leftView.ktClick {
-//         onBackPressed()
-//     }
+     mBinding.titleLive.leftView.ktClick {
+         onBackPressed()
+     }
         initDetection()
     }
 

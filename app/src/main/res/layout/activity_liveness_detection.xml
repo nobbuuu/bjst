@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".identification.ui.LivenessDetectionActivity">
 
-<!--    <com.hjq.bar.TitleBar-->
-<!--        android:id="@+id/titleLive"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/dp_44"-->
-<!--        app:title="Facial Verification(2/4)"-->
-<!--        app:titleStyle="bold"-->
-<!--        tools:ignore="MissingConstraints" />-->
+    <com.hjq.bar.TitleBar
+        android:id="@+id/titleLive"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        app:title="Facial Verification(2/4)"
+        app:titleStyle="bold"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

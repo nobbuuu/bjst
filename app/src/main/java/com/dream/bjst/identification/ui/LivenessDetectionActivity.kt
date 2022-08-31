@@ -37,16 +37,9 @@ class LivenessDetectionActivity :
         //Enable to get image result
         intent.putExtra(DFSilentLivenessActivity.KEY_DETECT_IMAGE_RESULT, true)
         intent.putExtra(DFSilentLivenessActivity.KEY_HINT_MESSAGE_HAS_FACE, "Please hold still")
-        intent.putExtra(
-            DFSilentLivenessActivity.KEY_HINT_MESSAGE_NO_FACE,
-            "Please place your face inside the circle"
-
-        )
-        intent.putExtra(
-            DFSilentLivenessActivity.KEY_HINT_MESSAGE_FACE_NOT_VALID,
-            "Please move away from the screen"
-        )
-
+        intent.putExtra(DFSilentLivenessActivity.KEY_HINT_MESSAGE_NO_FACE, "Please place your face inside the circle")
+        intent.putExtra(DFSilentLivenessActivity.KEY_HINT_MESSAGE_FACE_NOT_VALID, "Please move away from the screen")
+        intent.putExtra(DFSilentLivenessActivity.KEY_ANTI_HACK, true);
         startActivityForResult(intent, KEY_TO_DETECT_REQUEST_CODE)
     }
 
@@ -61,32 +54,33 @@ class LivenessDetectionActivity :
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 //        "有返回结果".ktToastShow()
-        Log.i(TAG, "onActivityResult: "+MyApp().mResult)
-
-
-        MyApp().mResult?.let {
-            val imageResultArr = it.getLivenessImageResults()
-
-            if (imageResultArr != null) {
-                val size = imageResultArr.size;
-                if (size > 0) {
-                    val imageResult = imageResultArr[0];
-                    "${imageResult}".ktToastShow()
-
-                    val options = BitmapFactory.Options()
-                    options.inPreferredConfig = Bitmap.Config.ARGB_8888
-                    val imageBitmap = BitmapFactory.decodeByteArray(imageResult.image, 0, imageResult.image.size,options);
-
-
-                    DFBitmapUtils.recyleBitmap(imageBitmap)
-
-
-                      mBinding.image.setImageBitmap(imageBitmap)
+        if (resultCode == RESULT_OK) {
+        Log.i(TAG, "onActivityResult: " + MyApp().mResult)
+            MyApp().mResult?.let {
+                val imageResultArr = it.getLivenessImageResults()
+                if (imageResultArr != null) {
+                    val size = imageResultArr.size;
+                    if (size > 0) {
+                        val imageResult = imageResultArr[0];
+                        val options = BitmapFactory.Options()
+                        options.inPreferredConfig = Bitmap.Config.ARGB_8888
+                        val imageBitmap = BitmapFactory.decodeByteArray(
+                            imageResult.image,
+                            0,
+                            imageResult.image.size,
+                            options
+                        );
+                        DFBitmapUtils.recyleBitmap(imageBitmap)
+                        mBinding.image.setImageBitmap(imageBitmap)
+                    }
                 }
-            }
 
-            // the encrypt buffer which is used to send to anti-hack API
-            val livenessEncryptResult = it.getLivenessEncryptResult()
+                // the encrypt buffer which is used to send to anti-hack API
+                val livenessEncryptResult = it.getLivenessEncryptResult()
+
+            }
+        } else {
+            Log.e("onActivityResult", "silent liveness cancel，error code:" + resultCode);
 
         }
 
@@ -95,9 +89,14 @@ class LivenessDetectionActivity :
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray)
-    {
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        DetectionFacialUtils().onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+        DetectionFacialUtils().onRequestPermissionsResult(
+            this,
+            requestCode,
+            permissions,
+            grantResults
+        );
     }
 }

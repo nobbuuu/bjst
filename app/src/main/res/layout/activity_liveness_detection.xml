@@ -14,4 +14,12 @@
 <!--        app:titleStyle="bold"-->
 <!--        tools:ignore="MissingConstraints" />-->
 
+   <com.ruffian.library.widget.RImageView
+       android:id="@+id/image"
+       android:layout_width="@dimen/dp_100"
+       android:layout_height="@dimen/dp_100"
+       android:src="@mipmap/ic_launcher"
+       tools:ignore="MissingConstraints" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

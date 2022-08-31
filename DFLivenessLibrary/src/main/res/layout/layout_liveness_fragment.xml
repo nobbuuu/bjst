@@ -85,6 +85,6 @@
         android:padding="10dp"
         android:textColor="@color/hint_color"
         android:textSize="@dimen/notice_size"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
 </RelativeLayout>

@@ -1,15 +1,19 @@
 package com.dream.bjst.identification.ui
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import com.dream.bjst.app.MyApp
 import com.dream.bjst.databinding.ActivityLivenessDetectionBinding
 import com.dream.bjst.identification.vm.LivenessDetectionViewModel
 import com.dream.bjst.utils.DetectionFacialUtils
 import com.liveness.dflivenesslibrary.liveness.DFSilentLivenessActivity
+import com.liveness.dflivenesslibrary.utils.DFBitmapUtils
+import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseActivity
-import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.ktToastShow
 
 
 class LivenessDetectionActivity :
@@ -22,6 +26,8 @@ class LivenessDetectionActivity :
 //     }
         initDetection()
         DetectionFacialUtils().requestCameraPermission(this);
+
+
     }
 
     private fun initDetection() {
@@ -54,6 +60,10 @@ class LivenessDetectionActivity :
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+//        "有返回结果".ktToastShow()
+        Log.i(TAG, "onActivityResult: "+MyApp().mResult)
+
+
         MyApp().mResult?.let {
             val imageResultArr = it.getLivenessImageResults()
 
@@ -61,12 +71,23 @@ class LivenessDetectionActivity :
                 val size = imageResultArr.size;
                 if (size > 0) {
                     val imageResult = imageResultArr[0];
-                    val imageBitmap = BitmapFactory.decodeByteArray(imageResult.image, 0, imageResult.image.size);
+                    "${imageResult}".ktToastShow()
+
+                    val options = BitmapFactory.Options()
+                    options.inPreferredConfig = Bitmap.Config.ARGB_8888
+                    val imageBitmap = BitmapFactory.decodeByteArray(imageResult.image, 0, imageResult.image.size,options);
+
+
+                    DFBitmapUtils.recyleBitmap(imageBitmap)
+
+
+                      mBinding.image.setImageBitmap(imageBitmap)
                 }
             }
 
             // the encrypt buffer which is used to send to anti-hack API
             val livenessEncryptResult = it.getLivenessEncryptResult()
+
         }
 
     }

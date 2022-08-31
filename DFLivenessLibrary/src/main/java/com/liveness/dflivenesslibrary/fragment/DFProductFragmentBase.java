@@ -32,7 +32,6 @@ public abstract class DFProductFragmentBase extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = inflater.inflate(getLayoutResourceId(), container,
                 false);
-        Log.e("releaseReSource", "_+_+_+_+_+_+_+_+_+onCreateView");
         mSurfaceView = mRootView.findViewById(R.id.surfaceViewCamera);
         mOverlayView = mRootView.findViewById(R.id.id_ov_mask);
 

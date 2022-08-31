@@ -51,7 +51,7 @@
 	<string name="string_network_error_timeout">Time out, please check your network.</string>
 	<string name="string_network_error_recognization_detection_failed">detect image failed</string>
 	<string name="string_liveness_base">Liveness</string>
-	<string name="string_silent_liveness">Silent Liveness</string>
+	<string name="string_silent_liveness">Facial Verification(2/4)</string>
 	<string name="string_aadhar_card">Aadhaar Card</string>
 	<string name="string_pan_card">Pan Card</string>
 	<string name="string_face_id">Face ID</string>

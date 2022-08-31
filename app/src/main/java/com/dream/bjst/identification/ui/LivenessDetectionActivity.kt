@@ -55,6 +55,7 @@ class LivenessDetectionActivity :
 //        "有返回结果".ktToastShow()
         if (resultCode == RESULT_OK) {
         Log.i(TAG, "onActivityResult: " + MyApp().mResult)
+
             MyApp().mResult?.let {
                 val imageResultArr = it.getLivenessImageResults()
                 if (imageResultArr != null) {
@@ -79,8 +80,7 @@ class LivenessDetectionActivity :
 
             }
         } else {
-            Log.e("onActivityResult", "silent liveness cancel，error code:" + resultCode);
-
+            Log.e("onActivityResult", "silent liveness cancel，error code:" + resultCode)
         }
 
     }

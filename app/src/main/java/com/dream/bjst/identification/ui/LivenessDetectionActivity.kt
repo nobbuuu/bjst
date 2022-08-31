@@ -39,7 +39,6 @@ class LivenessDetectionActivity :
         intent.putExtra(DFSilentLivenessActivity.KEY_HINT_MESSAGE_HAS_FACE, "Please hold still")
         intent.putExtra(DFSilentLivenessActivity.KEY_HINT_MESSAGE_NO_FACE, "Please place your face inside the circle")
         intent.putExtra(DFSilentLivenessActivity.KEY_HINT_MESSAGE_FACE_NOT_VALID, "Please move away from the screen")
-        intent.putExtra(DFSilentLivenessActivity.KEY_ANTI_HACK, true);
         startActivityForResult(intent, KEY_TO_DETECT_REQUEST_CODE)
     }
 

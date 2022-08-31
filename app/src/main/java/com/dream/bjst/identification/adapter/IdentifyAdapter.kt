@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.dream.bjst.R
 import com.dream.bjst.identification.bean.identifyBean
+import com.dream.bjst.identification.ui.ApproveContactsActivity
 import com.dream.bjst.identification.ui.ApproveIdCardActivity
 import com.dream.bjst.identification.ui.LivenessDetectionActivity
 import com.ruffian.library.widget.RImageView
@@ -53,41 +54,38 @@ class IdentifyAdapter :
             .setText(mNameList.get(holder.adapterPosition).name)
         //item点击事件
 
-        holder.itemView.ktClick{
+        holder.itemView.ktClick {
 
-                  when(holder.adapterPosition){
-                      0->{
-                          context.ktStartActivity(ApproveIdCardActivity::class)
-                          holder.getView<RelativeLayout>(R.id.item_authentication_rv)
-                              .setBackgroundResource(R.color.color_identify_select)
-                          holder.getView<RImageView>(R.id.identify_authentication_arrow)
-                              .setImageResource(R.mipmap.itentify_select_arrow)
-                      }
-                      1->{
-                          context.ktStartActivity(LivenessDetectionActivity::class)
-                          holder.getView<RelativeLayout>(R.id.item_authentication_rv)
-                              .setBackgroundResource(R.color.color_identify_select)
-                          holder.getView<RImageView>(R.id.identify_authentication_arrow)
-                              .setImageResource(R.mipmap.itentify_select_arrow)
-                      }
-                     2->{
+            when (holder.adapterPosition) {
+                0 -> {
+                    context.ktStartActivity(ApproveIdCardActivity::class)
+                    holder.getView<RelativeLayout>(R.id.item_authentication_rv)
+                        .setBackgroundResource(R.color.color_identify_select)
+                    holder.getView<RImageView>(R.id.identify_authentication_arrow)
+                        .setImageResource(R.mipmap.itentify_select_arrow)
+                }
+                1 -> {
+                    context.ktStartActivity(LivenessDetectionActivity::class)
+                    holder.getView<RelativeLayout>(R.id.item_authentication_rv)
+                        .setBackgroundResource(R.color.color_identify_select)
+                    holder.getView<RImageView>(R.id.identify_authentication_arrow)
+                        .setImageResource(R.mipmap.itentify_select_arrow)
+                }
+                2 -> {
+                    context.ktStartActivity(ApproveContactsActivity::class)
+                    holder.getView<RelativeLayout>(R.id.item_authentication_rv)
+                        .setBackgroundResource(R.color.color_identify_select)
+                    holder.getView<RImageView>(R.id.identify_authentication_arrow)
+                        .setImageResource(R.mipmap.itentify_select_arrow)
+                }
+                3 -> {
 //                          context.ktStartActivity(LivenessDetectionActivity::class)
-                          holder.getView<RelativeLayout>(R.id.item_authentication_rv)
-                              .setBackgroundResource(R.color.color_identify_select)
-                          holder.getView<RImageView>(R.id.identify_authentication_arrow)
-                              .setImageResource(R.mipmap.itentify_select_arrow)
-                      }
-                      3->{
-//                          context.ktStartActivity(LivenessDetectionActivity::class)
-                          holder.getView<RelativeLayout>(R.id.item_authentication_rv)
-                              .setBackgroundResource(R.color.color_identify_select)
-                          holder.getView<RImageView>(R.id.identify_authentication_arrow)
-                              .setImageResource(R.mipmap.itentify_select_arrow)
-                      }
-                  }
-
-
-
+                    holder.getView<RelativeLayout>(R.id.item_authentication_rv)
+                        .setBackgroundResource(R.color.color_identify_select)
+                    holder.getView<RImageView>(R.id.identify_authentication_arrow)
+                        .setImageResource(R.mipmap.itentify_select_arrow)
+                }
+            }
 
 
         }

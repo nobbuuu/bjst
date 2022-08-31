@@ -15,29 +15,40 @@ import com.tcl.base.kt.sp
 class StartEndLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
+    var mStartTv: TextView
+    var mEndTv: TextView
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_lr_custom_view, this)
         val array = context.obtainStyledAttributes(attrs, R.styleable.startEndLayout)
         val startText = array.getString(R.styleable.startEndLayout_startText)
-        val startTextSize = array.getDimensionPixelSize(R.styleable.startEndLayout_startTextSize, 15)
-        val startTextColor = array.getInteger(R.styleable.startEndLayout_startTextColor, R.color.colorBlack666)
+        val startTextSize = array.getDimension(R.styleable.startEndLayout_startTextSize, 15.sp)
+        val startTextColor =
+            array.getInteger(R.styleable.startEndLayout_startTextColor, R.color.colorBlack666)
         val endText = array.getString(R.styleable.startEndLayout_endText)
-        val endTextSize = array.getDimensionPixelSize(R.styleable.startEndLayout_endTextSize, 18)
+        val endTextSize = array.getDimension(R.styleable.startEndLayout_endTextSize, 18.sp)
         val endTextColor = array.getInteger(R.styleable.startEndLayout_endTextColor, R.color.black)
         val isDivider = array.getBoolean(R.styleable.startEndLayout_isDivider, true)
         val isSelect = array.getBoolean(R.styleable.startEndLayout_isSelect, false)
-        val mStartTv = findViewById<TextView>(R.id.startTv)
-        mStartTv.setTextSize(TypedValue.COMPLEX_UNIT_SP,startTextSize.toFloat())
+        mStartTv = findViewById<TextView>(R.id.startTv)
+        mStartTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, startTextSize)
         mStartTv.setTextColor(startTextColor)
         mStartTv.text = "$startText"
-        val mEndTv = findViewById<TextView>(R.id.endTv)
-        mEndTv.setTextSize(TypedValue.COMPLEX_UNIT_SP,endTextSize.toFloat())
+        mEndTv = findViewById<TextView>(R.id.endTv)
+        mEndTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, endTextSize)
         mEndTv.setTextColor(endTextColor)
         mEndTv.text = "$endText"
         val mDivider = findViewById<View>(R.id.divider)
         mDivider.isVisible = isDivider
         val mSelectIv = findViewById<ImageView>(R.id.nextIv)
         mSelectIv.isVisible = isSelect
+    }
+
+    fun setStartText(text: String) {
+        mStartTv.text = text
+    }
+
+    fun setEndText(text: String) {
+        mEndTv.text = text
     }
 }

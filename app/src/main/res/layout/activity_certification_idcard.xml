@@ -8,7 +8,7 @@
     <com.hjq.bar.TitleBar
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_44"
+        android:layout_height="@dimen/dp_50"
         app:lineVisible="true"
         app:title="Identification (1/4)"
         app:titleSize="@dimen/sp_18"

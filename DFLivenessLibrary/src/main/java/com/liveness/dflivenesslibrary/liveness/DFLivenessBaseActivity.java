@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 
 import com.dfsdk.liveness.DFLivenessSDK;
 import com.liveness.dflivenesslibrary.DFAcitivityBase;
@@ -144,6 +145,7 @@ public class DFLivenessBaseActivity extends DFAcitivityBase implements DFLivenes
         Intent intent = new Intent();
         ((DFTransferResultInterface) getApplication()).setResult(productResult);
         setResult(RESULT_OK, intent);
+        Log.i(TAG, "returnDFProductResult: "+productResult);
         finish();
     }
 }

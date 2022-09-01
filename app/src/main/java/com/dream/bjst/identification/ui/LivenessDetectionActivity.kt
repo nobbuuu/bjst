@@ -9,6 +9,7 @@ import com.dream.bjst.app.MyApp
 import com.dream.bjst.databinding.ActivityLivenessDetectionBinding
 import com.dream.bjst.identification.vm.LivenessDetectionViewModel
 import com.dream.bjst.utils.DetectionFacialUtils
+import com.liveness.dflivenesslibrary.DFTransferResultInterface
 import com.liveness.dflivenesslibrary.liveness.DFSilentLivenessActivity
 import com.liveness.dflivenesslibrary.utils.DFBitmapUtils
 import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
@@ -21,13 +22,8 @@ class LivenessDetectionActivity :
     val KEY_TO_DETECT_REQUEST_CODE = 1
 
     override fun initView(savedInstanceState: Bundle?) {
-//     mBinding.titleLive.leftView.ktClick {
-//         onBackPressed()
-//     }
-        initDetection()
         DetectionFacialUtils().requestCameraPermission(this);
-
-
+        initDetection()
     }
 
     private fun initDetection() {
@@ -54,9 +50,9 @@ class LivenessDetectionActivity :
         super.onActivityResult(requestCode, resultCode, data)
 //        "有返回结果".ktToastShow()
         if (resultCode == RESULT_OK) {
-        Log.i(TAG, "onActivityResult: " + MyApp().mResult)
-
-            MyApp().mResult?.let {
+            val app = application as DFTransferResultInterface
+            app?.result?.let {
+                Log.i(TAG, "onActivityResult: $it")
                 val imageResultArr = it.getLivenessImageResults()
                 if (imageResultArr != null) {
                     val size = imageResultArr.size;
@@ -74,15 +70,12 @@ class LivenessDetectionActivity :
                         mBinding.image.setImageBitmap(imageBitmap)
                     }
                 }
-
                 // the encrypt buffer which is used to send to anti-hack API
                 val livenessEncryptResult = it.getLivenessEncryptResult()
-
             }
         } else {
-            Log.e("onActivityResult", "silent liveness cancel，error code:" + resultCode)
+            Log.e("onActivityResult", "silent liveness cancel，error code:$resultCode")
         }
-
     }
 
     override fun onRequestPermissionsResult(

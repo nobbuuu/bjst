@@ -46,6 +46,7 @@ class MyApp : BaseApplication(), DFTransferResultInterface {
     }
 
     override fun setResult(result: DFProductResult?) {
+        Log.i(TAG, "setResult: +++++++++++______")
         if (result != null) {
             mResult = result
             Log.i(TAG, "setResult: " + mResult)

@@ -1,7 +1,10 @@
 package com.dream.bjst.net
 
+import com.blankj.utilcode.util.GsonUtils
+import com.dream.bjst.bean.BaseParamBean
 import com.dream.bjst.bean.LoginBean
 import com.dream.bjst.identification.bean.IdCardInfoBean
+import com.dream.bjst.identification.bean.IdCardStatusBean
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse
 
@@ -63,10 +66,22 @@ object Api {
      */
 
     suspend fun panOcr(param: String): IdCardInfoBean {
-        //customer/kyc/idCardBackOcr
+        //customer/kyc/panOcr
         return RxHttp.postJson("/DB978187809B999186DB9F8D97DB84959ABB9786")
             .addAll(param)
             .toResponse<IdCardInfoBean>()
+            .await()
+    }
+
+    /**
+     * 获取客户kyc进行到的步骤
+     */
+
+    suspend fun fetchCustomerKycStatus(): IdCardStatusBean {
+        //customer/fetchCustomerKycStatus
+        return RxHttp.postJson("/DB978187809B999186DB929180979CB78187809B999186BF8D97A78095808187")
+            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .toResponse<IdCardStatusBean>()
             .await()
     }
 

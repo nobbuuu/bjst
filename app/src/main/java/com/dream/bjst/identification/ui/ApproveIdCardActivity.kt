@@ -53,6 +53,8 @@ class ApproveIdCardActivity :
     }
 
     override fun initData() {
+
+        viewModel.fetchCustomerKycStatus()
         mBinding.sureBtn.ktClick {
             ktStartActivity(LivenessDetectionActivity::class)
         }
@@ -76,6 +78,21 @@ class ApproveIdCardActivity :
                     mBinding.panCardIv.setImageBitmap(tempBitmap)
                 }
             }
+        }
+
+        viewModel.idCardStatus.observe(this) {
+            it.`9D90B7958690B2869B9A80A49C9B809BA18698`?.let {
+                mBinding.frontIv.loadGif(it)
+            }
+            it.`9D90B7958690B695979FA49C9B809BA18698`?.let {
+                mBinding.backIv.loadGif(it)
+            }
+            it.`84959AA49C9B809BA18698`?.let {
+                mBinding.panCardIv.loadGif(it)
+            }
+            mBinding.frontIv.isEnabled = it.`9D90B7958690B2869B9A80A49C9B809BA18698`.isNullOrEmpty()
+            mBinding.backIv.isEnabled = it.`9D90B7958690B695979FA49C9B809BA18698`.isNullOrEmpty()
+            mBinding.panCardIv.isEnabled = it.`84959AA49C9B809BA18698`.isNullOrEmpty()
         }
     }
 
@@ -134,6 +151,7 @@ class ApproveIdCardActivity :
     }
 
     private fun upLoadFile(bitmap: Bitmap?) {
+        tempBitmap = bitmap
         val base64 = BitmapUtils.bitmapToBase64(bitmap).remove()
 //        LogUtils.dTag("base64Str",base64)
         val bitmapStr = compress(base64)

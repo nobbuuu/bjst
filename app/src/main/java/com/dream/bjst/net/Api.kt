@@ -117,9 +117,10 @@ object Api {
 
     suspend fun submitPictureInfo(param: String):DetectionPictureBean {
         ///core/app/fetchLiveNessCompany
-          return RxHttp.postJson("DB979B8691DB958484DB929180979CB89D8291BA918787B79B9984959A8D")
+          return RxHttp.postJson("DB978187809B999186DB9F8D97DB979C91979FB89D8291BA918787B59A90B2959791B79B9984958691B68DB597979581809C")
               .addAll(param)
               .toResponse<DetectionPictureBean>()
               .await()
+
     }
 }

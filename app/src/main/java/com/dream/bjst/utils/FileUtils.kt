@@ -13,6 +13,7 @@ import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.ImageUtils
 import com.blankj.utilcode.util.LogUtils
 import com.rxlife.coroutine.RxLifeScope
+import com.sensorsdata.analytics.android.sdk.util.Base64Coder
 import com.tcl.base.kt.ktToastShow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
@@ -23,10 +24,7 @@ import rxhttp.toBitmap
 import rxhttp.tryAwait
 import rxhttp.wrapper.cahce.CacheMode
 import rxhttp.wrapper.param.RxHttp
-import java.io.BufferedOutputStream
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
+import java.io.*
 
 object FileUtils {
 
@@ -179,5 +177,18 @@ object FileUtils {
         }
         return false
     }
+    /**
+     * 将文件转化为base64
+     */
+
+    fun encodeFileToBase64(path: String): CharArray? {
+        var file =File(path)
+        var inputFileStream =FileInputStream(file)
+        var bufferByte= byteArrayOf(file.length().toByte())
+        inputFileStream.read(bufferByte)
+        inputFileStream.close()
+        return Base64Coder.encode(bufferByte)
+    }
+
 
 }

@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.liveness.dflivenesslibrary.camera.FixedAspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".identification.ui.LivenessDetectionActivity">
+    android:layout_height="match_parent">
 
-<!--    <com.hjq.bar.TitleBar-->
-<!--        android:id="@+id/titleLive"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/dp_44"-->
-<!--        app:title="Facial Verification(2/4)"-->
-<!--        app:titleStyle="bold"-->
-<!--        tools:ignore="MissingConstraints" />-->
+   <SurfaceView
+       android:id="@+id/surfaceViewCamera"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content" />
 
-   <com.ruffian.library.widget.RImageView
-       android:id="@+id/image"
-       android:layout_width="@dimen/dp_100"
-       android:layout_height="@dimen/dp_100"
-       android:src="@mipmap/ic_launcher"
-       tools:ignore="MissingConstraints" />
+   <com.liveness.dflivenesslibrary.view.DFLivenessOverlayView
+       android:id="@+id/id_ov_mask"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent" />
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.liveness.dflivenesslibrary.camera.FixedAspectRatioFrameLayout>

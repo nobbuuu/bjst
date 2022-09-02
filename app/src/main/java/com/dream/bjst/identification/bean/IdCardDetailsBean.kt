@@ -1,5 +1,7 @@
 package com.dream.bjst.identification.bean
 
+import java.io.Serializable
+
 data class IdCardDetailsBean(
     val `84959ABD90BA8199969186`: String,
     val `849D9AB79B9091`: String,
@@ -10,4 +12,4 @@ data class IdCardDetailsBean(
     val `969D86809C90958D`: String,
     val `9A959991B2869B99B59590909586`: String,
     val `9A959991BD9AA4959A`: String
-)
+):Serializable

@@ -4,6 +4,7 @@ import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.bean.LoginBean
 import com.dream.bjst.bean.LoginParam
 import com.dream.bjst.common.UserManager
+import com.dream.bjst.identification.bean.IdCardStatusBean
 import com.dream.bjst.net.Api
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
@@ -18,6 +19,7 @@ import com.tcl.base.utils.MmkvUtil
 class LoginViewModel : BaseViewModel() {
     val sendCode = SingleLiveEvent<Boolean>()
     val loginResult = SingleLiveEvent<LoginBean>()
+    val idCardStatus = SingleLiveEvent<IdCardStatusBean>()
     var mNetToken = ""
     fun sendCode(param: String) {
         rxLaunchUI({
@@ -51,6 +53,13 @@ class LoginViewModel : BaseViewModel() {
             loginResult.postValue(result)
         }, errorBlock = {
             it.message?.ktToastShow()
+        })
+    }
+
+    fun fetchCustomerKycStatus(){
+        rxLaunchUI({
+            val result = Api.fetchCustomerKycStatus()
+            idCardStatus.postValue(result)
         })
     }
 }

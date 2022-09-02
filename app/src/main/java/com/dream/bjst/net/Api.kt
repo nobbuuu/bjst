@@ -3,6 +3,7 @@ package com.dream.bjst.net
 import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.bean.BaseParamBean
 import com.dream.bjst.bean.LoginBean
+import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
 import rxhttp.wrapper.param.RxHttp
@@ -94,6 +95,18 @@ object Api {
         return RxHttp.postJson("/DB978187809B999186DB918C80919A879D9B9ADB929180979CB78187809B999186BD90B7958690BD9A929B")
             .addAll(GsonUtils.toJson(BaseParamBean()))
             .toResponse<IdCardDetailsBean>()
+            .await()
+    }
+
+    /**
+     * 身份证ocr界面-提交客户调整后的基础信息
+     */
+
+    suspend fun submitAdjustInfo(param: String): ConfirmResultBean {
+        //customer/kyc/submitAdjustInfo
+        return RxHttp.postJson("/DB978187809B999186DB9F8D97DB878196999D80B5909E818780BD9A929B")
+            .addAll(param)
+            .toResponse<ConfirmResultBean>()
             .await()
     }
 

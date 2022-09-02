@@ -16,6 +16,7 @@ import com.dream.bjst.databinding.ActivityLoginBinding
 import com.dream.bjst.dialog.VoiceDialog
 import com.dream.bjst.identification.ui.ApproveMainActivity
 import com.dream.bjst.loan.vm.LoginViewModel
+import com.dream.bjst.main.MainActivity
 import com.dream.bjst.utils.SendCodeUtils
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
@@ -128,10 +129,19 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             sendList.add(SendCodeUtils(tv, Handler(mainLooper), str).start())
             mBinding.codeEdt.postDelayed({
                 mBinding.codeEdt.setText("123456")
-            },5000)
+            }, 5000)
         }
         viewModel.loginResult.observe(this) {
-            ktStartActivity(ApproveMainActivity::class)
+            viewModel.fetchCustomerKycStatus()
+        }
+
+        viewModel.idCardStatus.observe(this) {
+            if (it.`959898BD809199A4958787`) {
+                ktStartActivity(MainActivity::class)
+            } else {
+                ktStartActivity(ApproveMainActivity::class)
+            }
+            finish()
         }
     }
 

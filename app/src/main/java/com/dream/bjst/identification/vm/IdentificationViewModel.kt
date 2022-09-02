@@ -1,5 +1,6 @@
 package com.dream.bjst.identification.vm
 
+import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
 import com.dream.bjst.net.Api
@@ -16,6 +17,7 @@ class IdentificationViewModel :BaseViewModel() {
     val idCardInfo = SingleLiveEvent<IdCardDetailsBean>()
     val idCardStatus = SingleLiveEvent<IdCardStatusBean>()
     val idCardDetails = SingleLiveEvent<IdCardDetailsBean>()
+    val confirmResult = SingleLiveEvent<ConfirmResultBean>()
     fun idCardFrontOcr(param:String){
         rxLaunchUI({
             val result = Api.idCardFrontOcr(param)
@@ -46,6 +48,12 @@ class IdentificationViewModel :BaseViewModel() {
         rxLaunchUI({
             val result = Api.fetchCustomerIdCardInfo()
             idCardDetails.postValue(result)
+        })
+    }
+    fun submitAdjustInfo(param: String){
+        rxLaunchUI({
+            val result = Api.submitAdjustInfo(param)
+            confirmResult.postValue(result)
         })
     }
 }

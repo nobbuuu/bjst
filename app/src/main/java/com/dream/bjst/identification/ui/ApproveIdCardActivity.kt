@@ -27,6 +27,9 @@ class ApproveIdCardActivity :
     lateinit var photoDialog: PhotoSelectDialog
     private var type = 0
     private var tempBitmap: Bitmap? = null
+    private var isFront = false
+    private var isBack = false
+    private var isPan = false
     override fun initView(savedInstanceState: Bundle?) {
         mPhotoManager = PhotoManager(this)
         photoDialog = PhotoSelectDialog(this, PhotoSelectDialog.PICK_AVATAR)
@@ -56,8 +59,26 @@ class ApproveIdCardActivity :
 
         viewModel.fetchCustomerKycStatus()
         mBinding.sureBtn.ktClick {
-            ktStartActivity(LivenessDetectionActivity::class)
+            if (isApproveComplete()){
+                ktStartActivity(ApproveIdCardConfirmActivity::class)
+            }
         }
+    }
+
+    fun isApproveComplete() : Boolean{
+        if (!isFront){
+            "Please upload the front photo first".ktToastShow()
+            return false
+        }
+        if (!isBack){
+            "Please upload the back photo first".ktToastShow()
+            return false
+        }
+        if (!isPan){
+            "Please upload the pan photo first".ktToastShow()
+            return false
+        }
+        return true
     }
 
     override fun initDataOnResume() {
@@ -66,16 +87,18 @@ class ApproveIdCardActivity :
     override fun startObserve() {
         super.startObserve()
         viewModel.idCardInfo.observe(this) {
-
             when (type) {
                 1 -> {
                     mBinding.frontIv.setImageBitmap(tempBitmap)
+                    isFront = true
                 }
                 2 -> {
                     mBinding.backIv.setImageBitmap(tempBitmap)
+                    isBack = true
                 }
                 3 -> {
                     mBinding.panCardIv.setImageBitmap(tempBitmap)
+                    isPan = true
                 }
             }
         }
@@ -153,7 +176,6 @@ class ApproveIdCardActivity :
     private fun upLoadFile(bitmap: Bitmap?) {
         tempBitmap = bitmap
         val base64 = BitmapUtils.bitmapToBase64(bitmap).remove()
-//        LogUtils.dTag("base64Str",base64)
         val bitmapStr = compress(base64)
         //显示图片
         when (type) {
@@ -167,11 +189,6 @@ class ApproveIdCardActivity :
                 viewModel.panOcr(GsonUtils.toJson(IdCardInfoParam(`9D99959391B6958791C2C0` = bitmapStr.nullToEmpty())))
             }
         }
-        /* val file = bitmap2File(
-             rotateBitmap!!,
-             filesDir.path,
-             "tempAvatar.png"
-         )*/
     }
 
     fun compress(str: String?): String? {

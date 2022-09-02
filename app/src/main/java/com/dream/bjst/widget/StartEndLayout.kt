@@ -66,7 +66,16 @@ class StartEndLayout @JvmOverloads constructor(
     fun setEndText(text: String) {
         mEndTv?.text = text
     }
+
     fun setEndEdtText(text: String) {
         mEndEdt?.setText(text)
+    }
+
+    fun getEndEdtText(): String {
+        return mEndEdt?.text.toString().trim()
+    }
+
+    fun getEndText(): String {
+        return mEndTv?.text.toString().trim()
     }
 }

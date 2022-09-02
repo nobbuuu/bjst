@@ -1,6 +1,7 @@
 package com.dream.bjst.identification.vm
 
 import com.dream.bjst.identification.bean.ConfirmResultBean
+import com.dream.bjst.identification.bean.DetectionPictureBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
 import com.dream.bjst.net.Api
@@ -18,6 +19,8 @@ class IdentificationViewModel :BaseViewModel() {
     val idCardStatus = SingleLiveEvent<IdCardStatusBean>()
     val idCardDetails = SingleLiveEvent<IdCardDetailsBean>()
     val confirmResult = SingleLiveEvent<ConfirmResultBean>()
+    val detectPictureResult = SingleLiveEvent<DetectionPictureBean>()
+
     fun idCardFrontOcr(param:String){
         rxLaunchUI({
             val result = Api.idCardFrontOcr(param)
@@ -54,6 +57,13 @@ class IdentificationViewModel :BaseViewModel() {
         rxLaunchUI({
             val result = Api.submitAdjustInfo(param)
             confirmResult.postValue(result)
+        })
+    }
+
+    fun submitDetectionPicture(param: String){
+        rxLaunchUI({
+            var result=Api.submitPictureInfo(param)
+            detectPictureResult.postValue(result)
         })
     }
 }

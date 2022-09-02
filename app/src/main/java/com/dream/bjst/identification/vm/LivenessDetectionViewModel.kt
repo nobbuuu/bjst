@@ -8,4 +8,5 @@ import com.tcl.base.common.BaseViewModel
  * 作者:HeGuiCun Administrator
  */
 class LivenessDetectionViewModel : BaseViewModel() {
+
 }

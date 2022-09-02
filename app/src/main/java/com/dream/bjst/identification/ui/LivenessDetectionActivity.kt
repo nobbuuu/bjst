@@ -5,8 +5,11 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import com.dream.bjst.app.MyApp
 import com.dream.bjst.databinding.ActivityLivenessDetectionBinding
+import com.dream.bjst.identification.adapter.IdentifyAdapter
+import com.dream.bjst.identification.vm.IdentificationViewModel
 import com.dream.bjst.identification.vm.LivenessDetectionViewModel
 import com.dream.bjst.utils.DetectionFacialUtils
 import com.liveness.dflivenesslibrary.DFTransferResultInterface
@@ -18,7 +21,7 @@ import com.tcl.base.kt.ktToastShow
 
 
 class LivenessDetectionActivity :
-    BaseActivity<LivenessDetectionViewModel, ActivityLivenessDetectionBinding>() {
+    BaseActivity<IdentificationViewModel, ActivityLivenessDetectionBinding>() {
     val KEY_TO_DETECT_REQUEST_CODE = 1
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -39,10 +42,15 @@ class LivenessDetectionActivity :
     }
 
     override fun initData() {
+//      viewModel.submitDetectionPicture()
+    }
+    override fun initDataOnResume() {
 
     }
 
-    override fun initDataOnResume() {
+    override fun startObserve() {
+        super.startObserve()
+
 
     }
 
@@ -66,12 +74,16 @@ class LivenessDetectionActivity :
                             imageResult.image.size,
                             options
                         );
-                        DFBitmapUtils.recyleBitmap(imageBitmap)
+
                         mBinding.image.setImageBitmap(imageBitmap)
                     }
                 }
                 // the encrypt buffer which is used to send to anti-hack API
                 val livenessEncryptResult = it.getLivenessEncryptResult()
+
+
+
+
             }
         } else {
             Log.e("onActivityResult", "silent liveness cancel，error code:$resultCode")
@@ -91,4 +103,7 @@ class LivenessDetectionActivity :
             grantResults
         );
     }
+
+
+
 }

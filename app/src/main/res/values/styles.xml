@@ -690,6 +690,7 @@
         <attr name="startTextSize" format="dimension" />
         <attr name="startTextColor" format="color|reference" />
         <attr name="endText" format="string|reference" />
+        <attr name="hintText" format="string|reference" />
         <attr name="endTextSize" format="dimension" />
         <attr name="endTextColor" format="color|reference" />
         <attr name="isDivider" format="boolean|reference" />

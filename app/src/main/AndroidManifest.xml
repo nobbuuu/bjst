@@ -91,6 +91,7 @@
         </activity>
         <activity android:name=".identification.ui.ApproveContactsActivity"/>
         <activity android:name=".identification.ui.ApproveIdCardConfirmActivity"/>
+        <activity android:name=".identification.ui.ApproveBankCardActivity"/>
     </application>
 
 </manifest>

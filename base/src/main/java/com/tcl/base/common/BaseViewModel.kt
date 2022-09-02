@@ -43,7 +43,7 @@ open class BaseViewModel : AndroidViewModel(Utils.getApp()), LifecycleObserver {
         block: suspend CoroutineScope.() -> Unit,
         errorBlock: ((Throwable) -> Unit)? = null,
         showToast: Boolean = true,
-        showDialog: Boolean = true,
+        showDialog: Boolean = false,
         finalBlock: (() -> Unit)? = null
     ) {
         if (showDialog) {

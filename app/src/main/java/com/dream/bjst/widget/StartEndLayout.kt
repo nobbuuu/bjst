@@ -35,6 +35,7 @@ class StartEndLayout @JvmOverloads constructor(
         val startTextColor =
             array.getInteger(R.styleable.startEndLayout_startTextColor, R.color.colorBlack666)
         val endText = array.getString(R.styleable.startEndLayout_endText)
+        val hintText = array.getString(R.styleable.startEndLayout_hintText)
         val endTextSize = array.getDimension(R.styleable.startEndLayout_endTextSize, 18.sp)
         val endTextColor = array.getInteger(R.styleable.startEndLayout_endTextColor, R.color.black)
         val isDivider = array.getBoolean(R.styleable.startEndLayout_isDivider, true)
@@ -51,6 +52,7 @@ class StartEndLayout @JvmOverloads constructor(
         mEndEdt?.setTextColor(endTextColor)
         mEndTv?.text = "$endText"
         mEndEdt?.setText(endText)
+        mEndEdt?.hint = hintText
         val mDivider = findViewById<View>(R.id.divider)
         mDivider.isVisible = isDivider
         val mSelectIv = findViewById<ImageView>(R.id.nextIv)

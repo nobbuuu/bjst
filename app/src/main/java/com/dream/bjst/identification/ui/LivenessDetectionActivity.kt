@@ -53,11 +53,11 @@ class LivenessDetectionActivity :
             val app = application as DFTransferResultInterface
             app?.result?.let {
                 Log.i(TAG, "onActivityResult: $it")
-                val imageResultArr = it.getLivenessImageResults()
+                val imageResultArr = it.livenessImageResults
                 if (imageResultArr != null) {
-                    val size = imageResultArr.size;
+                    val size = imageResultArr.size
                     if (size > 0) {
-                        val imageResult = imageResultArr[0];
+                        val imageResult = imageResultArr[0]
                         val options = BitmapFactory.Options()
                         options.inPreferredConfig = Bitmap.Config.ARGB_8888
                         val imageBitmap = BitmapFactory.decodeByteArray(
@@ -65,13 +65,11 @@ class LivenessDetectionActivity :
                             0,
                             imageResult.image.size,
                             options
-                        );
+                        )
                         DFBitmapUtils.recyleBitmap(imageBitmap)
                         mBinding.image.setImageBitmap(imageBitmap)
                     }
                 }
-                // the encrypt buffer which is used to send to anti-hack API
-                val livenessEncryptResult = it.getLivenessEncryptResult()
             }
         } else {
             Log.e("onActivityResult", "silent liveness cancel，error code:$resultCode")

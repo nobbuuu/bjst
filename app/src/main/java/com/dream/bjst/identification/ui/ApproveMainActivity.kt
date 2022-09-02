@@ -10,6 +10,7 @@ import com.dream.bjst.databinding.ActivityIdentificationBinding
 import com.dream.bjst.identification.adapter.IdentifyAdapter
 import com.dream.bjst.identification.bean.IdentifyBean
 import com.dream.bjst.identification.vm.IdentificationViewModel
+import com.dream.bjst.main.MainActivity
 import com.dream.bjst.utils.StatusBarUtils
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
@@ -68,6 +69,9 @@ class ApproveMainActivity :
                     }
                     "80", "90" -> {
                         ktStartActivity(ApproveBankCardActivity::class)
+                    }
+                    else -> {
+                        ktStartActivity(MainActivity::class)
                     }
                 }
             }

@@ -12,7 +12,7 @@ data class IdCardStatusBean(
     val `84959AA49C9B809BA18698`: String? = null,
     val `959898BD809199A4958787`: Boolean,
     val `969895979F`: Boolean,
-    val `9A919190B09B9D9A93BD809199`: String,
+    val `9A919190B09B9D9A93BD809199`: String?,
     val `9D90B7958690B2869B9A80A49C9B809BA18698`: String? = null,
     val `9D90B7958690B695979FA49C9B809BA18698`: String? = null
 )

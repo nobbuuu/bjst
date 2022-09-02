@@ -1,8 +1,6 @@
 package com.dream.bjst.identification.vm
 
-import com.blankj.utilcode.util.GsonUtils
-import com.dream.bjst.bean.BaseParamBean
-import com.dream.bjst.identification.bean.IdCardInfoBean
+import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
 import com.dream.bjst.net.Api
 import com.tcl.base.common.BaseViewModel
@@ -15,8 +13,9 @@ import com.tcl.base.event.SingleLiveEvent
  */
 class IdentificationViewModel :BaseViewModel() {
 
-    val idCardInfo = SingleLiveEvent<IdCardInfoBean>()
+    val idCardInfo = SingleLiveEvent<IdCardDetailsBean>()
     val idCardStatus = SingleLiveEvent<IdCardStatusBean>()
+    val idCardDetails = SingleLiveEvent<IdCardDetailsBean>()
     fun idCardFrontOcr(param:String){
         rxLaunchUI({
             val result = Api.idCardFrontOcr(param)
@@ -40,6 +39,13 @@ class IdentificationViewModel :BaseViewModel() {
         rxLaunchUI({
             val result = Api.fetchCustomerKycStatus()
             idCardStatus.postValue(result)
+        })
+    }
+
+    fun fetchCustomerIdCardInfo(){
+        rxLaunchUI({
+            val result = Api.fetchCustomerIdCardInfo()
+            idCardDetails.postValue(result)
         })
     }
 }

@@ -14,7 +14,7 @@ import com.dream.bjst.R
 import com.dream.bjst.bean.PhoneCodeParam
 import com.dream.bjst.databinding.ActivityLoginBinding
 import com.dream.bjst.dialog.VoiceDialog
-import com.dream.bjst.identification.ui.IdentificationActivity
+import com.dream.bjst.identification.ui.ApproveMainActivity
 import com.dream.bjst.loan.vm.LoginViewModel
 import com.dream.bjst.utils.SendCodeUtils
 import com.tcl.base.common.ui.BaseActivity
@@ -131,7 +131,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             },5000)
         }
         viewModel.loginResult.observe(this) {
-            ktStartActivity(IdentificationActivity::class)
+            ktStartActivity(ApproveMainActivity::class)
         }
     }
 

@@ -1,13 +1,11 @@
 package com.dream.bjst.home
 
 import android.os.Bundle
-import com.blankj.utilcode.util.BarUtils
-import com.blankj.utilcode.util.ColorUtils
 import com.dream.bjst.R
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.ActivityHomeBinding
 import com.dream.bjst.home.vm.HomeViewModel
-import com.dream.bjst.identification.ui.IdentificationActivity
+import com.dream.bjst.identification.ui.ApproveMainActivity
 import com.dream.bjst.login.LoginActivity
 import com.dream.bjst.utils.StatusBarUtils
 import com.tcl.base.common.ui.BaseActivity
@@ -20,7 +18,7 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
         //当前页面是未登录展示，如果已经登录将不展示
       mBinding.homeRequestBtn.ktClick {
           if (UserManager.isLogin()){
-              ktStartActivity(IdentificationActivity::class)
+              ktStartActivity(ApproveMainActivity::class)
           }else{
               ktStartActivity(LoginActivity::class)
           }

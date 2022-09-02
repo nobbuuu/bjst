@@ -3,7 +3,7 @@ package com.dream.bjst.net
 import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.bean.BaseParamBean
 import com.dream.bjst.bean.LoginBean
-import com.dream.bjst.identification.bean.IdCardInfoBean
+import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse
@@ -41,11 +41,11 @@ object Api {
      * 上传身份证前照
      */
 
-    suspend fun idCardFrontOcr(param: String): IdCardInfoBean {
+    suspend fun idCardFrontOcr(param: String): IdCardDetailsBean {
         //customer/kyc/idCardFrontOcr
         return RxHttp.postJson("/DB978187809B999186DB9F8D97DB9D90B7958690B2869B9A80BB9786")
             .addAll(param)
-            .toResponse<IdCardInfoBean>()
+            .toResponse<IdCardDetailsBean>()
             .await()
     }
 
@@ -53,11 +53,11 @@ object Api {
      * 上传身份证背照
      */
 
-    suspend fun idCardBackOcr(param: String): IdCardInfoBean {
+    suspend fun idCardBackOcr(param: String): IdCardDetailsBean {
         //customer/kyc/idCardBackOcr
         return RxHttp.postJson("/DB978187809B999186DB9F8D97DB9D90B7958690B695979FBB9786")
             .addAll(param)
-            .toResponse<IdCardInfoBean>()
+            .toResponse<IdCardDetailsBean>()
             .await()
     }
 
@@ -65,11 +65,11 @@ object Api {
      * 上传PAN卡照片
      */
 
-    suspend fun panOcr(param: String): IdCardInfoBean {
+    suspend fun panOcr(param: String): IdCardDetailsBean {
         //customer/kyc/panOcr
         return RxHttp.postJson("/DB978187809B999186DB9F8D97DB84959ABB9786")
             .addAll(param)
-            .toResponse<IdCardInfoBean>()
+            .toResponse<IdCardDetailsBean>()
             .await()
     }
 
@@ -82,6 +82,18 @@ object Api {
         return RxHttp.postJson("/DB978187809B999186DB929180979CB78187809B999186BF8D97A78095808187")
             .addAll(GsonUtils.toJson(BaseParamBean()))
             .toResponse<IdCardStatusBean>()
+            .await()
+    }
+
+    /**
+     * 获取证件ocr后的信息
+     */
+
+    suspend fun fetchCustomerIdCardInfo(): IdCardDetailsBean {
+        //customer/extension/fetchCustomerIdCardInfo
+        return RxHttp.postJson("/DB978187809B999186DB918C80919A879D9B9ADB929180979CB78187809B999186BD90B7958690BD9A929B")
+            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .toResponse<IdCardDetailsBean>()
             .await()
     }
 

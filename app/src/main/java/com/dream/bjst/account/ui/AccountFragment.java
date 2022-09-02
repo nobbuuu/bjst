@@ -8,7 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.dream.bjst.R;
 import com.dream.bjst.base.BaseFragment;
-import com.dream.bjst.identification.ui.IdentificationActivity;
+import com.dream.bjst.identification.ui.ApproveMainActivity;
 import com.dream.bjst.loan.ui.LoanRecordsActivity;
 import com.dream.bjst.utils.StatusBarUtils;
 import com.ruffian.library.widget.RImageView;
@@ -85,7 +85,7 @@ public class AccountFragment extends BaseFragment {
         identificationLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-          startActivity(new Intent(getActivity(), IdentificationActivity.class));
+          startActivity(new Intent(getActivity(), ApproveMainActivity.class));
 
 
             }

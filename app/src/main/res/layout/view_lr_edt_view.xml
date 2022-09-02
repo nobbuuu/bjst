@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/startTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loan Amount"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/dk_color_666666"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="@dimen/sp_15"
+        />
+
+    <EditText
+        android:id="@+id/endEdt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="₹ 50,000"
+        app:layout_constraintEnd_toStartOf="@+id/nextIv"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/black"
+        android:background="@null"
+        android:textSize="@dimen/sp_18"
+        />
+    <ImageView
+        android:id="@+id/nextIv"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@mipmap/icon_next"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:background="@color/_xpopup_list_divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="@dimen/dp_1"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

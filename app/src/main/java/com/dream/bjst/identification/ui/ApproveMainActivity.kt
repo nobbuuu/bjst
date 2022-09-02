@@ -14,7 +14,7 @@ import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 
-class IdentificationActivity :
+class ApproveMainActivity :
     BaseActivity<IdentificationViewModel, ActivityIdentificationBinding>() {
     val mNameList: MutableList<identifyBean> = ArrayList()
 
@@ -27,7 +27,25 @@ class IdentificationActivity :
         }
 
         mBinding.identifyGetLoanBtn.ktClick {
-            ktStartActivity(ApproveIdCardActivity::class)
+            viewModel.idCardStatus.value?.let {
+                when(it.`9A919190B09B9D9A93BD809199`){
+                    "10","11","20","30","31" ->{
+                        ktStartActivity(ApproveIdCardActivity::class)
+                    }
+                    "40","50","51" ->{
+                        ktStartActivity(LivenessDetectionActivity::class)
+                    }
+                    "60" ->{
+                        ktStartActivity(ApproveContactsActivity::class)
+                    }
+                    "70" ->{
+                        ktStartActivity(ApproveIdCardConfirmActivity::class)
+                    }
+                    "80","90" ->{
+
+                    }
+                }
+            }
         }
     }
 
@@ -40,12 +58,15 @@ class IdentificationActivity :
         identifyAdapter.setList(mNameList)
         mBinding.identifyRecyclerview.adapter = identifyAdapter
 
+        viewModel.fetchCustomerKycStatus()
 
     }
 
     override fun initDataOnResume() {
 
+        viewModel.idCardStatus.observe(this){
 
+        }
     }
 
 }

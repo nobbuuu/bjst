@@ -17,6 +17,7 @@ import com.liveness.dflivenesslibrary.DFTransferResultInterface
 import com.liveness.dflivenesslibrary.liveness.DFSilentLivenessActivity
 import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseActivity
+import com.tcl.base.kt.ktToastShow
 import java.io.*
 
 
@@ -65,24 +66,26 @@ class LivenessDetectionActivity :
     }
 
 
+
     /**
      * 将Bitmap类型的图片转化成file类型，便于上传到服务器
      */
-    fun saveImageFile(imageBitmap: Bitmap, fileName: String): File {
-        var path = Environment.getExternalStorageState() + "image"
+    fun saveImageFile(imageBitmap: Bitmap, path:String,fileName: String): File {
+
         var dirFile = File(path)
         if (!dirFile.exists()) {
             dirFile.mkdir()
         }
-        var imageFile = File(path + fileName)
+        var imageFile = File(fileName)
+        if (!imageFile.exists()){
+            imageFile.mkdir()
+        }
         var bos = BufferedOutputStream(FileOutputStream(imageFile))
-        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos)
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 80, bos)
         bos.flush()
         bos.close()
-
         return imageFile
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -103,20 +106,20 @@ class LivenessDetectionActivity :
                             0,
                             imageResult.image.size,
                             options
-                        );
-
-                        var imageFile = saveImageFile(imageBitmap, "imageIcon")
-
-                        Log.i(TAG, "onActivityResult0001: " + imageFile)
-                        viewModel.submitDetectionPicture(
-                            GsonUtils.toJson(
-                                DetectionPictureParam(
-                                    `92959791BD9993B6958791C2C0` = BitmapUtils.bitmapToBase64(imageBitmap),   //人脸图的base64
-                                    `989D8291BA918787B29D9891B6958791C2C0` = FileUtils.encodeFileToBase64(saveImageFile(imageBitmap,"imageIcon").path) //文件base64
-                                )
-                            )
-
                         )
+                        Log.i(TAG, "onActivityResult:"+imageBitmap)
+                        var imageFile = saveImageFile(imageBitmap, "/detect/sdcard/pic/detectImageIcon.jpg","detectImageIcon")
+
+                        Log.i(TAG, "onActivityResult:" + imageFile)
+//                        viewModel.submitDetectionPicture(
+//                            GsonUtils.toJson(
+//                                DetectionPictureParam(
+//                                    `92959791BD9993B6958791C2C0` = BitmapUtils.bitmapToBase64(imageBitmap),   //人脸图的base64
+//                                    //`989D8291BA918787B29D9891B6958791C2C0` = FileUtils.encodeFileToBase64("") //文件base64
+//                                )
+//                            )
+//
+//                        )
 
 
 

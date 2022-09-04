@@ -23,15 +23,16 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
     override fun initDataOnViewCreated() {
         super.initDataOnViewCreated()
         //设置页面
-
-        //设置页面
-        mBinding.accountSetting.setOnClickListener {
-            startActivity(
-                Intent(
-                    activity,
-                    AccountSettingActivity::class.java
-                )
-            )
+//        mBinding.accountSetting.setOnClickListener {
+//            startActivity(
+//                Intent(
+//                    activity,
+//                    AccountSettingActivity::class.java
+//                )
+//            )
+//        }
+        mBinding.accountSetting.ktClick {
+            ktStartActivity(AccountSettingActivity::class)
         }
         //关于我们
         //关于我们

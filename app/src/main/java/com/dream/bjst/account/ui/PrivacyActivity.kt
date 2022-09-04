@@ -16,7 +16,7 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
-import com.dream.bjst.account.vm.PrivacyViewModel
+import com.dream.bjst.account.vm.AccountViewModel
 import com.dream.bjst.databinding.ActivityPrivacyBinding
 import com.ruffian.library.widget.RImageView
 import com.tcl.base.common.ui.BaseActivity
@@ -26,7 +26,7 @@ import com.tcl.base.common.ui.BaseActivity
  * 描述:衣带渐宽终不悔、为伊消得人憔悴
  * 作者:HeGuiCun Administrator
  */
-class PrivacyActivity :BaseActivity<PrivacyViewModel,ActivityPrivacyBinding>(){
+class PrivacyActivity :BaseActivity<AccountViewModel,ActivityPrivacyBinding>(){
     //弹窗控件
     var popupWindow: PopupWindow? = null
     var pwView: View? = null
@@ -171,10 +171,8 @@ class PrivacyActivity :BaseActivity<PrivacyViewModel,ActivityPrivacyBinding>(){
     }
 
     override fun initData() {
-        TODO("Not yet implemented")
     }
 
     override fun initDataOnResume() {
-        TODO("Not yet implemented")
     }
 }

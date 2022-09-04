@@ -1,16 +1,11 @@
 package com.dream.bjst.account.ui
 
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import com.blankj.utilcode.util.ColorUtils
-import com.dream.bjst.R
-import com.dream.bjst.account.vm.DeleteProgressViewModel
+import com.dream.bjst.account.vm.AccountViewModel
 import com.dream.bjst.databinding.ActivityDeleteProgressBinding
 import com.tcl.base.common.ui.BaseActivity
 
-class DeleteProgressActivity : BaseActivity<DeleteProgressViewModel, ActivityDeleteProgressBinding>() {
+class DeleteProgressActivity : BaseActivity<AccountViewModel, ActivityDeleteProgressBinding>() {
 
 
 

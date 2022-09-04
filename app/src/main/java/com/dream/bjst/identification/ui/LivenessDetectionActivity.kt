@@ -81,7 +81,7 @@ class LivenessDetectionActivity :
             val app = application as DFTransferResultInterface
             app?.result?.let {
                 Log.i(TAG, "onActivityResult: $it")
-                val imageResultArr = it.getLivenessImageResults()
+                val imageResultArr = it.livenessImageResults
                 if (imageResultArr != null) {
                     val size = imageResultArr.size;
                     if (size > 0) {
@@ -94,14 +94,14 @@ class LivenessDetectionActivity :
                             imageResult.image.size,
                             options
                         )
-                        Log.i(TAG, "onActivityResult:" + imageBitmap)
+                        Log.i(TAG, "onActivityResult:$imageBitmap")
                     }
                 }
                 // the encrypt buffer which is used to send to anti-hack API
-                val livenessEncryptResult = it.getLivenessEncryptResult()
-                Log.i(TAG, "onActivityResult:" + livenessEncryptResult)
+                val livenessEncryptResult = it.livenessEncryptResult
+                Log.i(TAG, "onActivityResult:$livenessEncryptResult")
                 val base64Str = Base64.encodeToString(livenessEncryptResult, Base64.DEFAULT)
-                Log.i(TAG, "onActivityResult:" + base64Str)
+                Log.i(TAG, "onActivityResult:$base64Str")
                 val param = GsonUtils.toJson(
                     DetectionPictureParam(
                         `92959791BD9993B6958791C2C0` = BitmapUtils.bitmapToBase64(imageBitmap),   //人脸图的base64

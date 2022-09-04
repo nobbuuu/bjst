@@ -19,7 +19,7 @@ fun <T : Activity> Fragment.ktStartActivity(
 }
 
 fun <T : Activity> Activity.ktStartActivity(
-    clazz: Class<Any>,
+    clazz: KClass<T>,
     block: (Intent.() -> Unit)? = null
 ) {
 //    ktSeriesClick {

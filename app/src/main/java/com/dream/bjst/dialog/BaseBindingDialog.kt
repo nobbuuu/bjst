@@ -12,7 +12,8 @@ import java.lang.reflect.ParameterizedType
 open class BaseBindingDialog<B : ViewBinding>(
     context: Context,
     val layoutId: Int = 0,
-    val styleRes: Int = R.style.ActionSheetDialogStyle
+    val styleRes: Int = R.style.ActionSheetDialogStyle,
+    val location:Int = Gravity.CENTER
 ) :
     Dialog(context, styleRes) {
     protected lateinit var mBinding: B
@@ -42,8 +43,8 @@ open class BaseBindingDialog<B : ViewBinding>(
             if (attr != null) {
                 attr.width = ViewGroup.LayoutParams.MATCH_PARENT
                 attr.height = ViewGroup.LayoutParams.WRAP_CONTENT
-                attr.gravity = Gravity.CENTER
-                window.setAttributes(attr)
+                attr.gravity = location
+                window.attributes = attr
             }
         }
     }

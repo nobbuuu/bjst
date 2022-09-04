@@ -178,7 +178,6 @@
         <!-- Dialog进入及退出动画 -->
         <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
 
-        <item name="android:backgroundDimAmount">0.4</item>
     </style>
 
     <!-- ActionSheet进出动画 -->

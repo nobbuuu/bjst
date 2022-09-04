@@ -6,7 +6,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import com.blankj.utilcode.util.GsonUtils
-import com.blankj.utilcode.util.LogUtils
 import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityCertificationIdcardBinding
 import com.dream.bjst.identification.bean.IdCardInfoParam

@@ -1,10 +1,8 @@
 package com.dream.bjst.identification.ui
 
 import android.os.Bundle
-import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.LogUtils
-import com.dream.bjst.databinding.ActivityContactsApproveBinding
 import com.dream.bjst.databinding.ActivityIdcardConfirmBinding
 import com.dream.bjst.identification.bean.IdCardConfirmParam
 import com.dream.bjst.identification.vm.IdentificationViewModel

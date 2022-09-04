@@ -99,7 +99,7 @@ class LivenessDetectionActivity :
                 }
                 // the encrypt buffer which is used to send to anti-hack API
                 val livenessEncryptResult = it.getLivenessEncryptResult()
-                Log.i(TAG, "onActivityResult: " + livenessEncryptResult)
+                Log.i(TAG, "onActivityResult:" + livenessEncryptResult)
                 val base64Str = Base64.encodeToString(livenessEncryptResult, Base64.DEFAULT)
                 Log.i(TAG, "onActivityResult:" + base64Str)
                 val param = GsonUtils.toJson(

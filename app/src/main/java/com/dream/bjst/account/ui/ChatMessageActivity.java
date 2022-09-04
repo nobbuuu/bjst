@@ -46,25 +46,6 @@ public class ChatMessageActivity extends BaseActivity {
 
     private void getInternetData() {
 
-//        RxHttp.postBody(Url.cnsTestUrl + "/core/app/fetchCustomerCareInfo&"+"token=poiuytrggeqwr22fbc")
-//                .asString()
-//
-//                .to(RxLife.to(this))
-//                        .subscribe(s->{
-//                            Log.i(TAG, "getInternetData: "+s);
-//                        },throwable ->{
-//
-//                        } );
-
-//        RxHttp.get(Url.cnsTestUrl + "/core/app/fetchCustomerCareInfo")
-//                .asString()
-//                .to(RxLife.to(this))  //The Activity destroys and automatically closes the request
-//                .subscribe(s -> {
-//                    //Default IO thread
-//                    Log.i(TAG, "getInternetData: " + s);
-//                }, throwable -> {
-//
-//                });
 
 
     }

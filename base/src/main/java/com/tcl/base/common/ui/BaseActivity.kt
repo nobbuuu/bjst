@@ -6,6 +6,8 @@ package com.tcl.base.common.ui
  * Drc:
  */
 import android.content.pm.ActivityInfo
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,7 +21,10 @@ import androidx.viewbinding.ViewBinding
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
-import com.blankj.utilcode.util.*
+import com.blankj.utilcode.util.ActivityUtils
+import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.ColorUtils
+import com.blankj.utilcode.util.LogUtils
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 import com.tcl.base.R
@@ -250,7 +255,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding>(var config: Ac
 //        return res
 //    }
 
-//    override fun attachBaseContext(newBase: Context) {
+    //    override fun attachBaseContext(newBase: Context) {
 //        newBase.resources.configuration.run {
 //            LogUtils.eTag("mars", "fontScale=$fontScale")
 //            Configuration().apply {
@@ -263,4 +268,39 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding>(var config: Ac
 //            super.attachBaseContext(newBase.createConfigurationContext(this))
 //        }
 //    }
+    open fun getVersionCode(): Int {
+
+        // 获取PackageManager的实例
+        val packagemanager = packageManager
+
+        // getPackageName()是你当前类的包名，0代表是获取版本信息
+        var packInfo: PackageInfo? = null
+        try {
+            packInfo = packagemanager.getPackageInfo(packageName, 0)
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+        return packInfo!!.versionCode
+    }
+
+    /**
+     * 获取包名
+     *
+     * @return
+     */
+    open fun getPackName(): String? {
+
+        // 获取PackageManager的实例
+        val packagemanager = packageManager
+
+        // getPackageName()是你当前类的包名，0代表是获取版本信息
+        var packinfo: PackageInfo? = null
+        try {
+            packinfo = packagemanager.getPackageInfo(this.packageName, 0)
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+        return packinfo!!.versionName
+    }
+
 }

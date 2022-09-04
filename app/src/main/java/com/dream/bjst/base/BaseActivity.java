@@ -264,7 +264,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 获取版本名
+     * 获取包名
      *
      * @return
      */

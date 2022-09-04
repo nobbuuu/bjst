@@ -24,7 +24,6 @@ class AccountDeleteActivity :BaseActivity<AccountDeleteModel,ActivityAccountDele
                 e.printStackTrace()
             }
             ktStartActivity(DeleteProgressActivity::class)
-            //startActivity(Intent(this@AccountDeleteActivity, DeleteProgressActivity::class.java))
         }.start()
         event()
     }

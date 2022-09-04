@@ -64,6 +64,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions{
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -129,6 +133,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.1'
     //活体检测
     implementation project(':DFLivenessLibrary')
+    implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.7.1'
 
     testImplementation Testing.jUnit
     androidTestImplementation Testing.androidJunit

@@ -1,10 +1,10 @@
 package com.dream.bjst.identification.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import com.didichuxing.doraemonkit.util.GsonUtils
 import com.dream.bjst.databinding.ActivityLivenessDetectionBinding
@@ -12,14 +12,14 @@ import com.dream.bjst.identification.bean.DetectionPictureParam
 import com.dream.bjst.identification.vm.IdentificationViewModel
 import com.dream.bjst.utils.BitmapUtils
 import com.dream.bjst.utils.DetectionFacialUtils
-import com.dream.bjst.utils.FileUtils
+
 import com.liveness.dflivenesslibrary.DFTransferResultInterface
 import com.liveness.dflivenesslibrary.liveness.DFSilentLivenessActivity
 import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseActivity
-import com.tcl.base.kt.ktToastShow
-import java.io.*
-
+import android.util.Base64
+import com.didichuxing.doraemonkit.util.LogUtils
+import com.tcl.base.kt.ktStartActivity
 
 class LivenessDetectionActivity :
     BaseActivity<IdentificationViewModel, ActivityLivenessDetectionBinding>() {
@@ -60,35 +60,22 @@ class LivenessDetectionActivity :
     override fun startObserve() {
         super.startObserve()
         viewModel.detectPictureResult.observe(this) {
+            if (it.`869187819880`) {
+                ktStartActivity(ApproveContactsActivity::class)
+            } else {
+                //人脸对比失败 请重试
 
+            }
         }
 
     }
 
 
-
-    /**
-     * 将Bitmap类型的图片转化成file类型，便于上传到服务器
-     */
-    fun saveImageFile(imageBitmap: Bitmap, path:String,fileName: String): File {
-
-        var dirFile = File(path)
-        if (!dirFile.exists()) {
-            dirFile.mkdir()
-        }
-        var imageFile = File(fileName)
-        if (!imageFile.exists()){
-            imageFile.mkdir()
-        }
-        var bos = BufferedOutputStream(FileOutputStream(imageFile))
-        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 80, bos)
-        bos.flush()
-        bos.close()
-        return imageFile
-    }
-
+    @SuppressLint("NewApi")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        var imageBitmap: Bitmap? = null
+
 //        "有返回结果".ktToastShow()
         if (resultCode == RESULT_OK) {
             val app = application as DFTransferResultInterface
@@ -101,38 +88,35 @@ class LivenessDetectionActivity :
                         val imageResult = imageResultArr[0];
                         val options = BitmapFactory.Options()
                         options.inPreferredConfig = Bitmap.Config.ARGB_8888
-                        val imageBitmap = BitmapFactory.decodeByteArray(
+                        imageBitmap = BitmapFactory.decodeByteArray(
                             imageResult.image,
                             0,
                             imageResult.image.size,
                             options
                         )
-                        Log.i(TAG, "onActivityResult:"+imageBitmap)
-                        var imageFile = saveImageFile(imageBitmap, "/detect/sdcard/pic/detectImageIcon.jpg","detectImageIcon")
-
-                        Log.i(TAG, "onActivityResult:" + imageFile)
-//                        viewModel.submitDetectionPicture(
-//                            GsonUtils.toJson(
-//                                DetectionPictureParam(
-//                                    `92959791BD9993B6958791C2C0` = BitmapUtils.bitmapToBase64(imageBitmap),   //人脸图的base64
-//                                    //`989D8291BA918787B29D9891B6958791C2C0` = FileUtils.encodeFileToBase64("") //文件base64
-//                                )
-//                            )
-//
-//                        )
-
-
-
+                        Log.i(TAG, "onActivityResult:" + imageBitmap)
                     }
                 }
                 // the encrypt buffer which is used to send to anti-hack API
                 val livenessEncryptResult = it.getLivenessEncryptResult()
-
-
+                Log.i(TAG, "onActivityResult: " + livenessEncryptResult)
+                val base64Str = Base64.encodeToString(livenessEncryptResult, Base64.DEFAULT)
+                Log.i(TAG, "onActivityResult:" + base64Str)
+                val param = GsonUtils.toJson(
+                    DetectionPictureParam(
+                        `92959791BD9993B6958791C2C0` = BitmapUtils.bitmapToBase64(imageBitmap),   //人脸图的base64
+                        `989D8291BA918787B29D9891B6958791C2C0` = base64Str //人脸图加密文件base64
+                    )
+                )
+                LogUtils.dTag("paramJson",param)
+                viewModel.submitDetectionPicture(param)
             }
+
+
         } else {
             Log.e("onActivityResult", "silent liveness cancel，error code:$resultCode")
         }
+
     }
 
     override fun onRequestPermissionsResult(

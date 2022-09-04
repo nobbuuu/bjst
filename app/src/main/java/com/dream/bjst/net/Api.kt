@@ -4,7 +4,6 @@ import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.bean.BaseParamBean
 import com.dream.bjst.bean.LoginBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
-import com.dream.bjst.identification.bean.DetectionPictureBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
 import rxhttp.wrapper.param.RxHttp
@@ -115,11 +114,11 @@ object Api {
      * 上传人脸识别的图片
      */
 
-    suspend fun submitPictureInfo(param: String):DetectionPictureBean {
+    suspend fun submitPictureInfo(param: String):ConfirmResultBean {
         ///core/app/fetchLiveNessCompany
-          return RxHttp.postJson("DB978187809B999186DB9F8D97DB979C91979FB89D8291BA918787B59A90B2959791B79B9984958691B68DB597979581809C")
+          return RxHttp.postJson("/DB978187809B999186DB9F8D97DB979C91979FB89D8291BA918787B59A90B2959791B79B9984958691B68DB597979581809C")
               .addAll(param)
-              .toResponse<DetectionPictureBean>()
+              .toResponse<ConfirmResultBean>()
               .await()
 
     }

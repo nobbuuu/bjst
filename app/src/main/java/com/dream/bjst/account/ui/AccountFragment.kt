@@ -36,59 +36,77 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
         }
         //关于我们
 
-        mBinding.accountAboutUs.setOnClickListener {
-            startActivity(
-                Intent(
-                    activity,
-                    AboutUsActivity::class.java
-                )
-            )
+//        mBinding.accountAboutUs.setOnClickListener {
+//            startActivity(
+//                Intent(
+//                    activity,
+//                    AboutUsActivity::class.java
+//                )
+//            )
+//        }
+        mBinding.accountAboutUs.ktClick {
+            ktStartActivity(AboutUsActivity::class)
         }
 
         //删除数据
-        mBinding.accountDeleteIndividualData.setOnClickListener {
-            startActivity(
-                Intent(
-                    activity,
-                    AccountDeleteActivity::class.java
-                )
-            )
+//        mBinding.accountDeleteIndividualData.setOnClickListener {
+//            startActivity(
+//                Intent(
+//                    activity,
+//                    AccountDeleteActivity::class.java
+//                )
+//            )
+//        }
+        mBinding.accountDeleteIndividualData.ktClick {
+            ktStartActivity( AccountDeleteActivity::class)
         }
 
         //隐私界面
-        mBinding.accountPrivacyPolice.setOnClickListener {
-            startActivity(
-                Intent(
-                    activity,
-                    PrivacyActivity::class.java
-                )
-            )
+//        mBinding.accountPrivacyPolice.setOnClickListener {
+//            startActivity(
+//                Intent(
+//                    activity,
+//                    PrivacyActivity::class.java
+//                )
+//            )
+//        }
+        mBinding.accountPrivacyPolice.ktClick {
+            ktStartActivity(PrivacyActivity::class)
         }
 
         //顾客聊天服务
-        mBinding.accountChatService.setOnClickListener {
-            startActivity(
-                Intent(
-                    activity,
-                    ChatMessageActivity::class.java
-                )
-            )
+//        mBinding.accountChatService.setOnClickListener {
+//            startActivity(
+//                Intent(
+//                    activity,
+//                    ChatMessageActivity::class.java
+//                )
+//            )
+//        }
+        mBinding.accountChatService.ktClick {
+            ktStartActivity(ChatMessageActivity::class)
         }
-
         //进入贷款记录界面
-        mBinding.accountLoanRecord.setOnClickListener {
-            startActivity(
-                Intent(
-                    activity,
-                    LoanRecordsActivity::class.java
-                )
-            )
+//        mBinding.accountLoanRecord.setOnClickListener {
+//            startActivity(
+//                Intent(
+//                    activity,
+//                    LoanRecordsActivity::class.java
+//                )
+//            )
+//        }
+        mBinding.accountLoanRecord.ktClick {
+            ktStartActivity(LoanRecordsActivity::class)
+        }
+        //进入认证界面
+//        mBinding.accountReEnterRv.setOnClickListener {
+//            startActivity(Intent(activity, ApproveMainActivity::class.java))
+//        }
+
+        mBinding.accountReEnterRv.ktClick {
+            ktStartActivity(ApproveMainActivity::class)
         }
 
-        //进入认证界面
-        mBinding.accountReEnterRv.setOnClickListener {
-            startActivity(Intent(activity, ApproveMainActivity::class.java))
-        }
     }
 
 }

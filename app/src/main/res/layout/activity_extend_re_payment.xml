@@ -12,10 +12,6 @@
         android:orientation="vertical"
         tools:context=".repayment.ui.ExtendRePaymentActivity">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_44"
-            android:background="@color/white" />
 
         <com.hjq.bar.TitleBar
             android:id="@+id/title_bar"

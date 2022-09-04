@@ -39,7 +39,7 @@ class IdentificationViewModel :BaseViewModel() {
             idCardInfo.postValue(result)
         })
     }
-    fun fetchCustomerKycStatus(){
+    fun  fetchCustomerKycStatus(){
         rxLaunchUI({
             val result = Api.fetchCustomerKycStatus()
             idCardStatus.postValue(result)

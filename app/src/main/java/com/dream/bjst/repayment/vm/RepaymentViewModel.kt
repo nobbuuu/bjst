@@ -7,5 +7,6 @@ import com.tcl.base.common.BaseViewModel
  *@date   2022/1/26
  *description
  */
-class SquareViewModel : BaseViewModel() {
+class RepaymentViewModel : BaseViewModel() {
+
 }

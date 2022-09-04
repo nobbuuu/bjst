@@ -2,13 +2,12 @@ package com.dream.bjst.account.ui
 
 import android.os.Bundle
 import android.view.View
-import com.dream.bjst.account.vm.AccountSettingModel
+import com.dream.bjst.account.vm.AccountViewModel
 import com.dream.bjst.databinding.ActivityAccountSettingBinding
 import com.tcl.base.common.ui.BaseActivity
 
-class AccountSettingActivity :BaseActivity<AccountSettingModel,ActivityAccountSettingBinding>() {
+class AccountSettingActivity :BaseActivity<AccountViewModel,ActivityAccountSettingBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
-        TODO("Not yet implemented")
     }
 
     override fun initData() {
@@ -22,6 +21,5 @@ class AccountSettingActivity :BaseActivity<AccountSettingModel,ActivityAccountSe
     }
 
     override fun initDataOnResume() {
-        TODO("Not yet implemented")
     }
 }

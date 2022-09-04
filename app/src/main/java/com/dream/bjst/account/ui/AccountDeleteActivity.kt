@@ -1,19 +1,15 @@
 package com.dream.bjst.account.ui
 
-import android.content.Intent
 import android.os.Bundle
-import com.dream.bjst.account.vm.AccountDeleteModel
+import com.dream.bjst.account.vm.AccountViewModel
 import com.dream.bjst.databinding.ActivityAccountDeleteBinding
-import com.hjq.bar.TitleBar
-import com.ruffian.library.widget.RTextView
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 
-class AccountDeleteActivity :BaseActivity<AccountDeleteModel,ActivityAccountDeleteBinding>() {
+class AccountDeleteActivity :BaseActivity<AccountViewModel,ActivityAccountDeleteBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
-        TODO("Not yet implemented")
     }
 
     override fun initData() {
@@ -29,7 +25,6 @@ class AccountDeleteActivity :BaseActivity<AccountDeleteModel,ActivityAccountDele
     }
 
     override fun initDataOnResume() {
-        TODO("Not yet implemented")
     }
 
     /**

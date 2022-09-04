@@ -8,15 +8,10 @@
     android:orientation="vertical"
     tools:context=".account.ui.ChatMessageActivity">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_44"
-        android:background="@color/white" />
-
     <com.hjq.bar.TitleBar
         android:id="@+id/account_chat_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_25"
+        android:layout_height="@dimen/dp_44"
         app:title="Customer Care"
         android:background="@color/white"
         app:titleSize="@dimen/sp_18" />

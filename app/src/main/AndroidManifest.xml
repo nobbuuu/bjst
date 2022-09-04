@@ -44,9 +44,9 @@
         <activity
             android:name=".account.ui.AccountSettingActivity"
             android:exported="false" />
-        <activity
-            android:name=".main.MainActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".main.MainActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".login.LoginActivity"
             android:exported="false" />
@@ -91,6 +91,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".main.MainActivity"/>
         <activity android:name=".identification.ui.ApproveIdCardConfirmActivity"/>
         <activity android:name=".identification.ui.ApproveBankCardActivity"/>
     </application>

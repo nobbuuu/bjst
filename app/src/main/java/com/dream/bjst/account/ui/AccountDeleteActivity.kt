@@ -7,10 +7,11 @@ import com.dream.bjst.databinding.ActivityAccountDeleteBinding
 import com.hjq.bar.TitleBar
 import com.ruffian.library.widget.RTextView
 import com.tcl.base.common.ui.BaseActivity
+import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.ktStartActivity
 
 class AccountDeleteActivity :BaseActivity<AccountDeleteModel,ActivityAccountDeleteBinding>() {
-    var deleteTitle: TitleBar? = null
-    var deleteContent: RTextView? = null
+
     override fun initView(savedInstanceState: Bundle?) {
         TODO("Not yet implemented")
     }
@@ -22,7 +23,8 @@ class AccountDeleteActivity :BaseActivity<AccountDeleteModel,ActivityAccountDele
             } catch (e: InterruptedException) {
                 e.printStackTrace()
             }
-            startActivity(Intent(this@AccountDeleteActivity, DeleteProgressActivity::class.java))
+            ktStartActivity(DeleteProgressActivity::class)
+            //startActivity(Intent(this@AccountDeleteActivity, DeleteProgressActivity::class.java))
         }.start()
         event()
     }
@@ -35,16 +37,13 @@ class AccountDeleteActivity :BaseActivity<AccountDeleteModel,ActivityAccountDele
      * 自定义点击方法
      */
     private fun event() {
-        deleteTitle!!.leftView.setOnClickListener { onBackPressed() }
+        mBinding.accountDeleteTitle.leftView.ktClick {
+            onBackPressed()
+        }
 
         //点击文案删除数据
-        deleteContent!!.setOnClickListener {
-            startActivity(
-                Intent(
-                    this@AccountDeleteActivity,
-                    DeleteProgressActivity::class.java
-                )
-            )
+        mBinding.deleteContent.ktClick {
+            ktStartActivity(DeleteProgressActivity::class)
         }
     }
 }

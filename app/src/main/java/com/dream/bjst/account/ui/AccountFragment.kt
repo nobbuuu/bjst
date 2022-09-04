@@ -35,7 +35,7 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
             ktStartActivity(AccountSettingActivity::class)
         }
         //关于我们
-        //关于我们
+
         mBinding.accountAboutUs.setOnClickListener {
             startActivity(
                 Intent(
@@ -44,7 +44,7 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
                 )
             )
         }
-        //删除数据
+
         //删除数据
         mBinding.accountDeleteIndividualData.setOnClickListener {
             startActivity(
@@ -54,7 +54,7 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
                 )
             )
         }
-        //隐私界面
+
         //隐私界面
         mBinding.accountPrivacyPolice.setOnClickListener {
             startActivity(
@@ -64,7 +64,7 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
                 )
             )
         }
-        //顾客聊天服务
+
         //顾客聊天服务
         mBinding.accountChatService.setOnClickListener {
             startActivity(
@@ -74,7 +74,7 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
                 )
             )
         }
-        //进入贷款记录界面
+
         //进入贷款记录界面
         mBinding.accountLoanRecord.setOnClickListener {
             startActivity(
@@ -84,7 +84,7 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
                 )
             )
         }
-        //进入认证界面
+
         //进入认证界面
         mBinding.accountReEnterRv.setOnClickListener {
             startActivity(Intent(activity, ApproveMainActivity::class.java))

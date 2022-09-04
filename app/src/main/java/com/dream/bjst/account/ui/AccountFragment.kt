@@ -58,7 +58,7 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
 //            )
 //        }
         mBinding.accountDeleteIndividualData.ktClick {
-            ktStartActivity( AccountDeleteActivity::class)
+            ktStartActivity(AccountDeleteActivity::class)
         }
 
         //隐私界面

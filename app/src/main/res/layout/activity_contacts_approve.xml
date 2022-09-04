@@ -31,6 +31,7 @@
             android:textSize="15sp" />
 
         <com.dream.bjst.widget.StartEndLayout
+            android:id="@+id/relationLay1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endText="Selection relation"
@@ -42,6 +43,7 @@
             app:startTextSize="15sp" />
 
         <com.dream.bjst.widget.StartEndLayout
+            android:id="@+id/phone1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endText="Select contact person"
@@ -60,6 +62,7 @@
             android:textSize="15sp" />
 
         <com.dream.bjst.widget.StartEndLayout
+            android:id="@+id/relationLay2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endText="Selection relation"
@@ -71,6 +74,7 @@
             app:startTextSize="15sp" />
 
         <com.dream.bjst.widget.StartEndLayout
+            android:id="@+id/phone2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endText="Select contact person"

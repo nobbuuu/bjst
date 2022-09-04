@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import androidx.navigation.Navigation
-import cn.com.chinatelecom.account.nis.api.CtAuth.mContext
+import com.blankj.utilcode.util.BarUtils
 import com.dream.bjst.R
 import com.dream.bjst.bean.OverduedBean
 import com.dream.bjst.bean.RepaymentBean
@@ -15,6 +15,7 @@ import com.dream.bjst.repayment.adapter.RePaymentAdapter
 import com.dream.bjst.repayment.adapter.RePaymentInAdapter
 import com.dream.bjst.repayment.vm.RepaymentViewModel
 import com.tcl.base.common.ui.BaseFragment
+
 
 /**
  * 创建日期：2022-09-05 on 0:50
@@ -26,9 +27,8 @@ class RepaymentFragment:BaseFragment<RepaymentViewModel,FragmentRepaymentBinding
     var mRePaymentInAdapter: RePaymentInAdapter? = null
     var mList: List<RepaymentBean>? = null
 
-
     override fun initView(savedInstanceState: Bundle?) {
-
+        BarUtils.addMarginTopEqualStatusBarHeight(mBinding.repayment)
     }
 
     override fun initDataOnViewCreated() {

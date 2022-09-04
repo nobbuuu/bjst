@@ -6,15 +6,13 @@ import com.dream.bjst.databinding.ActivityChatMessageBinding
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 
-class ChatMessageActivity:BaseActivity<AccountViewModel,ActivityChatMessageBinding>() {
+class ChatMessageActivity : BaseActivity<AccountViewModel, ActivityChatMessageBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.accountChatTitle.getLeftView().ktClick {
             onBackPressed()
         }
-
     }
-
 
 
     override fun initData() {

@@ -15,9 +15,8 @@ import com.tcl.base.kt.ktStartActivity
 
 class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>() {
 
-    var topLay: ConstraintLayout? = null
     override fun initView(savedInstanceState: Bundle?) {
-        adjustWindow(requireActivity(), R.color.color_F8FFF0, topLay)
+        adjustWindow(requireActivity(), R.color.color_F8FFF0, mBinding.topLay)
     }
 
     override fun initDataOnViewCreated() {

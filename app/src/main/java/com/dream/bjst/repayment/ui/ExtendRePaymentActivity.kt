@@ -19,10 +19,8 @@ class ExtendRePaymentActivity:BaseActivity<RepaymentViewModel,ActivityExtendRePa
     }
 
     override fun initData() {
-        TODO("Not yet implemented")
     }
 
     override fun initDataOnResume() {
-        TODO("Not yet implemented")
     }
 }

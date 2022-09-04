@@ -27,14 +27,15 @@ import com.tcl.base.utils.PhotoUtils.getPath
  * 作者:HeGuiCun Administrator
  */
 class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentDetailBinding>() {
-    val mPhotoManager: PhotoManager? = null
+    var mPhotoManager: PhotoManager? = null
 
     //输入框里面的内容
-    var temp: CharSequence? = null
+    var temp: CharSequence = ""
     var startEdit = 0
     var endEdit = 0
     override fun initView(savedInstanceState: Bundle?) {
         event()
+        mPhotoManager = PhotoManager(this)
         mBinding.digitalEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
@@ -48,13 +49,13 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
                 startEdit =  mBinding.digitalEt.selectionStart
                 endEdit =  mBinding.digitalEt.selectionEnd
                 //mNumTextView.setText(String.valueOf(temp.length()));
-                if (temp!!.length > 12) {
+                if (temp.length > 12) {
                     s.delete(startEdit - 1, endEdit)
                     val tempSelection = startEdit
                     mBinding.digitalEt.setText(s)
                     mBinding.digitalEt.setSelection(tempSelection)
                     ToastUtils.showShort("你输入的字已经超过了！")
-                } else if (temp!!.length < 12) {
+                } else if (temp.length < 12) {
                     mBinding.notionTv.visibility = View.VISIBLE
                     mBinding.notionTv.text = "Enter the correct No."
                 } else {
@@ -88,11 +89,11 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
                 PhotoSelectDialog(this@RepaymentDetailActivity, PhotoSelectDialog.PICK_AVATAR)
             photoSelectDialog.show()
             photoSelectDialog.mSelectPicture.setOnClickListener {
-                mPhotoManager!!.checkPermissionAndChosePhoto()
+                mPhotoManager?.checkPermissionAndChosePhoto()
                 photoSelectDialog.dismiss()
             }
             photoSelectDialog.mSelectCamera.setOnClickListener {
-                mPhotoManager!!.checkPermissionAndCamera()
+                mPhotoManager?.checkPermissionAndCamera()
                 photoSelectDialog.dismiss()
             }
         })
@@ -123,7 +124,7 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED
             ) {
                 //允许权限，有调起相机拍照。
-                mPhotoManager!!.openCamera()
+                mPhotoManager?.openCamera()
             } else {
                 //拒绝权限，弹出提示框。
                 ToastUtils.showShort("The photo permission is denied")
@@ -134,7 +135,7 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED
             ) {
                 //允许权限
-                mPhotoManager!!.goPhotoAlbum()
+                mPhotoManager?.goPhotoAlbum()
             } else {
                 //拒绝权限，弹出提示框。
                 ToastUtils.showShort("The storage permission is denied")
@@ -146,22 +147,12 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             if (requestCode == Constant.CAMERA_REQUEST_CODE) {
-                if (mPhotoManager!!.isAndroidQ) {
-                    // Android 10 使用图片uri加载
-                    val bitmap = mPhotoManager.getBitmapFromUri(mPhotoManager.mCameraUri)
-                    bitmap?.let { upLoadFile(it) }
-                } else {
-                    // 使用图片路径加载
-                    val rotateBitmap = mPhotoManager.rotateBitmap(
-                        BitmapFactory.decodeFile(
-                            mPhotoManager.mCameraImagePath
-                        )
-                    )
-                    upLoadFile(rotateBitmap)
+                mPhotoManager?.getBitmapWithCamara()?.let {
+                    upLoadFile(it)
                 }
             }
             if (requestCode == Constant.CHOOSE_PHOTO_CODE) {
-                val result = data!!.data
+                val result = data?.data
                 if (result != null) {
                     val path = getPath(this, result)
                     val rotateBitmap = BitmapFactory.decodeFile(path)
@@ -171,16 +162,18 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
         }
     }
 
-    private fun upLoadFile(bitmap: Bitmap?) {
-        val rotateBitmap = mPhotoManager!!.rotateBitmap(bitmap!!)
+    private fun upLoadFile(bitmap: Bitmap) {
+        val rotateBitmap = mPhotoManager?.rotateBitmap(bitmap)
         //显示图片
         mBinding.addPictureCameraIv.setImageBitmap(rotateBitmap)
-        val file = bitmap2File(
-            rotateBitmap!!,
-            filesDir.path,
-            "tempAvatar.png"
-        )
-        //上传图片
+        rotateBitmap?.let {
+            val file = bitmap2File(
+                it,
+                filesDir.path,
+                "tempAvatar.png"
+            )
+            //上传图片
+        }
     }
 
     override fun initData() {

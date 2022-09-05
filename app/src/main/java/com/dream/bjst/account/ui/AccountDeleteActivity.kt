@@ -39,15 +39,6 @@ class AccountDeleteActivity :BaseActivity<AccountViewModel,ActivityAccountDelete
         LogUtils.dTag("paramJson",param)
         viewModel.accountDeleteData(param)
 
-
-        Thread {
-            try {
-                Thread.sleep(1000)
-            } catch (e: InterruptedException) {
-                e.printStackTrace()
-            }
-            ktStartActivity(DeleteProgressActivity::class)
-        }.start()
         event()
     }
 

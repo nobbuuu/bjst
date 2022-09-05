@@ -1,11 +1,13 @@
 package com.dream.bjst.identification.ui
 
 import android.os.Bundle
+import com.dream.bjst.account.ui.AccountDeleteActivity
 import com.dream.bjst.databinding.ActivityContactsApproveBinding
 import com.dream.bjst.dialog.RelationDialog
 import com.dream.bjst.identification.vm.IdentificationViewModel
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.ktStartActivity
 
 class ApproveContactsActivity :
     BaseActivity<IdentificationViewModel, ActivityContactsApproveBinding>() {
@@ -22,6 +24,7 @@ class ApproveContactsActivity :
     }
 
     override fun initData() {
+        event()
         mBinding.relationLay1.ktClick {
             curClick = 1
             relationDialog.show()
@@ -29,6 +32,15 @@ class ApproveContactsActivity :
         mBinding.relationLay2.ktClick {
             curClick = 2
             relationDialog.show()
+        }
+    }
+
+    /**
+     * 测试用
+     */
+    private fun event() {
+        mBinding.sureBtn.ktClick {
+            ktStartActivity(AccountDeleteActivity::class)
         }
     }
 

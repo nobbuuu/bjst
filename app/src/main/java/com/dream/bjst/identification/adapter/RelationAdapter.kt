@@ -22,7 +22,9 @@ class RelationAdapter(val block: ((String) -> Unit)? = null) :
                 it.isCheck = it == item
             }
             notifyDataSetChanged()
-            block?.invoke(item.relation)
+            endIv.post {
+                block?.invoke(item.relation)
+            }
         }
     }
 }

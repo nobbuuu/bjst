@@ -2,6 +2,8 @@ package com.dream.bjst.dialog
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import androidx.databinding.ViewDataBinding
@@ -13,7 +15,7 @@ open class BaseBindingDialog<B : ViewBinding>(
     context: Context,
     val layoutId: Int = 0,
     val styleRes: Int = R.style.ActionSheetDialogStyle,
-    val location:Int = Gravity.CENTER
+    val gravity: Int = Gravity.BOTTOM
 ) :
     Dialog(context, styleRes) {
     protected lateinit var mBinding: B
@@ -37,15 +39,13 @@ open class BaseBindingDialog<B : ViewBinding>(
                 }
             }
         } else throw IllegalArgumentException("Generic error")
-        val window: Window? = window
-        if (window != null) {
-            val attr: WindowManager.LayoutParams = window.attributes
-            if (attr != null) {
-                attr.width = ViewGroup.LayoutParams.MATCH_PARENT
-                attr.height = ViewGroup.LayoutParams.WRAP_CONTENT
-                attr.gravity = location
-                window.attributes = attr
-            }
+        window?.apply {
+            setBackgroundDrawableResource(R.color.transparent)
+            setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT
+            )
+            setGravity(gravity)
         }
     }
 }

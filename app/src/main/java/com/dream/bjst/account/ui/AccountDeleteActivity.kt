@@ -32,7 +32,7 @@ class AccountDeleteActivity :BaseActivity<AccountViewModel,ActivityAccountDelete
         var param=GsonUtils.toJson(
             AccountDeleteParam(
                 `958484A29186879D9B9A` = BuildConfig.VERSION_NAME,
-                `978187809B999186BD90` = UserManager.getUserNo()as Int,
+                `978187809B999186BD90` = UserManager.getUserNo() as Int,
                 `9995869F9180BD90` =10022
             )
         )

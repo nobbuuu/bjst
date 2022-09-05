@@ -125,6 +125,19 @@ object Api {
     }
 
     /**
+     * 提交紧急联系人
+     */
+
+    suspend fun pushUrgencyContact(param: String): Boolean {
+        //customer/extension/pushUrgencyContact
+        return RxHttp.postJson("/DB978187809B999186DB918C80919A879D9B9ADB8481879CA18693919A978DB79B9A80959780")
+            .addAll(param)
+            .toResponse<Boolean>()
+            .await()
+
+    }
+
+    /**
      * 请求删除用户数据
      */
     suspend fun deleteAccountData(param: String): AccountDeleteBean {

@@ -20,6 +20,7 @@ object Constant {
     const val PERMISSION_STORAGE_REQUEST_CODE = 0x00000012
     const val CAMERA_REQUEST_CODE = 0x00000013
     const val CHOOSE_PHOTO_CODE = 0x00000014
+    const val CHOOSE_CONTACTS_CODE = 0x00000015
 
 }
 

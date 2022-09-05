@@ -12,6 +12,14 @@ class AccountDeleteActivity :BaseActivity<AccountViewModel,ActivityAccountDelete
     override fun initView(savedInstanceState: Bundle?) {
     }
 
+
+    override fun startObserve() {
+        super.startObserve()
+        viewModel.accountDeleteResult.observe(this){
+
+        }
+    }
+
     override fun initData() {
         Thread {
             try {
@@ -25,6 +33,7 @@ class AccountDeleteActivity :BaseActivity<AccountViewModel,ActivityAccountDelete
     }
 
     override fun initDataOnResume() {
+
     }
 
     /**

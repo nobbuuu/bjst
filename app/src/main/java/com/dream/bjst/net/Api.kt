@@ -149,6 +149,16 @@ object Api {
     }
 
     /**
+     * 提交紧急联系人
+     */
+    suspend fun fetchBanks(): Boolean {
+        //customer/bank/fetchBanks
+        return RxHttp.postJson("/DB978187809B999186DB96959A9FDB929180979CB6959A9F87")
+            .toBoolean()
+            .await()
+    }
+
+    /**
      * 请求删除用户数据
      */
     suspend fun deleteAccountData(param: String): AccountDeleteBean {

@@ -72,7 +72,7 @@ open class ResponseParser<T> : AbstractParser<T> {
                     )
                 }
                 else ->
-                    throw ParseException("-1010", "数据解析失败,请稍后再试", response)//走了这里
+                    throw ParseException("-1010", "数据解析失败,请稍后再试", response)
             }
         } else {
             when {

@@ -34,7 +34,6 @@ class ApproveContactsActivity :
     }
 
     override fun initData() {
-        event()
         mBinding.relationLay1.ktClick {
             relationType = 1
             relationDialog.show()
@@ -88,15 +87,6 @@ class ApproveContactsActivity :
         startActivityForResult(intent, 333)
     }
 
-    /**
-     * 测试用
-     */
-    private fun event() {
-        mBinding.sureBtn.ktClick {
-            ktStartActivity(AccountDeleteActivity::class)
-        }
-    }
-
     override fun initDataOnResume() {
     }
 
@@ -106,7 +96,7 @@ class ApproveContactsActivity :
             if (it){
                 ktStartActivity(ApproveBankCardActivity::class)
             }else{
-                "operation failed,please try again".ktToastShow()//走了这里
+                "operation failed,please try again".ktToastShow()
             }
         }
     }
@@ -128,10 +118,8 @@ class ApproveContactsActivity :
                         )
                         cursor?.let {
                             while (cursor.moveToNext()) {
-                                val name =
-                                    cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
-                                val phone =
-                                    cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                                val name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
+                                val phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
                                 if (phoneType == 1) {
                                     param.`979B9A80959780C5BA959991` = name
                                     param.`979B9A80959780C5B99B969D9891` = phone

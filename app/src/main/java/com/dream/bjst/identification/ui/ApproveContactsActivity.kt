@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract
 import com.blankj.utilcode.util.GsonUtils
+import com.dream.bjst.account.ui.AccountDeleteActivity
 import com.dream.bjst.databinding.ActivityContactsApproveBinding
 import com.dream.bjst.dialog.RelationDialog
 import com.dream.bjst.identification.bean.ContactsParam
@@ -33,6 +34,7 @@ class ApproveContactsActivity :
     }
 
     override fun initData() {
+        event()
         mBinding.relationLay1.ktClick {
             relationType = 1
             relationDialog.show()
@@ -84,6 +86,15 @@ class ApproveContactsActivity :
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
         startActivityForResult(intent, 333)
+    }
+
+    /**
+     * 测试用
+     */
+    private fun event() {
+        mBinding.sureBtn.ktClick {
+            ktStartActivity(AccountDeleteActivity::class)
+        }
     }
 
     override fun initDataOnResume() {

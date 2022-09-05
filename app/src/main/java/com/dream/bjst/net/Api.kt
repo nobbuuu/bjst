@@ -1,5 +1,6 @@
 package com.dream.bjst.net
 
+import android.util.Log
 import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.account.bean.AccountDeleteBean
 import com.dream.bjst.bean.BaseParamBean
@@ -7,8 +8,20 @@ import com.dream.bjst.bean.LoginBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
+import com.dream.bjst.net.parser.JsonUtil
+import com.dream.bjst.net.parser.Response
+import com.dream.bjst.other.toBoolean
+import com.google.gson.reflect.TypeToken
+import com.tcl.base.rxnetword.EncryptUtil
+import com.tcl.base.rxnetword.parser.BaseEncryptResponse
+import rxhttp.map
+import rxhttp.toClass
+import rxhttp.toStr
+import rxhttp.wrapper.entity.ParameterizedTypeImpl
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse
+import rxhttp.wrapper.utils.convert
+import java.lang.reflect.Type
 
 
 /**
@@ -127,14 +140,12 @@ object Api {
     /**
      * 提交紧急联系人
      */
-
     suspend fun pushUrgencyContact(param: String): Boolean {
         //customer/extension/pushUrgencyContact
         return RxHttp.postJson("/DB978187809B999186DB918C80919A879D9B9ADB8481879CA18693919A978DB79B9A80959780")
             .addAll(param)
-            .toResponse<Boolean>()
+            .toBoolean()
             .await()
-
     }
 
     /**

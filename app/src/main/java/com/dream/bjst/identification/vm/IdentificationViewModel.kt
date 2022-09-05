@@ -1,10 +1,10 @@
 package com.dream.bjst.identification.vm
 
-import com.blankj.utilcode.util.Utils
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
 import com.dream.bjst.net.Api
+import com.dream.bjst.net.parser.Response
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
 
@@ -70,7 +70,7 @@ class IdentificationViewModel :BaseViewModel() {
 
     fun pushUrgencyContact(param: String){
         rxLaunchUI({
-            var result=Api.pushUrgencyContact(param)
+            var result = Api.pushUrgencyContact(param)
             pushContacts.postValue(result)
         })
     }

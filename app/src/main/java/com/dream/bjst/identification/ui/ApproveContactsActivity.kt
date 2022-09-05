@@ -106,7 +106,7 @@ class ApproveContactsActivity :
             if (it){
                 ktStartActivity(ApproveBankCardActivity::class)
             }else{
-                "operation failed,please try again".ktToastShow()
+                "operation failed,please try again".ktToastShow()//走了这里
             }
         }
     }

@@ -16,7 +16,6 @@ import rxhttp.wrapper.exception.ParseException
 import rxhttp.wrapper.parse.AbstractParser
 import rxhttp.wrapper.utils.GsonUtil
 import rxhttp.wrapper.utils.convert
-import rxhttp.wrapper.utils.convertTo
 import java.io.IOException
 import java.lang.reflect.Type
 
@@ -26,7 +25,7 @@ import java.lang.reflect.Type
  * time : 2020/11/9 16:52
  */
 @Parser(name = "Response", wrappers = [PageList::class, List::class])
-open class ResponseParser<T> : AbstractParser<T> {
+open class ResponseParserX<T> : AbstractParser<T> {
     /**
      * 此构造方法适用于任意Class对象，但更多用于带泛型的Class对象，如：List<Student>
      *
@@ -49,12 +48,14 @@ open class ResponseParser<T> : AbstractParser<T> {
 
     @Throws(IOException::class)
     override fun onParse(response: okhttp3.Response): T {
+
         val strType: Type = ParameterizedTypeImpl[String::class.java, mType]
         val originalStr: String = response.convert(strType)
         val encryptResponse = GsonUtils.fromJson(originalStr, BaseEncryptResponse::class.java)
         val result = EncryptUtil.decode(encryptResponse?.poiuytrggeqwr22fbc)
-        Log.d("http", "result = $result")
         val  type: Type = ParameterizedTypeImpl[Response::class.java, mType] //获取泛型类型
+
+        Log.d("http", "result = $result")
         val responseData =JsonUtil.getObject<Response<T>>(result, type)
 
         if (responseData == null) {
@@ -72,7 +73,7 @@ open class ResponseParser<T> : AbstractParser<T> {
                     )
                 }
                 else ->
-                    throw ParseException("-1010", "数据解析失败,请稍后再试", response)//走了这里
+                    throw ParseException("-1010", "数据解析失败,请稍后再试", response)
             }
         } else {
             when {

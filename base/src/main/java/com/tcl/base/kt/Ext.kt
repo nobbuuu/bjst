@@ -33,14 +33,22 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.ViewSizeResolver
 import com.blankj.utilcode.util.ClickUtils
+import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
+import com.google.gson.reflect.TypeToken
 import com.tcl.base.R
+import com.tcl.base.rxnetword.EncryptUtil
+import com.tcl.base.rxnetword.parser.BaseEncryptResponse
 import com.tcl.base.utils.AppGlobals
 import com.tcl.base.utils.BigDecimalUtils
+import rxhttp.map
+import rxhttp.toClass
+import rxhttp.wrapper.CallFactory
+import rxhttp.wrapper.coroutines.Await
 import java.math.BigDecimal
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -504,5 +512,3 @@ var typeFilter =
             regx
         }
     }
-
-

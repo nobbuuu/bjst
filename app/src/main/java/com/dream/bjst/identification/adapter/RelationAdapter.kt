@@ -7,7 +7,7 @@ import com.dream.bjst.R
 import com.dream.bjst.identification.bean.RelationBean
 import com.tcl.base.kt.ktClick
 
-class RelationAdapter(val block: ((String) -> Unit)? = null) :
+class RelationAdapter(val block: ((String,Int) -> Unit)? = null) :
     BaseQuickAdapter<RelationBean, BaseViewHolder>(R.layout.item_relation) {
     override fun convert(holder: BaseViewHolder, item: RelationBean) {
         holder.setText(R.id.startTv, item.relation)
@@ -23,7 +23,7 @@ class RelationAdapter(val block: ((String) -> Unit)? = null) :
             }
             notifyDataSetChanged()
             endIv.post {
-                block?.invoke(item.relation)
+                block?.invoke(item.relation,holder.adapterPosition)
             }
         }
     }

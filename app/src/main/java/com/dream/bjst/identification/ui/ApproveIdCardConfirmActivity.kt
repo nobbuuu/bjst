@@ -9,6 +9,7 @@ import com.dream.bjst.identification.vm.IdentificationViewModel
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
+import com.tcl.base.kt.ktToastShow
 
 class ApproveIdCardConfirmActivity :
     BaseActivity<IdentificationViewModel, ActivityIdcardConfirmBinding>() {
@@ -56,7 +57,7 @@ class ApproveIdCardConfirmActivity :
                 ktStartActivity(LivenessDetectionActivity::class)
                 finish()
             }else{
-                "confirm failed,please try again"
+                "confirm failed,please try again".ktToastShow()
             }
         }
     }

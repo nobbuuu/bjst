@@ -11,7 +11,6 @@ import com.dream.bjst.databinding.ActivityCertificationIdcardBinding
 import com.dream.bjst.identification.bean.IdCardInfoParam
 import com.dream.bjst.identification.vm.IdentificationViewModel
 import com.dream.bjst.utils.BitmapUtils
-import com.dream.bjst.utils.FileUtils.bitmap2File
 import com.dream.bjst.utils.PhotoManager
 import com.dream.bjst.utils.PhotoSelectDialog
 import com.tcl.base.common.ui.BaseActivity

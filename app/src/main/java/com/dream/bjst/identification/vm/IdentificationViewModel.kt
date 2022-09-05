@@ -1,5 +1,6 @@
 package com.dream.bjst.identification.vm
 
+import com.blankj.utilcode.util.Utils
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
@@ -19,6 +20,7 @@ class IdentificationViewModel :BaseViewModel() {
     val idCardDetails = SingleLiveEvent<IdCardDetailsBean>()
     val confirmResult = SingleLiveEvent<ConfirmResultBean>()
     val detectPictureResult = SingleLiveEvent<ConfirmResultBean>()
+    val pushContacts = SingleLiveEvent<Boolean>()
 
     fun idCardFrontOcr(param:String){
         rxLaunchUI({
@@ -65,4 +67,12 @@ class IdentificationViewModel :BaseViewModel() {
             detectPictureResult.postValue(result)
         })
     }
+
+    fun pushUrgencyContact(param: String){
+        rxLaunchUI({
+            var result=Api.pushUrgencyContact(param)
+            pushContacts.postValue(result)
+        })
+    }
+
 }

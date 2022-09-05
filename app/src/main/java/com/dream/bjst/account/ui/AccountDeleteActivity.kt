@@ -21,7 +21,9 @@ class AccountDeleteActivity :BaseActivity<AccountViewModel,ActivityAccountDelete
     override fun startObserve() {
         super.startObserve()
         viewModel.accountDeleteResult.observe(this){
-
+             if (it.`90958095`){
+                 ktStartActivity(DeleteProgressActivity::class)
+             }
         }
     }
 
@@ -62,8 +64,8 @@ class AccountDeleteActivity :BaseActivity<AccountViewModel,ActivityAccountDelete
         }
 
         //点击文案删除数据
-        mBinding.deleteContent.ktClick {
-            ktStartActivity(DeleteProgressActivity::class)
-        }
+//        mBinding.deleteContent.ktClick {
+//            ktStartActivity(DeleteProgressActivity::class)
+//        }
     }
 }

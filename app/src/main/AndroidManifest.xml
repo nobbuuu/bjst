@@ -20,8 +20,7 @@
         android:theme="@style/Theme.CbgBase">
         <activity
             android:name=".identification.ui.ApproveMainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".account.ui.DeleteProgressActivity"
             android:exported="false" />
@@ -37,18 +36,18 @@
         <activity
             android:name=".account.ui.PrivacyActivity"
             android:exported="false" />
-        <activity
-            android:name=".account.ui.AccountDeleteActivity"
-            android:exported="false" />
+        <!--        <activity-->
+        <!--            android:name=".account.ui.AccountDeleteActivity"-->
+        <!--            android:exported="false" />-->
         <activity
             android:name=".account.ui.AboutUsActivity"
             android:exported="false" />
         <activity
             android:name=".account.ui.AccountSettingActivity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".main.MainActivity"-->
-<!--            android:exported="false" />-->
+        <!--        <activity-->
+        <!--            android:name=".main.MainActivity"-->
+        <!--            android:exported="false" />-->
         <activity
             android:name=".login.LoginActivity"
             android:exported="false" />
@@ -85,19 +84,18 @@
         </provider>
 
         <activity android:name=".loan.ui.LoanRecordsActivity" />
-        <activity android:name=".home.HomeActivity">
-        </activity>
-        <activity android:name=".identification.ui.ApproveContactsActivity">
+        <activity android:name=".home.HomeActivity" />
+        <activity android:name=".identification.ui.ApproveContactsActivity" />
+
+        <activity android:name=".account.ui.AccountDeleteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.MainActivity"/>
-        <activity android:name=".identification.ui.ApproveIdCardConfirmActivity">
-
-        </activity>
-        <activity android:name=".identification.ui.ApproveBankCardActivity"/>
+        <activity android:name=".main.MainActivity" />
+        <activity android:name=".identification.ui.ApproveIdCardConfirmActivity" />
+        <activity android:name=".identification.ui.ApproveBankCardActivity" />
     </application>
 
 </manifest>

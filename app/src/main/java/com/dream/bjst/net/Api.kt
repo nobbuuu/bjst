@@ -3,6 +3,7 @@ package com.dream.bjst.net
 import android.util.Log
 import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.account.bean.AccountDeleteBean
+import com.dream.bjst.account.bean.ChatMessageBean
 import com.dream.bjst.bean.BaseParamBean
 import com.dream.bjst.bean.LoginBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
@@ -158,6 +159,15 @@ object Api {
             .await()
 
     }
+    /**
+     * 请求删除用户数据
+     */
+    suspend fun chatMessage(param: String): ChatMessageBean {
+        return RxHttp.postJson("DB979B8691DB958484DB929180979CB78187809B999186B7958691BD9A929B")
+            .addAll(param)
+            .toResponse<ChatMessageBean>()
+            .await()
 
+    }
 
 }

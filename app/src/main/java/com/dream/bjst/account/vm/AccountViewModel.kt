@@ -1,6 +1,7 @@
 package com.dream.bjst.account.vm
 
 import com.dream.bjst.account.bean.AccountDeleteBean
+import com.dream.bjst.account.bean.ChatMessageBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.net.Api
 import com.tcl.base.common.BaseViewModel
@@ -13,7 +14,7 @@ import com.tcl.base.event.SingleLiveEvent
  */
 class AccountViewModel : BaseViewModel() {
 
-
+    val  chatMessageResult=SingleLiveEvent<ChatMessageBean>()
      val accountDeleteResult=SingleLiveEvent<AccountDeleteBean>()
 
     /**
@@ -26,6 +27,15 @@ class AccountViewModel : BaseViewModel() {
         })
 
     }
+    /**
+     * 客服聊天数据
+     */
+    fun chatMessage(param:String){
+        rxLaunchUI({
+            var chatMessageRes=Api.chatMessage(param)
+            chatMessageResult.postValue(chatMessageRes)
+        })
 
+    }
 
 }

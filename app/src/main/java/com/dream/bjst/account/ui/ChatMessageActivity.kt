@@ -42,6 +42,7 @@ class ChatMessageActivity : BaseActivity<AccountViewModel, ActivityChatMessageBi
 
 
 
+
          mBinding.messageWeb.loadUrl(url)
         }
 

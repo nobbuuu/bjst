@@ -6,7 +6,7 @@ import rxhttp.wrapper.coroutines.Await
 import rxhttp.wrapper.param.toResponse
 
 
-fun CallFactory.toBoolean(isEqualsIgnoreCase: Boolean = false): Await<Boolean> {
+fun CallFactory.toBoolean(isEqualsIgnoreCase: Boolean=false): Await<Boolean> {
     return this.toResponse<String>().map {
         if (isEqualsIgnoreCase) {
             it.lowercase() == "true"

@@ -30,15 +30,15 @@
         <activity
             android:name=".repayment.ui.RepaymentDetailActivity"
             android:exported="false" />
-        <activity
-            android:name=".account.ui.ChatMessageActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".account.ui.ChatMessageActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".account.ui.PrivacyActivity"
             android:exported="false" />
-        <!--        <activity-->
-        <!--            android:name=".account.ui.AccountDeleteActivity"-->
-        <!--            android:exported="false" />-->
+        <activity
+            android:name=".account.ui.AccountDeleteActivity"
+            android:exported="false" />
         <activity
             android:name=".account.ui.AboutUsActivity"
             android:exported="false" />
@@ -87,7 +87,7 @@
         <activity android:name=".home.HomeActivity" />
         <activity android:name=".identification.ui.ApproveContactsActivity" />
 
-        <activity android:name=".account.ui.AccountDeleteActivity">
+        <activity android:name=".account.ui.ChatMessageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

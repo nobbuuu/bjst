@@ -162,19 +162,19 @@ object Api {
     /**
      * 请求删除用户数据
      */
-    suspend fun deleteAccountData(param: String): AccountDeleteBean {
+    suspend fun deleteAccountData(): Boolean {
         return RxHttp.postJson("DB978187809B999186DB8691999B8291B78187809B999186BD9A929B")
-            .addAll(param)
-            .toResponse<AccountDeleteBean>()
+            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .toBoolean()
             .await()
 
     }
     /**
-     * 请求删除用户数据
+     * 聊天拼接
      */
-    suspend fun chatMessage(param: String): ChatMessageBean {
+    suspend fun chatMessage(): ChatMessageBean {
         return RxHttp.postJson("DB979B8691DB958484DB929180979CB78187809B999186B7958691BD9A929B")
-            .addAll(param)
+            .addAll(GsonUtils.toJson(BaseParamBean()))
             .toResponse<ChatMessageBean>()
             .await()
 

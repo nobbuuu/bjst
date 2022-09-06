@@ -7,9 +7,6 @@ import android.view.View
 import android.webkit.*
 import com.blankj.utilcode.util.GsonUtils
 import com.didichuxing.doraemonkit.util.LogUtils
-import com.dream.bjst.BuildConfig
-import com.dream.bjst.account.bean.AccountDeleteParam
-import com.dream.bjst.account.bean.ChatMessageParam
 import com.dream.bjst.account.vm.AccountViewModel
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.ActivityChatMessageBinding
@@ -31,15 +28,7 @@ class ChatMessageActivity : BaseActivity<AccountViewModel, ActivityChatMessageBi
      * 拼接参数
      */
     private fun initInternetData() {
-        var param= GsonUtils.toJson(
-           ChatMessageParam(
-                `978187809B999186BD90` = UserManager.getUserNo(),
-                `9995869F9180BD90` ="10022"
-            )
-        )
-        LogUtils.dTag("paramJson",param)
-        viewModel.accountDeleteData(param)
-
+        viewModel.chatMessage()
     }
 
     /**

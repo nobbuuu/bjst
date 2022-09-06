@@ -15,14 +15,14 @@ import com.tcl.base.event.SingleLiveEvent
 class AccountViewModel : BaseViewModel() {
 
     val  chatMessageResult=SingleLiveEvent<ChatMessageBean>()
-     val accountDeleteResult=SingleLiveEvent<AccountDeleteBean>()
+     val accountDeleteResult=SingleLiveEvent<Boolean>()
 
     /**
      * 删除用户数据
      */
-    fun accountDeleteData(param:String){
+    fun accountDeleteData(){
         rxLaunchUI({
-            var accountResult=Api.deleteAccountData(param)
+            var accountResult=Api.deleteAccountData()
             accountDeleteResult.postValue(accountResult)
         })
 
@@ -30,9 +30,9 @@ class AccountViewModel : BaseViewModel() {
     /**
      * 客服聊天
      */
-    fun chatMessage(param:String){
+    fun chatMessage(){
         rxLaunchUI({
-            var chatMessageRes=Api.chatMessage(param)
+            var chatMessageRes=Api.chatMessage()
             chatMessageResult.postValue(chatMessageRes)
         })
 

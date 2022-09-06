@@ -16,7 +16,7 @@ class DeleteProgressActivity : BaseActivity<AccountViewModel, ActivityDeleteProg
                 Thread.sleep(1000)
                 if (i == 100) {
                     runOnUiThread() {
-                        UserManager.clearUserInfo()
+//                        UserManager.clearUserInfo()
                         mBinding.deteTv.text = "All your date has been cleared!"
                         Thread.interrupted()
                         onBlockBackPressed()

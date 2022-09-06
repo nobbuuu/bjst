@@ -23,19 +23,20 @@
         android:paddingEnd="@dimen/dp_20">
 
         <com.dream.bjst.widget.StartEndLayout
+            android:id="@+id/bankLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:endText=""
-            app:endTextColor="@color/black"
+            app:endText="Bank Name"
+            app:endTextColor="@color/dk_color_999999"
             app:endTextSize="15sp"
-            app:hintText="Bank name"
             app:isSelect="true"
             app:startText="Bank Name"
             app:startTextColor="@color/colorBlack666"
             app:startTextSize="15sp"
-            app:viewType="2" />
+            app:viewType="1" />
 
         <com.dream.bjst.widget.StartEndLayout
+            android:id="@+id/beneName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endText=""
@@ -48,6 +49,7 @@
             app:viewType="2" />
 
         <com.dream.bjst.widget.StartEndLayout
+            android:id="@+id/ifscCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endText=""
@@ -60,6 +62,19 @@
             app:viewType="2" />
 
         <com.dream.bjst.widget.StartEndLayout
+            android:id="@+id/accountNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endTextColor="@color/black"
+            app:endTextSize="15sp"
+            app:hintText="Enter A/C No."
+            app:startText="Account No."
+            app:startTextColor="@color/colorBlack666"
+            app:startTextSize="15sp"
+            app:viewType="2" />
+
+        <com.dream.bjst.widget.StartEndLayout
+            android:id="@+id/reAccNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:endText=""

@@ -16,9 +16,7 @@ class AccountDeleteActivity :BaseActivity<AccountViewModel,ActivityAccountDelete
     override fun startObserve() {
         super.startObserve()
         viewModel.accountDeleteResult.observe(this){
-             if (it){
-                 ktStartActivity(DeleteProgressActivity::class)
-             }
+             if (it) ktStartActivity(DeleteProgressActivity::class)
         }
     }
 

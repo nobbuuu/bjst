@@ -17,7 +17,6 @@ local.properties
 version/build/
 # Built application files
 *.apk
-*.aar
 *.ap_
 *.aab
 

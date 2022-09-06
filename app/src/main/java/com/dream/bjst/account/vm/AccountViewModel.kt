@@ -28,7 +28,7 @@ class AccountViewModel : BaseViewModel() {
 
     }
     /**
-     * 客服聊天数据
+     * 客服聊天
      */
     fun chatMessage(param:String){
         rxLaunchUI({

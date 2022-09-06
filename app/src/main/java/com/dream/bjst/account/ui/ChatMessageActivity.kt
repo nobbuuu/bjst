@@ -48,9 +48,12 @@ class ChatMessageActivity : BaseActivity<AccountViewModel, ActivityChatMessageBi
     override fun startObserve() {
         super.startObserve()
         viewModel.chatMessageResult.observe(this){
+
+
+
+
+
          mBinding.messageWeb.loadUrl(url)
-
-
         }
 
 

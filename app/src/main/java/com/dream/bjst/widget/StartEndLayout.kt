@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
+import com.blankj.utilcode.util.ColorUtils
 import com.dream.bjst.R
 import com.tcl.base.kt.sp
 
@@ -69,6 +70,14 @@ class StartEndLayout @JvmOverloads constructor(
 
     fun setEndEdtText(text: String) {
         mEndEdt?.setText(text)
+    }
+
+    fun setEndEdtTextColor(color: Int) {
+        mEndEdt?.setTextColor(ColorUtils.getColor(color))
+    }
+
+    fun setEndTextColor(color: Int) {
+        mEndTv?.setTextColor(ColorUtils.getColor(color))
     }
 
     fun getEndEdtText(): String {

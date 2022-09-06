@@ -6,5 +6,6 @@
     <string name="facial_verification">Facial\nVerification</string>
     <string name="emergency_contact">Emergency\nContact</string>
     <string name="bank_account">Bank Account</string>
+    <string name="try_again">operation failed, please try again</string>
 
 </resources>

@@ -95,6 +95,7 @@ class ApproveContactsActivity :
         viewModel.pushContacts.observe(this){
             if (it){
                 ktStartActivity(ApproveBankCardActivity::class)
+                finish()
             }else{
                 "operation failed,please try again".ktToastShow()
             }

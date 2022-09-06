@@ -5,6 +5,7 @@ import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.account.bean.AccountDeleteBean
 import com.dream.bjst.bean.BaseParamBean
 import com.dream.bjst.bean.LoginBean
+import com.dream.bjst.identification.bean.BankListBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
@@ -149,12 +150,24 @@ object Api {
     }
 
     /**
-     * 提交紧急联系人
+     * 获取银行列表
      */
-    suspend fun fetchBanks(): Boolean {
+    suspend fun fetchBanks(): List<BankListBean> {
         //customer/bank/fetchBanks
         return RxHttp.postJson("/DB978187809B999186DB96959A9FDB929180979CB6959A9F87")
-            .toBoolean()
+            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .toResponse<List<BankListBean>>()
+            .await()
+    }
+
+    /**
+     * 认证并绑定银行卡
+     */
+    suspend fun customerBindBankCard(param: String): ConfirmResultBean {
+        //customer/bank/customerBindBankCard
+        return RxHttp.postJson("/DB978187809B999186DB96959A9FDB978187809B999186B69D9A90B6959A9FB7958690")
+            .addAll(param)
+            .toResponse<ConfirmResultBean>()
             .await()
     }
 

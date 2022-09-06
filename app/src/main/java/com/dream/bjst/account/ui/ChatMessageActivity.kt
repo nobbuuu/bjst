@@ -14,7 +14,7 @@ import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 
 class ChatMessageActivity : BaseActivity<AccountViewModel, ActivityChatMessageBinding>() {
-    val url = "https://www.baidu.com/"
+    //    val url = "https://www.baidu.com/"
     var isError: Boolean = false
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -36,13 +36,12 @@ class ChatMessageActivity : BaseActivity<AccountViewModel, ActivityChatMessageBi
      */
     override fun startObserve() {
         super.startObserve()
-        viewModel.chatMessageResult.observe(this){
+        viewModel.chatMessageResult.observe(this) {
+             var value="?customerId=${UserManager.getUserNo()}&userName=${UserManager.getUserInfo()}&userPhone=${UserManager.getUserNo()}&customerUId=${UserManager.getAccountIdKey()}"
 
 
-
-
-
-         mBinding.messageWeb.loadUrl(url)
+            var chatUrl = it.`978187809B999186B7958691B79C9580A495809C`
+            mBinding.messageWeb.loadUrl(chatUrl+value)
         }
 
 

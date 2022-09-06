@@ -27,7 +27,7 @@ object UserManager {
 
     init {
         val userInfo = MmkvUtil.decryptGet(MmkvConstant.KEY_USER_INFO)
-        LogUtils.iTag("tanksu", "本地储存的用户信息--->${userInfo}")
+        LogUtils.iTag("tanKsu", "本地储存的用户信息--->${userInfo}")
         if (userInfo?.isNotEmpty() == true) {
             userInfoBean = GsonUtil.fromJson(userInfo, UserInfo::class.java)
             mCustomerLiveData.postValue(userInfoBean)

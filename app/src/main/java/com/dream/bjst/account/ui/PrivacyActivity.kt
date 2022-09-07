@@ -33,14 +33,33 @@ class PrivacyActivity :BaseActivity<AccountViewModel,ActivityPrivacyBinding>(){
     var isClick = false
 
     override fun initView(savedInstanceState: Bundle?) {
-
+          viewModel.privacy()
         //利用H5给网络协议添加超链接
         callService("Accept Terms & Conditions and Privacy Policy and to receive notification from SMS and email",
             mBinding.privacyPolicyTv
         )
         event()
     }
-      fun event() {
+
+    /**
+     * 获取数据
+     */
+    override fun startObserve() {
+        super.startObserve()
+        viewModel.privacyResult.observe(this){
+            var permissionExplainUrl=it.`849186999D87879D9B9AB18C8498959D9AA18698`//权限说明地址
+            var privacyAgreementBreviaryUrl=it.`84869D8295978DB59386919199919A80B68691829D95868DA18698`//隐私权限（简）地址
+            var privacyAgreementUrl=it.`84869D8295978DB59386919199919A80A18698`//隐私协议地址
+            var registerAgreementUrl=it.`8691939D87809186B59386919199919A80A18698`//权限说明地址
+
+        }
+    }
+
+    /**
+     * 事假函数相应
+     */
+
+    fun event() {
         //勾选按钮
         mBinding.privacyUnselectImage.setOnClickListener(View.OnClickListener {
             isClick = if (isClick == false) {

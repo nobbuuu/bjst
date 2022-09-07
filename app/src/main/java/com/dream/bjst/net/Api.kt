@@ -4,6 +4,7 @@ import android.util.Log
 import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.account.bean.AccountDeleteBean
 import com.dream.bjst.account.bean.ChatMessageBean
+import com.dream.bjst.account.bean.PrivacyBean
 import com.dream.bjst.bean.BaseParamBean
 import com.dream.bjst.bean.LoginBean
 import com.dream.bjst.identification.bean.BankListBean
@@ -192,5 +193,14 @@ object Api {
             .await()
 
     }
+    /**
+     * 隐私协议
+     */
+    suspend fun privacyContent(): PrivacyBean {
+        return RxHttp.postJson("DB979B8691DB958484DB929180979CB59386919199919A80")
+            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .toResponse<PrivacyBean>()
+            .await()
 
+    }
 }

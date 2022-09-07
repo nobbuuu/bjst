@@ -76,6 +76,10 @@ object MmkvConstant {
     const val KEY_ADDRESS_INFO = "addressInfo"
     const val KEY_USER_IDCARD = "user_idcard"
     const val KEY_USER_TYPE = "user_type"
+    const val KEY_USER_NAME = "user_name"
+    const val KEY_USER_PHONE = "user_phone"
+    const val KEY_CUSTOMER_UID = "customer_uid"
+    const val KEY_CUSTOMER_EMAIL = "customer_email"
 
     const val AGREE_PRIVACY_VERSION_KEY = "AGREE_PRIVACY_VERSION_KEY" //隐私协议版本
     const val TAP_ICON_CHANGE_KEY = "TAP_ICON_CHANGE_KEY" //隐私协议版本

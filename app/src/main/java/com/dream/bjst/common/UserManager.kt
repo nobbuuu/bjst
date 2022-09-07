@@ -5,8 +5,12 @@ import com.blankj.utilcode.util.LogUtils
 import com.dream.bjst.bean.UserInfo
 import com.dream.bjst.common.MmkvConstant.KEY_ACCESS_TOKEN
 import com.dream.bjst.common.MmkvConstant.KEY_ACCOUNTID
+import com.dream.bjst.common.MmkvConstant.KEY_CUSTOMER_EMAIL
+import com.dream.bjst.common.MmkvConstant.KEY_CUSTOMER_UID
 import com.dream.bjst.common.MmkvConstant.KEY_REFRESH_TOKEN
 import com.dream.bjst.common.MmkvConstant.KEY_USERNO
+import com.dream.bjst.common.MmkvConstant.KEY_USER_NAME
+import com.dream.bjst.common.MmkvConstant.KEY_USER_PHONE
 import com.dream.bjst.common.MmkvConstant.KEY_VISIBLE_INVITE
 import com.dream.bjst.common.MmkvConstant.KEY_VISIBLE_MYMONEY
 import com.dream.bjst.common.MmkvConstant.KEY_VISIBLE_PARTNER
@@ -65,25 +69,71 @@ object UserManager {
         MmkvUtil.encryptSave(getAccessTokenKey(), token)
     }
 
-    /**缓存userNo*/
+
+    /**获取AccountId*/
+    fun getAccountId(): String {
+        return MmkvUtil.decryptGet(getAccountIdKey()) ?: "null"
+    }
+
+
+    /**缓存customerId客户编号,登录之前的接口可为null*/
     fun setUserNo(value: String) {
         MmkvUtil.encode(getUserNoKey(), value)
     }
 
-    /**获取AccountId*/
-    fun getAccountId(): String {
-        return MmkvUtil.decryptGet(getAccountIdKey()) ?: ""
+    /**获取customerId客户编号,登录之前的接口可为null*/
+    fun getUserNo(): String {
+        return MmkvUtil.decodeString(getUserNoKey()) ?: "null"
     }
 
-    /**获取userNo*/
-    fun getUserNo(): String {
-        return MmkvUtil.decodeString(getUserNoKey()) ?: ""
+    /**获取用户姓名*/
+    fun setUserName(name: String) {
+        MmkvUtil.encode(getUserNameKey(), name)
+    }
+
+    /**获取用户姓名*/
+    fun getUserName(): String {
+        return MmkvUtil.decodeString(getUserNameKey()) ?: ""
+    }
+
+    /**设置用户电话号码*/
+    fun setUserPhone(phone: String) {
+        MmkvUtil.encode(getUserPhoneKey(), phone)
+    }
+
+    /**获取用户电话号码*/
+    fun getUserPhone(): String {
+        return MmkvUtil.decodeString(getUserPhoneKey()) ?: "null"
+    }
+
+    /**设置用户UID*/
+    fun customerUid(uid: String) {
+        MmkvUtil.encode(getCustomerUidKey(), uid)
+    }
+
+    /**获取用户UID*/
+    fun getCustomerUid(): String {
+        return MmkvUtil.decodeString(getCustomerUidKey()) ?: "null"
+    }
+
+    /**设置用户Email*/
+    fun customerEmail(email:String){
+        MmkvUtil.encode(getCustomerEmailKey(),email)
+    }
+    /**设置用户Email*/
+    fun getCustomerEmail():String{
+        return MmkvUtil.decodeString(getCustomerEmailKey())?:"null"
     }
 
     /**清空本地数据*/
     fun clearUserInfo() {
         MmkvUtil.removeKey(getAccessTokenKey())
         MmkvUtil.removeKey(getUserNoKey())
+        MmkvUtil.removeKey(getUserNameKey())
+        MmkvUtil.removeKey(getUserPhoneKey())
+        MmkvUtil.removeKey(getCustomerEmailKey())
+        MmkvUtil.removeKey(getCustomerUidKey())
+
         MmkvUtil.removeKey(MmkvConstant.KEY_USER_INFO)
         MmkvUtil.removeKey(getAccountIdKey())
         MmkvUtil.removeKey(KEY_VISIBLE_INVITE)
@@ -104,5 +154,9 @@ object UserManager {
     fun getRefreshTokenKey() = "${getUserUniquePreKey()}_${KEY_REFRESH_TOKEN}"
     fun getAccountIdKey() = "${getUserUniquePreKey()}_${KEY_ACCOUNTID}"
     fun getUserNoKey() = "${getUserUniquePreKey()}_${KEY_USERNO}"
+    fun getUserNameKey() = "${getUserUniquePreKey()}_${KEY_USER_NAME}"
+    fun getUserPhoneKey() = "${getUserUniquePreKey()}_${KEY_USER_PHONE}"
+    fun getCustomerUidKey() = "${getUserUniquePreKey()}_${KEY_CUSTOMER_UID}"
+    fun getCustomerEmailKey() = "${getUserUniquePreKey()}_${KEY_CUSTOMER_EMAIL}"
 
 }

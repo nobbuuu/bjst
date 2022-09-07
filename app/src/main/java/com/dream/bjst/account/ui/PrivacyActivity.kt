@@ -43,7 +43,7 @@ class PrivacyActivity :BaseActivity<AccountViewModel,ActivityPrivacyBinding>(){
       fun event() {
         //勾选按钮
         mBinding.privacyUnselectImage.setOnClickListener(View.OnClickListener {
-            isClick = if (isClick == false) {
+            isClick = if (isClick) {
                 mBinding.privacyUnselectImage.setImageResource(R.mipmap.select)
                 true
             } else {
@@ -53,7 +53,7 @@ class PrivacyActivity :BaseActivity<AccountViewModel,ActivityPrivacyBinding>(){
         })
         //check按钮
         mBinding.privacyCheckButton.setOnClickListener(View.OnClickListener {
-            if (isClick == false) {
+            if (isClick) {
                 ToastUtils.showShort("Please check this box and continue")
             } else {
                 ToastUtils.showShort("检查中...")

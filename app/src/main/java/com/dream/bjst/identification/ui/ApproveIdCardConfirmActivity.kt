@@ -11,6 +11,7 @@ import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.ktToastShow
+import com.tcl.base.kt.nullToEmpty
 
 class ApproveIdCardConfirmActivity :
     BaseActivity<IdentificationViewModel, ActivityIdcardConfirmBinding>() {
@@ -43,13 +44,13 @@ class ApproveIdCardConfirmActivity :
         super.startObserve()
 
         viewModel.idCardDetails.observe(this){
-            mBinding.aadNo.setEndEdtText(it.`9590909586B7958690BA8199969186`)
-            mBinding.address.setEndEdtText(it.`95909086918787`)
-            mBinding.birthday.setEndEdtText(it.`969D86809C90958D`)
-            mBinding.nameAad.setEndEdtText(it.`9A959991B2869B99B59590909586`)
-            mBinding.namePan.setEndEdtText(it.`9A959991BD9AA4959A`)
-            mBinding.panNo.setEndEdtText(it.`84959ABD90BA8199969186`)
-            mBinding.pinCode.setEndEdtText(it.`849D9AB79B9091`)
+            mBinding.aadNo.setEndEdtText(it.`9590909586B7958690BA8199969186`.nullToEmpty())
+            mBinding.address.setEndEdtText(it.`95909086918787`.nullToEmpty())
+            mBinding.birthday.setEndEdtText(it.`969D86809C90958D`.nullToEmpty())
+            mBinding.nameAad.setEndEdtText(it.`9A959991B2869B99B59590909586`.nullToEmpty())
+            mBinding.namePan.setEndEdtText(it.`9A959991BD9AA4959A`.nullToEmpty())
+            mBinding.panNo.setEndEdtText(it.`84959ABD90BA8199969186`.nullToEmpty())
+            mBinding.pinCode.setEndEdtText(it.`849D9AB79B9091`.nullToEmpty())
             mBinding.gender.setEndEdtText(transferSex(it.`87918C`))
         }
 

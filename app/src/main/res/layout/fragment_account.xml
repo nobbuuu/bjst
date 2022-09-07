@@ -43,7 +43,7 @@
                     android:textSize="@dimen/sp_16" />
 
                 <com.ruffian.library.widget.RTextView
-                    android:id="@+id/account_id"
+                    android:id="@+id/account_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/account_name"

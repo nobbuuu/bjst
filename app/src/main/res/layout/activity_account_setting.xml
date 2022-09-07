@@ -116,6 +116,7 @@
                 android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
+                android:id="@+id/account_email"
                 android:layout_width="@dimen/dp_41"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"

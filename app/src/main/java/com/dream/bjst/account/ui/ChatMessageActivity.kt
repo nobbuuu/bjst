@@ -37,7 +37,9 @@ class ChatMessageActivity : BaseActivity<AccountViewModel, ActivityChatMessageBi
     override fun startObserve() {
         super.startObserve()
         viewModel.chatMessageResult.observe(this) {
-             var value="?customerId=${UserManager.getUserNo()}&userName=${UserManager.getUserInfo()}&userPhone=${UserManager.getUserNo()}&customerUId=${UserManager.getAccountIdKey()}"
+             var value="?customerId=${UserManager.getUserNo()}&userName=${UserManager.getUserName()}&userPhone=${UserManager.getUserPhone()}&customerUId=${UserManager.getCustomerUid()}"
+
+
 
 
             var chatUrl = it.`978187809B999186B7958691B79C9580A495809C`

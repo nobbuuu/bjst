@@ -22,5 +22,5 @@ object Url {
 
     @JvmField
     @Domain(name = "TestUrl") //非默认域名，并取别名为BaseUrlBaidu     .setDomainToTestUrlIfAbsent()  //此时指定Baidu域名无效
-    var cnsTestUrl = "http://115.238.46.58:20002"
+    var cnsTestUrl = "http://115.238.46.58:20222"
 }

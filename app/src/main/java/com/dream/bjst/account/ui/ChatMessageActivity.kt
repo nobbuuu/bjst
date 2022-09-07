@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.*
 import com.blankj.utilcode.util.GsonUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.didichuxing.doraemonkit.util.LogUtils
 import com.dream.bjst.account.vm.AccountViewModel
 import com.dream.bjst.common.UserManager
@@ -37,13 +38,16 @@ class ChatMessageActivity : BaseActivity<AccountViewModel, ActivityChatMessageBi
     override fun startObserve() {
         super.startObserve()
         viewModel.chatMessageResult.observe(this) {
-             var value="?customerId=${UserManager.getUserNo()}&userName=${UserManager.getUserName()}&userPhone=${UserManager.getUserPhone()}&customerUId=${UserManager.getCustomerUid()}"
+            if (it.`978187809B999186A79186829D9791A7839D80979C`){
+
+                var value="?customerId=${UserManager.getUserNo()}&userName=${UserManager.getUserName()}&userPhone=${UserManager.getUserPhone()}&customerUId=${UserManager.getCustomerUid()}"
+                var chatUrl = it.`978187809B999186B7958691B79C9580A495809C`
+                mBinding.messageWeb.loadUrl(chatUrl+value)
+            }
+            ToastUtils.showShort("fail to service!")
 
 
 
-
-            var chatUrl = it.`978187809B999186B7958691B79C9580A495809C`
-            mBinding.messageWeb.loadUrl(chatUrl+value)
         }
 
 

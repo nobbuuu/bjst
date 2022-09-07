@@ -12,12 +12,9 @@ class AccountSettingActivity :BaseActivity<AccountViewModel,ActivityAccountSetti
 
     override fun initData() {
         //获取标题栏的返回按钮
-
-        //获取标题栏的返回按钮
-        mBinding.accountMySettingTitle.getLeftView().setOnClickListener(View.OnClickListener { onBackPressed() })
+        mBinding.accountMySettingTitle.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
         //获取安卓版本号
-        //获取安卓版本号
-        mBinding.settingVersion.setText(getVersionCode().toString() + ". 0. 0")
+        mBinding.settingVersion.text=(getVersionCode().toString() + ". 0. 0")
     }
 
     override fun initDataOnResume() {

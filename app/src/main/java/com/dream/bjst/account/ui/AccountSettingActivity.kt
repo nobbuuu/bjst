@@ -21,6 +21,12 @@ class AccountSettingActivity :BaseActivity<AccountViewModel,ActivityAccountSetti
         mBinding.settingVersion.text=(BuildConfig.VERSION_NAME)
         //获取Email
         mBinding.accountEmail.text=(UserManager.getCustomerEmail())
+
+        //设置用户姓名
+        mBinding.accountName.text=UserManager.getUserName()
+        //设置电话号码
+        mBinding.accountPhone.text=UserManager.getUserPhone()
+
     }
 
     override fun initDataOnResume() {

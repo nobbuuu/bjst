@@ -20,8 +20,7 @@ class AccountSettingActivity :BaseActivity<AccountViewModel,ActivityAccountSetti
         //获取安卓版本号
         mBinding.settingVersion.text=(BuildConfig.VERSION_NAME)
         //获取Email
-        mBinding.accountEmail.text=(UserManager.getCustomerEmail())
-
+        mBinding.accountEmail.text=UserManager.getCustomerEmail()
         //设置用户姓名
         mBinding.accountName.text=UserManager.getUserName()
         //设置电话号码

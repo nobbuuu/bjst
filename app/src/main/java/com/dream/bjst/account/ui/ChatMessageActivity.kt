@@ -30,6 +30,7 @@ class ChatMessageActivity : BaseActivity<AccountViewModel, ActivityChatMessageBi
      */
     private fun initInternetData() {
         viewModel.chatMessage()
+        event()
     }
 
     /**
@@ -39,14 +40,11 @@ class ChatMessageActivity : BaseActivity<AccountViewModel, ActivityChatMessageBi
         super.startObserve()
         viewModel.chatMessageResult.observe(this) {
             if (it.`978187809B999186A79186829D9791A7839D80979C`){
-
                 var value="?customerId=${UserManager.getUserNo()}&userName=${UserManager.getUserName()}&userPhone=${UserManager.getUserPhone()}&customerUId=${UserManager.getCustomerUid()}"
                 var chatUrl = it.`978187809B999186B7958691B79C9580A495809C`
                 mBinding.messageWeb.loadUrl(chatUrl+value)
             }
             ToastUtils.showShort("fail to service!")
-
-
 
         }
 
@@ -55,7 +53,7 @@ class ChatMessageActivity : BaseActivity<AccountViewModel, ActivityChatMessageBi
 
 
     override fun initData() {
-        event()
+
     }
 
     private fun event() {

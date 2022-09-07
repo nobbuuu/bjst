@@ -3,6 +3,7 @@ package com.dream.bjst.identification.ui
 import android.os.Bundle
 import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.LogUtils
+import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.ActivityIdcardConfirmBinding
 import com.dream.bjst.identification.bean.IdCardConfirmParam
 import com.dream.bjst.identification.vm.IdentificationViewModel
@@ -54,6 +55,8 @@ class ApproveIdCardConfirmActivity :
 
         viewModel.confirmResult.observe(this){
             if (it.`869187819880`){
+                //缓存姓名
+                UserManager.setUserName(mBinding.aadNo.getEndEdtText())
                 ktStartActivity(LivenessDetectionActivity::class)
                 finish()
             }else{

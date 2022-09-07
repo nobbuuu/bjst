@@ -107,7 +107,7 @@ object UserManager {
     }
 
     /**设置用户UID*/
-    fun customerUid(uid: String) {
+    fun setCustomerUid(uid: String) {
         MmkvUtil.encode(getCustomerUidKey(), uid)
     }
 

@@ -50,6 +50,8 @@ class LoginViewModel : BaseViewModel() {
             //缓存token
             UserManager.setAccessToken(result.`809B9F919A`)
             UserManager.setUserNo(result.`9D90`)
+            UserManager.setCustomerUid(result.`978187809B999186A19D90`)
+            UserManager.setUserPhone(result.`978187809B999186B99B969D9891`)
             loginResult.postValue(result)
         }, errorBlock = {
             it.message?.ktToastShow()

@@ -104,12 +104,15 @@ class ApproveIdCardActivity :
         viewModel.idCardStatus.observe(this) {
             it.`9D90B7958690B2869B9A80A49C9B809BA18698`?.let {
                 mBinding.frontIv.loadGif(it)
+                isFront = true
             }
             it.`9D90B7958690B695979FA49C9B809BA18698`?.let {
                 mBinding.backIv.loadGif(it)
+                isBack = true
             }
             it.`84959AA49C9B809BA18698`?.let {
                 mBinding.panCardIv.loadGif(it)
+                isPan = true
             }
             mBinding.frontIv.isEnabled = it.`9D90B7958690B2869B9A80A49C9B809BA18698`.isNullOrEmpty()
             mBinding.backIv.isEnabled = it.`9D90B7958690B695979FA49C9B809BA18698`.isNullOrEmpty()

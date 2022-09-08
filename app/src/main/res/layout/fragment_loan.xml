@@ -263,6 +263,7 @@
         android:id="@+id/botLay"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView

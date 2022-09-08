@@ -101,6 +101,7 @@ class ApproveMainActivity :
     override fun startObserve() {
         super.startObserve()
         viewModel.idCardStatus.observe(this) {
+            val isAll = it.`959898BD809199A4958787`
             it.`9A919190B09B9D9A93BD809199`?.let {
                 var tempIndex = 0
                 stepList.forEachIndexed { index, list ->
@@ -114,7 +115,7 @@ class ApproveMainActivity :
                         IdentifyBean(
                             iconList[index],
                             StringUtils.getString(nameList[index]),
-                            isApproved = index < tempIndex
+                            isApproved = if (isAll) true else index < tempIndex
                         )
                     )
                 }

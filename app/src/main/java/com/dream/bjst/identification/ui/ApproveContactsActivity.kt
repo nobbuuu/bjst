@@ -92,11 +92,11 @@ class ApproveContactsActivity :
 
     override fun startObserve() {
         super.startObserve()
-        viewModel.pushContacts.observe(this){
-            if (it){
+        viewModel.pushContacts.observe(this) {
+            if (it) {
                 ktStartActivity(ApproveBankCardActivity::class)
                 finish()
-            }else{
+            } else {
                 "operation failed,please try again".ktToastShow()
             }
         }
@@ -112,15 +112,20 @@ class ApproveContactsActivity :
                         val cr: ContentResolver = contentResolver
                         val cursor = cr.query(
                             it,
-                            arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME),
+                            arrayOf(
+                                ContactsContract.CommonDataKinds.Phone.NUMBER,
+                                ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME
+                            ),
                             null,
                             null,
                             null
                         )
                         cursor?.let {
                             while (cursor.moveToNext()) {
-                                val name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
-                                val phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                                val name =
+                                    cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
+                                val phone =
+                                    cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
                                 if (phoneType == 1) {
                                     param.`979B9A80959780C5BA959991` = name
                                     param.`979B9A80959780C5B99B969D9891` = phone

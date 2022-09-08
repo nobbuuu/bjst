@@ -128,4 +128,8 @@ public class Base64 {
             i += 4;
         }
     }
+
+    public static String byte2Base64(byte[] data){
+        return new String(org.apaches.commons.codec.binary.Base64.encodeBase64(data));
+    }
 }

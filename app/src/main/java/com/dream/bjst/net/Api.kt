@@ -7,7 +7,7 @@ import com.dream.bjst.account.bean.ChatMessageBean
 import com.dream.bjst.account.bean.PrivacyBean
 import com.dream.bjst.bean.BaseParamBean
 import com.dream.bjst.bean.LoginBean
-import com.dream.bjst.bean.RepaymentBean
+
 import com.dream.bjst.identification.bean.BankListBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
@@ -16,6 +16,7 @@ import com.dream.bjst.loan.bean.HomeInfoBean
 import com.dream.bjst.net.parser.JsonUtil
 import com.dream.bjst.net.parser.Response
 import com.dream.bjst.other.toBoolean
+import com.dream.bjst.repayment.bean.RepaymentBean
 import com.dream.bjst.repayment.bean.RepaymentInDetailBean
 import com.google.gson.reflect.TypeToken
 import com.tcl.base.rxnetword.EncryptUtil

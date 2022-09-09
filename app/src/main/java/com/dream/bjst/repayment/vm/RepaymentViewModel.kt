@@ -1,8 +1,7 @@
 package com.dream.bjst.repayment.vm
 
-import com.dream.bjst.account.bean.PrivacyBean
-import com.dream.bjst.bean.RepaymentBean
 import com.dream.bjst.net.Api
+import com.dream.bjst.repayment.bean.RepaymentBean
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
 

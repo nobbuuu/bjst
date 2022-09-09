@@ -156,7 +156,7 @@
                 android:layout_marginStart="@dimen/dp_15"
                 android:background="@null"
                 android:hint=" 10 digit mobile number"
-                android:text="6522263777"
+                android:text="6522263111"
                 android:textColor="@color/color_333"
                 android:textColorHint="@color/colorBlack666"
                 android:textSize="@dimen/sp_13"

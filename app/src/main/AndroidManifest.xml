@@ -45,7 +45,7 @@
         <activity
             android:name=".account.ui.AccountSettingActivity"
             android:exported="false" />
-        <activity android:name=".login.LoginActivity">
+        <activity android:name=".login.LoginActivity" >
 
         </activity>
 
@@ -82,20 +82,18 @@
         </provider>
 
         <activity android:name=".loan.ui.LoanRecordsActivity" />
-        <activity android:name=".home.HomeActivity">
-
-        </activity>
-        <activity android:name=".identification.ui.ApproveContactsActivity" />
-
         <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".identification.ui.ApproveContactsActivity" />
+        <activity android:name=".home.HomeActivity"/>
+<!--        <activity android:name=".main.MainActivity" />-->
         <activity android:name=".identification.ui.ApproveIdCardConfirmActivity" />
         <activity android:name=".identification.ui.ApproveBankCardActivity" />
-        <activity android:name=".identification.ui.ApproveBankListActivity" />
+        <activity android:name=".identification.ui.ApproveBankListActivity"/>
     </application>
 
 </manifest>

@@ -50,19 +50,19 @@ class RepaymentFragment:BaseFragment<RepaymentViewModel,FragmentRepaymentBinding
         for (i in 0..9) {
             (mList as ArrayList<RepaymentBean>).add(RepaymentBean(inList))
         }
-        mRePaymentAdapter!!.setList(mList)
-        mRePaymentInAdapter!!.setList(inList)
+        mRePaymentAdapter?.setList(mList)
+        mRePaymentInAdapter?.setList(inList)
 
         //点击时间
         event()
     }
     private fun event() {
-        mRePaymentInAdapter!!.setOnItemChildClickListener { adapter, view, position ->
+        mRePaymentInAdapter?.setOnItemChildClickListener { adapter, view, position ->
             startActivity(
                 Intent(activity, RepaymentDetailActivity::class.java)
             )
         }
-        mRePaymentAdapter!!.setOnItemClickListener { adapter, view, position ->
+        mRePaymentAdapter?.setOnItemClickListener { adapter, view, position ->
             startActivity(
                 Intent(activity, RepaymentDetailActivity::class.java)
             )

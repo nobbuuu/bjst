@@ -216,4 +216,15 @@ object Api {
             .await()
 
     }
+    /**
+     * 获取首页产品列表
+     */
+    suspend fun fetchProducts(): HomeInfoBean {
+        //core/product/fetchProducts
+        return RxHttp.postJson("DB979B8691DB84869B90819780DB929180979CA4869B9081978087")
+            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .toResponse<HomeInfoBean>()
+            .await()
+
+    }
 }

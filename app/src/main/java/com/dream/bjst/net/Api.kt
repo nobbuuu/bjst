@@ -11,6 +11,7 @@ import com.dream.bjst.identification.bean.BankListBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
+import com.dream.bjst.loan.bean.HomeInfoBean
 import com.dream.bjst.net.parser.JsonUtil
 import com.dream.bjst.net.parser.Response
 import com.dream.bjst.other.toBoolean
@@ -200,6 +201,18 @@ object Api {
         return RxHttp.postJson("DB979B8691DB958484DB929180979CB59386919199919A80")
             .addAll(GsonUtils.toJson(BaseParamBean()))
             .toResponse<PrivacyBean>()
+            .await()
+
+    }
+
+    /**
+     * 获取首页需要展示的借贷相关信息
+     */
+    suspend fun fetchHomeInfo(): HomeInfoBean {
+        //core/home/fetchHomeInfo
+        return RxHttp.postJson("DB979B8691DB9C9B9991DB929180979CBC9B9991BD9A929B")
+            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .toResponse<HomeInfoBean>()
             .await()
 
     }

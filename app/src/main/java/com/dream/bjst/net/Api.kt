@@ -7,6 +7,7 @@ import com.dream.bjst.account.bean.ChatMessageBean
 import com.dream.bjst.account.bean.PrivacyBean
 import com.dream.bjst.bean.BaseParamBean
 import com.dream.bjst.bean.LoginBean
+import com.dream.bjst.bean.RepaymentBean
 import com.dream.bjst.identification.bean.BankListBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
@@ -15,6 +16,7 @@ import com.dream.bjst.loan.bean.HomeInfoBean
 import com.dream.bjst.net.parser.JsonUtil
 import com.dream.bjst.net.parser.Response
 import com.dream.bjst.other.toBoolean
+import com.dream.bjst.repayment.bean.RepaymentInDetailBean
 import com.google.gson.reflect.TypeToken
 import com.tcl.base.rxnetword.EncryptUtil
 import com.tcl.base.rxnetword.parser.BaseEncryptResponse
@@ -184,6 +186,7 @@ object Api {
             .await()
 
     }
+
     /**
      * 聊天拼接
      */
@@ -194,6 +197,7 @@ object Api {
             .await()
 
     }
+
     /**
      * 隐私协议
      */
@@ -216,6 +220,7 @@ object Api {
             .await()
 
     }
+
     /**
      * 获取首页产品列表
      */
@@ -226,5 +231,30 @@ object Api {
             .toResponse<HomeInfoBean>()
             .await()
 
+    }
+
+    /**
+     * 还款首页
+     */
+
+    suspend fun repayment(): RepaymentBean {
+        // /core/pay/getRepayPageInfo
+        return RxHttp.postJson("DB979B8691DB84958DDB939180A69184958DA4959391BD9A929B")
+            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .toResponse<RepaymentBean>()
+            .await()
+    }
+
+
+    /**
+     * 还款详情界面
+     */
+
+    suspend fun repaymentDetail(): RepaymentInDetailBean {
+        // /core/pay/getRepayPageInfo
+        return RxHttp.postJson("DB979B8691DB84958DDB939180A69184958DA4959391BD9A929B")
+            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .toResponse<RepaymentInDetailBean>()
+            .await()
     }
 }

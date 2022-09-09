@@ -15,6 +15,7 @@ import com.dream.bjst.repayment.adapter.RePaymentAdapter
 import com.dream.bjst.repayment.adapter.RePaymentInAdapter
 import com.dream.bjst.repayment.vm.RepaymentViewModel
 import com.tcl.base.common.ui.BaseFragment
+import com.tcl.base.utils.MmkvUtil
 
 
 /**
@@ -29,6 +30,20 @@ class RepaymentFragment:BaseFragment<RepaymentViewModel,FragmentRepaymentBinding
 
     override fun initView(savedInstanceState: Bundle?) {
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.repayment)
+        viewModel.repaymentData()
+    }
+
+    /**
+     * 数据更新界面
+     */
+    override fun startObserve() {
+        super.startObserve()
+        viewModel.repaymentResult.observe(this){
+//         MmkvUtil.encode("borrowId",it.)
+
+
+
+        }
     }
 
     override fun initDataOnViewCreated() {

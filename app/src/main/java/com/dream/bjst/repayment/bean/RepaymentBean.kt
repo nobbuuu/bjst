@@ -6,11 +6,8 @@ data class RepaymentBean(
     val dueTodayOrders: List<DueTodayOrder>,
     val notDueOrders: List<NotDueOrder>,
     val overdueOrders: List<OverdueOrder>
-)
+):Serializable
 
-//data class Data(
-//
-//)
 
 data class DueTodayOrder(
     val borrowId: Int,
@@ -40,4 +37,4 @@ data class OverdueOrder(
     val productId: Int,
     val productName: String,
     val remainTotalAmount: Int
-):Serializable
+)

@@ -2,7 +2,7 @@ package com.dream.bjst.repayment.bean
 
 import java.io.Serializable
 
-data class RepaymentDetailBean(
+data class RepaymentInDetailBean(
     val borrowId: Int,
     val icoUrl: String,
     val orderStatus: Int,
@@ -14,6 +14,3 @@ data class RepaymentDetailBean(
     val repayEnd: String
 ):Serializable
 
-//data class Data(
-//
-//)

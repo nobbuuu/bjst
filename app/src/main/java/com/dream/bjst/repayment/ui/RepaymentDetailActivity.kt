@@ -18,6 +18,8 @@ import com.dream.bjst.utils.FileUtils.bitmap2File
 import com.dream.bjst.utils.PhotoManager
 import com.dream.bjst.utils.PhotoSelectDialog
 import com.tcl.base.common.ui.BaseActivity
+import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.utils.MmkvUtil.encode
 import com.tcl.base.utils.PhotoUtils.getPath
 
@@ -72,15 +74,19 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
      */
     private fun event() {
         mBinding.titleBar.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
-        //确定提交按钮
-        mBinding.confirmPayButton.setOnClickListener(View.OnClickListener {
-            startActivity(
-                Intent(
-                    this@RepaymentDetailActivity,
-                    ExtendRePaymentActivity::class.java
-                )
-            )
-        })
+//        //确定提交按钮
+//        mBinding.confirmPayButton.setOnClickListener(View.OnClickListener {
+//            startActivity(
+//                Intent(
+//                    this@RepaymentDetailActivity,
+//                    ExtendRePaymentActivity::class.java
+//                )
+//            )
+//
+//        })
+        mBinding.confirmPayButton.ktClick {
+            ktStartActivity( ExtendRePaymentActivity::class)
+        }
         //repaidButton
         mBinding.repaidSubmitButton.setOnClickListener(View.OnClickListener { encode("digital", temp) })
         //点击上传UTR_picture

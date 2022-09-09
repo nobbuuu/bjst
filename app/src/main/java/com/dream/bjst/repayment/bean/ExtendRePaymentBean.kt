@@ -7,11 +7,8 @@ data class ExtendRePaymentBean(
     val principalAmount: Int,
     val repayEnd: String,
     val rollRePayInfoTermList: List<RollRePayInfoTerm>
-)
+):Serializable
 
-//data class Data(
-//
-//)
 
 data class RollRePayInfoTerm(
     val delayAmount: Int,
@@ -19,4 +16,4 @@ data class RollRePayInfoTerm(
     val delayEnd: String,
     val overdueAmount: Int,
     val paidAmount: Int
-):Serializable
+)

@@ -49,14 +49,22 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         mAmountDialog.setOnSelectListener {
             mBinding.amountTv.text = "₹ " + it.num
             var tempAmount = 0
+            var amountReceive = 0
+            var repayAmount = 0
             loanAdapter.data.forEachIndexed { index, bean ->
                 tempAmount += bean.`989B959AB5999B819A80`
                 bean.isCheck = tempAmount <= it.num
+                if (bean.isCheck) {
+                    amountReceive += bean.`869197919D8291B5999B819A80`
+                    repayAmount += bean.`9A919190A69184958DB5999B819A80`
+                }
             }
             loanAdapter.notifyDataSetChanged()
+            mBinding.amountReceiveNum.text = "₹ $amountReceive"
+            mBinding.repayAmount.text = "₹ $repayAmount"
         }
         mPeriodDialog.setOnSelectListener {
-            mBinding.amountTv.text = it.num.toString()+" Days"
+            mBinding.amountTv.text = it.num.toString() + " Days"
         }
     }
 
@@ -71,20 +79,30 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             }
             loanAdapter.setList(it.`84869B90819780B89D8780`)
 
-            var tempAmount = 0
+            var amount = 0
+            var amountReceive = 0
+            var repayAmount = 0
             amountList.clear()
+
             loanAdapter.data.forEachIndexed { index, bean ->
-                tempAmount += bean.`989B959AB5999B819A80`
+                amount += bean.`989B959AB5999B819A80`
                 amountList.add(
                     AmountPeriodBean(
-                        num = tempAmount,
+                        num = amount,
                         isEnable = index < it.`99958CB89B959AA4869B90819780B79B819A80`,
                         isCheck = defaultChooseNum == index + 1
                     )
                 )
+                if (index < defaultChooseNum) {
+                    amountReceive += bean.`869197919D8291B5999B819A80`
+                    repayAmount += bean.`9A919190A69184958DB5999B819A80`
+                }
             }
             if (amountList.size >= defaultChooseNum) {
                 mBinding.amountTv.text = "₹ " + amountList[defaultChooseNum - 1].num
+                mBinding.amountReceiveNum.text = "₹ $amountReceive"
+                mBinding.repayAmount.text = "₹ $repayAmount"
+                mBinding.repaymentDate.text = it.`869184958DB0958091`
             }
 
             //借款周期
@@ -99,7 +117,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
                 )
             }
             if (periodList.isNotEmpty()) {
-                mBinding.days.text = periodList[0].num.toString()+" Days"
+                mBinding.days.text = periodList[0].num.toString() + " Days"
             }
         }
     }

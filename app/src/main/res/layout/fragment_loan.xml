@@ -4,6 +4,7 @@
 <com.ruffian.library.widget.RConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:background_normal="@color/white">
@@ -46,6 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/userIcon">
 
         <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/amountLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
@@ -79,15 +81,16 @@
                 android:id="@+id/amountTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="₹ 50,000"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_25"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/nextIv"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="₹ 50,000" />
         </com.ruffian.library.widget.RConstraintLayout>
 
         <com.ruffian.library.widget.RConstraintLayout
+            android:id="@+id/periodLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
@@ -121,12 +124,12 @@
                 android:id="@+id/days"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="91 Days"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_25"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/nextIv1"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="91 Days" />
         </com.ruffian.library.widget.RConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -149,11 +152,11 @@
                 android:id="@+id/amountReceiveNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="₹ 1900"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_15"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="₹ 1900" />
 
             <TextView
                 android:id="@+id/period"
@@ -172,11 +175,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10"
-                android:text="₹ 1200"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_15"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/amountReceiveNum" />
+                app:layout_constraintTop_toBottomOf="@+id/amountReceiveNum"
+                tools:text="₹ 1200" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -194,11 +197,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10"
-                android:text="2021-12-15"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_15"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/periodNum" />
+                app:layout_constraintTop_toBottomOf="@+id/periodNum"
+                tools:text="2021-12-15" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.ruffian.library.widget.RLinearLayout>
 

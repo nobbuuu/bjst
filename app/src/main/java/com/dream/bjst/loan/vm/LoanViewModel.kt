@@ -1,6 +1,6 @@
 package com.dream.bjst.loan.vm
 
-import com.dream.bjst.loan.bean.HomeInfoBean
+import com.dream.bjst.loan.bean.LoanInfoBean
 import com.dream.bjst.net.Api
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
@@ -11,11 +11,11 @@ import com.tcl.base.event.SingleLiveEvent
  *description
  */
 class LoanViewModel : BaseViewModel() {
-    val homeData = SingleLiveEvent<HomeInfoBean>()
-    fun fetchHomeInfo(){
+    val loanData = SingleLiveEvent<LoanInfoBean>()
+    fun fetchProducts(){
         rxLaunchUI({
-            val  result = Api.fetchHomeInfo()
-            homeData.postValue(result)
+            val  result = Api.fetchProducts()
+            loanData.postValue(result)
         })
     }
 }

@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ruffian.library.widget.RLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Amount"
-        android:textColor="@color/color_333"
-        android:textSize="@dimen/sp_20" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:layout_marginTop="@dimen/dp_19"
-        android:background="@color/_xpopup_list_divider" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dialogRv"
+    <com.ruffian.library.widget.RLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:overScrollMode="never"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-</LinearLayout>
+        android:layout_margin="@dimen/dp_20"
+        android:orientation="vertical"
+        app:background_normal="@color/white"
+        app:corner_radius="@dimen/dp_4">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Amount"
+            android:textColor="@color/color_333"
+            android:textSize="@dimen/sp_20" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_marginTop="@dimen/dp_19"
+            android:background="@color/_xpopup_list_divider" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dialogRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </com.ruffian.library.widget.RLinearLayout>
+</com.ruffian.library.widget.RLinearLayout>

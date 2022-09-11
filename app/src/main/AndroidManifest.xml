@@ -89,8 +89,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".identification.ui.ApproveContactsActivity" />
-        <activity android:name=".home.HomeActivity"/>
-<!--        <activity android:name=".main.MainActivity" />-->
+        <activity android:name=".home.HomeActivity"></activity>
         <activity android:name=".identification.ui.ApproveIdCardConfirmActivity" />
         <activity android:name=".identification.ui.ApproveBankCardActivity" />
         <activity android:name=".identification.ui.ApproveBankListActivity"/>

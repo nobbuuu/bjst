@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,14 +24,15 @@
             android:textSize="@dimen/sp_24" />
 
         <com.ruffian.library.widget.RTextView
+            android:id="@+id/amountNum"
             android:layout_width="@dimen/dp_145"
             android:layout_height="@dimen/dp_40"
             android:layout_below="@id/loanAmount"
             android:layout_alignLeft="@id/loanAmount"
             android:layout_marginTop="@dimen/dp_7"
-            android:text="₹ 60,000"
             android:textColor="#ff389830"
-            android:textSize="35sp" />
+            android:textSize="35sp"
+            tools:text="₹ 60,000" />
 
         <com.ruffian.library.widget.RImageView
             android:layout_width="@dimen/dp_102"
@@ -63,23 +65,24 @@
 
             <com.ruffian.library.widget.RTextView
                 android:id="@+id/homeRupee"
-                android:layout_width="@dimen/dp_54"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/homeMoney"
                 android:layout_marginLeft="@dimen/dp_20"
                 android:layout_toRightOf="@id/homeMoney"
-                android:text="₹ 6,697"
                 android:textColor="#ff123703"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_15"
+                tools:text="₹ 6,697" />
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="@dimen/dp_165"
+                android:id="@+id/pm"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_15"
                 android:layout_below="@id/homeRupee"
                 android:layout_alignLeft="@id/homeRupee"
-                android:text="Total Interest@0.923%p.m."
                 android:textColor="#ff666666"
-                android:textSize="@dimen/sp_13" />
+                android:textSize="@dimen/sp_13"
+                tools:text="Total Interest@0.923%p.m." />
 
         </RelativeLayout>
         <!--分割线区域-->
@@ -109,18 +112,18 @@
                 android:layout_alignTop="@id/homePercent"
                 android:layout_marginLeft="@dimen/dp_20"
                 android:layout_toRightOf="@id/homePercent"
-                android:text="19.96%p.a."
                 android:textColor="#ff123703"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_15"
+                tools:text="19.96%p.a." />
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="@dimen/dp_165"
-                android:layout_height="@dimen/dp_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/homePercent_value"
                 android:layout_alignLeft="@id/homePercent_value"
-                android:text="Annualized Interest Rate"
                 android:textColor="#ff666666"
-                android:textSize="@dimen/sp_13" />
+                android:textSize="@dimen/sp_13"
+                tools:text="Annualized Interest Rate" />
 
         </RelativeLayout>
 
@@ -149,8 +152,8 @@
 
             <com.ruffian.library.widget.RTextView
                 android:id="@+id/homeBankTv"
-                android:layout_width="@dimen/dp_126"
-                android:layout_height="@dimen/dp_23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/homeBank"
                 android:layout_marginLeft="@dimen/dp_19"
                 android:layout_marginTop="@dimen/dp_4"
@@ -159,13 +162,14 @@
                 android:textSize="@dimen/sp_16" />
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="@dimen/dp_84"
+                android:id="@+id/amountReceive"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/homeBankTv"
                 android:layout_marginLeft="@dimen/dp_44"
-                android:text="₹ 57,960"
                 android:textColor="#ff000000"
-                android:textSize="@dimen/sp_20" />
+                android:textSize="@dimen/sp_20"
+                tools:text="₹ 57,960" />
 
         </RelativeLayout>
         <!--分割线区域-->
@@ -194,7 +198,7 @@
             <com.ruffian.library.widget.RTextView
                 android:id="@+id/homeMonthTv"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_23"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/homeMonth"
                 android:layout_marginLeft="@dimen/dp_58"
                 android:layout_marginTop="@dimen/dp_4"
@@ -203,29 +207,27 @@
                 android:textSize="@dimen/sp_16" />
 
             <com.ruffian.library.widget.RTextView
+                android:id="@+id/period"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/homeMonthTv"
                 android:layout_marginLeft="@dimen/dp_44"
-                android:text="12 months"
                 android:textColor="#ff000000"
-                android:textSize="@dimen/sp_20" />
+                android:textSize="@dimen/sp_20"
+                tools:text="12 months" />
 
         </RelativeLayout>
 
 
     </LinearLayout>
 
-    <Button
+    <com.ruffian.library.widget.RTextView
         android:id="@+id/homeRequest_Btn"
-        android:layout_width="@dimen/dp_335"
-        android:layout_height="@dimen/dp_44"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="@dimen/dp_20"
-        android:layout_marginTop="@dimen/dp_154"
-        android:layout_marginRight="@dimen/dp_20"
-        android:layout_marginBottom="@dimen/dp_130"
-        android:background="#ff009b12"
+        style="@style/sure_btn"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp_60"
+        android:layout_marginBottom="18dp"
         android:text="Request"
-        android:textColor="@color/white" />
+        app:layout_constraintBottom_toTopOf="@+id/loginCb"
+        app:layout_constraintStart_toStartOf="parent" />
 </LinearLayout>

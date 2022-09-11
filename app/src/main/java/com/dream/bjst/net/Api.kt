@@ -13,6 +13,7 @@ import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
 import com.dream.bjst.loan.bean.HomeInfoBean
+import com.dream.bjst.loan.bean.LoanInfoBean
 import com.dream.bjst.net.parser.JsonUtil
 import com.dream.bjst.net.parser.Response
 import com.dream.bjst.other.toBoolean
@@ -225,11 +226,11 @@ object Api {
     /**
      * 获取首页产品列表
      */
-    suspend fun fetchProducts(): HomeInfoBean {
+    suspend fun fetchProducts(): LoanInfoBean {
         //core/product/fetchProducts
         return RxHttp.postJson("DB979B8691DB84869B90819780DB929180979CA4869B9081978087")
             .addAll(GsonUtils.toJson(BaseParamBean()))
-            .toResponse<HomeInfoBean>()
+            .toResponse<LoanInfoBean>()
             .await()
 
     }

@@ -60,7 +60,7 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
         mBinding.overDueRv.adapter = overDueAdapter
         mBinding.dueTodayRv.adapter = dueTodayAdapter
         mBinding.notDueRv.adapter = notDueAdapter
-        //点击时间
+        //点击事件
         event()
     }
 

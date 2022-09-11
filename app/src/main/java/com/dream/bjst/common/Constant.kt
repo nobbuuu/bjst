@@ -80,6 +80,7 @@ object MmkvConstant {
     const val KEY_USER_PHONE = "user_phone"
     const val KEY_CUSTOMER_UID = "customer_uid"
     const val KEY_CUSTOMER_EMAIL = "customer_email"
+    const val KEY_CUSTOMER_ID="customer_id"
 
     const val AGREE_PRIVACY_VERSION_KEY = "AGREE_PRIVACY_VERSION_KEY" //隐私协议版本
     const val TAP_ICON_CHANGE_KEY = "TAP_ICON_CHANGE_KEY" //隐私协议版本

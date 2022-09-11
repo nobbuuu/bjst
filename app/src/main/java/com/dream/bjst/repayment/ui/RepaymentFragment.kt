@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.Navigation
 import com.blankj.utilcode.util.BarUtils
 import com.dream.bjst.R
+import com.dream.bjst.common.UserManager
 
 import com.dream.bjst.databinding.FragmentRepaymentBinding
 import com.dream.bjst.repayment.adapter.*
@@ -50,12 +51,12 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
             val noData = overDueAdapter.data.isEmpty() && dueTodayAdapter.data.isEmpty() && notDueAdapter.data.isEmpty()
             mBinding.dataLay.isVisible = !noData
             mBinding.emptyLay.rootLay.isVisible = noData
+
         }
     }
 
 
     private fun initRv() {
-
 
         mBinding.overDueRv.adapter = overDueAdapter
         mBinding.dueTodayRv.adapter = dueTodayAdapter
@@ -69,5 +70,12 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
             Navigation.findNavController(mBinding.emptyLay.rootLay)
                 .navigate(R.id.repayment_to_navigation_loan)
         }
+
+
+        overDueAdapter.setOnItemClickListener { adapter, view, position ->
+           adapter.data.set(0, "null" as Nothing)
+
+        }
+
     }
 }

@@ -6,6 +6,7 @@ import com.dream.bjst.bean.UserInfo
 import com.dream.bjst.common.MmkvConstant.KEY_ACCESS_TOKEN
 import com.dream.bjst.common.MmkvConstant.KEY_ACCOUNTID
 import com.dream.bjst.common.MmkvConstant.KEY_CUSTOMER_EMAIL
+import com.dream.bjst.common.MmkvConstant.KEY_CUSTOMER_ID
 import com.dream.bjst.common.MmkvConstant.KEY_CUSTOMER_UID
 import com.dream.bjst.common.MmkvConstant.KEY_REFRESH_TOKEN
 import com.dream.bjst.common.MmkvConstant.KEY_USERNO
@@ -124,6 +125,15 @@ object UserManager {
     fun getCustomerEmail():String{
         return MmkvUtil.decodeString(getCustomerEmailKey())?:"null"
     }
+    /**设置用户贷款id*/
+   fun setCustomerLoanId(id:String){
+       MmkvUtil.encode(getCustomerIdKey(),id)
+   }
+    /**获取用户贷款id*/
+
+    fun getCustomerLoanId():String{
+        return MmkvUtil.decodeString(getCustomerIdKey())?:"null"
+    }
 
     /**清空本地数据*/
     fun clearUserInfo() {
@@ -158,5 +168,6 @@ object UserManager {
     fun getUserPhoneKey() = "${getUserUniquePreKey()}_${KEY_USER_PHONE}"
     fun getCustomerUidKey() = "${getUserUniquePreKey()}_${KEY_CUSTOMER_UID}"
     fun getCustomerEmailKey() = "${getUserUniquePreKey()}_${KEY_CUSTOMER_EMAIL}"
+    fun getCustomerIdKey() = "${getUserUniquePreKey()}_${KEY_CUSTOMER_ID}"
 
 }

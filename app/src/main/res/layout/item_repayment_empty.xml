@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-<!--    <com.ruffian.library.widget.RTextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/dp_44" />-->
-
-<!--    <com.ruffian.library.widget.RTextView-->
-<!--        android:layout_width="@dimen/dp_97"-->
-<!--        android:layout_height="@dimen/dp_25"-->
-<!--        android:layout_gravity="center_horizontal"-->
-<!--        android:text="Repayment"-->
-<!--        android:textColor="#ff000000"-->
-<!--        android:textSize="@dimen/sp_18" />-->
 
     <RelativeLayout
         android:layout_width="match_parent"

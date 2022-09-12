@@ -83,6 +83,8 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
         super.startObserve()
         viewModel.repaymentDetailResult.observe(this){
 
+
+
         }
 
     }

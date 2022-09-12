@@ -87,10 +87,10 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         viewModel.repaymentDetailResult.observe(this) {
 //            mBinding.repaymentDetailIcon.ktSetImageIf(true, it.`9D979BA18698`as Int, R.mipmap.icon)
             mBinding.repaymentDetailName.text = it.`84869B90819780BA959991`
-            mBinding.repaymentDetailAmount.text = it.`869199959D9AA09B809598B5999B819A80`
-            mBinding.repaymentDetailLoanAmount.text = it.`84869D9A979D849598B5999B819A80`
+            mBinding.repaymentDetailAmount.text = "₹ "+it.`869199959D9AA09B809598B5999B819A80`
+            mBinding.repaymentDetailLoanAmount.text ="₹ "+ it.`84869D9A979D849598B5999B819A80`
             mBinding.repaymentDetailLoanDay.text=it.`869184958DB19A90`
-            mBinding.repaymentDetailOverDueAmount.text=it.`869199959D9ABB829186908191`
+            mBinding.repaymentDetailOverDueAmount.text="₹ "+it.`869199959D9ABB829186908191`
 
         }
 

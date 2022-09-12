@@ -252,10 +252,10 @@ object Api {
      * 还款详情界面
      */
 
-    suspend fun repaymentDetail(): RepaymentInDetailBean {
+    suspend fun repaymentDetail(param: String): RepaymentInDetailBean {
         // /core/pay/getRepayPageInfo
-        return RxHttp.postJson("DB979B8691DB84958DDB939180A69184958DA4959391BD9A929B")
-            .addAll(GsonUtils.toJson(BaseParamBean()))
+        return RxHttp.postJson("DB979B8691DB84958DDB939180A69184958DB68DB69B86869B83BD90")
+            .addAll(param)
             .toResponse<RepaymentInDetailBean>()
             .await()
     }

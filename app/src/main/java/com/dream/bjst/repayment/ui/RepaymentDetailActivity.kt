@@ -9,10 +9,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
 import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityRepaymentDetailBinding
+import com.dream.bjst.repayment.bean.RepaymentDetailParam
 import com.dream.bjst.repayment.vm.RepaymentViewModel
 import com.dream.bjst.utils.FileUtils.bitmap2File
 import com.dream.bjst.utils.PhotoManager
@@ -35,7 +37,15 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
     var temp: CharSequence = ""
     var startEdit = 0
     var endEdit = 0
+
     override fun initView(savedInstanceState: Bundle?) {
+
+     var param:String = GsonUtils.toJson(RepaymentDetailParam(
+         `969B86869B83BD90` =intent.getStringExtra("repayId")
+     ))
+
+        viewModel.repaymentDetailData(param)
+
         event()
         mPhotoManager = PhotoManager(this)
         mBinding.digitalEt.addTextChangedListener(object : TextWatcher {
@@ -69,21 +79,21 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
         })
     }
 
+    override fun startObserve() {
+        super.startObserve()
+        viewModel.repaymentDetailResult.observe(this){
+
+        }
+
+    }
+
+
     /**
      * 事件点击
      */
     private fun event() {
         mBinding.titleBar.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
-//        //确定提交按钮
-//        mBinding.confirmPayButton.setOnClickListener(View.OnClickListener {
-//            startActivity(
-//                Intent(
-//                    this@RepaymentDetailActivity,
-//                    ExtendRePaymentActivity::class.java
-//                )
-//            )
-//
-//        })
+
         mBinding.confirmPayButton.ktClick {
             ktStartActivity( ExtendRePaymentActivity::class)
         }
@@ -105,7 +115,7 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
         })
 
         //设置头布局和尾部局的显示和隐藏
-        mBinding.headerArrow.setOnClickListener(View.OnClickListener {
+            mBinding.headerArrow.setOnClickListener(View.OnClickListener {
             mBinding.headerRv.setVisibility(View.GONE)
             mBinding.footerArrow.setImageResource(R.mipmap.ic_up_two_level)
             mBinding.footerRv.setVisibility(View.VISIBLE)

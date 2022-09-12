@@ -14,8 +14,8 @@ import com.tcl.base.kt.ktSetImage
  */
 class NotDueAdapter : BaseQuickAdapter<NotDueOrder, BaseViewHolder>(R.layout.item_repayment_in) {
     override fun convert(holder: BaseViewHolder, item: NotDueOrder) {
-        holder.setText(R.id.repayment_loan_days, item.`908191B0958D`)
-        holder.setText(R.id.repayment_repay_amount, item.`869199959D9AA09B809598B5999B819A80`)
+        holder.setText(R.id.repayment_loan_days, item.`908191B0958D`.toString())
+        holder.setText(R.id.repayment_repay_amount, item.`869199959D9AA09B809598B5999B819A80`.toString())
         holder.setText(R.id.repayment_loan_name, item.`84869B90819780BA959991`)
         holder.ktSetImage(R.id.repayment_item_icon, item.`9D979BA18698`)
     }

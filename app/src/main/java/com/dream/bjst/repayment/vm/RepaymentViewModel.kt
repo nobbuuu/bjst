@@ -21,7 +21,7 @@ class RepaymentViewModel : BaseViewModel() {
         rxLaunchUI({
             var paymentResult = Api.repayment()
             //存储用户借款Id
-            UserManager.setCustomerLoanId(paymentResult.`9A9B80B08191BB8690918687`[0].toString())
+            UserManager.setCustomerLoanId(paymentResult.`9A9B80B08191BB8690918687`.firstOrNull().toString())
             repaymentResult.postValue(paymentResult)
         })
 

@@ -1,26 +1,17 @@
 package com.dream.bjst.repayment.ui
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.Button
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
 import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
-import com.dream.bjst.common.UserManager
 
 import com.dream.bjst.databinding.FragmentRepaymentBinding
 import com.dream.bjst.repayment.adapter.*
-import com.dream.bjst.repayment.bean.OverdueOrder
-import com.dream.bjst.repayment.bean.RepaymentBean
 import com.dream.bjst.repayment.vm.RepaymentViewModel
-import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseFragment
 import com.tcl.base.kt.ktClick
-import com.tcl.base.utils.MmkvUtil
-
 
 /**
  * 创建日期：2022-09-05 on 0:50
@@ -35,12 +26,12 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
 
     override fun initView(savedInstanceState: Bundle?) {
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.repayment)
-        viewModel.repaymentData()
         initRv()
+        viewModel.repaymentData()
     }
 
     /**
-     * 数据更新界面
+     * 数据更新
      */
     override fun startObserve() {
         super.startObserve()
@@ -51,6 +42,7 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
             val noData = overDueAdapter.data.isEmpty() && dueTodayAdapter.data.isEmpty() && notDueAdapter.data.isEmpty()
             mBinding.dataLay.isVisible = !noData
             mBinding.emptyLay.rootLay.isVisible = noData
+            ToastUtils.showShort("11111111111")
 
         }
     }
@@ -66,10 +58,12 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
     }
 
     private fun event() {
-        mBinding.emptyLay.rootLay.ktClick {
+        mBinding.emptyLay.btnLoadData.ktClick {
             Navigation.findNavController(mBinding.emptyLay.rootLay)
                 .navigate(R.id.repayment_to_navigation_loan)
         }
+
+
 
 
         overDueAdapter.setOnItemClickListener { adapter, view, position ->

@@ -1,5 +1,6 @@
 package com.dream.bjst.repayment.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
@@ -21,6 +22,8 @@ import com.tcl.base.kt.ktStartActivity
  * 作者:HeGuiCun Administrator
  */
 class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBinding>() {
+    var repayId:String?=null
+
     //数据适配器
     var overDueAdapter = OverDueAdapter()
     var dueTodayAdapter = DueTodayAdapter()
@@ -41,10 +44,14 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
             overDueAdapter.setList(it.`9B829186908191BB8690918687`)
             dueTodayAdapter.setList(it.`908191A09B90958DBB8690918687`)
             notDueAdapter.setList(it.`9A9B80B08191BB8690918687`)
+            //获取界面编号
+           repayId= it.`9B829186908191BB8690918687`.firstOrNull()?.`969B86869B83BD90`.toString()
+
             val noData = overDueAdapter.data.isEmpty() && dueTodayAdapter.data.isEmpty() && notDueAdapter.data.isEmpty()
             mBinding.dataLay.isVisible = !noData
             mBinding.emptyLay.rootLay.isVisible = noData
 
+            ToastUtils.showShort(repayId)
         }
     }
 
@@ -68,20 +75,24 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
 
 
         overDueAdapter.setOnItemClickListener { adapter, view, position ->
-
-               ktStartActivity(RepaymentDetailActivity::class)
-
+               ktStartActivity(RepaymentDetailActivity::class){
+                   this.putExtra("repayId",repayId)
+               }
 
 
         }
         notDueAdapter.setOnItemClickListener { adapter, view, position ->
 
-            ktStartActivity(RepaymentDetailActivity::class)
+            ktStartActivity(RepaymentDetailActivity::class){
+
+            }
 
         }
         dueTodayAdapter.setOnItemClickListener { adapter, view, position ->
 
-            ktStartActivity(RepaymentDetailActivity::class)
+            ktStartActivity(RepaymentDetailActivity::class){
+
+            }
 
         }
 

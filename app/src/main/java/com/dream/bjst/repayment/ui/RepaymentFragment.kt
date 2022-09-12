@@ -12,6 +12,8 @@ import com.dream.bjst.repayment.adapter.*
 import com.dream.bjst.repayment.vm.RepaymentViewModel
 import com.tcl.base.common.ui.BaseFragment
 import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.ktSeriesClick
+import com.tcl.base.kt.ktStartActivity
 
 /**
  * 创建日期：2022-09-05 on 0:50
@@ -42,7 +44,6 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
             val noData = overDueAdapter.data.isEmpty() && dueTodayAdapter.data.isEmpty() && notDueAdapter.data.isEmpty()
             mBinding.dataLay.isVisible = !noData
             mBinding.emptyLay.rootLay.isVisible = noData
-            ToastUtils.showShort("11111111111")
 
         }
     }
@@ -67,9 +68,23 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
 
 
         overDueAdapter.setOnItemClickListener { adapter, view, position ->
-           adapter.data.set(0, "null" as Nothing)
+
+               ktStartActivity(RepaymentDetailActivity::class)
+
+
 
         }
+        notDueAdapter.setOnItemClickListener { adapter, view, position ->
+
+            ktStartActivity(RepaymentDetailActivity::class)
+
+        }
+        dueTodayAdapter.setOnItemClickListener { adapter, view, position ->
+
+            ktStartActivity(RepaymentDetailActivity::class)
+
+        }
+
 
     }
 }

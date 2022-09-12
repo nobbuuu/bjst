@@ -1,5 +1,6 @@
 package com.tcl.base.kt
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageInfo
@@ -432,10 +433,10 @@ fun String.ktChangeProductFamilyName(): String {
  */
 fun ImageView.ktSetImageIf(
     ifValue: Boolean,
-    @DrawableRes trueResId: Int,
+    @SuppressLint("SupportAnnotationUsage") @DrawableRes trueResId: String,
     @DrawableRes falseResId: Int
 ) {
-    this.setImageResource(if (ifValue) trueResId else falseResId)
+    this.setImageResource((if (ifValue) trueResId else falseResId) as Int)
 }
 
 

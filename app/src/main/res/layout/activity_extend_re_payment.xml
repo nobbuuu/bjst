@@ -41,7 +41,8 @@
                 android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="@dimen/dp_80"
+                android:id="@+id/paymentAmount"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp_17"
@@ -80,7 +81,8 @@
                 android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="@dimen/dp_50"
+                android:id="@+id/loanAmount"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
@@ -111,6 +113,7 @@
                 android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
+                android:id="@+id/expirationTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -142,7 +145,8 @@
                 android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="@dimen/dp_50"
+                android:id="@+id/extendPaymentPeriod"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
@@ -173,6 +177,7 @@
                 android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
+                android:id="@+id/dueTimeAfterExtension"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -204,7 +209,8 @@
                 android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="@dimen/dp_50"
+                android:id="@+id/overDueAmount"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
@@ -235,7 +241,8 @@
                 android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
-                android:layout_width="@dimen/dp_50"
+                android:id="@+id/extendPaymentFee"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"

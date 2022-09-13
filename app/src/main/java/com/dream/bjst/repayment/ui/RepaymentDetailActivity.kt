@@ -36,7 +36,7 @@ import com.tcl.base.utils.PhotoUtils.getPath
  */
 class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepaymentDetailBinding>() {
     var mPhotoManager: PhotoManager? = null
-
+    var borrowId:String?=null
     //输入框里面的内容
     var temp: CharSequence = ""
     var startEdit = 0
@@ -87,6 +87,8 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
     override fun startObserve() {
         super.startObserve()
         viewModel.repaymentDetailResult.observe(this) {
+            //借款编号
+            borrowId=it.`969B86869B83BD90`
             mBinding.repaymentDetailIcon.loadGif(it.`9D979BA18698`)
             mBinding.repaymentDetailName.text = it.`84869B90819780BA959991`
             mBinding.repaymentDetailAmount.text = "₹ " + it.`84869D9A979D849598B5999B819A80`
@@ -113,7 +115,9 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         mBinding.titleBar.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
 
         mBinding.deferPayButton.ktClick {
-            ktStartActivity(ExtendRePaymentActivity::class)
+            ktStartActivity(ExtendRePaymentActivity::class){
+                putExtra("borrowId",borrowId)
+            }
         }
         //repaidButton
         mBinding.repaidSubmitButton.setOnClickListener(View.OnClickListener {

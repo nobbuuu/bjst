@@ -17,6 +17,7 @@ import com.dream.bjst.loan.bean.LoanInfoBean
 import com.dream.bjst.net.parser.JsonUtil
 import com.dream.bjst.net.parser.Response
 import com.dream.bjst.other.toBoolean
+import com.dream.bjst.repayment.bean.ExtendRePaymentBean
 import com.dream.bjst.repayment.bean.RepaymentBean
 import com.dream.bjst.repayment.bean.RepaymentInDetailBean
 import com.google.gson.reflect.TypeToken
@@ -257,6 +258,16 @@ object Api {
         return RxHttp.postJson("DB979B8691DB84958DDB939180A69184958DB68DB69B86869B83BD90")
             .addAll(param)
             .toResponse<RepaymentInDetailBean>()
+            .await()
+    }
+    /**
+     * 延期还款界面
+     */
+    suspend fun paymentExtend(param: String): ExtendRePaymentBean {
+        // /core/pay/getRepayPageInfo
+        return RxHttp.postJson("DB979B8691DB84958DDB929180979CA69B9898A691A4958DBD9A929B")
+            .addAll(param)
+            .toResponse<ExtendRePaymentBean>()
             .await()
     }
 }

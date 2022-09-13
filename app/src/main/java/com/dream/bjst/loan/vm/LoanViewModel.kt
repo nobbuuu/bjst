@@ -18,4 +18,8 @@ class LoanViewModel : BaseViewModel() {
             loanData.postValue(result)
         })
     }
+
+    fun startCountDown(){
+
+    }
 }

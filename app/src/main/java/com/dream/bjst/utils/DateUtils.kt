@@ -29,4 +29,28 @@ object DateUtils {
         return dft.format(endDate)
     }
 
+    /**
+     * 格式化剩余时间
+     */
+    fun millis2FitTimeSpan(millis: Long): String {
+        var tempTime = millis
+        if (tempTime < 0) {
+            return ""
+        }
+        val units = arrayOf("天 ", ":", ":", "", "")
+        val sb = StringBuilder()
+        val unitLen = intArrayOf(86400000, 3600000, 60000, 1000, 1)
+        for (i in 0 until 4) {
+            if (tempTime >= unitLen[i]) {
+                val mode = tempTime / unitLen[i]
+                tempTime -= mode * unitLen[i]
+                if (mode < 10) {
+                    sb.append("0$mode").append(units[i])
+                } else {
+                    sb.append(mode).append(units[i])
+                }
+            }
+        }
+        return sb.toString()
+    }
 }

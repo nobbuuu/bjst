@@ -1,6 +1,9 @@
 package com.dream.bjst.loan.ui
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.BarUtils
 import com.dream.bjst.databinding.FragmentLoanBinding
@@ -8,6 +11,7 @@ import com.dream.bjst.dialog.AmountDialog
 import com.dream.bjst.loan.adapter.LoanProductAdapter
 import com.dream.bjst.loan.bean.AmountPeriodBean
 import com.dream.bjst.loan.vm.LoanViewModel
+import com.dream.bjst.utils.DateUtils
 import com.tcl.base.common.ui.BaseFragment
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
@@ -20,6 +24,8 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
     lateinit var mPeriodDialog: AmountDialog
     private val amountList = arrayListOf<AmountPeriodBean>()
     private val periodList = arrayListOf<AmountPeriodBean>()
+    private val mHandler = Handler(Looper.getMainLooper())
+    private var countDown: Long = 3 * 60 * (1000L)
     override fun initView(savedInstanceState: Bundle?) {
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.userIcon)
         loanAdapter = LoanProductAdapter()
@@ -34,6 +40,15 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         onEvent()
     }
 
+    override fun onStart() {
+        super.onStart()
+        mHandler.postDelayed(mRunnable, 1000)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mHandler.removeCallbacks(mRunnable)
+    }
 
     fun onEvent() {
         mBinding.ordersLay.ktClick {
@@ -65,6 +80,21 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         }
         mPeriodDialog.setOnSelectListener {
             mBinding.amountTv.text = it.num.toString() + " Days"
+        }
+    }
+
+    private val mRunnable = object : Runnable {
+        override fun run() {
+            if (countDown > 0) {
+                countDown -= 1000
+                mBinding.countDownTv.text = DateUtils.millis2FitTimeSpan(countDown)
+                mHandler.removeCallbacks(this)
+                mHandler.postDelayed(this, 1000)
+            } else {
+                countDown = 0
+                mBinding.countDownTv.text = "00:00"
+                mHandler.removeCallbacks(this)
+            }
         }
     }
 
@@ -119,6 +149,8 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             if (periodList.isNotEmpty()) {
                 mBinding.days.text = periodList[0].num.toString() + " Days"
             }
+
+            mBinding.fkAccountLay.isVisible = it.`929FB597979B819A80`
         }
     }
 

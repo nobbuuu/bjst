@@ -202,6 +202,55 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/repayAmount"
                 tools:text="2021-12-15" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fkAccountLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/repaymentDate">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="Annual Interest Rate"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_13"
+                    app:layout_constraintBottom_toBottomOf="@+id/rate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/rate" />
+
+                <TextView
+                    android:id="@+id/rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="24%" />
+
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:background="@color/dk_color_DDDDDD"
+                    app:layout_constraintTop_toBottomOf="@+id/rate" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:text="Monthly repayment %1s,%2s=loan mount*2%%+loan amount/loan months"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/line" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.ruffian.library.widget.RLinearLayout>
 
@@ -268,7 +317,6 @@
         android:id="@+id/botLay"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
@@ -310,6 +358,7 @@
         </LinearLayout>
 
         <com.ruffian.library.widget.RTextView
+            android:id="@+id/loanNow"
             android:layout_width="@dimen/dp_120"
             android:layout_height="@dimen/dp_44"
             android:layout_marginEnd="@dimen/dp_40"

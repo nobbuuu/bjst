@@ -94,7 +94,7 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
         dueTodayAdapter.setOnItemClickListener { adapter, view, position ->
 
             ktStartActivity(RepaymentDetailActivity::class){
-               this.putExtra(" dueToDayId", dueToDayId)
+               this.putExtra("dueToDayId", dueToDayId)
             }
 
         }

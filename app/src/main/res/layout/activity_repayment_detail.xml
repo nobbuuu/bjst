@@ -39,8 +39,8 @@
 
             <com.ruffian.library.widget.RTextView
                 android:id="@+id/repayment_detail_name"
-                android:layout_width="@dimen/dp_61"
-                android:layout_height="@dimen/dp_21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_13"
                 android:layout_marginTop="@dimen/dp_32"
                 android:layout_toRightOf="@id/repayment_detail_icon"

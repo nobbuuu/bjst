@@ -74,29 +74,20 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
                 .navigate(R.id.repayment_to_navigation_loan)
         }
 
-
-
-
         overDueAdapter.setOnItemClickListener { adapter, view, position ->
                ktStartActivity(RepaymentDetailActivity::class){
-                   this.putExtra("overDueId",overDueId)
+                   putExtra("detailId",overDueId)
                }
-
-
         }
         notDueAdapter.setOnItemClickListener { adapter, view, position ->
-
             ktStartActivity(RepaymentDetailActivity::class){
-                 this.putExtra("notDueId",notDueId)
+                 putExtra("detailId",notDueId)
             }
-
         }
         dueTodayAdapter.setOnItemClickListener { adapter, view, position ->
-
             ktStartActivity(RepaymentDetailActivity::class){
-               this.putExtra("dueToDayId", dueToDayId)
+               putExtra("detailId", dueToDayId)
             }
-
         }
 
 

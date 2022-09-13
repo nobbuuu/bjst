@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.ToastUtils
@@ -19,10 +20,12 @@ import com.dream.bjst.repayment.vm.RepaymentViewModel
 import com.dream.bjst.utils.FileUtils.bitmap2File
 import com.dream.bjst.utils.PhotoManager
 import com.dream.bjst.utils.PhotoSelectDialog
+import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktSetImageIf
 import com.tcl.base.kt.ktStartActivity
+import com.tcl.base.kt.loadGif
 import com.tcl.base.utils.MmkvUtil.encode
 import com.tcl.base.utils.PhotoUtils.getPath
 
@@ -43,28 +46,10 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
 
         var param: String = GsonUtils.toJson(
             RepaymentDetailParam(
-                `969B86869B83BD90` = intent.getStringExtra("overDueId")
+                `969B86869B83BD90` = intent.getStringExtra("detailId")
             )
         )
-        var param2: String = GsonUtils.toJson(
-            RepaymentDetailParam(
-                `969B86869B83BD90` = intent.getStringExtra("dueToDayId")
-            )
-        )
-        var param3: String = GsonUtils.toJson(
-            RepaymentDetailParam(
-                `969B86869B83BD90` = intent.getStringExtra("notDueId")
-            )
-        )
-
-        var paramList = listOf(param, param2, param3)
-//        for (index in paramList) {
-//            viewModel.repaymentDetailData(index)
-//        }
-          paramList.forEach(){
-              viewModel.repaymentDetailData(it)
-
-          }
+        viewModel.repaymentDetailData(param)
 
         event()
         mPhotoManager = PhotoManager(this)
@@ -102,9 +87,9 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
     override fun startObserve() {
         super.startObserve()
         viewModel.repaymentDetailResult.observe(this) {
-//            mBinding.repaymentDetailIcon.ktSetImageIf(true, it.`9D979BA18698`as Int, R.mipmap.icon)
+            mBinding.repaymentDetailIcon.loadGif(it.`9D979BA18698`)
             mBinding.repaymentDetailName.text = it.`84869B90819780BA959991`
-            mBinding.repaymentDetailAmount.text = "₹ " + it.`869199959D9AA09B809598B5999B819A80`
+            mBinding.repaymentDetailAmount.text = "₹ " + it.`84869D9A979D849598B5999B819A80`
             mBinding.repaymentDetailLoanAmount.text = "₹ " + it.`84869D9A979D849598B5999B819A80`
             mBinding.repaymentDetailLoanDay.text = it.`869184958DB19A90`
             mBinding.repaymentDetailOverDueAmount.text = "₹ " + it.`869199959D9ABB829186908191`

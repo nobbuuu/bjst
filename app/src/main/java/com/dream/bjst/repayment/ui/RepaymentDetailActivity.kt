@@ -93,6 +93,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             mBinding.repaymentDetailLoanAmount.text = "₹ " + it.`84869D9A979D849598B5999B819A80`
             mBinding.repaymentDetailLoanDay.text = it.`869184958DB19A90`
             mBinding.repaymentDetailOverDueAmount.text = "₹ " + it.`869199959D9ABB829186908191`
+
             when(it.`9B86909186A78095808187`){
                 "10" -> mBinding.repaymentDetailStatus.text="NotDue"
                 "20" -> mBinding.repaymentDetailStatus.text="DueToday"
@@ -111,7 +112,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
     private fun event() {
         mBinding.titleBar.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
 
-        mBinding.confirmPayButton.ktClick {
+        mBinding.deferPayButton.ktClick {
             ktStartActivity(ExtendRePaymentActivity::class)
         }
         //repaidButton

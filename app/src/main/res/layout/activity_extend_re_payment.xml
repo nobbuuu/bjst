@@ -16,7 +16,7 @@
         <com.hjq.bar.TitleBar
             android:id="@+id/title_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_25"
+            android:layout_height="@dimen/dp_44"
             android:textColor="#ff000000"
             android:textSize="@dimen/sp_18"
             app:title="Extend"

@@ -21,6 +21,7 @@ import com.dream.bjst.utils.PhotoManager
 import com.dream.bjst.utils.PhotoSelectDialog
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.ktSetImageIf
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.utils.MmkvUtil.encode
 import com.tcl.base.utils.PhotoUtils.getPath
@@ -30,7 +31,7 @@ import com.tcl.base.utils.PhotoUtils.getPath
  * 描述:衣带渐宽终不悔、为伊消得人憔悴
  * 作者:HeGuiCun Administrator
  */
-class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentDetailBinding>() {
+class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepaymentDetailBinding>() {
     var mPhotoManager: PhotoManager? = null
 
     //输入框里面的内容
@@ -40,9 +41,11 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
 
     override fun initView(savedInstanceState: Bundle?) {
 
-     var param:String = GsonUtils.toJson(RepaymentDetailParam(
-         `969B86869B83BD90` =intent.getStringExtra("repayId")
-     ))
+        var param: String = GsonUtils.toJson(
+            RepaymentDetailParam(
+                `969B86869B83BD90` = intent.getStringExtra("overDueId")
+            )
+        )
 
         viewModel.repaymentDetailData(param)
 
@@ -58,8 +61,8 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
 
             @SuppressLint("ResourceAsColor")
             override fun afterTextChanged(s: Editable) {
-                startEdit =  mBinding.digitalEt.selectionStart
-                endEdit =  mBinding.digitalEt.selectionEnd
+                startEdit = mBinding.digitalEt.selectionStart
+                endEdit = mBinding.digitalEt.selectionEnd
                 //mNumTextView.setText(String.valueOf(temp.length()));
                 if (temp.length > 12) {
                     s.delete(startEdit - 1, endEdit)
@@ -81,7 +84,13 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
 
     override fun startObserve() {
         super.startObserve()
-        viewModel.repaymentDetailResult.observe(this){
+        viewModel.repaymentDetailResult.observe(this) {
+//            mBinding.repaymentDetailIcon.ktSetImageIf(true, it.`9D979BA18698`as Int, R.mipmap.icon)
+            mBinding.repaymentDetailName.text = it.`84869B90819780BA959991`
+            mBinding.repaymentDetailAmount.text = "₹ "+it.`869199959D9AA09B809598B5999B819A80`
+            mBinding.repaymentDetailLoanAmount.text ="₹ "+ it.`84869D9A979D849598B5999B819A80`
+            mBinding.repaymentDetailLoanDay.text=it.`869184958DB19A90`
+            mBinding.repaymentDetailOverDueAmount.text="₹ "+it.`869199959D9ABB829186908191`
 
         }
 
@@ -95,10 +104,15 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
         mBinding.titleBar.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
 
         mBinding.confirmPayButton.ktClick {
-            ktStartActivity( ExtendRePaymentActivity::class)
+            ktStartActivity(ExtendRePaymentActivity::class)
         }
         //repaidButton
-        mBinding.repaidSubmitButton.setOnClickListener(View.OnClickListener { encode("digital", temp) })
+        mBinding.repaidSubmitButton.setOnClickListener(View.OnClickListener {
+            encode(
+                "digital",
+                temp
+            )
+        })
         //点击上传UTR_picture
         mBinding.addPictureCameraIv.setOnClickListener(View.OnClickListener { //这里上传头
             val photoSelectDialog =
@@ -115,7 +129,7 @@ class RepaymentDetailActivity:BaseActivity<RepaymentViewModel,ActivityRepaymentD
         })
 
         //设置头布局和尾部局的显示和隐藏
-            mBinding.headerArrow.setOnClickListener(View.OnClickListener {
+        mBinding.headerArrow.setOnClickListener(View.OnClickListener {
             mBinding.headerRv.setVisibility(View.GONE)
             mBinding.footerArrow.setImageResource(R.mipmap.ic_up_two_level)
             mBinding.footerRv.setVisibility(View.VISIBLE)

@@ -4,6 +4,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.net.Api
 import com.dream.bjst.repayment.bean.ExtendRePaymentBean
+import com.dream.bjst.repayment.bean.PaymentUtrBean
 import com.dream.bjst.repayment.bean.RepaymentBean
 import com.dream.bjst.repayment.bean.RepaymentInDetailBean
 import com.tcl.base.common.BaseViewModel
@@ -18,7 +19,7 @@ class RepaymentViewModel : BaseViewModel() {
     val repaymentResult = SingleLiveEvent<RepaymentBean>()
     val repaymentDetailResult = SingleLiveEvent<RepaymentInDetailBean>()
     val repaymentExtendResult = SingleLiveEvent<ExtendRePaymentBean>()
-    val repaymentUTRResult = SingleLiveEvent<Boolean>()
+    val repaymentUTRResult = SingleLiveEvent<PaymentUtrBean>()
 
 
 

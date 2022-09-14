@@ -18,6 +18,7 @@ import com.dream.bjst.net.parser.JsonUtil
 import com.dream.bjst.net.parser.Response
 import com.dream.bjst.other.toBoolean
 import com.dream.bjst.repayment.bean.ExtendRePaymentBean
+import com.dream.bjst.repayment.bean.PaymentUtrBean
 import com.dream.bjst.repayment.bean.RepaymentBean
 import com.dream.bjst.repayment.bean.RepaymentInDetailBean
 import com.google.gson.reflect.TypeToken
@@ -273,10 +274,10 @@ object Api {
     /**
      *post UTR数字和图片
      */
-    suspend fun payUTRData(param: String): Boolean {
+    suspend fun payUTRData(param: String): PaymentUtrBean {
         return RxHttp.postJson("DB979B8691DB818086DB878196999D80A18086")
             .addAll(param)
-            .toBoolean()
+            .toResponse<PaymentUtrBean>()
             .await()
 
     }

@@ -225,7 +225,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
 //            val file = bitmap2File(it, filesDir.path, "tempAvatar.png"
             panIconBase64 = BitmapUtils.bitmapToBase64(rotateBitmap)
             //上传图片
-
+            Log.i(TAG, "upLoadFile: "+panIconBase64)
         }
     }
 

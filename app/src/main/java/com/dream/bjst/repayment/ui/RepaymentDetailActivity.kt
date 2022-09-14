@@ -43,7 +43,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
     var panIconBase64:String?=null
     var utrCode:String?=null
     var paymentAmount:String?=null
-
+    var UTRParam:String?=null
 
     //输入框里面的内容
     var temp: CharSequence = ""
@@ -55,10 +55,10 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         viewModel.repaymentDetailData(param)
          //utr内容
         utrCode=mBinding.digitalEt.text.toString()
-       var UTRParam:String=GsonUtils.toJson(PaymentUtrParam(paymentAmount.toString(),
-           borrowId.toString(), utrCode!!, panIconBase64.toString()
+      UTRParam =GsonUtils.toJson(PaymentUtrParam(paymentAmount.toString(),
+           borrowId.toString(), utrCode.toString(), panIconBase64.toString()
        ))
-         viewModel.paymentUTRData(UTRParam)
+
 
 
         event()
@@ -119,7 +119,9 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
              * 上传utr返回数据
              */
             viewModel.repaymentUTRResult.observe(this){
-//                   takeIf { it=true-> }
+                  if (it){
+                      ToastUtils.showShort("success!")
+                  }
             }
 
         }
@@ -139,12 +141,9 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             }
         }
         //repaidButton
-        mBinding.repaidSubmitButton.setOnClickListener(View.OnClickListener {
-            encode(
-                "digital",
-                temp
-            )
-        })
+        mBinding.repaidSubmitButton.ktClick {
+            UTRParam?.let { viewModel.paymentUTRData(it) }
+        }
         //点击上传UTR_picture
         mBinding.addPictureCameraIv.setOnClickListener(View.OnClickListener { //这里上传头
             val photoSelectDialog =

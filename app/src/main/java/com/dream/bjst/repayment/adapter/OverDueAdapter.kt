@@ -23,11 +23,7 @@ class OverDueAdapter : BaseQuickAdapter<OverdueOrder, BaseViewHolder>(R.layout.i
         holder.setText(R.id.repayment_loan_name,item.`84869B90819780BA959991`)
         holder.setText(R.id.repayment_repay_amount,"₹ " +item.`869199959D9AA09B809598B5999B819A80`.toString())
         holder.ktSetImage(R.id.repayment_item_icon, item.`9D979BA18698`)
-
-        if (footerViewPosition!=0){
-            holder.setVisible(R.id.divider,true)
-        }
-
+        holder.setGone(R.id.divider,holder.adapterPosition == data.size-1)
     }
 
 

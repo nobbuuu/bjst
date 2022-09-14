@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
         tools:context=".repayment.ui.ExtendRePaymentActivity">
-
 
         <com.hjq.bar.TitleBar
             android:id="@+id/title_bar"
@@ -34,10 +33,10 @@
             <com.ruffian.library.widget.RTextView
                 android:layout_width="@dimen/dp_181"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_13"
                 android:gravity="center_vertical"
                 android:text="Total Repayment Amount"
                 android:textColor="#ff666666"
-                android:layout_marginLeft="@dimen/dp_13"
                 android:textSize="@dimen/sp_15" />
 
             <com.ruffian.library.widget.RTextView
@@ -47,9 +46,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp_17"
                 android:gravity="center_vertical"
-                android:text="₹ 6,200"
                 android:textColor="#ff009b12"
-                android:textSize="@dimen/sp_22" />
+                android:textSize="@dimen/sp_22"
+                tools:text="₹ 6,200" />
         </RelativeLayout>
 
         <com.ruffian.library.widget.RTextView
@@ -87,9 +86,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_20"
-                android:text="₹6,000"
                 android:textColor="#ff000000"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_15"
+                tools:text="₹6,000" />
         </RelativeLayout>
 
         <View
@@ -119,7 +118,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_20"
-                android:text="2021-12-01"
+                tools:text="2021-12-01"
                 android:textColor="#ff000000"
                 android:textSize="@dimen/sp_15" />
         </RelativeLayout>
@@ -151,7 +150,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_20"
-                android:text="7 Days"
+                tools:text="7 Days"
                 android:textColor="#ff000000"
                 android:textSize="@dimen/sp_15" />
         </RelativeLayout>
@@ -183,7 +182,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_20"
-                android:text="2021-12-07"
+                tools:text="2021-12-07"
                 android:textColor="#ff000000"
                 android:textSize="@dimen/sp_15" />
         </RelativeLayout>
@@ -215,7 +214,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_20"
-                android:text="  ₹ 600"
+                tools:text="  ₹ 600"
                 android:textColor="#ff000000"
                 android:textSize="@dimen/sp_15" />
         </RelativeLayout>
@@ -247,7 +246,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_20"
-                android:text="₹2000"
+                tools:text="₹2000"
                 android:textColor="#ff000000"
                 android:textSize="@dimen/sp_15" />
         </RelativeLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
 import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
 
@@ -22,10 +23,6 @@ import com.tcl.base.kt.ktStartActivity
  * 作者:HeGuiCun Administrator
  */
 class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBinding>() {
-    var overDueId:String?=null
-    var dueToDayId:String?=null
-    var notDueId:String?=null
-
     //数据适配器
     var overDueAdapter = OverDueAdapter()
     var dueTodayAdapter = DueTodayAdapter()
@@ -35,6 +32,10 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.repayment)
         initRv()
         viewModel.repaymentData()
+
+        mBinding.smartRefresh.setOnRefreshListener {
+            viewModel.repaymentData()
+        }
     }
 
     /**
@@ -43,18 +44,14 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
     override fun startObserve() {
         super.startObserve()
         viewModel.repaymentResult.observe(this) {
+            mBinding.smartRefresh.finishRefresh()
             overDueAdapter.setList(it.`9B829186908191BB8690918687`)
             dueTodayAdapter.setList(it.`908191A09B90958DBB8690918687`)
             notDueAdapter.setList(it.`9A9B80B08191BB8690918687`)
-            //获取界面编号
-            overDueId= it.`9B829186908191BB8690918687`.firstOrNull()?.`969B86869B83BD90`.toString()
-            dueToDayId= it.`908191A09B90958DBB8690918687`.firstOrNull()?.`969B86869B83BD90`.toString()
-            notDueId= it.`9A9B80B08191BB8690918687`.firstOrNull()?.`969B86869B83BD90`.toString()
 
             val noData = overDueAdapter.data.isEmpty() && dueTodayAdapter.data.isEmpty() && notDueAdapter.data.isEmpty()
             mBinding.dataLay.isVisible = !noData
             mBinding.emptyLay.rootLay.isVisible = noData
-
         }
     }
 
@@ -76,17 +73,17 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
 
         overDueAdapter.setOnItemClickListener { adapter, view, position ->
                ktStartActivity(RepaymentDetailActivity::class){
-                   putExtra("detailId",overDueId)
+                   putExtra("detailId",overDueAdapter.data[position].`969B86869B83BD90`)
                }
         }
         notDueAdapter.setOnItemClickListener { adapter, view, position ->
             ktStartActivity(RepaymentDetailActivity::class){
-                 putExtra("detailId",notDueId)
+                putExtra("detailId",notDueAdapter.data[position].`969B86869B83BD90`)
             }
         }
         dueTodayAdapter.setOnItemClickListener { adapter, view, position ->
             ktStartActivity(RepaymentDetailActivity::class){
-               putExtra("detailId", dueToDayId)
+                putExtra("detailId",dueTodayAdapter.data[position].`969B86869B83BD90`)
             }
         }
 

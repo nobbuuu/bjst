@@ -9,7 +9,5 @@ import java.io.Serializable
  * 作者:HeGuiCun Administrator
  */
 data class RepaymentDetailParam(
-
-    val `969B86869B83BD90`: String?,
-
-    ):BaseParamBean(),Serializable
+    var `969B86869B83BD90`: String?,
+) : BaseParamBean(), Serializable

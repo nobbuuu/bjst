@@ -43,12 +43,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
     var endEdit = 0
 
     override fun initView(savedInstanceState: Bundle?) {
-
-        var param: String = GsonUtils.toJson(
-            RepaymentDetailParam(
-                `969B86869B83BD90` = intent.getStringExtra("detailId")
-            )
-        )
+        var param: String = GsonUtils.toJson(RepaymentDetailParam(intent.getStringExtra("detailId")))
         viewModel.repaymentDetailData(param)
 
         event()

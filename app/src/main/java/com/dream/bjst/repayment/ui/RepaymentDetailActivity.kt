@@ -39,11 +39,11 @@ import com.tcl.base.utils.PhotoUtils.getPath
  */
 class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepaymentDetailBinding>() {
     var mPhotoManager: PhotoManager? = null
-    var borrowId:String?=null
-    var panIconBase64:String?=null
-    var utrCode:String?=null
-    var paymentAmount:String?=null
-    var UTRParam:String?=null
+    var borrowId: String? = null
+    var panIconBase64: String? = null
+    var utrCode: String? = null
+    var paymentAmount: String? = null
+    var UTRParam: String? = null
 
     //输入框里面的内容
     var temp: CharSequence = ""
@@ -51,13 +51,16 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
     var endEdit = 0
 
     override fun initView(savedInstanceState: Bundle?) {
-        var param: String = GsonUtils.toJson(RepaymentDetailParam(intent.getStringExtra("detailId")))
+        var param: String =
+            GsonUtils.toJson(RepaymentDetailParam(intent.getStringExtra("detailId")))
         viewModel.repaymentDetailData(param)
-         //utr内容
-        utrCode=mBinding.digitalEt.text.toString()
-      UTRParam =GsonUtils.toJson(PaymentUtrParam(paymentAmount.toString(),
-           borrowId.toString(), utrCode.toString(), panIconBase64.toString()
-       ))
+        //utr内容
+        utrCode = mBinding.digitalEt.text.toString()
+        UTRParam = GsonUtils.toJson(
+            PaymentUtrParam(
+                borrowId.toString(), utrCode.toString(), panIconBase64.toString()
+            )
+        )
 
 
 
@@ -79,7 +82,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                 if (temp.length > 12) {
                     s.delete(startEdit - 1, endEdit)
                     val tempSelection = startEdit
-                    mBinding.digitalEt.text=s
+                    mBinding.digitalEt.text = s
                     mBinding.digitalEt.setSelection(tempSelection)
                     ToastUtils.showShort("你输入的字已经超过了！")
                 } else if (temp.length < 12) {
@@ -98,7 +101,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         super.startObserve()
         viewModel.repaymentDetailResult.observe(this) {
             //借款编号
-            borrowId=it.`969B86869B83BD90`
+            borrowId = it.`969B86869B83BD90`
             mBinding.repaymentDetailIcon.loadGif(it.`9D979BA18698`)
             mBinding.repaymentDetailName.text = it.`84869B90819780BA959991`
             mBinding.repaymentDetailAmount.text = "₹ " + it.`869199959D9AA09B809598B5999B819A80`
@@ -106,10 +109,10 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             mBinding.repaymentDetailLoanDay.text = it.`869184958DB19A90`
             mBinding.repaymentDetailOverDueAmount.text = "₹ " + it.`869199959D9ABB829186908191`
 
-            when(it.`9B86909186A78095808187`){
-                "10" -> mBinding.repaymentDetailStatus.text="NotDue"
-                "20" -> mBinding.repaymentDetailStatus.text="DueToday"
-                "30" -> mBinding.repaymentDetailStatus.text="OverDue"
+            when (it.`9B86909186A78095808187`) {
+                "10" -> mBinding.repaymentDetailStatus.text = "NotDue"
+                "20" -> mBinding.repaymentDetailStatus.text = "DueToday"
+                "30" -> mBinding.repaymentDetailStatus.text = "OverDue"
             }
             //获取贷款额
             paymentAmount = it.`869199959D9AA09B809598B5999B819A80`
@@ -118,10 +121,10 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             /**
              * 上传utr返回数据
              */
-            viewModel.repaymentUTRResult.observe(this){
-                  if (it){
-                      ToastUtils.showShort("success!")
-                  }
+            viewModel.repaymentUTRResult.observe(this) {
+                if (it) {
+                    ToastUtils.showShort("success!")
+                }
             }
 
         }
@@ -136,8 +139,8 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         mBinding.titleBar.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
 
         mBinding.deferPayButton.ktClick {
-            ktStartActivity(ExtendRePaymentActivity::class){
-                putExtra("borrowId",borrowId)
+            ktStartActivity(ExtendRePaymentActivity::class) {
+                putExtra("borrowId", borrowId)
             }
         }
         //repaidButton
@@ -229,7 +232,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         mBinding.addPictureCameraIv.setImageBitmap(rotateBitmap)
         rotateBitmap?.let {
 //            val file = bitmap2File(it, filesDir.path, "tempAvatar.png"
-            panIconBase64= BitmapUtils.bitmapToBase64(rotateBitmap)
+            panIconBase64 = BitmapUtils.bitmapToBase64(rotateBitmap)
             //上传图片
 
         }

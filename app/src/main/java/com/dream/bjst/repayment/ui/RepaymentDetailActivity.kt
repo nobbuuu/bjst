@@ -231,11 +231,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
 
     override fun initData() {
 
-        UTRParam = GsonUtils.toJson(
-            PaymentUtrParam(
-                borrowId.toString(), temp.toString(), panIconBase64.toString()
-            )
-        )
+        UTRParam = GsonUtils.toJson(PaymentUtrParam(borrowId.toString(), temp.toString(), panIconBase64.toString()))
 
         Log.i(TAG, "initView: "+utrCode)
     }

@@ -11,6 +11,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import com.blankj.utilcode.util.GsonUtils
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
 import com.dream.bjst.common.Constant
@@ -62,7 +63,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             )
         )
 
-
+        Log.i(TAG, "initView: "+utrCode)
 
         event()
         mPhotoManager = PhotoManager(this)

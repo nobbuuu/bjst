@@ -15,9 +15,12 @@ import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
 import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityRepaymentDetailBinding
+import com.dream.bjst.repayment.bean.PaymentUtrParam
 import com.dream.bjst.repayment.bean.RepaymentDetailParam
 import com.dream.bjst.repayment.vm.RepaymentViewModel
+import com.dream.bjst.utils.BitmapUtils
 import com.dream.bjst.utils.FileUtils.bitmap2File
+import com.dream.bjst.utils.FileUtils.encodeFileToBase64
 import com.dream.bjst.utils.PhotoManager
 import com.dream.bjst.utils.PhotoSelectDialog
 import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
@@ -37,6 +40,11 @@ import com.tcl.base.utils.PhotoUtils.getPath
 class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepaymentDetailBinding>() {
     var mPhotoManager: PhotoManager? = null
     var borrowId:String?=null
+    var panIconBase64:String?=null
+    var utrCode:String?=null
+    var paymentAmount:String?=null
+
+
     //输入框里面的内容
     var temp: CharSequence = ""
     var startEdit = 0
@@ -45,6 +53,13 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
     override fun initView(savedInstanceState: Bundle?) {
         var param: String = GsonUtils.toJson(RepaymentDetailParam(intent.getStringExtra("detailId")))
         viewModel.repaymentDetailData(param)
+         //utr内容
+        utrCode=mBinding.digitalEt.text.toString()
+       var UTRParam:String=GsonUtils.toJson(PaymentUtrParam(paymentAmount.toString(),
+           borrowId.toString(), utrCode!!, panIconBase64.toString()
+       ))
+         viewModel.paymentUTRData(UTRParam)
+
 
         event()
         mPhotoManager = PhotoManager(this)
@@ -64,7 +79,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                 if (temp.length > 12) {
                     s.delete(startEdit - 1, endEdit)
                     val tempSelection = startEdit
-                    mBinding.digitalEt.setText(s)
+                    mBinding.digitalEt.text=s
                     mBinding.digitalEt.setSelection(tempSelection)
                     ToastUtils.showShort("你输入的字已经超过了！")
                 } else if (temp.length < 12) {
@@ -86,7 +101,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             borrowId=it.`969B86869B83BD90`
             mBinding.repaymentDetailIcon.loadGif(it.`9D979BA18698`)
             mBinding.repaymentDetailName.text = it.`84869B90819780BA959991`
-            mBinding.repaymentDetailAmount.text = "₹ " + it.`84869D9A979D849598B5999B819A80`
+            mBinding.repaymentDetailAmount.text = "₹ " + it.`869199959D9AA09B809598B5999B819A80`
             mBinding.repaymentDetailLoanAmount.text = "₹ " + it.`84869D9A979D849598B5999B819A80`
             mBinding.repaymentDetailLoanDay.text = it.`869184958DB19A90`
             mBinding.repaymentDetailOverDueAmount.text = "₹ " + it.`869199959D9ABB829186908191`
@@ -96,7 +111,16 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                 "20" -> mBinding.repaymentDetailStatus.text="DueToday"
                 "30" -> mBinding.repaymentDetailStatus.text="OverDue"
             }
+            //获取贷款额
+            paymentAmount = it.`869199959D9AA09B809598B5999B819A80`
 
+
+            /**
+             * 上传utr返回数据
+             */
+            viewModel.repaymentUTRResult.observe(this){
+//                   takeIf { it=true-> }
+            }
 
         }
 
@@ -205,12 +229,10 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         //显示图片
         mBinding.addPictureCameraIv.setImageBitmap(rotateBitmap)
         rotateBitmap?.let {
-            val file = bitmap2File(
-                it,
-                filesDir.path,
-                "tempAvatar.png"
-            )
+//            val file = bitmap2File(it, filesDir.path, "tempAvatar.png"
+            panIconBase64= BitmapUtils.bitmapToBase64(rotateBitmap)
             //上传图片
+
         }
     }
 

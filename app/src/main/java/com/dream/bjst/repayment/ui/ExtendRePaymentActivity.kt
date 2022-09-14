@@ -41,7 +41,7 @@ class ExtendRePaymentActivity : BaseActivity<RepaymentViewModel, ActivityExtendR
             mBinding.loanAmount.text = "₹ " + it.`84869D9A979D849598B5999B819A80`
             mBinding.expirationTime.text = it.`869184958DB19A90`
             it.`869B9898A691A4958DBD9A929BA0918699B89D8780`.getOrNull(0)?.let { bean ->
-                mBinding.paymentAmount.text = "₹ " + bean.`909198958DB5999B819A80`.bigDecimalPlus(bean.`9B829186908191B5999B819A80`)
+                mBinding.paymentAmount.text = "₹ " + bean.`84959D90B5999B819A80`//.bigDecimalPlus(bean.`9B829186908191B5999B819A80`)
                 mBinding.extendPaymentPeriod.text = bean.`909198958DB19A90`
                 mBinding.extendPaymentFee.text = "₹ " + bean.`909198958DB5999B819A80`
                 mBinding.overDueAmount.text = "₹ " + bean.`9B829186908191B5999B819A80`

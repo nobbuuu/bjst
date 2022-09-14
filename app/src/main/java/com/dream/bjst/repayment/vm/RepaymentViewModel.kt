@@ -18,6 +18,7 @@ class RepaymentViewModel : BaseViewModel() {
     val repaymentResult = SingleLiveEvent<RepaymentBean>()
     val repaymentDetailResult = SingleLiveEvent<RepaymentInDetailBean>()
     val repaymentExtendResult = SingleLiveEvent<ExtendRePaymentBean>()
+    val repaymentUTRResult = SingleLiveEvent<Boolean>()
 
 
 
@@ -47,6 +48,16 @@ class RepaymentViewModel : BaseViewModel() {
         rxLaunchUI({
             var payExtendResult = Api.paymentExtend(param)
             repaymentExtendResult.postValue(payExtendResult)
+        })
+    }
+
+    /**
+     * post UTR数字延期
+     */
+    fun paymentUTRData(param: String){
+        rxLaunchUI({
+            var payUTRResult = Api.payUTRData(param)
+            repaymentUTRResult.postValue(payUTRResult)
         })
     }
 }

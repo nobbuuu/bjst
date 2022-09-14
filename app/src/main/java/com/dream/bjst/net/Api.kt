@@ -270,4 +270,14 @@ object Api {
             .toResponse<ExtendRePaymentBean>()
             .await()
     }
+    /**
+     *post UTR数字和图片
+     */
+    suspend fun payUTRData(param: String): Boolean {
+        return RxHttp.postJson("DB979B8691DB818086DB878196999D80A18086")
+            .addAll(param)
+            .toBoolean()
+            .await()
+
+    }
 }

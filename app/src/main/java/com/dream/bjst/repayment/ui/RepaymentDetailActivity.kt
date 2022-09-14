@@ -43,7 +43,6 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
     var borrowId: String? = null
     var panIconBase64: String? = null
     var utrCode: String? = null
-    var paymentAmount: String? = null
     var UTRParam: String? = null
 
     //输入框里面的内容
@@ -52,20 +51,13 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
     var endEdit = 0
 
     override fun initView(savedInstanceState: Bundle?) {
+
+        event()//点击事件函数
         var param: String =
             GsonUtils.toJson(RepaymentDetailParam(intent.getStringExtra("detailId")))
         viewModel.repaymentDetailData(param)
-        //utr内容
-        utrCode = mBinding.digitalEt.text.toString()
-        UTRParam = GsonUtils.toJson(
-            PaymentUtrParam(
-                borrowId.toString(), utrCode.toString(), panIconBase64.toString()
-            )
-        )
 
-        Log.i(TAG, "initView: "+utrCode)
 
-        event()
         mPhotoManager = PhotoManager(this)
         mBinding.digitalEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -115,16 +107,14 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                 "20" -> mBinding.repaymentDetailStatus.text = "DueToday"
                 "30" -> mBinding.repaymentDetailStatus.text = "OverDue"
             }
-            //获取贷款额
-            paymentAmount = it.`869199959D9AA09B809598B5999B819A80`
 
 
             /**
              * 上传utr返回数据
              */
             viewModel.repaymentUTRResult.observe(this) {
-                if (it) {
-                    ToastUtils.showShort("success!")
+                if (it.`869187819880`) {
+                    ToastUtils.showShort(it.`99918787959391`)
                 }
             }
 
@@ -240,6 +230,14 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
     }
 
     override fun initData() {
+
+        UTRParam = GsonUtils.toJson(
+            PaymentUtrParam(
+                borrowId.toString(), temp.toString(), panIconBase64.toString()
+            )
+        )
+
+        Log.i(TAG, "initView: "+utrCode)
     }
 
     override fun initDataOnResume() {

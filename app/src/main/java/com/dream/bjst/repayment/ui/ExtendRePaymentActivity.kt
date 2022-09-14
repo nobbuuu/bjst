@@ -2,6 +2,7 @@ package com.dream.bjst.repayment.ui
 
 import android.os.Bundle
 import com.blankj.utilcode.util.GsonUtils
+
 import com.dream.bjst.databinding.ActivityExtendRePaymentBinding
 import com.dream.bjst.repayment.bean.RepaymentDetailParam
 import com.dream.bjst.repayment.vm.RepaymentViewModel
@@ -34,6 +35,14 @@ class ExtendRePaymentActivity:BaseActivity<RepaymentViewModel,ActivityExtendRePa
     override fun startObserve() {
         super.startObserve()
         viewModel.repaymentExtendResult.observe(this){
+         mBinding.paymentAmount.text= "₹ "+"${it.`84869D9A979D849598B5999B819A80`}"+"${it.`869B9898A691A4958DBD9A929BA0918699B89D8780`.getOrNull(2)?.`9B829186908191B5999B819A80`}"
+            mBinding.loanAmount.text="₹ "+it.`84869D9A979D849598B5999B819A80`
+            mBinding.expirationTime.text=it.`869184958DB19A90`
+            mBinding.extendPaymentPeriod.text= it.`869B9898A691A4958DBD9A929BA0918699B89D8780`.getOrNull(0)?.`909198958DB19A90`
+            mBinding.extendPaymentFee.text="₹ "+it.`869B9898A691A4958DBD9A929BA0918699B89D8780`.getOrNull(1)?.`909198958DB5999B819A80`
+            mBinding.overDueAmount.text="₹ "+it.`869B9898A691A4958DBD9A929BA0918699B89D8780`.getOrNull(2)?.`9B829186908191B5999B819A80`
+            mBinding.dueTimeAfterExtension.text= it.`869B9898A691A4958DBD9A929BA0918699B89D8780`.getOrNull(4)?.`909198958DB0958D87` + "days"
+
 
         }
     }

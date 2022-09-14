@@ -11,7 +11,6 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import com.blankj.utilcode.util.GsonUtils
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
 import com.dream.bjst.common.Constant
@@ -20,17 +19,13 @@ import com.dream.bjst.repayment.bean.PaymentUtrParam
 import com.dream.bjst.repayment.bean.RepaymentDetailParam
 import com.dream.bjst.repayment.vm.RepaymentViewModel
 import com.dream.bjst.utils.BitmapUtils
-import com.dream.bjst.utils.FileUtils.bitmap2File
-import com.dream.bjst.utils.FileUtils.encodeFileToBase64
 import com.dream.bjst.utils.PhotoManager
 import com.dream.bjst.utils.PhotoSelectDialog
 import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
-import com.tcl.base.kt.ktSetImageIf
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.loadGif
-import com.tcl.base.utils.MmkvUtil.encode
 import com.tcl.base.utils.PhotoUtils.getPath
 
 /**
@@ -57,8 +52,10 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             GsonUtils.toJson(RepaymentDetailParam(intent.getStringExtra("detailId")))
         viewModel.repaymentDetailData(param)
 
-
         mPhotoManager = PhotoManager(this)
+        /**
+         * 设置UTR的数字监听
+         */
         mBinding.digitalEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
@@ -86,6 +83,8 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                     mBinding.notionTv.text = "Enter is correct！"
                     mBinding.notionTv.setTextColor(R.color.green_color_background)
                 }
+
+                Log.i(TAG, "startObserve: "+temp)
             }
         })
     }
@@ -95,6 +94,8 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         viewModel.repaymentDetailResult.observe(this) {
             //借款编号
             borrowId = it.`969B86869B83BD90`
+            Log.i(TAG, "startObserve: "+borrowId)
+
             mBinding.repaymentDetailIcon.loadGif(it.`9D979BA18698`)
             mBinding.repaymentDetailName.text = it.`84869B90819780BA959991`
             mBinding.repaymentDetailAmount.text = "₹ " + it.`869199959D9AA09B809598B5999B819A80`
@@ -109,16 +110,16 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             }
 
 
+
+        }
             /**
              * 上传utr返回数据
              */
             viewModel.repaymentUTRResult.observe(this) {
-                if (it.`869187819880`) {
-                    ToastUtils.showShort(it.`99918787959391`)
-                }
-            }
 
-        }
+                it.takeIf{it.`869187819880`}?.let{ToastUtils.showShort(it.`99918787959391`)}
+
+            }
 
     }
 
@@ -222,18 +223,17 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         //显示图片
         mBinding.addPictureCameraIv.setImageBitmap(rotateBitmap)
         rotateBitmap?.let {
-//            val file = bitmap2File(it, filesDir.path, "tempAvatar.png"
             panIconBase64 = BitmapUtils.bitmapToBase64(rotateBitmap)
             //上传图片
-            Log.i(TAG, "upLoadFile: "+panIconBase64)
+            Log.i(TAG, "startObserve:"+panIconBase64)
         }
     }
 
     override fun initData() {
 
-        UTRParam = GsonUtils.toJson(PaymentUtrParam(borrowId.toString(), temp.toString(), panIconBase64.toString()))
+        UTRParam = GsonUtils.toJson(PaymentUtrParam(borrowId, temp.toString(), panIconBase64))
 
-        Log.i(TAG, "initView: "+utrCode)
+        Log.i(TAG, "startObserve:"+utrCode)
     }
 
     override fun initDataOnResume() {

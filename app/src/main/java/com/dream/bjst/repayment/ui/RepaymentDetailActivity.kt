@@ -8,7 +8,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
+import android.util.Base64
 import android.view.View
 import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.ToastUtils
@@ -21,17 +21,14 @@ import com.dream.bjst.repayment.vm.RepaymentViewModel
 import com.dream.bjst.utils.BitmapUtils
 import com.dream.bjst.utils.PhotoManager
 import com.dream.bjst.utils.PhotoSelectDialog
-import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.loadGif
 import com.tcl.base.kt.remove
 import com.tcl.base.utils.PhotoUtils.getPath
-import com.tcl.base.utils.encipher.Base64
 import java.io.ByteArrayOutputStream
 import java.util.zip.GZIPOutputStream
-import kotlin.math.log
 
 /**
  * 创建日期：2022-09-05 on 1:03
@@ -41,6 +38,7 @@ import kotlin.math.log
 class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepaymentDetailBinding>() {
     var mPhotoManager: PhotoManager? = null
     var borrowId: String? = null
+    var loanAmount: String? = null
     var bitmapStr: String? = null
     var utrCode: String? = null
     var UTRParam: String = ""
@@ -100,6 +98,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         super.startObserve()
         viewModel.repaymentDetailResult.observe(this) {
             borrowId = it.`969B86869B83BD90`
+            loanAmount=it.`869199959D9AA09B809598B5999B819A80`
             mBinding.repaymentDetailIcon.loadGif(it.`9D979BA18698`)
             mBinding.repaymentDetailName.text = it.`84869B90819780BA959991`
             mBinding.repaymentDetailAmount.text = "₹ " + it.`869199959D9AA09B809598B5999B819A80`
@@ -146,6 +145,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                     `969B86869B83BD90` = borrowId,
                     `818086B79B9091` = utrCode,
                     `818086BD9993A18698B6958791C2C0` = bitmapStr
+
                 )
             )
             viewModel.paymentUTRData(UTRParam)
@@ -234,9 +234,10 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         //显示图片
         mBinding.addPictureCameraIv.setImageBitmap(rotateBitmap)
         rotateBitmap?.let {
-//            panIconBase64 = BitmapUtils.bitmapToBase64(rotateBitmap)
-            val panIconBase64 = BitmapUtils.bitmapToBase64(rotateBitmap).remove()
-            bitmapStr = compress(panIconBase64)
+
+           // bitmapStr = compress(byte2Base64(bitmap2Byte(rotateBitmap)))
+            bitmapStr = byte2Base64(bitmap2Byte(rotateBitmap))
+
             //上传图片
         }
     }
@@ -254,6 +255,28 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         g.write(str.toByteArray(charset("utf-8")))
         g.close()
         return o.toString("ISO-8859-1")
+    }
+
+    /**
+     * 将图片转成byte数组
+     * @param bitmap 图片
+     * @return 图片的字节数组
+     */
+    fun bitmap2Byte(bitmap: Bitmap): ByteArray? {
+        val outputStream = ByteArrayOutputStream()
+        //把bitmap100%高质量压缩 到 output对象里
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+        return outputStream.toByteArray()
+    }
+
+    /**
+     * 将图片转成byte数组
+     *
+     * @param imageByte 图片
+     * @return Base64 String
+     */
+    fun byte2Base64(imageByte: ByteArray?): String? {
+        return if (null == imageByte) null else Base64.encodeToString(imageByte, Base64.NO_WRAP)
     }
 
 

@@ -35,7 +35,7 @@ public class BitmapUtils {
                 baos.close();
                 byte[] bitmapBytes = baos.toByteArray();
                 LogUtils.dTag("imgCompress",bitmapBytes.length);
-                result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
+                result = Base64.encodeToString(bitmapBytes, Base64.NO_WRAP);
             }
         } catch (IOException e) {
             e.printStackTrace();

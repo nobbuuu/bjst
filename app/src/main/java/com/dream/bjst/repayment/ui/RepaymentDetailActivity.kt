@@ -5,18 +5,21 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Base64
 import android.view.View
 import com.blankj.utilcode.util.GsonUtils
+import com.blankj.utilcode.util.IntentUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
 import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityRepaymentDetailBinding
 import com.dream.bjst.repayment.bean.PaymentUtrParam
 import com.dream.bjst.repayment.bean.RepaymentDetailParam
+import com.dream.bjst.repayment.bean.requestRepaymentParam
 import com.dream.bjst.repayment.vm.RepaymentViewModel
 import com.dream.bjst.utils.BitmapUtils
 import com.dream.bjst.utils.PhotoManager
@@ -28,6 +31,7 @@ import com.tcl.base.kt.loadGif
 import com.tcl.base.kt.remove
 import com.tcl.base.utils.PhotoUtils.getPath
 import java.io.ByteArrayOutputStream
+import java.net.URI
 import java.util.zip.GZIPOutputStream
 
 /**
@@ -121,6 +125,31 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
 
         }
 
+        /**
+         * 正常还款数据
+         */
+        viewModel.reqRepaymentResult.observe(this){
+
+           when(it.`84958DA08D8491`){
+               "1"->{
+                   ktStartActivity(ReqPaymentActivity::class){
+                       putExtra("reqUrl",it.`84958DB89D9A9F`)
+                   }
+
+               }
+               "0"->{
+
+                   IntentUtils.getCaptureIntent(Uri.parse(it.`84958DB89D9A9F`),true)
+
+//                   var intent=Intent()
+//                   intent.setAction("androidx.intent.action.View")
+//                   var contentUrl=Uri.parse(it.`84958DB89D9A9F`)
+//                   intent.setData(contentUrl)
+//                   startActivity(intent)
+               }
+           }
+        }
+
     }
 
 
@@ -129,7 +158,23 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
      */
     private fun event() {
         mBinding.titleBar.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
+        /**
+         * 正常还款点击按钮
+         */
+        mBinding.confirmPayButton.ktClick {
+            var reqPaymentParam = GsonUtils.toJson(
+                requestRepaymentParam(
+                    `969B86869B83BD90` = borrowId,
+                    `869184958DA08D8491`=10
+                )
+            )
+            viewModel.paymentUTRData(reqPaymentParam)
+        }
 
+
+        /**
+         * 延期还款点击按钮
+         */
         mBinding.deferPayButton.ktClick {
             ktStartActivity(ExtendRePaymentActivity::class) {
                 putExtra("borrowId", borrowId)
@@ -233,7 +278,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         mBinding.addPictureCameraIv.setImageBitmap(rotateBitmap)
         rotateBitmap?.let {
 
-           // bitmapStr = compress(byte2Base64(bitmap2Byte(rotateBitmap)))
+            // bitmapStr = compress(byte2Base64(bitmap2Byte(rotateBitmap)))
             bitmapStr = byte2Base64(bitmap2Byte(rotateBitmap))
 
             //上传图片

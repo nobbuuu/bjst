@@ -3,10 +3,7 @@ package com.dream.bjst.repayment.vm
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.net.Api
-import com.dream.bjst.repayment.bean.ExtendRePaymentBean
-import com.dream.bjst.repayment.bean.PaymentUtrBean
-import com.dream.bjst.repayment.bean.RepaymentBean
-import com.dream.bjst.repayment.bean.RepaymentInDetailBean
+import com.dream.bjst.repayment.bean.*
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
 
@@ -20,6 +17,7 @@ class RepaymentViewModel : BaseViewModel() {
     val repaymentDetailResult = SingleLiveEvent<RepaymentInDetailBean>()
     val repaymentExtendResult = SingleLiveEvent<ExtendRePaymentBean>()
     val repaymentUTRResult = SingleLiveEvent<PaymentUtrBean>()
+    val reqRepaymentResult = SingleLiveEvent<requestRepaymentBean>()
 
 
 
@@ -61,4 +59,14 @@ class RepaymentViewModel : BaseViewModel() {
             repaymentUTRResult.postValue(payUTRResult)
         })
     }
+    /**
+     * post 在线还款
+     */
+    fun reqPaymentData(param: String){
+        rxLaunchUI({
+            var reqPResult = Api.reqPaymentData(param)
+            reqRepaymentResult.postValue(reqPResult)
+        })
+    }
+
 }

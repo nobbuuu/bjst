@@ -19,10 +19,7 @@ import com.dream.bjst.loan.bean.LoanPreBean
 import com.dream.bjst.net.parser.JsonUtil
 import com.dream.bjst.net.parser.Response
 import com.dream.bjst.other.toBoolean
-import com.dream.bjst.repayment.bean.ExtendRePaymentBean
-import com.dream.bjst.repayment.bean.PaymentUtrBean
-import com.dream.bjst.repayment.bean.RepaymentBean
-import com.dream.bjst.repayment.bean.RepaymentInDetailBean
+import com.dream.bjst.repayment.bean.*
 import com.google.gson.reflect.TypeToken
 import com.tcl.base.rxnetword.EncryptUtil
 import com.tcl.base.rxnetword.parser.BaseEncryptResponse
@@ -304,6 +301,17 @@ object Api {
         return RxHttp.postJson("/DB979B8691DB818086DB878196999D80A18086")
             .addAll(param)
             .toResponse<PaymentUtrBean>()
+            .await()
+
+    }
+
+    /**
+     *在线还款
+     */
+    suspend fun reqPaymentData(param: String): requestRepaymentBean {
+        return RxHttp.postJson("/DB979B8691DB84958DDB929180979CA69184958DB89D9A9F")
+            .addAll(param)
+            .toResponse<requestRepaymentBean>()
             .await()
 
     }

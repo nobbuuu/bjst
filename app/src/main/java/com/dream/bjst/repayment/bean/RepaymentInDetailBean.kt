@@ -13,5 +13,5 @@ data class RepaymentInDetailBean(
     val `869199959D9ABB829186908191`: String,//逾期金额/剩余滞纳金
     val `869199959D9AA09B809598B5999B819A80`: String,//剩余总待还金额
     val `869184958DB19A90`: String//正常还款的开始时间（还款时小于此时间为提前还款）
-):Serializable,BaseParamBean()
+):Serializable
 

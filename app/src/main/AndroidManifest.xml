@@ -45,7 +45,10 @@
         <activity
             android:name=".account.ui.AccountSettingActivity"
             android:exported="false" />
-<!--        <activity android:name=".login.LoginActivity" />-->
+        <activity
+            android:name=".repayment.ui.ReqPaymentActivity"
+            android:exported="false" />
+        <!--        <activity android:name=".login.LoginActivity" />-->
 
 
         <activity
@@ -88,11 +91,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".identification.ui.ApproveContactsActivity" />
-        <activity android:name=".home.HomeActivity"/>
-        <activity android:name=".main.MainActivity"/>
+        <activity android:name=".home.HomeActivity" />
+        <activity android:name=".main.MainActivity" />
         <activity android:name=".identification.ui.ApproveIdCardConfirmActivity" />
         <activity android:name=".identification.ui.ApproveBankCardActivity" />
-        <activity android:name=".identification.ui.ApproveBankListActivity"/>
+        <activity android:name=".identification.ui.ApproveBankListActivity" />
     </application>
 
 </manifest>

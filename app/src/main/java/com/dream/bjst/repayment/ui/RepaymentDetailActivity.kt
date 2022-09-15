@@ -26,7 +26,12 @@ import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.loadGif
+import com.tcl.base.kt.remove
 import com.tcl.base.utils.PhotoUtils.getPath
+import com.tcl.base.utils.encipher.Base64
+import java.io.ByteArrayOutputStream
+import java.util.zip.GZIPOutputStream
+import kotlin.math.log
 
 /**
  * 创建日期：2022-09-05 on 1:03
@@ -36,9 +41,10 @@ import com.tcl.base.utils.PhotoUtils.getPath
 class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepaymentDetailBinding>() {
     var mPhotoManager: PhotoManager? = null
     var borrowId: String? = null
-    var panIconBase64: String? = null
+    var bitmapStr: String? = null
     var utrCode: String? = null
-    var UTRParam: String? = null
+    var UTRParam: String = ""
+
 
     //输入框里面的内容
     var temp: CharSequence = ""
@@ -84,18 +90,16 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                     mBinding.notionTv.setTextColor(R.color.green_color_background)
                 }
 
-                Log.i(TAG, "startObserve: "+temp)
             }
         })
+
+
     }
 
     override fun startObserve() {
         super.startObserve()
         viewModel.repaymentDetailResult.observe(this) {
-            //借款编号
             borrowId = it.`969B86869B83BD90`
-            Log.i(TAG, "startObserve: "+borrowId)
-
             mBinding.repaymentDetailIcon.loadGif(it.`9D979BA18698`)
             mBinding.repaymentDetailName.text = it.`84869B90819780BA959991`
             mBinding.repaymentDetailAmount.text = "₹ " + it.`869199959D9AA09B809598B5999B819A80`
@@ -110,16 +114,15 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             }
 
 
+        }
+        /**
+         * 上传utr返回数据
+         */
+        viewModel.repaymentUTRResult.observe(this) {
+
+            it.takeIf { it.`869187819880` }?.let { ToastUtils.showShort(it.`99918787959391`) }
 
         }
-            /**
-             * 上传utr返回数据
-             */
-            viewModel.repaymentUTRResult.observe(this) {
-
-                it.takeIf{it.`869187819880`}?.let{ToastUtils.showShort(it.`99918787959391`)}
-
-            }
 
     }
 
@@ -137,7 +140,15 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         }
         //repaidButton
         mBinding.repaidSubmitButton.ktClick {
-            UTRParam?.let { viewModel.paymentUTRData(it) }
+            utrCode = mBinding.digitalEt.text.toString()
+            UTRParam = GsonUtils.toJson(
+                PaymentUtrParam(
+                    `969B86869B83BD90` = borrowId,
+                    `818086B79B9091` = utrCode,
+                    `818086BD9993A18698B6958791C2C0` = bitmapStr
+                )
+            )
+            viewModel.paymentUTRData(UTRParam)
         }
         //点击上传UTR_picture
         mBinding.addPictureCameraIv.setOnClickListener(View.OnClickListener { //这里上传头
@@ -223,17 +234,32 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         //显示图片
         mBinding.addPictureCameraIv.setImageBitmap(rotateBitmap)
         rotateBitmap?.let {
-            panIconBase64 = BitmapUtils.bitmapToBase64(rotateBitmap)
+//            panIconBase64 = BitmapUtils.bitmapToBase64(rotateBitmap)
+            val panIconBase64 = BitmapUtils.bitmapToBase64(rotateBitmap).remove()
+            bitmapStr = compress(panIconBase64)
             //上传图片
-            Log.i(TAG, "startObserve:"+panIconBase64)
         }
     }
 
+    /**
+     * base64位加压
+     */
+
+    fun compress(str: String?): String? {
+        if (str.isNullOrEmpty()) {
+            return str
+        }
+        val o = ByteArrayOutputStream()
+        val g = GZIPOutputStream(o)
+        g.write(str.toByteArray(charset("utf-8")))
+        g.close()
+        return o.toString("ISO-8859-1")
+    }
+
+
     override fun initData() {
 
-        UTRParam = GsonUtils.toJson(PaymentUtrParam(borrowId, temp.toString(), panIconBase64))
 
-        Log.i(TAG, "startObserve:"+utrCode)
     }
 
     override fun initDataOnResume() {

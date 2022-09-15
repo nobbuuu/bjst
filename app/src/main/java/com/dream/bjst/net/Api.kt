@@ -184,7 +184,7 @@ object Api {
      * 请求删除用户数据
      */
     suspend fun deleteAccountData(): Boolean {
-        return RxHttp.postJson("DB978187809B999186DB8691999B8291B78187809B999186BD9A929B")
+        return RxHttp.postJson("/DB978187809B999186DB8691999B8291B78187809B999186BD9A929B")
             .addAll(GsonUtils.toJson(BaseParamBean()))
             .toBoolean()
             .await()
@@ -195,7 +195,7 @@ object Api {
      * 聊天拼接
      */
     suspend fun chatMessage(): ChatMessageBean {
-        return RxHttp.postJson("DB979B8691DB958484DB929180979CB78187809B999186B7958691BD9A929B")
+        return RxHttp.postJson("/DB979B8691DB958484DB929180979CB78187809B999186B7958691BD9A929B")
             .addAll(GsonUtils.toJson(BaseParamBean()))
             .toResponse<ChatMessageBean>()
             .await()
@@ -206,7 +206,7 @@ object Api {
      * 隐私协议
      */
     suspend fun privacyContent(): PrivacyBean {
-        return RxHttp.postJson("DB979B8691DB958484DB929180979CB59386919199919A80")
+        return RxHttp.postJson("/DB979B8691DB958484DB929180979CB59386919199919A80")
             .addAll(GsonUtils.toJson(BaseParamBean()))
             .toResponse<PrivacyBean>()
             .await()
@@ -218,7 +218,7 @@ object Api {
      */
     suspend fun fetchHomeInfo(): HomeInfoBean {
         //core/home/fetchHomeInfo
-        return RxHttp.postJson("DB979B8691DB9C9B9991DB929180979CBC9B9991BD9A929B")
+        return RxHttp.postJson("/DB979B8691DB9C9B9991DB929180979CBC9B9991BD9A929B")
             .addAll(GsonUtils.toJson(BaseParamBean()))
             .toResponse<HomeInfoBean>()
             .await()
@@ -230,7 +230,7 @@ object Api {
      */
     suspend fun fetchProducts(): LoanInfoBean {
         //core/product/fetchProducts
-        return RxHttp.postJson("DB979B8691DB84869B90819780DB929180979CA4869B9081978087")
+        return RxHttp.postJson("/DB979B8691DB84869B90819780DB929180979CA4869B9081978087")
             .addAll(GsonUtils.toJson(BaseParamBean()))
             .toResponse<LoanInfoBean>()
             .await()
@@ -243,7 +243,7 @@ object Api {
 
     suspend fun repayment(): RepaymentBean {
         // /core/pay/getRepayPageInfo
-        return RxHttp.postJson("DB979B8691DB84958DDB939180A69184958DA4959391BD9A929B")
+        return RxHttp.postJson("/DB979B8691DB84958DDB939180A69184958DA4959391BD9A929B")
             .addAll(GsonUtils.toJson(BaseParamBean()))
             .toResponse<RepaymentBean>()
             .await()
@@ -256,7 +256,7 @@ object Api {
 
     suspend fun repaymentDetail(param: String): RepaymentInDetailBean {
         // /core/pay/getRepayPageInfo
-        return RxHttp.postJson("DB979B8691DB84958DDB939180A69184958DB68DB69B86869B83BD90")
+        return RxHttp.postJson("/DB979B8691DB84958DDB939180A69184958DB68DB69B86869B83BD90")
             .addAll(param)
             .toResponse<RepaymentInDetailBean>()
             .await()
@@ -266,7 +266,7 @@ object Api {
      */
     suspend fun paymentExtend(param: String): ExtendRePaymentBean {
         // /core/pay/getRepayPageInfo
-        return RxHttp.postJson("DB979B8691DB84958DDB929180979CA69B9898A691A4958DBD9A929B")
+        return RxHttp.postJson("/DB979B8691DB84958DDB929180979CA69B9898A691A4958DBD9A929B")
             .addAll(param)
             .toResponse<ExtendRePaymentBean>()
             .await()
@@ -275,7 +275,7 @@ object Api {
      *post UTR数字和图片
      */
     suspend fun payUTRData(param: String): PaymentUtrBean {
-        return RxHttp.postJson("DB979B8691DB818086DB878196999D80A18086")
+        return RxHttp.postJson("/DB979B8691DB818086DB878196999D80A18086")
             .addAll(param)
             .toResponse<PaymentUtrBean>()
             .await()

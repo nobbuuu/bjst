@@ -1,4 +1,4 @@
-package com.dream.bjst.loan.vm
+package com.dream.bjst.login
 
 import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.bean.LoginBean
@@ -9,7 +9,6 @@ import com.dream.bjst.net.Api
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
 import com.tcl.base.kt.ktToastShow
-import com.tcl.base.utils.MmkvUtil
 
 /**
  *@author tiaozi

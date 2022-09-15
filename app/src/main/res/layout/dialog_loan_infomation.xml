@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ruffian.library.widget.RLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ruffian.library.widget.RLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_20"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/dp_25"
+        android:paddingEnd="@dimen/dp_25"
+        app:background_normal="@color/white"
+        app:corner_radius="@dimen/dp_4">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_29"
+            android:text="Loan Information"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <com.dream.bjst.widget.StartEndLayout
+            android:id="@+id/loanAmountLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_32"
+            app:endText=""
+            app:endTextColor="@color/black"
+            app:endTextSize="18sp"
+            app:startText="Loan Amount"
+            app:startTextColor="@color/colorBlack666"
+            app:startTextSize="15sp" />
+
+        <com.dream.bjst.widget.StartEndLayout
+            android:id="@+id/repayAmountLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endText=""
+            app:endTextColor="@color/black"
+            app:endTextSize="18sp"
+            app:startText="Repay Amount"
+            app:startTextColor="@color/colorBlack666"
+            app:startTextSize="15sp" />
+
+        <com.dream.bjst.widget.StartEndLayout
+            android:id="@+id/dueDateLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endText=""
+            app:endTextColor="@color/black"
+            app:endTextSize="18sp"
+            app:startText="Due date"
+            app:startTextColor="@color/colorBlack666"
+            app:startTextSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="loan amount jointly offered by the following products"
+            android:textColor="@color/colorBlack666"
+            android:textSize="13sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/loanProductsRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:layout_marginTop="@dimen/dp_20"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/sureBtn"
+            style="@style/sure_btn"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp_50"
+            android:layout_marginBottom="45dp"
+            android:text="Confirm"
+            app:layout_constraintBottom_toTopOf="@+id/loginCb"
+            app:layout_constraintStart_toStartOf="parent" />
+    </com.ruffian.library.widget.RLinearLayout>
+</com.ruffian.library.widget.RLinearLayout>

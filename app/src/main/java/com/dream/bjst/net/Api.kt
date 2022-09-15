@@ -12,8 +12,10 @@ import com.dream.bjst.identification.bean.BankListBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
+import com.dream.bjst.loan.bean.ApplyResultBean
 import com.dream.bjst.loan.bean.HomeInfoBean
 import com.dream.bjst.loan.bean.LoanInfoBean
+import com.dream.bjst.loan.bean.LoanPreBean
 import com.dream.bjst.net.parser.JsonUtil
 import com.dream.bjst.net.parser.Response
 import com.dream.bjst.other.toBoolean
@@ -233,6 +235,30 @@ object Api {
         return RxHttp.postJson("/DB979B8691DB84869B90819780DB929180979CA4869B9081978087")
             .addAll(GsonUtils.toJson(BaseParamBean()))
             .toResponse<LoanInfoBean>()
+            .await()
+
+    }
+
+    /**
+     * 获取客户产品信用额度及当前待还金额
+     */
+    suspend fun fetchCreditAmount(): LoanPreBean {
+        //core/product/fetchProducts
+        return RxHttp.postJson("/DB979B8691DB84869B90819780DB929180979CB78691909D80B5999B819A80")
+            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .toResponse<LoanPreBean>()
+            .await()
+
+    }
+
+    /**
+     * 批量申请贷款
+     */
+    suspend fun apply(param: String): ApplyResultBean {
+        //core/borrow/apply
+        return RxHttp.postJson("/DB979B8691DB969B86869B83DB958484988D")
+            .addAll(param)
+            .toResponse<ApplyResultBean>()
             .await()
 
     }

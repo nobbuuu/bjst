@@ -282,7 +282,7 @@ object Api {
     /**
      *在线还款
      */
-    suspend fun reqPaymentData(param: String): requestRepaymentBean {
+    suspend fun reqPayData(param: String): requestRepaymentBean {
         return RxHttp.postJson("/DB979B8691DB84958DDB929180979CA69184958DB89D9A9F")
             .addAll(param)
             .toResponse<requestRepaymentBean>()

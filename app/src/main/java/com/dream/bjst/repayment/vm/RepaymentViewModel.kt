@@ -64,7 +64,7 @@ class RepaymentViewModel : BaseViewModel() {
      */
     fun reqPaymentData(param: String){
         rxLaunchUI({
-            var reqPResult = Api.reqPaymentData(param)
+            var reqPResult = Api.reqPayData(param)
             reqRepaymentResult.postValue(reqPResult)
         })
     }

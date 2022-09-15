@@ -168,7 +168,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                     `869184958DA08D8491`=10
                 )
             )
-            viewModel.paymentUTRData(reqPaymentParam)
+            viewModel.reqPaymentData(reqPaymentParam)
         }
 
 

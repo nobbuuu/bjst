@@ -17,6 +17,7 @@ import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityRepaymentDetailBinding
 import com.dream.bjst.repayment.bean.PaymentUtrParam
 import com.dream.bjst.repayment.bean.RepaymentDetailParam
+import com.dream.bjst.repayment.bean.requestRepaymentParam
 import com.dream.bjst.repayment.vm.RepaymentViewModel
 import com.dream.bjst.utils.BitmapUtils
 import com.dream.bjst.utils.PhotoManager
@@ -121,6 +122,14 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
 
         }
 
+        /**
+         * 正常还款数据
+         */
+        viewModel.reqRepaymentResult.observe(this){
+
+            it.takeIf { it.`84958DA08D8491`=="1" }?.let {  }
+        }
+
     }
 
 
@@ -129,7 +138,23 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
      */
     private fun event() {
         mBinding.titleBar.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
+        /**
+         * 正常还款点击按钮
+         */
+        mBinding.confirmPayButton.ktClick {
+            var reqPaymentParam = GsonUtils.toJson(
+                requestRepaymentParam(
+                    `969B86869B83BD90` = borrowId,
+                    `869184958DA08D8491`=10
+                )
+            )
+            viewModel.paymentUTRData(reqPaymentParam)
+        }
 
+
+        /**
+         * 延期还款点击按钮
+         */
         mBinding.deferPayButton.ktClick {
             ktStartActivity(ExtendRePaymentActivity::class) {
                 putExtra("borrowId", borrowId)
@@ -233,7 +258,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         mBinding.addPictureCameraIv.setImageBitmap(rotateBitmap)
         rotateBitmap?.let {
 
-           // bitmapStr = compress(byte2Base64(bitmap2Byte(rotateBitmap)))
+            // bitmapStr = compress(byte2Base64(bitmap2Byte(rotateBitmap)))
             bitmapStr = byte2Base64(bitmap2Byte(rotateBitmap))
 
             //上传图片

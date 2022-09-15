@@ -12,6 +12,7 @@ import android.text.TextWatcher
 import android.util.Base64
 import android.view.View
 import com.blankj.utilcode.util.GsonUtils
+import com.blankj.utilcode.util.IntentUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
 import com.dream.bjst.common.Constant
@@ -137,11 +138,14 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
 
                }
                "0"->{
-                   var intent=Intent()
-                   intent.setAction("androidx.intent.action.View")
-                   var contentUrl=Uri.parse(it.`84958DB89D9A9F`)
-                   intent.setData(contentUrl)
-                   startActivity(intent)
+
+                   IntentUtils.getCaptureIntent(Uri.parse(it.`84958DB89D9A9F`),true)
+
+//                   var intent=Intent()
+//                   intent.setAction("androidx.intent.action.View")
+//                   var contentUrl=Uri.parse(it.`84958DB89D9A9F`)
+//                   intent.setData(contentUrl)
+//                   startActivity(intent)
                }
            }
         }

@@ -1,5 +1,7 @@
 package com.dream.bjst.repayment.bean
 
+import java.io.Serializable
+
 data class requestRepaymentBean(
     val `969B86869B83BD90`: String,//借款编号
     val `969B86869B83A1BD90`: String,//borrowUId
@@ -10,5 +12,5 @@ data class requestRepaymentBean(
     val `84958DA08D8491`: String,//支付方式:(0:跳转内部webview浏览器,1:跳转外部浏览器webview)
     val `869199959D9AA09B809598B5999B819A80`: String,//剩余总待还金额
     val `878184849B8680A4958DB59386919199919A80`: List<Any>//支持的还款三方协议
-)
+):Serializable
 

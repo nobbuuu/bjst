@@ -15,7 +15,6 @@ import com.dream.bjst.bean.PhoneCodeParam
 import com.dream.bjst.databinding.ActivityLoginBinding
 import com.dream.bjst.dialog.VoiceDialog
 import com.dream.bjst.identification.ui.ApproveMainActivity
-import com.dream.bjst.loan.vm.LoginViewModel
 import com.dream.bjst.main.MainActivity
 import com.dream.bjst.utils.SendCodeUtils
 import com.tcl.base.common.ui.BaseActivity

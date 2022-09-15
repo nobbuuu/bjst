@@ -1,6 +1,8 @@
 package com.dream.bjst.loan.vm
 
+import com.dream.bjst.loan.bean.ApplyResultBean
 import com.dream.bjst.loan.bean.LoanInfoBean
+import com.dream.bjst.loan.bean.LoanPreBean
 import com.dream.bjst.net.Api
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
@@ -12,14 +14,26 @@ import com.tcl.base.event.SingleLiveEvent
  */
 class LoanViewModel : BaseViewModel() {
     val loanData = SingleLiveEvent<LoanInfoBean>()
-    fun fetchProducts(){
+    val loanPreData = SingleLiveEvent<LoanPreBean>()
+    val applyData = SingleLiveEvent<ApplyResultBean>()
+    fun fetchProducts() {
         rxLaunchUI({
-            val  result = Api.fetchProducts()
+            val result = Api.fetchProducts()
             loanData.postValue(result)
         })
     }
 
-    fun startCountDown(){
+    fun fetchCreditAmount() {
+        rxLaunchUI({
+            val result = Api.fetchCreditAmount()
+            loanPreData.postValue(result)
+        })
+    }
 
+    fun apply(param: String) {
+        rxLaunchUI({
+            val result = Api.apply(param)
+            applyData.postValue(result)
+        })
     }
 }

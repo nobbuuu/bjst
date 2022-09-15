@@ -38,7 +38,6 @@ import java.util.zip.GZIPOutputStream
 class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepaymentDetailBinding>() {
     var mPhotoManager: PhotoManager? = null
     var borrowId: String? = null
-    var loanAmount: String? = null
     var bitmapStr: String? = null
     var utrCode: String? = null
     var UTRParam: String = ""
@@ -98,7 +97,6 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         super.startObserve()
         viewModel.repaymentDetailResult.observe(this) {
             borrowId = it.`969B86869B83BD90`
-            loanAmount=it.`869199959D9AA09B809598B5999B819A80`
             mBinding.repaymentDetailIcon.loadGif(it.`9D979BA18698`)
             mBinding.repaymentDetailName.text = it.`84869B90819780BA959991`
             mBinding.repaymentDetailAmount.text = "₹ " + it.`869199959D9AA09B809598B5999B819A80`

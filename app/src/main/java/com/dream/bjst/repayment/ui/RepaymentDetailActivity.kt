@@ -138,11 +138,10 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
 
                }
                "0"->{
-
+                   ToastUtils.showShort(it.`84958DB89D9A9F`)
                    IntentUtils.getCaptureIntent(Uri.parse(it.`84958DB89D9A9F`),true)
-
 //                   var intent=Intent()
-//                   intent.setAction("androidx.intent.action.View")
+//                   intent.setAction("android.intent.action.View")
 //                   var contentUrl=Uri.parse(it.`84958DB89D9A9F`)
 //                   intent.setData(contentUrl)
 //                   startActivity(intent)

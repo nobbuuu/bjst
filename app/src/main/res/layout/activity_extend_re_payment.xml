@@ -258,6 +258,7 @@
             android:background="#ffcccccc" />
 
         <Button
+            android:id="@+id/extendRepayNow"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_44"
             android:layout_marginLeft="@dimen/dp_20"

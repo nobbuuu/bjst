@@ -1,14 +1,19 @@
 package com.dream.bjst.repayment.adapter
 
 import android.util.Log
+import android.widget.Button
+import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.dream.bjst.R
 import com.dream.bjst.repayment.bean.OverdueOrder
 import com.dream.bjst.repayment.bean.RepaymentBean
+import com.dream.bjst.repayment.ui.RepaymentDetailActivity
 import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.ruffian.library.widget.RTextView
+import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktSetImage
+import com.tcl.base.kt.ktStartActivity
 
 /**
  * 创建日期：2022-09-11 on 9:41
@@ -24,6 +29,7 @@ class OverDueAdapter : BaseQuickAdapter<OverdueOrder, BaseViewHolder>(R.layout.i
         holder.setText(R.id.repayment_repay_amount,"₹ " +item.`869199959D9AA09B809598B5999B819A80`.toString())
         holder.ktSetImage(R.id.repayment_item_icon, item.`9D979BA18698`)
         holder.setGone(R.id.divider,holder.adapterPosition == data.size-1)
+
     }
 
 

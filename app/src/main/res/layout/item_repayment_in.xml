@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_15"
             android:layout_marginRight="@dimen/dp_15"
             android:gravity="right"
             android:text="0 days"
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_15"
-            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_17"
             android:layout_weight="2"
             android:text="Repay amount"
             android:textColor="#ff666666"
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_15"
             android:layout_marginRight="@dimen/dp_15"
             android:text="₹ 6,200"
             android:textColor="#ff000000"
@@ -70,8 +70,11 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/setterNowRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:clickable="true"
         android:background="@color/white">
 
         <com.ruffian.library.widget.RImageView
@@ -79,7 +82,7 @@
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30"
             android:layout_marginLeft="@dimen/dp_15"
-            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_21"
             android:src="@mipmap/icon" />
 
         <com.ruffian.library.widget.RTextView
@@ -87,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_15"
-            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_25"
             android:layout_toRightOf="@+id/repayment_item_icon"
             android:text="Fun Loan"
             android:textColor="#ff666666"
@@ -95,12 +98,13 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/settleNowBtn"
             android:layout_width="@dimen/dp_80"
             android:layout_height="@dimen/dp_30"
             android:layout_alignParentRight="true"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/dp_99"
-            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_26"
             android:layout_marginRight="@dimen/dp_15"
             android:background="@drawable/shap_repayment_button"
             android:text="Settle now"
@@ -111,7 +115,7 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_3"
-        android:layout_marginTop="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_20"
         android:background="@drawable/shap_gap_line"
         android:layout_marginStart="@dimen/dp_14"
         android:layout_marginEnd="@dimen/dp_14"

@@ -49,7 +49,8 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
             dueTodayAdapter.setList(it.`908191A09B90958DBB8690918687`)
             notDueAdapter.setList(it.`9A9B80B08191BB8690918687`)
 
-            val noData = overDueAdapter.data.isEmpty() && dueTodayAdapter.data.isEmpty() && notDueAdapter.data.isEmpty()
+            val noData =
+                overDueAdapter.data.isEmpty() && dueTodayAdapter.data.isEmpty() && notDueAdapter.data.isEmpty()
             mBinding.dataLay.isVisible = !noData
             mBinding.emptyLay.rootLay.isVisible = noData
         }
@@ -71,19 +72,25 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
                 .navigate(R.id.repayment_to_navigation_loan)
         }
 
+
+
         overDueAdapter.setOnItemClickListener { adapter, view, position ->
-               ktStartActivity(RepaymentDetailActivity::class){
-                   putExtra("detailId",overDueAdapter.data[position].`969B86869B83BD90`)
-               }
+
+                    ktStartActivity(RepaymentDetailActivity::class) {
+                        putExtra("detailId", overDueAdapter.data[position].`969B86869B83BD90`)
+
+            }
+
+
         }
         notDueAdapter.setOnItemClickListener { adapter, view, position ->
-            ktStartActivity(RepaymentDetailActivity::class){
-                putExtra("detailId",notDueAdapter.data[position].`969B86869B83BD90`)
+            ktStartActivity(RepaymentDetailActivity::class) {
+                putExtra("detailId", notDueAdapter.data[position].`969B86869B83BD90`)
             }
         }
         dueTodayAdapter.setOnItemClickListener { adapter, view, position ->
-            ktStartActivity(RepaymentDetailActivity::class){
-                putExtra("detailId",dueTodayAdapter.data[position].`969B86869B83BD90`)
+            ktStartActivity(RepaymentDetailActivity::class) {
+                putExtra("detailId", dueTodayAdapter.data[position].`969B86869B83BD90`)
             }
         }
 

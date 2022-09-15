@@ -138,13 +138,15 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
 
                }
                "0"->{
-                   ToastUtils.showShort(it.`84958DB89D9A9F`)
-                   IntentUtils.getCaptureIntent(Uri.parse(it.`84958DB89D9A9F`),true)
-//                   var intent=Intent()
-//                   intent.setAction("android.intent.action.View")
-//                   var contentUrl=Uri.parse(it.`84958DB89D9A9F`)
-//                   intent.setData(contentUrl)
-//                   startActivity(intent)
+                   try {
+                       val intent = Intent(Intent.ACTION_VIEW)
+                       intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                       intent.data=(Uri.parse(it.`84958DB89D9A9F`))
+                       startActivity(intent)
+                   } catch (e: Exception) {
+                       println("There is no browser on the current phone!")
+                   }
+
                }
            }
         }

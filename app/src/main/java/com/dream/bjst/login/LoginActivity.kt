@@ -29,7 +29,11 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     private var codeType = 0
     override fun initView(savedInstanceState: Bundle?) {
 
+
+
         mBinding.nextTv.ktClick {
+
+
             if (!isSendCode) {//获取验证码
                 mBinding.phoneLay.isVisible = false
                 mBinding.codeLay.isVisible = true
@@ -40,11 +44,14 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 val code = mBinding.codeEdt.text.toString()
                 if (code.isNotEmpty()) {
                     viewModel.login(phone, code)
+                    //版本更新
+                    viewModel.upGradeContent()
 
                 } else {
                     "Obtain the verification code first".ktToastShow()
                 }
             }
+
         }
 
         mBinding.resendTv.ktClick {
@@ -143,6 +150,13 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             }
             finish()
         }
+        /**
+         * 版本更新
+         */
+        viewModel.upGradeResults.observe(this) {
+
+        }
+
     }
 
     override fun initData() {

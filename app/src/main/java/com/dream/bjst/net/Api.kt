@@ -16,6 +16,7 @@ import com.dream.bjst.loan.bean.ApplyResultBean
 import com.dream.bjst.loan.bean.HomeInfoBean
 import com.dream.bjst.loan.bean.LoanInfoBean
 import com.dream.bjst.loan.bean.LoanPreBean
+import com.dream.bjst.login.bean.UpgradeDialogBean
 import com.dream.bjst.net.parser.JsonUtil
 import com.dream.bjst.net.parser.Response
 import com.dream.bjst.other.toBoolean
@@ -312,6 +313,16 @@ object Api {
         return RxHttp.postJson("/DB979B8691DB84958DDB929180979CA69184958DB89D9A9F")
             .addAll(param)
             .toResponse<requestRepaymentBean>()
+            .await()
+
+    }
+    /**
+     *版本更新
+     */
+    suspend fun upGradeData(): UpgradeDialogBean {
+        return RxHttp.postJson("/DB979B8691DB958484DB929180979CB58484A29186879D9B9AA2C6")
+            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .toResponse<UpgradeDialogBean>()
             .await()
 
     }

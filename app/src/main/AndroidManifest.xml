@@ -84,12 +84,12 @@
         </provider>
 
         <activity android:name=".loan.ui.LoanRecordsActivity" />
-        <activity android:name=".login.LoginActivity">
+        <activity android:name=".main.MainActivity">
 
         </activity>
         <activity android:name=".identification.ui.ApproveContactsActivity" />
         <activity android:name=".home.HomeActivity"/>
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

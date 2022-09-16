@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_transparent"
+    android:orientation="vertical">
+
+    <com.ruffian.library.widget.RLinearLayout
+        android:id="@+id/upgradeNoticeLL"
+        android:layout_width="@dimen/dp_315"
+        android:layout_height="@dimen/dp_385"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_74"
+        android:background="#ffffffff"
+        android:orientation="vertical"
+        android:visibility="gone"
+
+        app:corner_radius="@dimen/dp_2">
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Version upgrade notice"
+            android:textColor="#ff333333"
+            android:layout_marginStart="@dimen/dp_21"
+            android:layout_marginTop="@dimen/dp_31"
+            android:textSize="18sp"
+
+            />
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Newest version:V4.0"
+            android:textColor="#ff666666"
+            android:textSize="12sp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginStart="@dimen/dp_20"
+            />
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update content:"
+            android:textColor="#ff333333"
+            android:textSize="16sp"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_35"
+            />
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.购票即有机会以优惠价格购买电影周边产品"
+            android:textColor="#ff666666"
+            android:textSize="13sp"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_24"
+            />
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.全新电影评论评分后分享卡片"
+            android:textColor="#ff666666"
+            android:textSize="13sp"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginStart="@dimen/dp_20"
+            />
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.电影详情页新改版"
+            android:textColor="#ff666666"
+            android:textSize="13sp"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginStart="@dimen/dp_20"
+            />
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.电影票兑换码显示优化"
+            android:textColor="#ff666666"
+            android:textSize="13sp"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginStart="@dimen/dp_20"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5.选座页设计优化及其他体验优化"
+            android:textColor="#ff666666"
+            android:textSize="13sp"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginStart="@dimen/dp_20"
+            />
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/sureUpdateNowBtn"
+            android:layout_width="@dimen/dp_275"
+            android:layout_height="@dimen/dp_44"
+            app:background_normal="#009B12"
+            android:text="Update now"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:layout_marginTop="@dimen/dp_25"
+            android:layout_marginStart="@dimen/dp_20"
+            app:corner_radius="@dimen/dp_4"
+            />
+    </com.ruffian.library.widget.RLinearLayout>
+
+    <com.ruffian.library.widget.RImageView
+        android:id="@+id/noticeFinishImage"
+        android:layout_width="@dimen/dp_55"
+        android:layout_height="@dimen/dp_55"
+        android:src="@mipmap/noticefinish"
+        android:layout_marginTop="@dimen/dp_40"
+        android:layout_gravity="center_horizontal"
+        />
+
+
+</LinearLayout>

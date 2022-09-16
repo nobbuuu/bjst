@@ -40,6 +40,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 val code = mBinding.codeEdt.text.toString()
                 if (code.isNotEmpty()) {
                     viewModel.login(phone, code)
+
                 } else {
                     "Obtain the verification code first".ktToastShow()
                 }

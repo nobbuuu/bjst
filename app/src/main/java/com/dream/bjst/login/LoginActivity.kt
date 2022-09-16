@@ -128,7 +128,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             sendList.add(SendCodeUtils(tv, Handler(mainLooper), str).start())
             mBinding.codeEdt.postDelayed({
                 mBinding.codeEdt.setText("123456")
-            }, 5000)
+            }, 1000)
         }
         viewModel.loginResult.observe(this) {
             viewModel.fetchCustomerKycStatus()

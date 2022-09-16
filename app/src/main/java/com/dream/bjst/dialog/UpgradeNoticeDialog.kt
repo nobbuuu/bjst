@@ -29,6 +29,7 @@ class UpgradeNoticeDialog(context: Context, val sureListener: (() -> Unit)? = nu
         mBinding.sureUpdateNowBtn.ktClick {
             mBinding.upgradeNoticeLL.visibility=View.GONE
             mBinding.noticeFinishImage.visibility=View.GONE
+            mBinding.upgradeProgress.visibility=View.VISIBLE
         }
     }
 }

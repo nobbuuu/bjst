@@ -13,6 +13,7 @@ import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.R
 import com.dream.bjst.bean.PhoneCodeParam
 import com.dream.bjst.databinding.ActivityLoginBinding
+import com.dream.bjst.dialog.UpgradeNoticeDialog
 import com.dream.bjst.dialog.VoiceDialog
 import com.dream.bjst.identification.ui.ApproveMainActivity
 import com.dream.bjst.main.MainActivity
@@ -27,8 +28,10 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     private var isSendCode = false
     private val sendList = arrayListOf<SendCodeUtils>()
     private var codeType = 0
-    override fun initView(savedInstanceState: Bundle?) {
+    private lateinit var upgradeDialog:UpgradeNoticeDialog
 
+    override fun initView(savedInstanceState: Bundle?) {
+        upgradeDialog=UpgradeNoticeDialog(this)
 
 
         mBinding.nextTv.ktClick {
@@ -154,6 +157,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
          * 版本更新
          */
         viewModel.upGradeResults.observe(this) {
+
 
         }
 

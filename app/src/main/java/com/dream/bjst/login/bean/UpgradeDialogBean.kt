@@ -11,5 +11,5 @@ data class UpgradeDialogBean(
 
 data class ResAppUpdateTxtInfo(
     val `809D809891`: String,//更新内容标题
-    val `808C80BD809199`: List<Any>//更新内容条目
+    val `808C80BD809199`: List<String>//更新内容条目
 )

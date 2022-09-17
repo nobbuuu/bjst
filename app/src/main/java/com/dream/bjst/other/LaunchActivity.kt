@@ -2,7 +2,7 @@ package com.dream.bjst.other
 
 import android.os.Bundle
 import com.dream.bjst.databinding.ActivityLaunchBinding
-import com.dream.bjst.main.MainViewModel
+import com.dream.bjst.main.vm.MainViewModel
 import com.tcl.base.common.ui.BaseActivity
 
 /**

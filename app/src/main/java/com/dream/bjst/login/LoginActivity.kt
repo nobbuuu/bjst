@@ -28,10 +28,10 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     private var isSendCode = false
     private val sendList = arrayListOf<SendCodeUtils>()
     private var codeType = 0
-    private lateinit var upgradeDialog:UpgradeNoticeDialog
+
 
     override fun initView(savedInstanceState: Bundle?) {
-        upgradeDialog=UpgradeNoticeDialog(this)
+
 
 
         mBinding.nextTv.ktClick {
@@ -47,8 +47,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 val code = mBinding.codeEdt.text.toString()
                 if (code.isNotEmpty()) {
                     viewModel.login(phone, code)
-                    //版本更新
-                    viewModel.upGradeContent()
+
 
                 } else {
                     "Obtain the verification code first".ktToastShow()
@@ -153,13 +152,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             }
             finish()
         }
-        /**
-         * 版本更新
-         */
-        viewModel.upGradeResults.observe(this) {
 
-
-        }
 
     }
 

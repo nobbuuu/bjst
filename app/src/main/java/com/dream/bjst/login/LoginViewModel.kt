@@ -20,7 +20,7 @@ class LoginViewModel : BaseViewModel() {
     val sendCode = SingleLiveEvent<Boolean>()
     val loginResult = SingleLiveEvent<LoginBean>()
     val idCardStatus = SingleLiveEvent<IdCardStatusBean>()
-    val upGradeResults = SingleLiveEvent<UpgradeDialogBean>()//版本更新
+
 
 
     var mNetToken = ""
@@ -68,13 +68,5 @@ class LoginViewModel : BaseViewModel() {
         })
     }
 
-    /**
-     * 版本更新
-     */
-    fun upGradeContent(){
-        rxLaunchUI({
-            val upGradeResult = Api.upGradeData()
-            upGradeResults.postValue(upGradeResult)
-        })
-    }
+
 }

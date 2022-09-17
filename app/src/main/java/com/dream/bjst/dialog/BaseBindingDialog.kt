@@ -15,7 +15,7 @@ open class BaseBindingDialog<B : ViewBinding>(
     context: Context,
     val layoutId: Int = 0,
     val styleRes: Int = R.style.ActionSheetDialogStyle,
-    val gravity: Int = Gravity.BOTTOM
+    val gravity: Int = Gravity.CENTER
 ) :
     Dialog(context, styleRes) {
     protected lateinit var mBinding: B

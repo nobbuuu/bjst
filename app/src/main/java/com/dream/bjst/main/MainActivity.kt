@@ -8,9 +8,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ColorUtils
+import com.dream.bjst.BuildConfig
 import com.dream.bjst.R
 import com.dream.bjst.databinding.ActivityMainBinding
+import com.dream.bjst.dialog.UpgradeNoticeDialog
 import com.dream.bjst.main.menu.*
+import com.dream.bjst.main.vm.MainViewModel
 import com.google.android.material.tabs.TabLayout
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.tclzjpro.main.FixFragmentNavigator
@@ -24,6 +27,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     var lastPos = -1
     var curPos = MAIN_TAB_LOAN
     private lateinit var controller: NavController
+    private lateinit var upgradeDialog: UpgradeNoticeDialog
 
     init {
         config.isDoubleBack = true
@@ -34,6 +38,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        //版本更新
+        viewModel.upGradeContent()
+        upgradeDialog = UpgradeNoticeDialog(this)
+
         controller = findNavController(R.id.main_container)
         val fragment =
             supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
@@ -114,6 +122,22 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     override fun onResume() {
         super.onResume()
         val index = mBinding.mainTab.selectedTabPosition
+    }
+
+
+    override fun startObserve() {
+        super.startObserve()
+        /**
+         * 版本更新
+         */
+        viewModel.upGradeResults.observe(this) {
+
+            if (it.`97818686919A80A29186879D9B9A` > BuildConfig.VERSION_CODE.toString()) {
+                upgradeDialog.setUpdateDialogData(it.`869187B58484A18490958091A08C80BD9A929B`).show()
+            }
+
+
+        }
     }
 
     override fun initData() {

@@ -126,16 +126,15 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
          */
         viewModel.upGradeResults.observe(this) {
             if (it.`97818686919A80A29186879D9B9A` > BuildConfig.VERSION_CODE.toString()) {
-                it.`869187B58484A18490958091A08C80BD9A929B`?.let { bean ->
+                it.`869187B58484A18490958091A08C80BD9A929B`?.let { data ->
                     val bean = NewVersionBean(
                         versionNumber = it.`97818686919A80A29186879D9B9A`,
-                        url = bean.`97818686919A80A18698`
+                        url = it.`97818686919A80A18698`
                     )
                     doUpgrade(bean)
                 }
                 /* UpgradeNoticeDialog(this, it.`869187B58484A18490958091A08C80BD9A929B`) {
                      //更新版本
-
 
                  }.show()*/
             }

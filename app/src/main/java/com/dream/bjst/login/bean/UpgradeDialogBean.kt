@@ -2,7 +2,11 @@ package com.dream.bjst.login.bean
 
 data class UpgradeDialogBean(
     val `97818686919A80A29186879D9B9A`: String,//安卓当前版本
-    val `869187B58484A18490958091A08C80BD9A929B`: ResAppUpdateTxtInfo?//更新弹框的内容
+    val `869187B58484A18490958091A08C80BD9A929B`: ResAppUpdateTxtInfo?,//更新弹框的内容
+    val `86919995869F`: String,
+    val `97818686919A80A18698`: String,
+    val `9995869F9180BD90`: Int,
+    val `99959A9095809B868DA18490958091`: Boolean
 )
 
 data class ResAppUpdateTxtInfo(

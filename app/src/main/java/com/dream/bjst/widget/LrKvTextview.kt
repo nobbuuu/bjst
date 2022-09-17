@@ -7,6 +7,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.dream.bjst.R
+import com.tcl.base.kt.nullToEmpty
 
 class LrKvTextview @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -26,12 +27,12 @@ class LrKvTextview @JvmOverloads constructor(
         mContentTv.text = content
     }
 
-    fun setTitle(title: String) {
-        mTitleTv.text = title
+    fun setTitle(title: String?) {
+        mTitleTv.text = title.nullToEmpty()
     }
 
-    fun setContent(content: String) {
-        mContentTv.text = content
+    fun setContent(content: String?) {
+        mContentTv.text = content.nullToEmpty()
     }
 
     fun getContent() : String{

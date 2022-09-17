@@ -42,6 +42,6 @@ class LoanViewModel : BaseViewModel() {
         rxLaunchUI({
             val result = Api.fetchOrderHistory(param)
             historyData.postValue(result)
-        })
+        }, showDialog = false)
     }
 }

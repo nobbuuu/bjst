@@ -12,7 +12,7 @@ class LoanRecordsChildAdapter :
     BaseQuickAdapter<HistoryBean, BaseViewHolder>(R.layout.item_loan_records_child) {
     override fun convert(holder: BaseViewHolder, item: HistoryBean) {
         holder.ktSetImage(R.id.platformIcon, item.`84869B90819780BD979B`)
-        holder.getView<LrKvTextview>(R.id.nameTv).setContent(item.`84869B90819780BA959991`)
+        holder.setText(R.id.nameTv, item.`84869B90819780BA959991`)
         holder.getView<LrKvTextview>(R.id.lrOrderNo).setContent(item.`9B86909186BA8199969186`)
         holder.getView<LrKvTextview>(R.id.amount).setContent(item.`989B959AB5999B819A80`.toString())
         holder.getView<LrKvTextview>(R.id.exTime).setContent(item.`918C849D8695809D9B9AA09D9991`)

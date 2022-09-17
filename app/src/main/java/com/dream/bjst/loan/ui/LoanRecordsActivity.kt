@@ -5,6 +5,7 @@ import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.bean.CommonPageBean
 import com.dream.bjst.databinding.ActivityLoanRecordsBinding
 import com.dream.bjst.loan.adapter.LoanRecordsAdapter
+import com.dream.bjst.loan.bean.HistoryBean
 import com.dream.bjst.loan.bean.OrderResultBean
 import com.dream.bjst.loan.vm.LoanViewModel
 import com.dream.bjst.utils.DataUtils
@@ -14,6 +15,7 @@ class LoanRecordsActivity : BaseActivity<LoanViewModel, ActivityLoanRecordsBindi
 
     private var curPage = 1
     val mLoanRecordsAdapter = LoanRecordsAdapter()
+    private val dataList = arrayListOf<OrderResultBean>()
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.loanRecords.apply {
             adapter = mLoanRecordsAdapter
@@ -45,14 +47,18 @@ class LoanRecordsActivity : BaseActivity<LoanViewModel, ActivityLoanRecordsBindi
 
     override fun startObserve() {
         super.startObserve()
-        viewModel.historyData.observe(this){
+        viewModel.historyData.observe(this) {
             mBinding.smartRefresh.finishRefresh()
             mBinding.smartRefresh.finishLoadMore()
             val list = arrayListOf<OrderResultBean>()
-            DataUtils.groupByMode("`958484988DA09D9991`",it.`9B86909186B89D8780`).forEach {data ->
+            DataUtils.groupByMode("958484988DA09D9991", it.`9B86909186B89D8780`).forEach { data ->
                 list.add(OrderResultBean(applyTime = data.key, `9B86909186B89D8780` = data.value))
             }
-            mLoanRecordsAdapter.setList(list)
+            if (curPage == 1) {
+                dataList.clear()
+            }
+            dataList.addAll(list)
+            mLoanRecordsAdapter.setList(dataList)
         }
     }
 }

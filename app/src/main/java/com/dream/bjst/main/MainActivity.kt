@@ -31,7 +31,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     var lastPos = -1
     var curPos = MAIN_TAB_LOAN
     private lateinit var controller: NavController
-    private lateinit var upgradeDialog: UpgradeNoticeDialog
 
     init {
         config.isDoubleBack = true
@@ -44,6 +43,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         //版本更新
         viewModel.upGradeContent()
+
         controller = findNavController(R.id.main_container)
         val fragment =
             supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
@@ -137,6 +137,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 val bean = NewVersionBean(versionNumber = it.`97818686919A80A29186879D9B9A`, url = it.`97818686919A80A18698`)
                 doUpgrade(bean)
                 /*UpgradeNoticeDialog(this,it.`869187B58484A18490958091A08C80BD9A929B`){
+                UpgradeNoticeDialog(this, it.`869187B58484A18490958091A08C80BD9A929B`) {
                     //更新版本
 
 
@@ -155,6 +156,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             iUpgradeListener = upgradeDialogFragment
         )
         upgradeDialogFragment.show(supportFragmentManager, UpgradeDialogFragment::class.java.name)
+
+
+                }.show()
+            }
+        }
     }
 
     override fun initData() {

@@ -13,6 +13,9 @@ import com.tcl.base.kt.ktSetImage
  */
 class DueTodayAdapter :
     BaseQuickAdapter<DueTodayOrder, BaseViewHolder>(R.layout.item_repayment_in) {
+    init {
+        addChildClickViewIds(R.id.settleNowBtn)
+    }
     override fun convert(holder: BaseViewHolder, item: DueTodayOrder) {
         holder.setText(R.id.repayment_loan_days, item.`908191B0958D`.toString()+"days")
         holder.setText(R.id.repayment_repay_amount, "₹" +item.`869199959D9AA09B809598B5999B819A80`.toString())

@@ -22,6 +22,9 @@ import com.tcl.base.kt.ktStartActivity
  */
 class OverDueAdapter : BaseQuickAdapter<OverdueOrder, BaseViewHolder>(R.layout.item_repayment_in) {
 
+    init {
+        addChildClickViewIds(R.id.settleNowBtn)
+    }
     override fun convert(holder: BaseViewHolder, item: OverdueOrder) {
 
         holder.setText(R.id.repayment_loan_days,item.`908191B0958D`.toString()+"days")

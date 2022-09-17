@@ -48,10 +48,7 @@ class UpgradeNoticeDialog(
             mBinding.noticeFinishImage.visibility = View.GONE
             mBinding.upgradeProgress.visibility = View.VISIBLE
             //下载apk
-            thread {
 
-
-            }
         }
     }
 

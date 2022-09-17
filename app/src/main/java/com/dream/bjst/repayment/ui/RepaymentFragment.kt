@@ -71,27 +71,29 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
             Navigation.findNavController(mBinding.emptyLay.rootLay)
                 .navigate(R.id.repayment_to_navigation_loan)
         }
-
-
-
-        overDueAdapter.setOnItemClickListener { adapter, view, position ->
-
+        overDueAdapter.setOnItemChildClickListener { adapter, view, position ->
+            when(view.id){
+                R.id.settleNowBtn->
                     ktStartActivity(RepaymentDetailActivity::class) {
                         putExtra("detailId", overDueAdapter.data[position].`969B86869B83BD90`)
-
-            }
-
-
-        }
-        notDueAdapter.setOnItemClickListener { adapter, view, position ->
-            ktStartActivity(RepaymentDetailActivity::class) {
-                putExtra("detailId", notDueAdapter.data[position].`969B86869B83BD90`)
+                    }
             }
         }
-        dueTodayAdapter.setOnItemClickListener { adapter, view, position ->
-            ktStartActivity(RepaymentDetailActivity::class) {
-                putExtra("detailId", dueTodayAdapter.data[position].`969B86869B83BD90`)
+        notDueAdapter.setOnItemChildClickListener { adapter, view, position ->
+            when(view.id){
+                R.id.settleNowBtn->   ktStartActivity(RepaymentDetailActivity::class) {
+                    putExtra("detailId", notDueAdapter.data[position].`969B86869B83BD90`)
+                }
             }
+
+        }
+        dueTodayAdapter.setOnItemChildClickListener { adapter, view, position ->
+            when(view.id){
+                R.id.settleNowBtn-> ktStartActivity(RepaymentDetailActivity::class) {
+                    putExtra("detailId", dueTodayAdapter.data[position].`969B86869B83BD90`)
+                }
+            }
+
         }
 
 

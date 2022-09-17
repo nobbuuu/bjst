@@ -13,7 +13,7 @@ import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.R
 import com.dream.bjst.bean.PhoneCodeParam
 import com.dream.bjst.databinding.ActivityLoginBinding
-import com.dream.bjst.dialog.UpgradeNoticeDialog
+
 import com.dream.bjst.dialog.VoiceDialog
 import com.dream.bjst.identification.ui.ApproveMainActivity
 import com.dream.bjst.main.MainActivity

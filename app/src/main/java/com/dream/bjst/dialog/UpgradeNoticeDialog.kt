@@ -17,13 +17,23 @@ import com.tcl.base.kt.ktClick
  * 描述:衣带渐宽终不悔、为伊消得人憔悴
  * 作者:HeGuiCun Administrator
  */
-class UpgradeNoticeDialog(context: Context, val sureListener: (() -> Unit)? = null) :
+class UpgradeNoticeDialog(
+    context: Context,
+    val data: ResAppUpdateTxtInfo,
+    val sureListener: (() -> Unit)? = null
+) :
     BaseBindingDialog<DialogNoticeUpgradeBinding>(context, gravity = Gravity.CENTER) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         event()
 
+        mBinding.upgradeTitle.text = data.`809D809891`
+        val contentAdapter = ContentAdapter()
+        mBinding.updateContentRv.apply {
+            adapter = contentAdapter
+        }
+        contentAdapter.setList(data.`808C80BD809199`)
     }
 
     private fun event() {
@@ -38,20 +48,10 @@ class UpgradeNoticeDialog(context: Context, val sureListener: (() -> Unit)? = nu
         }
     }
 
-    fun setUpdateDialogData(data: ResAppUpdateTxtInfo) :UpgradeNoticeDialog {
-        mBinding.upgradeTitle.text = data.`809D809891`
-        val contentAdapter = ContentAdapter()
-        mBinding.updateContentRv.apply {
-            adapter = contentAdapter
-        }
-        contentAdapter.setList(data.`808C80BD809199`)
-
-        return this
-    }
-
-    inner class ContentAdapter : BaseQuickAdapter<String,BaseViewHolder>(R.layout.item_update_content){
+    inner class ContentAdapter :
+        BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_update_content) {
         override fun convert(holder: BaseViewHolder, item: String) {
-            holder.setText(R.id.upgradeListTv,item)
+            holder.setText(R.id.upgradeListTv, item)
         }
     }
 }

@@ -40,8 +40,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         //版本更新
         viewModel.upGradeContent()
-        upgradeDialog = UpgradeNoticeDialog(this)
-
         controller = findNavController(R.id.main_container)
         val fragment =
             supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
@@ -131,12 +129,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
          * 版本更新
          */
         viewModel.upGradeResults.observe(this) {
-
             if (it.`97818686919A80A29186879D9B9A` > BuildConfig.VERSION_CODE.toString()) {
-                upgradeDialog.setUpdateDialogData(it.`869187B58484A18490958091A08C80BD9A929B`).show()
+                UpgradeNoticeDialog(this,it.`869187B58484A18490958091A08C80BD9A929B`){
+                    //更新版本
+                }
             }
-
-
         }
     }
 

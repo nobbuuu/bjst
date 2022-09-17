@@ -12,6 +12,7 @@ import com.dream.bjst.R
 import com.dream.bjst.databinding.DialogNoticeUpgradeBinding
 import com.dream.bjst.login.bean.ResAppUpdateTxtInfo
 import com.tcl.base.kt.ktClick
+import kotlin.concurrent.thread
 
 /**
  * 创建日期：2022-09-16 on 10:48
@@ -47,7 +48,10 @@ class UpgradeNoticeDialog(
             mBinding.noticeFinishImage.visibility = View.GONE
             mBinding.upgradeProgress.visibility = View.VISIBLE
             //下载apk
+            thread {
 
+
+            }
         }
     }
 

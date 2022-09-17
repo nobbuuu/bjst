@@ -41,8 +41,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        //版本更新
-        viewModel.upGradeContent()
 
         controller = findNavController(R.id.main_container)
         val fragment =
@@ -121,12 +119,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        val index = mBinding.mainTab.selectedTabPosition
-    }
-
-
     override fun startObserve() {
         super.startObserve()
         /**
@@ -134,14 +126,18 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
          */
         viewModel.upGradeResults.observe(this) {
             if (it.`97818686919A80A29186879D9B9A` > BuildConfig.VERSION_CODE.toString()) {
-                val bean = NewVersionBean(versionNumber = it.`97818686919A80A29186879D9B9A`, url = it.`97818686919A80A18698`)
-                doUpgrade(bean)
-                /*UpgradeNoticeDialog(this,it.`869187B58484A18490958091A08C80BD9A929B`){
-                UpgradeNoticeDialog(this, it.`869187B58484A18490958091A08C80BD9A929B`) {
-                    //更新版本
+                it.`869187B58484A18490958091A08C80BD9A929B`?.let { bean ->
+                    val bean = NewVersionBean(
+                        versionNumber = it.`97818686919A80A29186879D9B9A`,
+                        url = bean.`97818686919A80A18698`
+                    )
+                    doUpgrade(bean)
+                }
+                /* UpgradeNoticeDialog(this, it.`869187B58484A18490958091A08C80BD9A929B`) {
+                     //更新版本
 
 
-                }.show()*/
+                 }.show()*/
             }
         }
     }
@@ -156,18 +152,13 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             iUpgradeListener = upgradeDialogFragment
         )
         upgradeDialogFragment.show(supportFragmentManager, UpgradeDialogFragment::class.java.name)
-
-
-                }.show()
-            }
-        }
     }
 
     override fun initData() {
-
+        //版本更新
+        viewModel.upGradeContent()
     }
 
     override fun initDataOnResume() {
-
     }
 }

@@ -14,8 +14,12 @@ import com.dream.bjst.databinding.ActivityMainBinding
 import com.dream.bjst.dialog.UpgradeNoticeDialog
 import com.dream.bjst.main.menu.*
 import com.dream.bjst.main.vm.MainViewModel
+import com.dream.bjst.upgrade.NewVersionBean
+import com.dream.bjst.upgrade.UpgradeDialogFragment
 import com.google.android.material.tabs.TabLayout
 import com.tcl.base.common.ui.BaseActivity
+import com.tcl.base.download.DownloadApkBetterHelper
+import com.tcl.base.kt.nullToEmpty
 import com.tcl.tclzjpro.main.FixFragmentNavigator
 
 /**
@@ -130,11 +134,27 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
          */
         viewModel.upGradeResults.observe(this) {
             if (it.`97818686919A80A29186879D9B9A` > BuildConfig.VERSION_CODE.toString()) {
-                UpgradeNoticeDialog(this,it.`869187B58484A18490958091A08C80BD9A929B`){
+                val bean = NewVersionBean(versionNumber = it.`97818686919A80A29186879D9B9A`, url = it.`97818686919A80A18698`)
+                doUpgrade(bean)
+                /*UpgradeNoticeDialog(this,it.`869187B58484A18490958091A08C80BD9A929B`){
                     //更新版本
-                }
+
+
+                }.show()*/
             }
         }
+    }
+
+    lateinit var upgradeDialogFragment: UpgradeDialogFragment
+    private fun doUpgrade(newVersionBean: NewVersionBean) {
+        upgradeDialogFragment = UpgradeDialogFragment.newInstance(newVersionBean)
+        DownloadApkBetterHelper.initConfig(
+            versionName = newVersionBean.versionNumber.nullToEmpty(),
+            curDownLoadUrl = newVersionBean.url.nullToEmpty(),
+            curFileName = "rapid-${newVersionBean.versionNumber}.apk",
+            iUpgradeListener = upgradeDialogFragment
+        )
+        upgradeDialogFragment.show(supportFragmentManager, UpgradeDialogFragment::class.java.name)
     }
 
     override fun initData() {

@@ -12,10 +12,7 @@ import com.dream.bjst.identification.bean.BankListBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
-import com.dream.bjst.loan.bean.ApplyResultBean
-import com.dream.bjst.loan.bean.HomeInfoBean
-import com.dream.bjst.loan.bean.LoanInfoBean
-import com.dream.bjst.loan.bean.LoanPreBean
+import com.dream.bjst.loan.bean.*
 import com.dream.bjst.login.bean.UpgradeDialogBean
 import com.dream.bjst.net.parser.JsonUtil
 import com.dream.bjst.net.parser.Response
@@ -257,6 +254,18 @@ object Api {
         return RxHttp.postJson("/DB979B8691DB969B86869B83DB958484988D")
             .addAll(param)
             .toResponse<ApplyResultBean>()
+            .await()
+
+    }
+
+    /**
+     * 获取历史订单记录
+     */
+    suspend fun fetchOrderHistory(param: String): OrderResultBean {
+        //core/borrow/fetchOrderHistory
+        return RxHttp.postJson("/DB979B8691DB969B86869B83DB929180979CBB86909186BC9D87809B868D")
+            .addAll(param)
+            .toResponse<OrderResultBean>()
             .await()
 
     }

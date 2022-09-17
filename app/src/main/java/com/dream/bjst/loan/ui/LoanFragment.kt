@@ -10,8 +10,10 @@ import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.Utils
 import com.dream.bjst.databinding.FragmentLoanBinding
 import com.dream.bjst.dialog.AmountDialog
+import com.dream.bjst.dialog.LoanInfoDialog
 import com.dream.bjst.loan.adapter.LoanProductAdapter
 import com.dream.bjst.loan.bean.AmountPeriodBean
+import com.dream.bjst.loan.bean.ApplyListParamBean
 import com.dream.bjst.loan.bean.ApplyParamBean
 import com.dream.bjst.loan.bean.LoanConfirmBean
 import com.dream.bjst.loan.vm.LoanViewModel
@@ -20,6 +22,7 @@ import com.dream.bjst.utils.DeviceUtils
 import com.tcl.base.common.ui.BaseFragment
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
+import com.tcl.base.kt.ktToastShow
 import com.tcl.base.weiget.recylerview.RecycleViewDivider
 
 class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
@@ -87,19 +90,24 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             mBinding.amountTv.text = it.num.toString() + " Days"
         }
         mBinding.loanNow.ktClick {
-            val loanAmount = mBinding.amountTv.text.toString()
-            val days = mBinding.days.text.toString()
-            if (days.isNotEmpty() && days.contains(" ")) {
-                days.split(" ")[0]
-
-            }
-//            LoanConfirmBean()
             if (!mBinding.unLoanLay.isVisible) {
+                val applyProducts = arrayListOf<ApplyListParamBean>()
+                loanAdapter.data.filter { it.isCheck }?.forEach {
+                    applyProducts.add(ApplyListParamBean(it.`989B959AB5999B819A80`,it.`9D90`))
+                }
                 val param = GsonUtils.toJson(ApplyParamBean(
                     `9D84` = DeviceUtils.getLocalIPAddress(),
-                    `84869B9081978087` = loanAdapter.data.filter { it.isCheck }
+                    `84869B9081978087` = applyProducts
                 ))
                 viewModel.apply(param)
+            } else {
+                viewModel.loanPreData.value?.let {
+                    if (it.`83959D80A69184958DB5999B819A80` <= 0) {
+                        "Recovery amount after repayment".ktToastShow()
+                    } else if (it.`978691909D80B5999B819A80` <= 0) {
+                        "No application product available".ktToastShow()
+                    }
+                }
             }
         }
     }
@@ -121,6 +129,23 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     override fun startObserve() {
         super.startObserve()
+        viewModel.applyData.observe(this) {
+            if (!it.`90809BB69B86869B83B58484988DA6918781988087`.isNullOrEmpty()) {
+                val loanAmount = mBinding.amountTv.text.toString()
+                val repayAmount = mBinding.repayAmount.text.toString()
+                val bean = LoanConfirmBean(
+                    loanAmount,
+                    repayAmount,
+                    it.`908191B0958091`,
+                    it.`869187B29180979CA4869B90819780`.`84869B90819780B89D8780`
+                )
+                LoanInfoDialog(requireContext(), bean) {
+                    ktStartActivity(LoanRecordsActivity::class)
+                }.show()
+            } else {//申请借款失败
+
+            }
+        }
         viewModel.loanPreData.observe(this) {
             val unLoan =
                 it.`978691909D80B5999B819A80` <= 0 || it.`83959D80A69184958DB5999B819A80` <= 0

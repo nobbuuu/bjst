@@ -8,4 +8,13 @@
     <string name="bank_account">Bank Account</string>
     <string name="try_again">operation failed, please try again</string>
 
+    <string name="upgrade_downloading">正在下载最新版本</string>
+    <string name="upgrade_new_version">有新版本啦！</string>
+    <string name="upgrade_later">以后</string>
+    <string name="upgrade_now">版本更新</string>
+    <string name="upgrade_install">去安装</string>
+    <string name="upgrade_retry">重试</string>
+    <string name="upgrade_finish">下载完成</string>
+    <string name="upgrade_network_error">网络出错</string>
+    <string name="isNewVersion">当前无最新版本可更新</string>
 </resources>

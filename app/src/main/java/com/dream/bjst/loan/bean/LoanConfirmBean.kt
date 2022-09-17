@@ -4,5 +4,5 @@ data class LoanConfirmBean(
     var loanAmount: String,
     var repayAmount: String,
     var dueDate: String,
-    var products: List<ProductListBean>
+    var products: List<ProductListBean>?
 )

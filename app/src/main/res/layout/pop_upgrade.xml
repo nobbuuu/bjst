@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_pure_black_50">
+
+    <com.ruffian.library.widget.RConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:background_normal="@color/white"
+        app:corner_radius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bg_upgrade"
+            app:layout_constraintBottom_toTopOf="@+id/content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toEndOf="@id/ivTop"
+            app:layout_constraintStart_toStartOf="@id/ivTop"
+            app:layout_constraintTop_toBottomOf="@+id/ivTop">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="12dp"
+                android:text="有新版本啦"
+                android:textColor="@color/regular_black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvContent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvContent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="@dimen/dp_16"
+                android:gravity="left"
+                android:textColor="@color/regular_black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTittle"
+                tools:text="1、App启动速度性能提升\n" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/groupContentTip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="tvContent,tvTittle" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTittleDownloading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="12dp"
+                android:text="吨吨吨"
+                android:textColor="@color/regular_black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvContent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.tcl.base.weiget.NumberProgressBarEdition
+                android:id="@+id/progressBar"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
+                app:layout_constraintBottom_toTopOf="@+id/tvDownloadingTip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTittleDownloading"
+                app:progress_current_visibility="false"
+                app:progress_reached_color="@color/regular_red"
+                app:progress_text_visibility="false"
+                app:progress_unreached_bar_visibility="true"
+                app:progress_unreached_color="@color/regular_red_10" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDownloadingTip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/regular_black_40"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/progressBar"
+                tools:text="24%" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/groupDownloading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="tvDownloadingTip,tvTittleDownloading,progressBar" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/dp_16"
+            android:background="@color/list_divider"
+            app:layout_constraintBottom_toTopOf="@+id/btnLeft"
+            app:layout_constraintEnd_toEndOf="@+id/ivTop"
+            app:layout_constraintStart_toStartOf="@+id/ivTop"
+            app:layout_constraintTop_toBottomOf="@+id/content" />
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/btnLeft"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="56dp"
+            android:text="以后"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnRight"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:text_color_unable="@color/regular_black_40" />
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/btnRight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="56dp"
+            android:text="立即更新"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/btnLeft"
+            app:layout_constraintTop_toTopOf="@+id/btnLeft"
+            app:text_color_normal="@color/regular_red"
+            app:text_color_unable="@color/regular_red_40" />
+
+    </com.ruffian.library.widget.RConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

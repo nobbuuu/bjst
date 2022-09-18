@@ -72,13 +72,13 @@
 
 
     <!--upgradeProgress-->
-
     <com.ruffian.library.widget.RLinearLayout
         android:id="@+id/upgradeProgress"
         android:layout_width="@dimen/dp_315"
         android:layout_height="@dimen/dp_80"
         android:layout_gravity="center_horizontal"
         android:visibility="gone"
+        app:background_normal="@color/white"
         android:orientation="vertical">
         <com.ruffian.library.widget.RImageView
             android:layout_width="@dimen/dp_25"

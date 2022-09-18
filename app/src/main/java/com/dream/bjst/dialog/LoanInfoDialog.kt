@@ -35,5 +35,10 @@ class LoanInfoDialog(
         mBinding.sureBtn.ktClick {
             block?.invoke()
         }
+        mBinding.closeIv.ktClick {
+            dismiss()
+        }
+        setCanceledOnTouchOutside(false)
+        setCancelable(false)
     }
 }

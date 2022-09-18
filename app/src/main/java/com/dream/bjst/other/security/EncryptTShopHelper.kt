@@ -66,7 +66,7 @@ object EncryptTShopHelper {
             val json = JSONObject(data)
             val encryptJson = JSONObject(data)
             json.keys().forEach { key ->
-                val value = json.get(key).toString()
+                val value = json.get(key)
                 encryptJson.put(key, value)
             }
             Log.d("http", "bodyJson = $encryptJson")

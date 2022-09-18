@@ -1,9 +1,6 @@
 package com.dream.bjst.loan.vm
 
-import com.dream.bjst.loan.bean.ApplyResultBean
-import com.dream.bjst.loan.bean.LoanInfoBean
-import com.dream.bjst.loan.bean.LoanPreBean
-import com.dream.bjst.loan.bean.OrderResultBean
+import com.dream.bjst.loan.bean.*
 import com.dream.bjst.net.Api
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent

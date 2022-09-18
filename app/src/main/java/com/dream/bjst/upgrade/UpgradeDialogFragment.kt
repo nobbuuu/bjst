@@ -48,8 +48,6 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
         }
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.run {

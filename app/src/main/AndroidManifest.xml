@@ -20,7 +20,7 @@
         android:theme="@style/Theme.CbgBase">
         <activity
             android:name=".identification.ui.ApproveMainActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".account.ui.DeleteProgressActivity"
             android:exported="false" />
@@ -85,15 +85,15 @@
 
         <activity android:name=".loan.ui.LoanRecordsActivity" />
         <activity android:name=".main.MainActivity">
-
-        </activity>
-        <activity android:name=".identification.ui.ApproveContactsActivity" />
-        <activity android:name=".home.HomeActivity"/>
-        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".identification.ui.ApproveContactsActivity" />
+        <activity android:name=".home.HomeActivity"/>
+        <activity android:name=".login.LoginActivity">
+
         </activity>
         <activity android:name=".identification.ui.ApproveIdCardConfirmActivity" />
         <activity android:name=".identification.ui.ApproveBankCardActivity" />

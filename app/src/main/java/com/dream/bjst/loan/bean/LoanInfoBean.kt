@@ -17,7 +17,7 @@ data class PeriodBean(
 data class ProductListBean(
     val `809B90958DB0918780B69B86869B83B79B819A80`: Int,
     val `809B90958DB8919280BA919190B69B86869B83B79B819A80`: Int,
-    val `84869B90819780BA959991`: String,
+    val `84869B90819780BA959991`: String? = null,
     val `869197919D8291B5999B819A80`: Int,
     val `879186829D9791A6958091`: Double,
     val `919A95969891`: Boolean,
@@ -31,6 +31,6 @@ data class ProductListBean(
     val `9B9890A4869B90819780A79B8680`: Int,
     val `9B9890B78187809B999186A79B8680`: Int,
     val `9D90`: Int,
-    val `9D979BA18698`: String,
+    val `9D979BA18698`: String? = null,
     var isCheck: Boolean = false
 )

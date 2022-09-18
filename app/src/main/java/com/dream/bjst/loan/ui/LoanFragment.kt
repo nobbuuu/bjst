@@ -6,8 +6,7 @@ import android.os.Looper
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.BarUtils
-import com.blankj.utilcode.util.GsonUtils
-import com.blankj.utilcode.util.Utils
+import com.blankj.utilcode.util.LogUtils
 import com.dream.bjst.databinding.FragmentLoanBinding
 import com.dream.bjst.dialog.AmountDialog
 import com.dream.bjst.dialog.LoanInfoDialog
@@ -17,13 +16,16 @@ import com.dream.bjst.loan.bean.ApplyListParamBean
 import com.dream.bjst.loan.bean.ApplyParamBean
 import com.dream.bjst.loan.bean.LoanConfirmBean
 import com.dream.bjst.loan.vm.LoanViewModel
-import com.dream.bjst.utils.DateUtils
 import com.dream.bjst.utils.DeviceUtils
 import com.tcl.base.common.ui.BaseFragment
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.ktToastShow
+import com.tcl.base.kt.nullToEmpty
 import com.tcl.base.weiget.recylerview.RecycleViewDivider
+import rxhttp.wrapper.utils.GsonUtil
+import java.text.SimpleDateFormat
+import java.util.*
 
 class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
@@ -91,14 +93,21 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         }
         mBinding.loanNow.ktClick {
             if (!mBinding.unLoanLay.isVisible) {
-                val applyProducts = arrayListOf<ApplyListParamBean>()
+                val applyProducts: MutableList<ApplyListParamBean> = arrayListOf()
                 loanAdapter.data.filter { it.isCheck }?.forEach {
-                    applyProducts.add(ApplyListParamBean(it.`989B959AB5999B819A80`,it.`9D90`))
+                    applyProducts.add(
+                        ApplyListParamBean(
+                            it.`9D90`.toString(),
+                            it.`989B959AB5999B819A80`.toString()
+                        )
+                    )
                 }
-                val param = GsonUtils.toJson(ApplyParamBean(
-                    `9D84` = DeviceUtils.getLocalIPAddress(),
-                    `84869B9081978087` = applyProducts
-                ))
+                val param = GsonUtil.toJson(
+                    ApplyParamBean(
+                        `9D84` = DeviceUtils.getLocalIPAddress(),
+                        `84869B9081978087` = applyProducts
+                    )
+                )
                 viewModel.apply(param)
             } else {
                 viewModel.loanPreData.value?.let {
@@ -116,7 +125,8 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         override fun run() {
             if (countDown > 0) {
                 countDown -= 1000
-                mBinding.countDownTv.text = DateUtils.millis2FitTimeSpan(countDown)
+                mBinding.countDownTv.text =
+                    SimpleDateFormat("mm:ss", Locale.getDefault()).format(Date(countDown))
                 mHandler.removeCallbacks(this)
                 mHandler.postDelayed(this, 1000)
             } else {
@@ -130,13 +140,14 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
     override fun startObserve() {
         super.startObserve()
         viewModel.applyData.observe(this) {
+            viewModel.fetchProducts()
             if (!it.`90809BB69B86869B83B58484988DA6918781988087`.isNullOrEmpty()) {
                 val loanAmount = mBinding.amountTv.text.toString()
                 val repayAmount = mBinding.repayAmount.text.toString()
                 val bean = LoanConfirmBean(
                     loanAmount,
                     repayAmount,
-                    it.`908191B0958091`,
+                    it.`908191B0958091`.nullToEmpty(),
                     it.`869187B29180979CA4869B90819780`.`84869B90819780B89D8780`
                 )
                 LoanInfoDialog(requireContext(), bean) {
@@ -205,7 +216,6 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             if (periodList.isNotEmpty()) {
                 mBinding.days.text = periodList[0].num.toString() + " Days"
             }
-
             mBinding.fkAccountLay.isVisible = it.`929FB597979B819A80`
         }
     }

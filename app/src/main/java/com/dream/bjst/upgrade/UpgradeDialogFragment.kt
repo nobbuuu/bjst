@@ -5,9 +5,13 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.dream.bjst.BuildConfig
 import com.dream.bjst.R
 import com.dream.bjst.databinding.PopUpgradeBinding
@@ -31,9 +35,8 @@ import java.io.File
 private const val KEY_VERSION_INFO = "versionInfo"
 
 class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
-    BaseFullScreenDialogFragment<NoViewModel, PopUpgradeBinding>(),
-    IUpgradeListener {
-   // constructor() : this(null)
+    BaseFullScreenDialogFragment<NoViewModel, PopUpgradeBinding>(), IUpgradeListener {
+
     companion object {
         fun newInstance(
             newVersionBean: NewVersionBean,
@@ -44,8 +47,17 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
             fragment.arguments = Bundle().apply {
                 putSerializable(KEY_VERSION_INFO, newVersionBean)
             }
+
             return fragment
         }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,19 +65,25 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
         arguments?.run {
             val versionInfo = getSerializable(KEY_VERSION_INFO)
             if (versionInfo is NewVersionBean) {
-                mBinding.tvContent.text = versionInfo.remarks
+                mBinding.upgradeTitle.text = versionInfo.remarks
                 if (versionInfo.isForce()) {
-                    mBinding.btnLeft.visibility = View.GONE
+                    mBinding.noticeFinishImage.visibility = View.GONE
                 }
-                mBinding.btnLeft.ktClick {
+                mBinding.noticeFinishImage.ktClick {
                     MmkvUtil.encode(versionInfo.getCacheKey(), true)
                     dismiss()
                 }
-                mBinding.btnRight.ktClick {
+                mBinding.sureUpdateNowBtn.ktClick {
                     showDownloadingMode()
-                    mBinding.btnRight.isEnabled = false
+                    mBinding.sureUpdateNowBtn.isEnabled = false
                     DownloadApkBetterHelper.downLoadApk()
                 }
+
+                val contentAdapter = ContentAdapter()
+                mBinding.updateContentRv.apply {
+                    adapter = contentAdapter
+                }
+                contentAdapter.setList(versionInfo.content)
             }
         }
     }
@@ -85,13 +103,16 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
     }
 
     private fun showDownloadingMode() {
-        mBinding.groupContentTip.visibility = View.GONE
-        mBinding.groupDownloading.visibility = View.VISIBLE
+        mBinding.upgradeNoticeLL.visibility = View.GONE
+        mBinding.noticeFinishImage.visibility = View.GONE
+        mBinding.upgradeProgressLL.visibility = View.VISIBLE
+
     }
 
     override fun onUpdate(progress: Int) {
-        mBinding.tvDownloadingTip.text = "$progress%"
-        mBinding.progressBar.progress = progress
+//        mBinding.tvDownloadingTip.text = "$progress%"
+        mBinding.tvDownloadingTip.tvLeft.text = "$progress%"
+        mBinding.upgradeProgressBar.progress = progress
         if (progress == 100) {
             showInstallMode()
         }
@@ -99,24 +120,20 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
 
     /**显示安装*/
     private fun showInstallMode() {
-        mBinding.tvTittleDownloading.text = getString(R.string.upgrade_finish)
-        mBinding.btnRight.apply {
-            isEnabled = true
-            text = getString(R.string.upgrade_install)
-            ktClick {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    val hasInstallPermission: Boolean =
-                        activity?.packageManager?.canRequestPackageInstalls() ?: false
-                    if (!hasInstallPermission) {
-                        startInstallPermissionSettingActivity()
-                    } else {
-                        goInstall()
-                    }
-                } else {
-                    goInstall()
-                }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val hasInstallPermission: Boolean =
+                activity?.packageManager?.canRequestPackageInstalls() ?: false
+            if (!hasInstallPermission) {
+                startInstallPermissionSettingActivity()
+            } else {
+                goInstall()
             }
+        } else {
+            goInstall()
         }
+
+
     }
 
     /**
@@ -144,17 +161,27 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
     private fun showRetryMode() {
         //异常在子线程回调
         lifecycleScope.launch(Dispatchers.Main) {
-            mBinding.btnRight.isEnabled = true
-            mBinding.btnRight.text = getString(R.string.upgrade_retry)
-            mBinding.tvDownloadingTip.text = getString(R.string.upgrade_network_error)
-            mBinding.btnRight.ktClick {
-                mBinding.btnRight.isEnabled = false
+            mBinding.sureUpdateNowBtn.isEnabled = true
+            mBinding.sureUpdateNowBtn.text = getString(R.string.upgrade_retry)
+//            mBinding.tvDownloadingTip.text = getString(R.string.upgrade_network_error)
+            mBinding.sureUpdateNowBtn.ktClick {
+                mBinding.sureUpdateNowBtn.isEnabled = false
                 DownloadApkBetterHelper.reDownLoadApk()
             }
         }
     }
 
     override fun onFinish(file: File) {
+        dismiss()
+    }
 
+    /**
+     * 内部适配器
+     */
+    inner class ContentAdapter :
+        BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_update_content) {
+        override fun convert(holder: BaseViewHolder, item: String) {
+            holder.setText(R.id.upgradeListTv, item)
+        }
     }
 }

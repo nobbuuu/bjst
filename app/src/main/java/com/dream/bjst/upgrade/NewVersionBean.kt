@@ -22,6 +22,7 @@ data class NewVersionBean(
     val url: String? = "",
     val uuid: String? = "",
     var versionNumber: String? = "",
+    val content: List<String>,
     //本地是否是最新ApK
     val newVersion: String? = ""
 ) : Serializable {

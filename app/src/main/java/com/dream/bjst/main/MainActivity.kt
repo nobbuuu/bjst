@@ -11,7 +11,6 @@ import com.blankj.utilcode.util.ColorUtils
 import com.dream.bjst.BuildConfig
 import com.dream.bjst.R
 import com.dream.bjst.databinding.ActivityMainBinding
-import com.dream.bjst.dialog.UpgradeNoticeDialog
 import com.dream.bjst.main.menu.*
 import com.dream.bjst.main.vm.MainViewModel
 import com.dream.bjst.upgrade.NewVersionBean
@@ -129,14 +128,19 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 it.`869187B58484A18490958091A08C80BD9A929B`?.let { data ->
                     val bean = NewVersionBean(
                         versionNumber = it.`97818686919A80A29186879D9B9A`,
-                        url = it.`97818686919A80A18698`
+                        url = it.`97818686919A80A18698`,
+                        content = it.`869187B58484A18490958091A08C80BD9A929B`.`808C80BD809199`,
+                        remarks = it.`869187B58484A18490958091A08C80BD9A929B`.`809D809891`
+
                     )
                     doUpgrade(bean)
                 }
-                /* UpgradeNoticeDialog(this, it.`869187B58484A18490958091A08C80BD9A929B`) {
-                     //更新版本
-
-                 }.show()*/
+//                it.`869187B58484A18490958091A08C80BD9A929B`?.let { it1 ->
+//                    UpgradeNoticeDialog(this, it1) {
+//                        //更新版本
+//
+//                    }.show()
+//                }
             }
         }
     }
@@ -147,7 +151,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         DownloadApkBetterHelper.initConfig(
             versionName = newVersionBean.versionNumber.nullToEmpty(),
             curDownLoadUrl = newVersionBean.url.nullToEmpty(),
-            curFileName = "rapid-${newVersionBean.versionNumber}.apk",
+            curFileName = "luckRupee-${newVersionBean.versionNumber}.apk",
             iUpgradeListener = upgradeDialogFragment
         )
         upgradeDialogFragment.show(supportFragmentManager, UpgradeDialogFragment::class.java.name)

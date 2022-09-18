@@ -295,6 +295,7 @@ object DownloadApkBetterHelper {
         var versionName: String = ""
         var iupgradeListener: IUpgradeListener? = null
         var curFileName: String = ""
+        var updateContent: List<String>? = listOf()
         var curDownLoadUrl: String = ""
     }
 

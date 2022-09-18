@@ -1,120 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ruffian.library.widget.RLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:background_normal="@color/white"
+    app:corner_radius_top_left="@dimen/dp_18"
+    app:corner_radius_top_right="@dimen/dp_18"
+    tools:context=".account.ui.PrivacyActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <com.ruffian.library.widget.RImageView
+        android:id="@+id/privacy_fault_image"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_15"
+        android:src="@mipmap/fault" />
+
+    <com.ruffian.library.widget.RTextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        tools:context=".account.ui.PrivacyActivity">
+        android:layout_height="@dimen/dp_25"
+        android:gravity="center_horizontal"
+        android:text="Privacy Policy"
+        android:textColor="#333333"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_44"
-            android:background="@color/white">
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_21"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
 
-            <com.ruffian.library.widget.RImageView
-                android:id="@+id/privacy_fault_image"
-                android:layout_width="@dimen/dp_20"
-                android:layout_height="@dimen/dp_20"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="@dimen/dp_20"
-                android:layout_marginRight="@dimen/dp_15"
-                android:src="@mipmap/fault" />
+    <com.ruffian.library.widget.RTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="by continuing, I agree to the terms and conditions."
+        android:textColor="@color/color_333"
+        android:textSize="@dimen/sp_13" />
 
-        </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_20">
 
-        <com.ruffian.library.widget.RTextView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_25"
-            android:gravity="center_horizontal"
-            android:text="Privacy Policy"
-            android:textColor="#333333"
-            android:textSize="@dimen/sp_18"
-            android:textStyle="bold" />
-
-        <com.ruffian.library.widget.RTextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_20"
-            android:layout_marginRight="@dimen/dp_20"
-            android:lineSpacingExtra="@dimen/dp_4"
-            android:padding="@dimen/dp_10"
-            android:text="Privacy Policy \n This policy is a short version, please click the 《Privacy Policy》below to view the full version.\n It describes our policies and procedures for the collection, use, storage, processing, disclosure and protection of any information, including, but not limited to, business or personal information provided by you as a user  while using the platform. User shall mean any person/persons, who visits, uses, deals with and/or transacts through the platform or avails our services and includes a browser. This policy constitutes a legal agreement between you, as the user of the platform, and the company, as the licensed user of the platform. You must be a natural person who is at least 18 years of age. By visiting accessing the platform, through the website or the app and voluntarily providing us with information (personal and/or non-personal) for the products or otherwise, you are consenting to our use of it in accordance with this policy. 1. COLLECTION OF INFORMATION During your use of the Platform, we will collect information and data including but not limited to your personal information and sensitive personal information / data as defined under the Information Technology Rules, 2011. You hereby provide us explicit consent to collect the following data from you as a data provider which also includes SPD &amp; I: Your name, address, date of birth, contact information, marital status, PAN number, name of the bank where you have your primary account, bank statements, income tax returns, pay slips etc.; Credit-related information that is collected from other sources like the credit bureau; Know Your Customer data such as Valid Address proof, PAN, photo etc. 2. USE OF INFORMATION Personal information of individual users will not be sold or otherwise transferred to unaffiliated third parties without your approval at the time of collection. You hereby provide explicit consent to Us for the use of Your information provided (including SPD &amp; I) provided by You to Us (as specified above) and to share such information with third parties for the following purposes: Manage our risks including the risk of fraud that may be committed against us or our partners; To conduct KYC based on the information shared by the User for the provision of Services and availing the Product. Use the information obtained from Your Device to control risk, detect fraud, and provide better services to You. We require access to your location, make and manage phone calls, media (KYC upload) and SMS for internal credit risk analysis and will be used for application processing. Location: Collect and monitor the location of your device in order to provide you loan, offers, anti-fraud and other features. Media &amp; Files: To allow you to upload documents and pictures for KYC purpose. SMS: Only read and store the financial transactional SMS about bank related transactions and upload to ;.\n We will not collect any personal messages. The collected financial transaction messages will only be used for credit risk assessment. Contact list: will upload and transmit your contact list data including name and phone number. The uploaded and transmitted name and phone number will be used to manage risks and conduct anti-fraud checks. 3. DISCLOSURE OF INFORMATION You hereby provide explicit consent to the disclosure of your information (including SPD &amp; I) by Us to our Affiliates, employees and to third parties as per the terms of this Policy. You provide us explicit consent to share Your information with third parties only in such manner and for the purposes as described below: We may disclose Your information to other financial service providers, banks or NBFCs and Our third-party partners and service providers for providing the Services and offering the Products as detailed under the Terms &amp; Conditions; We may share the details of the Product and Your information with our third-party partners and service providers in order to conduct data analysis for the purpose of improving the Services and analyzing Your use of the Platform, and to service you better; 4. STORAGE AND SECURITY OF INFORMATION We store and process Your personal information, including the information received from Your Device on Amazon Cloud Servers and other secure cloud service providers. All information received by Us, either directly from You or through Your Device is protected and secured by Us. We adopt multiple safeguards to protect the security of the information and data provided by You like firewalls and data encryption using SSL, and information access authorization controls. The information you provide to us will be stored on our secure servers located within India. 5. CONTACT US If You require any information or clarification regarding the use of Your personal information or this Privacy Policy, You can contact us at email;. If You have grievance with respect to use of Your personal information, please contact us at email;."
-            android:textColor="#666666"
-            android:textSize="@dimen/sp_13" />
-
+        <com.ruffian.library.widget.RImageView
+            android:id="@+id/privacy_popup_unselect_image"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:src="@mipmap/unselect" />
 
         <com.ruffian.library.widget.RTextView
-            android:layout_width="@dimen/dp_335"
-            android:layout_height="@dimen/dp_42"
-          android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dp_9"
-            android:text="by continuing, I agree to the terms and conditions."
-            android:textColor="#ff666666"
-            android:textSize="@dimen/sp_13" />
-
-        <LinearLayout
+            android:id="@+id/privacy_policy_tv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dp_20"
-            android:orientation="horizontal">
-
-            <com.ruffian.library.widget.RImageView
-                android:id="@+id/privacy_popup_unselect_image"
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="@dimen/dp_30"
-                android:layout_marginLeft="@dimen/dp_20"
-                android:src="@mipmap/unselect" />
-            <!-- //找到控件
-                    mtv1 = findViewById(R.id.sleep_tv_1);
-                    mtv2 = findViewById(R.id.sleep_tv_2);
-
-                    //中划线
-                    mtv1.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);  //中划线，会有锯齿
-                    mtv1.getPaint().setAntiAlias(true);                     //消除锯齿
-
-                    //下划线
-                    mtv2.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);-->
-            <com.ruffian.library.widget.RTextView
-                android:id="@+id/privacy_policy_tv"
-                android:layout_width="@dimen/dp_283"
-                android:layout_height="@dimen/dp_36"
-                android:layout_marginLeft="@dimen/dp_17"
-                android:text="I have read and agreed with the terms above"
-                android:textColor="#fff7002d"
-                android:gravity="center_vertical"
-                android:textSize="@dimen/sp_11" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/privacy_box_button"
-            android:layout_width="@dimen/dp_335"
-            android:layout_height="@dimen/dp_44"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="#ff009b12"
-            android:text="Please check the above box and continue"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/privacy_dis_agree_button"
-            android:layout_width="@dimen/dp_335"
-            android:layout_height="@dimen/dp_44"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginBottom="@dimen/dp_20"
-            android:background="#EDF9EE"
-            android:text="Disagree"
-            android:textColor="#ff009b12" />
-
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_17"
+            android:gravity="center_vertical"
+            android:text="I have read and agreed with the terms above"
+            android:textColor="#fff7002d"
+            android:textSize="@dimen/sp_11" />
     </LinearLayout>
 
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/privacy_box_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:gravity="center"
+        android:text="Please check the above box and continue"
+        android:textColor="@color/white"
+        app:background_normal="@color/green_color_background"
+        app:corner_radius="@dimen/dp_4" />
 
-</ScrollView>
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/privacy_dis_agree_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:gravity="center"
+        android:text="Disagree"
+        android:textColor="#ff009b12"
+        app:background_normal="#EDF9EE"
+        app:corner_radius="@dimen/dp_4" />
+
+</com.ruffian.library.widget.RLinearLayout>

@@ -11,14 +11,16 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.*
-import android.widget.Button
+import android.webkit.WebView
 import android.widget.PopupWindow
 import android.widget.TextView
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
 import com.dream.bjst.account.vm.AccountViewModel
 import com.dream.bjst.databinding.ActivityPrivacyBinding
 import com.ruffian.library.widget.RImageView
+import com.ruffian.library.widget.RTextView
 import com.tcl.base.common.ui.BaseActivity
 
 /**
@@ -26,16 +28,17 @@ import com.tcl.base.common.ui.BaseActivity
  * 描述:衣带渐宽终不悔、为伊消得人憔悴
  * 作者:HeGuiCun Administrator
  */
-class PrivacyActivity :BaseActivity<AccountViewModel,ActivityPrivacyBinding>(){
+class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>() {
     //弹窗控件
     var popupWindow: PopupWindow? = null
     var pwView: View? = null
     var isClick = false
 
     override fun initView(savedInstanceState: Bundle?) {
-          viewModel.privacy()
+        viewModel.privacy()
         //利用H5给网络协议添加超链接
-        callService("Accept Terms & Conditions and Privacy Policy and to receive notification from SMS and email",
+        callService(
+            "Accept Terms & Conditions and Privacy Policy and to receive notification from SMS and email",
             mBinding.privacyPolicyTv
         )
         event()
@@ -46,12 +49,14 @@ class PrivacyActivity :BaseActivity<AccountViewModel,ActivityPrivacyBinding>(){
      */
     override fun startObserve() {
         super.startObserve()
-        viewModel.privacyResult.observe(this){
-            var permissionExplainUrl=it.`849186999D87879D9B9AB18C8498959D9AA18698`//权限说明地址
-            var privacyAgreementBreviaryUrl=it.`84869D8295978DB59386919199919A80B68691829D95868DA18698`//隐私权限（简）地址
-            var privacyAgreementUrl=it.`84869D8295978DB59386919199919A80A18698`//隐私协议地址
-            var registerAgreementUrl=it.`8691939D87809186B59386919199919A80A18698`//权限说明地址
-
+        viewModel.privacyResult.observe(this) {
+            mBinding.webView.loadUrl(it.`849186999D87879D9B9AB18C8498959D9AA18698`)//权限说明地址
+            var privacyAgreementBreviaryUrl = it.`84869D8295978DB59386919199919A80B68691829D95868DA18698`//隐私权限（简）地址
+            var privacyAgreementUrl = it.`84869D8295978DB59386919199919A80A18698`//隐私协议地址
+            var registerAgreementUrl = it.`8691939D87809186B59386919199919A80A18698`//注册协议地址
+            LogUtils.dTag("urlTag", "privacyAgreementBreviaryUrl = $privacyAgreementBreviaryUrl")
+            LogUtils.dTag("urlTag", "privacyAgreementUrl = $privacyAgreementUrl")
+            LogUtils.dTag("urlTag", "registerAgreementUrl = $registerAgreementUrl")
         }
     }
 
@@ -91,49 +96,58 @@ class PrivacyActivity :BaseActivity<AccountViewModel,ActivityPrivacyBinding>(){
         // 加载弹窗布局
         pwView = LayoutInflater.from(this).inflate(R.layout.item_popupwindow_privacy, null, false)
         // 实例化 PopupWindow
-        popupWindow = PopupWindow(pwView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        popupWindow = PopupWindow(
+            pwView,
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        val webView = pwView?.findViewById<WebView>(R.id.webView)
+        viewModel.privacyResult.value?.`84869D8295978DB59386919199919A80A18698`?.let {
+            webView?.loadUrl(it)//隐私政策
+        }
+
         //设置关闭popup按钮
-        val closeImage = pwView!!.findViewById<RImageView>(R.id.privacy_fault_image)
-        closeImage.setOnClickListener {
-            popupWindow!!.dismiss()
+        val closeImage = pwView?.findViewById<RImageView>(R.id.privacy_fault_image)
+        closeImage?.setOnClickListener {
+            popupWindow?.dismiss()
             windowAlpha(1f)
         }
         //设置popupWindow里面的未选中按钮
-        val unselectImage = pwView!!.findViewById<RImageView>(R.id.privacy_popup_unselect_image)
-        unselectImage.setOnClickListener {
-            isClick = if (isClick == false) {
-                unselectImage.setImageResource(R.mipmap.unselect)
+        val unselectImage = pwView?.findViewById<RImageView>(R.id.privacy_popup_unselect_image)
+        unselectImage?.setOnClickListener {
+            isClick = if (!isClick) {
+                unselectImage?.setImageResource(R.mipmap.unselect)
                 true
             } else {
-                unselectImage.setImageResource(R.mipmap.select)
+                unselectImage?.setImageResource(R.mipmap.select)
                 false
             }
         }
         //设置continue按钮
-        val checkButton = pwView!!.findViewById<Button>(R.id.privacy_box_button)
-        checkButton.setOnClickListener {
-            if (isClick == true) {
+        val checkButton = pwView?.findViewById<RTextView>(R.id.privacy_box_button)
+        checkButton?.setOnClickListener {
+            if (isClick) {
                 ToastUtils.showShort("Please check this box and continue")
             } else {
                 ToastUtils.showShort("请测试登录")
             }
         }
         //设置disagree按钮
-        val disagreeButton = pwView!!.findViewById<Button>(R.id.privacy_dis_agree_button)
-        disagreeButton.setOnClickListener { popupWindow!!.dismiss() }
+        val disagreeButton = pwView?.findViewById<RTextView>(R.id.privacy_dis_agree_button)
+        disagreeButton?.setOnClickListener { popupWindow?.dismiss() }
         // 设置 popupWindow
-        popupWindow!!.isFocusable = true // 取得焦点
+        popupWindow?.isFocusable = true // 取得焦点
         //点击外部消失
-        popupWindow!!.isOutsideTouchable = true
+        popupWindow?.isOutsideTouchable = true
         //设置可以点击
-        popupWindow!!.isTouchable = true
+        popupWindow?.isTouchable = true
         // 加载弹窗动画
-        popupWindow!!.animationStyle = R.style.pw_bottom_anim_style
+        popupWindow?.animationStyle = R.style.pw_bottom_anim_style
         //从底部显示
-        popupWindow!!.showAtLocation(pwView, Gravity.BOTTOM, 0, 0)
+        popupWindow?.showAtLocation(pwView, Gravity.BOTTOM, 0, 0)
         windowAlpha(0.5f)
         // 设置弹窗关闭监听——恢复亮度
-        popupWindow!!.setOnDismissListener { windowAlpha(1f) }
+        popupWindow?.setOnDismissListener { windowAlpha(1f) }
     }
 
     // 控制背景亮度

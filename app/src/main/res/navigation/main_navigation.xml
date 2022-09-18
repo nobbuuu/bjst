@@ -9,7 +9,11 @@
         android:id="@+id/navigation_loan"
         android:name="com.dream.bjst.loan.ui.LoanFragment"
         android:label="@string/title_area"
-        tools:layout="@layout/fragment_loan" />
+        tools:layout="@layout/fragment_loan" >
+        <action
+            android:id="@+id/loan_to_navigation_repayment"
+            app:destination="@id/navigation_repayment" />
+    </fixFragment>
 
     <fixFragment
         android:id="@+id/navigation_repayment"

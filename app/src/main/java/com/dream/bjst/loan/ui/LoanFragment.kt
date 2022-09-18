@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.core.view.isVisible
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.BarUtils
-import com.blankj.utilcode.util.LogUtils
+import com.dream.bjst.R
+import com.dream.bjst.account.ui.DeleteProgressActivity
 import com.dream.bjst.databinding.FragmentLoanBinding
 import com.dream.bjst.dialog.AmountDialog
 import com.dream.bjst.dialog.LoanInfoDialog
+import com.dream.bjst.dialog.UnLoanDialog
 import com.dream.bjst.loan.adapter.LoanProductAdapter
 import com.dream.bjst.loan.bean.AmountPeriodBean
 import com.dream.bjst.loan.bean.ApplyListParamBean
@@ -92,27 +95,16 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             mBinding.amountTv.text = it.num.toString() + " Days"
         }
         mBinding.loanNow.ktClick {
+
             if (!mBinding.unLoanLay.isVisible) {
-                val applyProducts: MutableList<ApplyListParamBean> = arrayListOf()
-                loanAdapter.data.filter { it.isCheck }?.forEach {
-                    applyProducts.add(
-                        ApplyListParamBean(
-                            it.`9D90`.toString(),
-                            it.`989B959AB5999B819A80`.toString()
-                        )
-                    )
-                }
-                val param = GsonUtil.toJson(
-                    ApplyParamBean(
-                        `9D84` = DeviceUtils.getLocalIPAddress(),
-                        `84869B9081978087` = applyProducts
-                    )
-                )
-                viewModel.apply(param)
+                viewModel.fetchCustomerKycStatus()
             } else {
                 viewModel.loanPreData.value?.let {
                     if (it.`83959D80A69184958DB5999B819A80` <= 0) {
-                        "Recovery amount after repayment".ktToastShow()
+                        UnLoanDialog(requireContext()) {
+                            Navigation.findNavController(mBinding.loanRoot)
+                                .navigate(R.id.loan_to_navigation_repayment)
+                        }.show()
                     } else if (it.`978691909D80B5999B819A80` <= 0) {
                         "No application product available".ktToastShow()
                     }
@@ -139,6 +131,32 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     override fun startObserve() {
         super.startObserve()
+        viewModel.userStatus.observe(this) {
+
+            //是否黑名单
+            if (!it.`969895979F`) {
+                val applyProducts: MutableList<ApplyListParamBean> = arrayListOf()
+                loanAdapter.data.filter { it.isCheck }?.forEach {
+                    applyProducts.add(
+                        ApplyListParamBean(
+                            it.`9D90`.toString(),
+                            it.`989B959AB5999B819A80`.toString()
+                        )
+                    )
+                }
+                val param = GsonUtil.toJson(
+                    ApplyParamBean(
+                        `9D84` = DeviceUtils.getLocalIPAddress(),
+                        `84869B9081978087` = applyProducts
+                    )
+                )
+                viewModel.apply(param)
+            } else {
+                UnLoanDialog(requireContext(), type = 2) {
+                    ktStartActivity(DeleteProgressActivity::class)
+                }.show()
+            }
+        }
         viewModel.applyData.observe(this) {
             viewModel.fetchProducts()
             if (!it.`90809BB69B86869B83B58484988DA6918781988087`.isNullOrEmpty()) {
@@ -153,8 +171,6 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
                 LoanInfoDialog(requireContext(), bean) {
                     ktStartActivity(LoanRecordsActivity::class)
                 }.show()
-            } else {//申请借款失败
-
             }
         }
         viewModel.loanPreData.observe(this) {

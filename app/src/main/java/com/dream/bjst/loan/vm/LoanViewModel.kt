@@ -1,5 +1,6 @@
 package com.dream.bjst.loan.vm
 
+import com.dream.bjst.identification.bean.IdCardStatusBean
 import com.dream.bjst.loan.bean.*
 import com.dream.bjst.net.Api
 import com.tcl.base.common.BaseViewModel
@@ -15,6 +16,15 @@ class LoanViewModel : BaseViewModel() {
     val loanPreData = SingleLiveEvent<LoanPreBean>()
     val applyData = SingleLiveEvent<ApplyResultBean>()
     val historyData = SingleLiveEvent<OrderResultBean>()
+    val userStatus = SingleLiveEvent<IdCardStatusBean>()
+
+    fun fetchCustomerKycStatus() {
+        rxLaunchUI({
+            val result = Api.fetchCustomerKycStatus()
+            userStatus.postValue(result)
+        })
+    }
+
     fun fetchProducts() {
         rxLaunchUI({
             val result = Api.fetchProducts()

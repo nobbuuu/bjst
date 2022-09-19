@@ -15,6 +15,7 @@ import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.IntentUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
+import com.dream.bjst.R.color.colorPrimaryDark
 import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityRepaymentDetailBinding
 import com.dream.bjst.repayment.bean.PaymentUtrParam
@@ -88,7 +89,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                 } else {
                     mBinding.notionTv.visibility = View.VISIBLE
                     mBinding.notionTv.text = "Enter is correct！"
-                    mBinding.notionTv.setTextColor(R.color.green_color_background)
+                    mBinding.notionTv.setTextColor(colorPrimaryDark)
                 }
 
             }
@@ -157,6 +158,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
     /**
      * 事件点击
      */
+    @SuppressLint("ResourceAsColor")
     private fun event() {
         mBinding.titleBar.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
         /**
@@ -181,7 +183,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                 putExtra("borrowId", borrowId)
             }
         }
-        //repaidButton
+        //repaidButton Submit按钮
         mBinding.repaidSubmitButton.ktClick {
             utrCode = mBinding.digitalEt.text.toString()
             UTRParam = GsonUtils.toJson(
@@ -193,6 +195,13 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                 )
             )
             viewModel.paymentUTRData(UTRParam)
+
+            if(utrCode!!.isEmpty()&& bitmapStr?.length==null){
+                mBinding.notionTv.visibility=View.VISIBLE
+//                mBinding.notionTv.setTextColor(colorPrimaryDark)
+                mBinding.pictureTv.visibility=View.VISIBLE
+//                mBinding.pictureTv.setTextColor(colorPrimaryDark)
+            }
         }
         //点击上传UTR_picture
         mBinding.addPictureCameraIv.setOnClickListener(View.OnClickListener { //这里上传头

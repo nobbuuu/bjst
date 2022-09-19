@@ -388,13 +388,13 @@
 
             <com.ruffian.library.widget.RTextView
                 android:id="@+id/notion_tv"
-                android:layout_width="@dimen/dp_112"
-                android:layout_height="@dimen/dp_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/digital_et"
                 android:layout_alignLeft="@id/title_utr"
                 android:layout_marginTop="@dimen/dp_5"
                 android:text="Enter the correct No."
-                android:textColor="#FF0000"
+                android:textColor="#D50000"
                 android:textSize="@dimen/sp_12"
                 android:visibility="invisible" />
 
@@ -417,12 +417,22 @@
                 android:layout_below="@+id/title_screenshot"
                 android:layout_alignLeft="@+id/title_screenshot"
                 android:src="@mipmap/addpicturecamer" />
-
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/picture_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/add_picture_camera_iv"
+                android:layout_alignLeft="@id/title_utr"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="Upload UTR Screenshot"
+                android:textColor="#D50000"
+                android:textSize="@dimen/sp_12"
+                android:visibility="invisible" />
             <Button
                 android:id="@+id/repaid_submit_button"
                 android:layout_width="@dimen/dp_305"
                 android:layout_height="@dimen/dp_40"
-                android:layout_below="@+id/add_picture_camera_iv"
+                android:layout_below="@+id/picture_tv"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/dp_20"
                 android:background="#000000"

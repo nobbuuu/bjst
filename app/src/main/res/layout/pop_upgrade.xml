@@ -14,7 +14,7 @@
         android:layout_height="@dimen/dp_385"
         android:orientation="vertical"
         android:visibility="visible"
-        app:background_normal="@color/white"
+        app:background_normal="@drawable/shap_repayment_item"
         app:corner_radius="@dimen/dp_2">
 
         <com.ruffian.library.widget.RTextView
@@ -79,7 +79,7 @@
         android:layout_gravity="center_horizontal"
         android:orientation="vertical"
         android:visibility="gone"
-        app:background_normal="@color/white"
+        app:background_normal="@drawable/shap_repayment_item"
         app:corner_radius="@dimen/dp_2">
 
         <com.ruffian.library.widget.RImageView

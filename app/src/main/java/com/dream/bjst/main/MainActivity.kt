@@ -135,12 +135,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                     )
                     doUpgrade(bean)
                 }
-//                it.`869187B58484A18490958091A08C80BD9A929B`?.let { it1 ->
-//                    UpgradeNoticeDialog(this, it1) {
-//                        //更新版本
-//
-//                    }.show()
-//                }
             }
         }
     }

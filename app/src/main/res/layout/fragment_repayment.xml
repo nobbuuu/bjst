@@ -86,6 +86,8 @@
                             android:layout_marginEnd="@dimen/dp_10"
                             android:layout_marginBottom="@dimen/dp_10"
                             android:overScrollMode="never"
+                            android:padding="@dimen/dp_4"
+                            android:background="@drawable/shap_repayment_item"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                     </RelativeLayout>
                     <!-- dueToday-->
@@ -127,6 +129,8 @@
                             android:layout_marginTop="@dimen/dp_5"
                             android:layout_marginEnd="@dimen/dp_10"
                             android:layout_marginBottom="@dimen/dp_10"
+                            android:padding="@dimen/dp_4"
+                            android:background="@drawable/shap_repayment_item"
                             android:overScrollMode="never"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                     </RelativeLayout>
@@ -161,6 +165,8 @@
                             android:layout_marginEnd="@dimen/dp_10"
                             android:layout_marginBottom="@dimen/dp_10"
                             android:overScrollMode="never"
+                            android:padding="@dimen/dp_4"
+                            android:background="@drawable/shap_repayment_item"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                     </RelativeLayout>
                 </LinearLayout>

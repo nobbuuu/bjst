@@ -2,19 +2,25 @@ package com.dream.bjst.loan.ui
 
 import android.os.Bundle
 import com.blankj.utilcode.util.GsonUtils
+import com.blankj.utilcode.util.ToastUtils
+import com.dream.bjst.R
 import com.dream.bjst.bean.CommonPageBean
 import com.dream.bjst.databinding.ActivityLoanRecordsBinding
 import com.dream.bjst.loan.adapter.LoanRecordsAdapter
+import com.dream.bjst.loan.adapter.LoanRecordsChildAdapter
 import com.dream.bjst.loan.bean.HistoryBean
 import com.dream.bjst.loan.bean.OrderResultBean
 import com.dream.bjst.loan.vm.LoanViewModel
+import com.dream.bjst.repayment.ui.RepaymentFragment
 import com.dream.bjst.utils.DataUtils
 import com.tcl.base.common.ui.BaseActivity
+import com.tcl.base.kt.ktStartActivity
 
 class LoanRecordsActivity : BaseActivity<LoanViewModel, ActivityLoanRecordsBinding>() {
 
     private var curPage = 1
     val mLoanRecordsAdapter = LoanRecordsAdapter()
+    var mLoanRecordsChildAdapter=LoanRecordsChildAdapter()
     private val dataList = arrayListOf<OrderResultBean>()
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.loanRecords.apply {
@@ -26,7 +32,11 @@ class LoanRecordsActivity : BaseActivity<LoanViewModel, ActivityLoanRecordsBindi
         mBinding.smartRefresh.setOnLoadMoreListener {
             refreshData(true)
         }
+
+
     }
+
+
 
     override fun initData() {
         refreshData()

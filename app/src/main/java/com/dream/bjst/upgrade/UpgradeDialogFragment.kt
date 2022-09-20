@@ -66,6 +66,7 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
             val versionInfo = getSerializable(KEY_VERSION_INFO)
             if (versionInfo is NewVersionBean) {
                 mBinding.upgradeTitle.text = versionInfo.remarks
+                mBinding.newestVersion.text="Newest version:"+versionInfo.versionNumber
                 if (versionInfo.isForce()) {
                     mBinding.noticeFinishImage.visibility = View.GONE
                 }

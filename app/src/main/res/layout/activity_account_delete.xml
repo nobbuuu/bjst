@@ -19,10 +19,9 @@
         android:id="@+id/delete_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:gravity="left"
         android:layout_marginTop="@dimen/dp_44"
-      android:layout_marginStart="@dimen/dp_35"
+        android:layout_marginStart="@dimen/dp_35"
         android:layout_marginEnd="@dimen/dp_35"
         android:textSize="@dimen/sp_18"
         android:lineSpacingExtra="@dimen/dp_5"

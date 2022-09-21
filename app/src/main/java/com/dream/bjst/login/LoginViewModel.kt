@@ -1,6 +1,7 @@
 package com.dream.bjst.login
 
 import com.blankj.utilcode.util.GsonUtils
+import com.dream.bjst.account.bean.PrivacyBean
 import com.dream.bjst.bean.LoginBean
 import com.dream.bjst.bean.LoginParam
 import com.dream.bjst.common.UserManager
@@ -20,8 +21,7 @@ class LoginViewModel : BaseViewModel() {
     val sendCode = SingleLiveEvent<Boolean>()
     val loginResult = SingleLiveEvent<LoginBean>()
     val idCardStatus = SingleLiveEvent<IdCardStatusBean>()
-
-
+    val privacyResult = SingleLiveEvent<PrivacyBean>()
 
     var mNetToken = ""
     fun sendCode(param: String) {
@@ -68,5 +68,16 @@ class LoginViewModel : BaseViewModel() {
         })
     }
 
+
+    /**
+     * 隐私协议
+     */
+    fun privacy() {
+        rxLaunchUI({
+            var privacyRes = Api.privacyContent()
+            privacyResult.postValue(privacyRes)
+        })
+
+    }
 
 }

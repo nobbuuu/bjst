@@ -11,7 +11,6 @@ import com.dream.bjst.loan.adapter.LoanProductAdapter
 import com.dream.bjst.loan.bean.AmountPeriodBean
 import com.dream.bjst.loan.bean.LoanConfirmBean
 import com.tcl.base.kt.ktClick
-import com.tcl.base.weiget.recylerview.RecycleViewDivider
 
 /**
  * 贷款申请成功弹框
@@ -28,6 +27,7 @@ class LoanInfoDialog(
         data?.let {
             mBinding.loanAmountLay.setEndText(it.loanAmount)
             mBinding.repayAmountLay.setEndText(it.repayAmount)
+            mBinding.dueDateLay.setEndText(it.dueDate)
             val mAdapter = LoanProductAdapter(true)
             mBinding.loanProductsRv.adapter = mAdapter
             mAdapter.setList(it.products)

@@ -20,7 +20,7 @@ class LoanRecordsActivity : BaseActivity<LoanViewModel, ActivityLoanRecordsBindi
 
     private var curPage = 1
     val mLoanRecordsAdapter = LoanRecordsAdapter()
-    var mLoanRecordsChildAdapter=LoanRecordsChildAdapter()
+    var mLoanRecordsChildAdapter = LoanRecordsChildAdapter()
     private val dataList = arrayListOf<OrderResultBean>()
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.loanRecords.apply {
@@ -32,14 +32,17 @@ class LoanRecordsActivity : BaseActivity<LoanViewModel, ActivityLoanRecordsBindi
         mBinding.smartRefresh.setOnLoadMoreListener {
             refreshData(true)
         }
-
-
     }
-
 
 
     override fun initData() {
         refreshData()
+        mLoanRecordsChildAdapter.setOnItemChildClickListener { adapter, view, position ->
+            if (view.id == R.id.repayNow){
+                setResult(921)
+                finish()
+            }
+        }
     }
 
     fun refreshData(isMore: Boolean = false) {

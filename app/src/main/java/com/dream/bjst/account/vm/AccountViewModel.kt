@@ -15,36 +15,38 @@ import com.tcl.base.event.SingleLiveEvent
  */
 class AccountViewModel : BaseViewModel() {
 
-    val  chatMessageResult=SingleLiveEvent<ChatMessageBean>()
-     val accountDeleteResult=SingleLiveEvent<Boolean>()
-     val privacyResult=SingleLiveEvent<PrivacyBean>()
+    val chatMessageResult = SingleLiveEvent<ChatMessageBean>()
+    val accountDeleteResult = SingleLiveEvent<Boolean>()
+    val privacyResult = SingleLiveEvent<PrivacyBean>()
 
     /**
      * 删除用户数据
      */
-    fun accountDeleteData(){
+    fun accountDeleteData() {
         rxLaunchUI({
-            var accountResult=Api.deleteAccountData()
+            var accountResult = Api.deleteAccountData()
             accountDeleteResult.postValue(accountResult)
         })
 
     }
+
     /**
      * 客服聊天
      */
-    fun chatMessage(){
+    fun chatMessage() {
         rxLaunchUI({
-            var chatMessageRes=Api.chatMessage()
+            var chatMessageRes = Api.chatMessage()
             chatMessageResult.postValue(chatMessageRes)
         })
 
     }
+
     /**
      * 隐私协议
      */
-    fun privacy(){
+    fun privacy() {
         rxLaunchUI({
-            var privacyRes=Api.privacyContent()
+            var privacyRes = Api.privacyContent()
             privacyResult.postValue(privacyRes)
         })
 

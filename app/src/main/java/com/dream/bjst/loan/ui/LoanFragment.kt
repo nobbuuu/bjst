@@ -21,10 +21,7 @@ import com.dream.bjst.loan.bean.LoanConfirmBean
 import com.dream.bjst.loan.vm.LoanViewModel
 import com.dream.bjst.utils.DeviceUtils
 import com.tcl.base.common.ui.BaseFragment
-import com.tcl.base.kt.ktClick
-import com.tcl.base.kt.ktStartActivity
-import com.tcl.base.kt.ktToastShow
-import com.tcl.base.kt.nullToEmpty
+import com.tcl.base.kt.*
 import com.tcl.base.weiget.recylerview.RecycleViewDivider
 import rxhttp.wrapper.utils.GsonUtil
 import java.text.SimpleDateFormat
@@ -65,7 +62,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     fun onEvent() {
         mBinding.ordersLay.ktClick {
-            ktStartActivity(LoanRecordsActivity::class)
+            ktStartActivity4Result(LoanRecordsActivity::class,920)
         }
         mBinding.amountLay.ktClick {
             mAmountDialog.setData(amountList).show()
@@ -169,7 +166,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
                     it.`869187B29180979CA4869B90819780`.`84869B90819780B89D8780`
                 )
                 LoanInfoDialog(requireContext(), bean) {
-                    ktStartActivity(LoanRecordsActivity::class)
+                    ktStartActivity4Result(LoanRecordsActivity::class,920)
                 }.show()
             }
         }

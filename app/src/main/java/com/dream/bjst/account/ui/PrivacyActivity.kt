@@ -67,7 +67,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
     fun event() {
         //勾选按钮
         mBinding.privacyUnselectImage.setOnClickListener(View.OnClickListener {
-            isClick = if (isClick == false) {
+            isClick = if (!isClick) {
                 mBinding.privacyUnselectImage.setImageResource(R.mipmap.select)
                 true
             } else {
@@ -77,7 +77,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         })
         //check按钮
         mBinding.privacyCheckButton.setOnClickListener(View.OnClickListener {
-            if (isClick == false) {
+            if (!isClick) {
                 ToastUtils.showShort("Please check this box and continue")
             } else {
                 ToastUtils.showShort("检查中...")
@@ -103,7 +103,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         )
         val webView = pwView?.findViewById<WebView>(R.id.webView)
         viewModel.privacyResult.value?.`84869D8295978DB59386919199919A80A18698`?.let {
-            webView?.loadUrl(it)//隐私政策
+            webView?.loadUrl(it)//隐私协议
         }
 
         //设置关闭popup按钮
@@ -167,11 +167,12 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         val i = content.indexOf("T") //截取文字开始的下标
         builder.setSpan(object : ClickableSpan() {
             override fun onClick(widget: View) {
-
-                // 要跳转的链接
-                val uri = Uri.parse("https://baidu.com")
-                val intent = Intent(Intent.ACTION_VIEW, uri)
-                startActivity(intent)
+                viewModel.privacyResult.value?.`8691939D87809186B59386919199919A80A18698`?.let {
+                    // 要跳转的链接
+                    val uri = Uri.parse(it)
+                    val intent = Intent(Intent.ACTION_VIEW, uri)
+                    startActivity(intent)
+                }
             }
 
             override fun updateDrawState(ds: TextPaint) {

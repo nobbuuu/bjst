@@ -158,4 +158,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun initDataOnResume() {
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == 921) {
+            controller.navigate(R.id.navigation_repayment)
+        }
+    }
 }

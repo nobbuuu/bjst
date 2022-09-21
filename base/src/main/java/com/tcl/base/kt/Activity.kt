@@ -15,7 +15,19 @@ fun <T : Activity> Fragment.ktStartActivity(
     clazz: KClass<T>,
     block: (Intent.() -> Unit)? = null
 ) {
-    activity?.ktStartActivity(clazz, block)
+    requireActivity().ktStartActivity(clazz, block)
+}
+
+fun <T : Activity> Fragment.ktStartActivity4Result(
+    clazz: KClass<T>,
+    requestCode: Int,
+    block: (Intent.() -> Unit)? = null
+) {
+    ktSeriesClick {
+        startActivityForResult(Intent(requireActivity(), clazz.java).apply {
+            block?.invoke(this)
+        }, requestCode)
+    }
 }
 
 fun <T : Activity> Activity.ktStartActivity(
@@ -23,9 +35,9 @@ fun <T : Activity> Activity.ktStartActivity(
     block: (Intent.() -> Unit)? = null
 ) {
 //    ktSeriesClick {
-        startActivity(Intent(this, clazz.java).apply {
-            block?.invoke(this)
-        })
+    startActivity(Intent(this, clazz.java).apply {
+        block?.invoke(this)
+    })
 //    }
 }
 
@@ -34,16 +46,16 @@ fun <T : Context> Context.ktStartActivity(
     block: (Intent.() -> Unit)? = null
 ) {
 //    ktSeriesClick {
-        startActivity(Intent(this, clazz.java).apply {
-            block?.invoke(this)
-        })
+    startActivity(Intent(this, clazz.java).apply {
+        block?.invoke(this)
+    })
 //    }
 }
 
 fun <T : Activity> Activity.ktStartActivityAndFinish(
     clazz: KClass<T>,
     block: (Intent.() -> Unit)? = null,
-    ) {
+) {
     ktStartActivity(clazz, block)
     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     finish()

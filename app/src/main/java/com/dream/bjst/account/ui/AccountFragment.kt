@@ -13,6 +13,7 @@ import com.dream.bjst.utils.StatusBarUtils.adjustWindow
 import com.tcl.base.common.ui.BaseFragment
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
+import com.tcl.base.kt.ktStartActivity4Result
 import com.tcl.base.kt.text
 import com.tcl.base.utils.MmkvUtil
 
@@ -58,7 +59,7 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
         //进入贷款记录界面
 
         mBinding.accountLoanRecord.ktClick {
-            ktStartActivity(LoanRecordsActivity::class)
+            ktStartActivity4Result(LoanRecordsActivity::class,922)
         }
         //进入认证界面
 

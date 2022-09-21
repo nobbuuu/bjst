@@ -1,10 +1,14 @@
 package com.dream.bjst.login
 
+import android.content.Intent
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.TextPaint
+import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import androidx.core.view.isVisible
@@ -32,10 +36,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
 
-
-
         mBinding.nextTv.ktClick {
-
 
             if (!isSendCode) {//获取验证码
                 mBinding.phoneLay.isVisible = false
@@ -108,8 +109,12 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 }
 
                 override fun onClick(widget: View) {
-                    //跳转用户协议
-
+                    //跳转注册协议
+                    viewModel.privacyResult.value?.`8691939D87809186B59386919199919A80A18698`?.let {
+                        val uri = Uri.parse(it)
+                        val intent = Intent(Intent.ACTION_VIEW, uri)
+                        startActivity(intent)
+                    }
                 }
             }, preStr.length, preStr.length + policy1.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -122,11 +127,17 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
                 override fun onClick(widget: View) {
                     //跳转隐私政策
-
+                    viewModel.privacyResult.value?.`84869D8295978DB59386919199919A80A18698`?.let {
+                        val uri = Uri.parse(it)
+                        val intent = Intent(Intent.ACTION_VIEW, uri)
+                        startActivity(intent)
+                    }
                 }
             }, preStr.length + policy1.length + 1, stringBuilder.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
+        mBinding.privacyPolicyTv.movementMethod = LinkMovementMethod.getInstance()
+        mBinding.privacyPolicyTv.highlightColor = Color.TRANSPARENT
         mBinding.privacyPolicyTv.text = stringBuilder
     }
 
@@ -153,11 +164,10 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             finish()
         }
 
-
     }
 
     override fun initData() {
-
+        viewModel.privacy()
     }
 
     override fun initDataOnResume() {

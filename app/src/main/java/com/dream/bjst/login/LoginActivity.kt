@@ -21,6 +21,7 @@ import com.dream.bjst.databinding.ActivityLoginBinding
 import com.dream.bjst.dialog.VoiceDialog
 import com.dream.bjst.identification.ui.ApproveMainActivity
 import com.dream.bjst.main.MainActivity
+import com.dream.bjst.other.WebViewActivity
 import com.dream.bjst.utils.SendCodeUtils
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
@@ -111,9 +112,9 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 override fun onClick(widget: View) {
                     //跳转注册协议
                     viewModel.privacyResult.value?.`8691939D87809186B59386919199919A80A18698`?.let {
-                        val uri = Uri.parse(it)
-                        val intent = Intent(Intent.ACTION_VIEW, uri)
-                        startActivity(intent)
+                        ktStartActivity(WebViewActivity::class){
+                            putExtra("webUrl",it)
+                        }
                     }
                 }
             }, preStr.length, preStr.length + policy1.length,
@@ -128,9 +129,9 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 override fun onClick(widget: View) {
                     //跳转隐私政策
                     viewModel.privacyResult.value?.`84869D8295978DB59386919199919A80A18698`?.let {
-                        val uri = Uri.parse(it)
-                        val intent = Intent(Intent.ACTION_VIEW, uri)
-                        startActivity(intent)
+                        ktStartActivity(WebViewActivity::class){
+                            putExtra("webUrl",it)
+                        }
                     }
                 }
             }, preStr.length + policy1.length + 1, stringBuilder.length,

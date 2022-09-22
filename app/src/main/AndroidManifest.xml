@@ -98,6 +98,7 @@
         <activity android:name=".identification.ui.ApproveIdCardConfirmActivity" />
         <activity android:name=".identification.ui.ApproveBankCardActivity" />
         <activity android:name=".identification.ui.ApproveBankListActivity" />
+        <activity android:name=".other.WebViewActivity"/>
     </application>
 
 </manifest>

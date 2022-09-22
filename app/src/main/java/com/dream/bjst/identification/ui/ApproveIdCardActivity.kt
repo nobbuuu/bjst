@@ -72,10 +72,10 @@ class ApproveIdCardActivity :
             "Please upload the back photo first".ktToastShow()
             return false
         }
-        /*if (!isPan){
+        if (!isPan){
             "Please upload the pan photo first".ktToastShow()
             return false
-        }*/
+        }
         return true
     }
 

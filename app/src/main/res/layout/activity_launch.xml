@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     android:layout_height="match_parent">
 
     <com.ruffian.library.widget.RImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/launch" />
+        android:layout_width="91dp"
+        android:layout_height="@dimen/dp_60"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/repidicon" />
+
+    <com.ruffian.library.widget.RImageView
+        android:layout_width="@dimen/dp_99"
+        android:layout_height="@dimen/dp_18"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_30"
+        android:src="@mipmap/rapidcoin" />
 
 </LinearLayout>

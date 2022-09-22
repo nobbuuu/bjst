@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:minHeight="@dimen/dp_300"
     android:orientation="vertical"
     app:background_normal="@color/white"
-    android:minHeight="@dimen/dp_300"
     app:corner_radius_top_left="@dimen/dp_18"
     app:corner_radius_top_right="@dimen/dp_18"
     tools:context=".account.ui.PrivacyActivity">
@@ -57,11 +57,12 @@
         android:layout_marginTop="@dimen/dp_20"
         android:layout_marginEnd="@dimen/dp_20">
 
-        <com.ruffian.library.widget.RImageView
-            android:id="@+id/privacy_popup_unselect_image"
+        <com.ruffian.library.widget.RCheckBox
+            android:id="@+id/privacyPopupCb"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30"
-            android:src="@mipmap/unselect" />
+            app:background_checked="@mipmap/select"
+            app:background_normal="@mipmap/unselect" />
 
         <com.ruffian.library.widget.RTextView
             android:id="@+id/privacy_policy_tv"

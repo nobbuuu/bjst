@@ -36,12 +36,14 @@
         android:layout_marginTop="@dimen/dp_20"
         android:orientation="horizontal">
 
-        <com.ruffian.library.widget.RImageView
-            android:id="@+id/privacy_unselect_image"
+        <com.ruffian.library.widget.RCheckBox
+            android:id="@+id/privacyCb"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30"
             android:layout_marginLeft="@dimen/dp_20"
-            android:src="@mipmap/unselect" />
+            app:background_normal="@mipmap/unselect"
+            app:background_checked="@mipmap/select"
+            />
 
         <com.ruffian.library.widget.RTextView
             android:id="@+id/privacy_policy_tv"

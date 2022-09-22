@@ -21,8 +21,10 @@ import com.tcl.base.kt.ktStartActivity
 class LoanRecordsActivity : BaseActivity<LoanViewModel, ActivityLoanRecordsBinding>() {
 
     private var curPage = 1
-    val mLoanRecordsAdapter = LoanRecordsAdapter()
-    var mLoanRecordsChildAdapter = LoanRecordsChildAdapter()
+    val mLoanRecordsAdapter = LoanRecordsAdapter {
+        setResult(921)
+        finish()
+    }
     private val dataList = arrayListOf<OrderResultBean>()
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.loanRecords.apply {
@@ -39,12 +41,6 @@ class LoanRecordsActivity : BaseActivity<LoanViewModel, ActivityLoanRecordsBindi
 
     override fun initData() {
         refreshData()
-        mLoanRecordsChildAdapter.setOnItemChildClickListener { adapter, view, position ->
-            if (view.id == R.id.repayNow) {
-                setResult(921)
-                finish()
-            }
-        }
     }
 
     fun refreshData(isMore: Boolean = false) {
@@ -78,6 +74,7 @@ class LoanRecordsActivity : BaseActivity<LoanViewModel, ActivityLoanRecordsBindi
             mLoanRecordsAdapter.setList(dataList)
         }
     }
+
     override fun initDataOnResume() {
 
 

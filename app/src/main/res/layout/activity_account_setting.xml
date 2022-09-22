@@ -134,6 +134,7 @@
             android:background="#ffcccccc" />
 
         <Button
+            android:id="@+id/logOutBtn"
             android:layout_width="@dimen/dp_335"
             android:layout_height="@dimen/dp_44"
             android:layout_gravity="center_horizontal"

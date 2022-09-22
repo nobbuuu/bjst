@@ -7,8 +7,12 @@ import com.dream.bjst.account.vm.AccountViewModel
 import com.dream.bjst.common.Constant
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.ActivityAccountSettingBinding
+import com.dream.bjst.home.HomeActivity
 import com.tcl.base.common.ui.BaseActivity
+import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.text
+import com.tcl.base.utils.MmkvUtil
 
 class AccountSettingActivity :BaseActivity<AccountViewModel,ActivityAccountSettingBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
@@ -25,6 +29,16 @@ class AccountSettingActivity :BaseActivity<AccountViewModel,ActivityAccountSetti
         mBinding.accountName.text=UserManager.getUserName()
         //设置电话号码
         mBinding.accountPhone.text=UserManager.getUserPhone()
+        event()
+
+    }
+
+    private fun event() {
+        mBinding.logOutBtn.ktClick {
+            UserManager.clearUserInfo()
+            ktStartActivity(HomeActivity::class)
+        }
+
 
     }
 

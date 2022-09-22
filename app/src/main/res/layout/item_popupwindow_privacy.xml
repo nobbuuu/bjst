@@ -62,6 +62,7 @@
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30"
             app:background_checked="@mipmap/select"
+            android:button="@null"
             app:background_normal="@mipmap/unselect" />
 
         <com.ruffian.library.widget.RTextView

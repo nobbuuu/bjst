@@ -41,6 +41,7 @@
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30"
             android:layout_marginLeft="@dimen/dp_20"
+            android:button="@null"
             app:background_normal="@mipmap/unselect"
             app:background_checked="@mipmap/select"
             />

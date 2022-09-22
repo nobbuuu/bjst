@@ -21,6 +21,7 @@ import com.dream.bjst.R
 import com.dream.bjst.account.vm.AccountViewModel
 import com.dream.bjst.databinding.ActivityPrivacyBinding
 import com.dream.bjst.login.LoginActivity
+import com.dream.bjst.other.WebViewActivity
 import com.ruffian.library.widget.RCheckBox
 import com.ruffian.library.widget.RImageView
 import com.ruffian.library.widget.RTextView
@@ -47,11 +48,10 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         event()
     }
 
-    override fun onPause() {
-        super.onPause()
-        MmkvUtil.encode("isFirst", true)
+    override fun onDestroy() {
+        super.onDestroy()
+        MmkvUtil.encode("isFirst", false)
     }
-
     /**
      * 获取数据
      */
@@ -83,7 +83,15 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         }
         //check按钮
         mBinding.privacyCheckButton.ktClick {
-
+            if (!mBinding.privacyCb.isChecked) {
+                ToastUtils.showShort("Please check this box and continue")
+            } else {
+                val isFirst = MmkvUtil.decodeBooleanOpen("isFirst")
+                if (isFirst == true){
+                    ktStartActivity(LoginActivity::class)
+                }
+                finish()
+            }
         }
 
         //disagree
@@ -131,7 +139,11 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
             if (!unselectImage.isChecked) {
                 ToastUtils.showShort("Please check this box and continue")
             } else {
-                ktStartActivity(LoginActivity::class)
+                val isFirst = MmkvUtil.decodeBooleanOpen("isFirst")
+                if (isFirst == true){
+                    ktStartActivity(LoginActivity::class)
+                }
+                finish()
             }
         }
         //设置disagree按钮
@@ -173,10 +185,9 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         builder.setSpan(object : ClickableSpan() {
             override fun onClick(widget: View) {
                 viewModel.privacyResult.value?.`8691939D87809186B59386919199919A80A18698`?.let {
-                    // 要跳转的链接
-                    val uri = Uri.parse(it)
-                    val intent = Intent(Intent.ACTION_VIEW, uri)
-                    startActivity(intent)
+                    ktStartActivity(WebViewActivity::class){
+                        putExtra("webUrl",it)
+                    }
                 }
             }
 
@@ -190,11 +201,6 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         val m = content.indexOf("P") //截取文字开始的下标
         builder.setSpan(object : ClickableSpan() {
             override fun onClick(widget: View) {
-
-                // 要跳转的链接
-//                Uri uri = Uri.parse("https://baidu.com");
-//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//                startActivity(intent);
                 showPopWindow()
             }
 

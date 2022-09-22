@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ColorUtils
 import com.dream.bjst.R
 import com.dream.bjst.account.ui.PrivacyActivity
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.ActivityLaunchBinding
 import com.dream.bjst.home.HomeActivity
-import com.dream.bjst.identification.ui.*
 import com.dream.bjst.login.LoginActivity
 import com.dream.bjst.main.MainActivity
 import com.dream.bjst.main.vm.MainViewModel
@@ -45,7 +43,7 @@ class LaunchActivity : BaseActivity<MainViewModel, ActivityLaunchBinding>() {
 
     override fun initData() {
         mHandler.postDelayed(Runnable {
-            val isFirst = MmkvUtil.decodeBoolean("isFirst")
+            val isFirst = MmkvUtil.decodeBooleanOpen("isFirst")
             if (isFirst == true) {
                 ktStartActivity(PrivacyActivity::class)
             } else {
@@ -55,6 +53,7 @@ class LaunchActivity : BaseActivity<MainViewModel, ActivityLaunchBinding>() {
                     ktStartActivity(LoginActivity::class)
                 }
             }
+            finish()
         }, 4000) //3秒
 
         if (!this.isTaskRoot) { // 判断当前activity是不是所在任务栈的根
@@ -77,6 +76,7 @@ class LaunchActivity : BaseActivity<MainViewModel, ActivityLaunchBinding>() {
             } else {
                 ktStartActivity(HomeActivity::class)
             }
+            finish()
         }
     }
 

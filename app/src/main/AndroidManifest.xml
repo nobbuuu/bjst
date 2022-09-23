@@ -85,10 +85,7 @@
 
         <activity android:name=".loan.ui.LoanRecordsActivity" />
         <activity android:name=".main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".identification.ui.ApproveContactsActivity" />
         <activity android:name=".home.HomeActivity"/>
@@ -100,7 +97,10 @@
         <activity android:name=".identification.ui.ApproveBankListActivity" />
         <activity android:name=".other.WebViewActivity"/>
         <activity android:name=".other.LaunchActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

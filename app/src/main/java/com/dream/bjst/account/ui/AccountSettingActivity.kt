@@ -8,6 +8,7 @@ import com.dream.bjst.common.Constant
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.ActivityAccountSettingBinding
 import com.dream.bjst.home.HomeActivity
+import com.dream.bjst.login.LoginActivity
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
@@ -36,7 +37,7 @@ class AccountSettingActivity :BaseActivity<AccountViewModel,ActivityAccountSetti
     private fun event() {
         mBinding.logOutBtn.ktClick {
             UserManager.clearUserInfo()
-            ktStartActivity(HomeActivity::class)
+            ktStartActivity(LoginActivity::class)
         }
 
 

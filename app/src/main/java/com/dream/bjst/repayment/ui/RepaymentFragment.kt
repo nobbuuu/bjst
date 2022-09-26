@@ -34,7 +34,6 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.repayment)
         initRv()
         viewModel.repaymentData()
-
         mBinding.smartRefresh.setOnRefreshListener {
             viewModel.repaymentData()
         }

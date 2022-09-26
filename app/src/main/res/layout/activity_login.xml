@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -163,6 +164,7 @@
                 app:layout_constraintStart_toEndOf="@+id/countriesCode" />
 
         </com.ruffian.library.widget.RConstraintLayout>
+
     </LinearLayout>
 
     <com.ruffian.library.widget.RTextView
@@ -208,4 +210,17 @@
         app:layout_constraintStart_toEndOf="@+id/loginCb"
         app:layout_constraintTop_toTopOf="@+id/loginCb" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDebug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="@dimen/dp_62"
+        android:shadowRadius="15"
+        android:visibility="gone"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/nextTv"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="gone" />
 </androidx.constraintlayout.widget.ConstraintLayout>

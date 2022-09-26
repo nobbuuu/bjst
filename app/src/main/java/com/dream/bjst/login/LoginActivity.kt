@@ -1,5 +1,6 @@
 package com.dream.bjst.login
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -10,21 +11,31 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
+import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.ColorUtils
 import com.blankj.utilcode.util.GsonUtils
+import com.dream.bjst.BuildConfig
 import com.dream.bjst.R
 import com.dream.bjst.bean.PhoneCodeParam
+import com.dream.bjst.common.Constant
+import com.dream.bjst.common.MmkvConstant
 import com.dream.bjst.databinding.ActivityLoginBinding
 
 import com.dream.bjst.dialog.VoiceDialog
 import com.dream.bjst.identification.ui.ApproveMainActivity
 import com.dream.bjst.main.MainActivity
+import com.dream.bjst.net.Configs
+import com.dream.bjst.net.Url
 import com.dream.bjst.other.WebViewActivity
 import com.dream.bjst.utils.SendCodeUtils
+import com.lxj.xpopup.XPopup
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.ktToastShow
+import com.tcl.base.utils.MmkvUtil
+import kotlinx.coroutines.launch
 
 class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
@@ -68,6 +79,54 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             }.show()
         }
         initPolicyUi()
+        mBinding.btnDebug.run {
+            visibility =
+                if (BuildConfig.BUILD_TYPE == "debug") View.VISIBLE else View.GONE
+            text = when (Configs.curAppType) {
+                Configs.APP_DEV_TYPE -> "当前处于dev环境"
+                Configs.APP_TEST_TYPE -> "当前处于sit环境"
+                Configs.APP_UAT_TYPE -> "当前处于uat环境"
+                Configs.APP_TEST_TYPE_20222 -> "test-20222"
+                Configs.APP_TEST_TYPE_20022 -> "test-20022"
+                Configs.APP_TEST_TYPE_20002 -> "test-20002"
+                else -> "非测试环境"
+            }
+            ktClick {
+                showDebugDialog(this@LoginActivity)
+            }
+        }
+    }
+
+    private fun showDebugDialog(context: Context) {
+        val list = arrayOf(
+            Configs.URL_APP_TEST_20222,
+            Configs.URL_APP_TEST_20022,
+            Configs.URL_APP_TEST_20002,
+        )
+        XPopup.Builder(context)
+            .asBottomList(
+                "选择环境",
+                list
+            ) { position, text ->
+                when(position){
+                    0 ->{
+                        Configs.curAppType = Configs.APP_TEST_TYPE_20222
+                    }
+                    1 ->{
+                        Configs.curAppType = Configs.APP_TEST_TYPE_20022
+                    }
+                    2 ->{
+                        Configs.curAppType = Configs.APP_TEST_TYPE_20002
+                    }
+                }
+                MmkvUtil.encode(MmkvConstant.KEY_DEBUG_CURRENT_TYPE, Configs.curAppType)
+                lifecycleScope.launch {
+                    Url.baseUrl = Configs.getAppBaseUrl()
+                }
+                "$text 切换成功".ktToastShow()
+                AppUtils.relaunchApp(true)
+
+            }.show()
     }
 
     override fun onPause() {
@@ -110,8 +169,8 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 override fun onClick(widget: View) {
                     //跳转注册协议
                     viewModel.privacyResult.value?.`8691939D87809186B59386919199919A80A18698`?.let {
-                        ktStartActivity(WebViewActivity::class){
-                            putExtra("webUrl",it)
+                        ktStartActivity(WebViewActivity::class) {
+                            putExtra("webUrl", it)
                         }
                     }
                 }
@@ -127,8 +186,8 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 override fun onClick(widget: View) {
                     //跳转隐私政策
                     viewModel.privacyResult.value?.`84869D8295978DB59386919199919A80A18698`?.let {
-                        ktStartActivity(WebViewActivity::class){
-                            putExtra("webUrl",it)
+                        ktStartActivity(WebViewActivity::class) {
+                            putExtra("webUrl", it)
                         }
                     }
                 }

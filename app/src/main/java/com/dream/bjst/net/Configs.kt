@@ -9,17 +9,24 @@ import com.dream.bjst.BuildConfig
  */
 object Configs {
     private const val H5_DEBUG_MODE = false
+    const val APP_DEV_TYPE = "dev"
     const val APP_TEST_TYPE = "test"
+    const val APP_TEST_TYPE_20222 = "test20222"
+    const val APP_TEST_TYPE_20022 = "test20022"
+    const val APP_TEST_TYPE_20002 = "test20002"
     const val APP_UAT_TYPE = "uat"
     const val APP_PRODUCT_TYPE = "product"
-    var curAppType: String = BuildConfig.APP_TYPE
+    var curAppType: String = ""
 
     fun isPackageProductType() = BuildConfig.APP_TYPE == APP_PRODUCT_TYPE
 
     /**后台 的URL链接*/
     private const val URL_APP_PRODUCT = "http://danguang.com"
     private const val URL_APP_UAT = "https://prepc.tclo2o.cn"
-    private const val URL_APP_TEST = "http://115.238.46.58:20002"
+    private const val URL_APP_TEST = "http://115.238.46.58:20222"
+    const val URL_APP_TEST_20222 = "http://115.238.46.58:20222"
+    const val URL_APP_TEST_20022 = "http://115.238.46.58:20022"
+    const val URL_APP_TEST_20002 = "http://115.238.46.58:20002"
 
     /**HTML 的URL链接*/
     private const val URL_HTML_APP_PRODUCT = "https://m.tcl.com/seller-app-h5"
@@ -36,6 +43,12 @@ object Configs {
         return when (curAppType) {
             APP_TEST_TYPE ->
                 URL_APP_TEST
+            APP_TEST_TYPE_20002 ->
+                URL_APP_TEST_20002
+            APP_TEST_TYPE_20022 ->
+                URL_APP_TEST_20022
+            APP_TEST_TYPE_20222 ->
+                URL_APP_TEST_20222
             APP_UAT_TYPE ->
                 URL_APP_UAT
             APP_PRODUCT_TYPE ->
@@ -66,7 +79,7 @@ object Configs {
     private const val URL_ACCOUNT_CENTRE_SIT = "https://account-sit.tcljd.com"
 
     /**获取客户中心的后台url*/
-      fun getAccountCentreBaseUrl(): String {
+    fun getAccountCentreBaseUrl(): String {
         return when (curAppType) {
             APP_TEST_TYPE ->
                 URL_ACCOUNT_CENTRE_SIT
@@ -223,10 +236,12 @@ object Configs {
     /** 埋点相关需求  */
 
 
-
-    private const val T_SHOP_PUBLIC_KEY_PRODUCT = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlAJUwdztsQ7qKkEAK2VTPLbwtAzI8HIeU2REwx+9d1YpFxJRnrHXw1vTOAYpo7UQo4W6BcRX+8Qv0msj/u9JKdZKVle1GE+b7Qb94F7RqEvAeiOtkKF/41+LiBneK7QYAerF0Kwu/I0pBkJujQlmoQM3OIaymqrpwznfuFuMdPLKNH+xcg8DCEYBtET66GugXm0lMbA99K/Tf6UWUcPTk4Svcu9cymE6EiuXMUUH47BpmzsN4hUaj77b/Gl8r3QWoabi2Fu1x2xjEQpChCZFiDcFmtYxGzVeXaBsQN3qL1+1D2/lAdyc4OplKB8IpM+hr7diY7Ozc81mns+2xnsrbQIDAQAB"
-    private const val T_SHOP_PUBLIC_KEY_TEST = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjye8XToIQFwNkpHSdDeTNQpmo9Vul2FfgMakt09C5WpyaTolbn82gdBYeUayOJIjzWytgM05oMdIc8wmSAyNZPe8UNpHJBJDDGcl41A4gUAsG1emOX3a0s+jKS9hfExsxKQvte83Gtt25TLAI5xm91tb7BzIvXT2mCrMLWCj6E6LcMwPE8gpMTEZJzTomoQq4qrHAxw4XcASjrVZEaJzzwxACVFh1uUg+Z9WE7z34UZ7BdfFS2rnL1y6h63pGYtLVYXwop54Gam6C/zDcHneDjC9jYyWSwKKclYLrFMhKQMXqlf232DO3CWZZb2DlPaUM1bSu8q2eVvWkPGP02ZP5wIDAQAB"
-    private const val T_SHOP_PUBLIC_KEY_UAT = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAld9AozhSZNupdvOya3uG//NUT5e3xUC/1TzAoZuoJ7W+tW4sT5THToq5ZouxP+oI/zIAuY6sHfVas+UU0WYoK+EdQEtijDpydG28uZh2EpufN2KiLHuk2Rsl23shNRFghEGEz9ToOuGgcdrw/e1NWQZse3mKWMaXhg9vaEfIdBX+nmLVy8m02+Bj/xqSVSfEUStAxjTSy9DJxvdBh4BJkdZdCMhFljEZa7ZhBIHyQh5oYfmvSUrfcuSlCcaf/KsmCGCVASrTj730uvauhxbmikhMcpcvbKgJOlCf+0eRP7LpR3kq3IMe8rOqEMpCCVEwcNtaI8aK77dSbXUesG/y7QIDAQAB"
+    private const val T_SHOP_PUBLIC_KEY_PRODUCT =
+        "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlAJUwdztsQ7qKkEAK2VTPLbwtAzI8HIeU2REwx+9d1YpFxJRnrHXw1vTOAYpo7UQo4W6BcRX+8Qv0msj/u9JKdZKVle1GE+b7Qb94F7RqEvAeiOtkKF/41+LiBneK7QYAerF0Kwu/I0pBkJujQlmoQM3OIaymqrpwznfuFuMdPLKNH+xcg8DCEYBtET66GugXm0lMbA99K/Tf6UWUcPTk4Svcu9cymE6EiuXMUUH47BpmzsN4hUaj77b/Gl8r3QWoabi2Fu1x2xjEQpChCZFiDcFmtYxGzVeXaBsQN3qL1+1D2/lAdyc4OplKB8IpM+hr7diY7Ozc81mns+2xnsrbQIDAQAB"
+    private const val T_SHOP_PUBLIC_KEY_TEST =
+        "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjye8XToIQFwNkpHSdDeTNQpmo9Vul2FfgMakt09C5WpyaTolbn82gdBYeUayOJIjzWytgM05oMdIc8wmSAyNZPe8UNpHJBJDDGcl41A4gUAsG1emOX3a0s+jKS9hfExsxKQvte83Gtt25TLAI5xm91tb7BzIvXT2mCrMLWCj6E6LcMwPE8gpMTEZJzTomoQq4qrHAxw4XcASjrVZEaJzzwxACVFh1uUg+Z9WE7z34UZ7BdfFS2rnL1y6h63pGYtLVYXwop54Gam6C/zDcHneDjC9jYyWSwKKclYLrFMhKQMXqlf232DO3CWZZb2DlPaUM1bSu8q2eVvWkPGP02ZP5wIDAQAB"
+    private const val T_SHOP_PUBLIC_KEY_UAT =
+        "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAld9AozhSZNupdvOya3uG//NUT5e3xUC/1TzAoZuoJ7W+tW4sT5THToq5ZouxP+oI/zIAuY6sHfVas+UU0WYoK+EdQEtijDpydG28uZh2EpufN2KiLHuk2Rsl23shNRFghEGEz9ToOuGgcdrw/e1NWQZse3mKWMaXhg9vaEfIdBX+nmLVy8m02+Bj/xqSVSfEUStAxjTSy9DJxvdBh4BJkdZdCMhFljEZa7ZhBIHyQh5oYfmvSUrfcuSlCcaf/KsmCGCVASrTj730uvauhxbmikhMcpcvbKgJOlCf+0eRP7LpR3kq3IMe8rOqEMpCCVEwcNtaI8aK77dSbXUesG/y7QIDAQAB"
 
     fun getTShopPKey(): String {
         return when (curAppType) {

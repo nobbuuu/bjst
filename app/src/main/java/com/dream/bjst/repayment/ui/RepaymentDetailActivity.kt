@@ -198,9 +198,8 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
 
             if(utrCode!!.isEmpty()&& bitmapStr?.length==null){
                 mBinding.notionTv.visibility=View.VISIBLE
-//                mBinding.notionTv.setTextColor(colorPrimaryDark)
                 mBinding.pictureTv.visibility=View.VISIBLE
-//                mBinding.pictureTv.setTextColor(colorPrimaryDark)
+
             }
         }
         //点击上传UTR_picture

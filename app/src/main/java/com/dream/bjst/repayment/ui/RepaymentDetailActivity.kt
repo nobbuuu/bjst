@@ -199,8 +199,8 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             if(utrCode!!.isEmpty()&& bitmapStr?.length==null){
                 mBinding.notionTv.visibility=View.VISIBLE
                 mBinding.pictureTv.visibility=View.VISIBLE
-
             }
+            ToastUtils.showShort("Toast Nothing")
         }
         //点击上传UTR_picture
         mBinding.addPictureCameraIv.setOnClickListener(View.OnClickListener { //这里上传头

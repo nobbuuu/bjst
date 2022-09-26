@@ -92,12 +92,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun onBlockBackPressed(): Boolean {
-        return curPos != MAIN_TAB_LOAN
+        return curPos != MAIN_TAB_REPAYMENT
     }
 
     override fun doOnBlockBackPressed() {
         super.doOnBlockBackPressed()
-        findNavController(R.id.main_container).navigate(R.id.navigation_loan)
+        findNavController(R.id.main_container).navigate(R.id.navigation_repayment)
     }
 
     /**监听新的intent*/

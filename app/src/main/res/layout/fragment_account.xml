@@ -146,15 +146,17 @@
                     android:layout_marginLeft="@dimen/dp_17"
                     android:layout_weight="8"
                     android:gravity="left"
-                    android:text="Re-enter A/C No."
+                    android:text="Authentication page"
                     android:textColor="#ff000000"
                     android:textSize="@dimen/sp_15" />
 
                 <com.ruffian.library.widget.RImageView
+                    android:id="@+id/identify_authentication_iv"
                     android:layout_width="@dimen/dp_22"
                     android:layout_height="@dimen/dp_22"
                     android:layout_gravity="center"
                     android:scaleType="fitXY"
+                    android:visibility="invisible"
                     android:src="@mipmap/redadus" />
 
 
@@ -200,7 +202,7 @@
                     android:layout_marginLeft="@dimen/dp_17"
                     android:layout_weight="8"
                     android:gravity="left"
-                    android:text="Customer service"
+                    android:text="Customer Care"
                     android:textColor="#ff000000"
                     android:textSize="@dimen/sp_15" />
 

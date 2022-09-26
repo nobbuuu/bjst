@@ -44,13 +44,10 @@ class ChatMessageActivity : BaseActivity<AccountViewModel, ActivityChatMessageBi
                 var chatUrl = it.`978187809B999186B7958691B79C9580A495809C`
                 mBinding.messageWeb.loadUrl(chatUrl+value)
             }
-            ToastUtils.showShort("Close the customer service self-developed system !")
+            //ToastUtils.showShort("Close the customer service self-developed system !")
 
         }
-
-
     }
-
 
     override fun initData() {
 

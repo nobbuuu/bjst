@@ -17,7 +17,7 @@ class DueTodayAdapter :
         addChildClickViewIds(R.id.settleNowBtn)
     }
     override fun convert(holder: BaseViewHolder, item: DueTodayOrder) {
-        holder.setText(R.id.repayment_loan_days, item.`908191B0958D`.toString()+"days")
+        holder.setText(R.id.repayment_loan_days, item.`908191B0958D`.toString()+" days")
         holder.setText(R.id.repayment_repay_amount, "₹" +item.`869199959D9AA09B809598B5999B819A80`.toString())
         holder.setText(R.id.repayment_loan_name, item.`84869B90819780BA959991`)
         holder.ktSetImage(R.id.repayment_item_icon, item.`9D979BA18698`)

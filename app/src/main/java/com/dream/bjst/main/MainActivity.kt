@@ -100,6 +100,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         findNavController(R.id.main_container).navigate(R.id.navigation_repayment)
     }
 
+    override fun onResume() {
+        super.onResume()
+        findNavController(R.id.main_container).navigate(R.id.navigation_repayment)
+    }
+
     /**监听新的intent*/
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)

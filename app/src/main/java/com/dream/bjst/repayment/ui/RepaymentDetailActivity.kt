@@ -200,7 +200,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                 mBinding.notionTv.visibility=View.VISIBLE
                 mBinding.pictureTv.visibility=View.VISIBLE
             }
-            ToastUtils.showShort("Toast Nothing")
+            ToastUtils.showShort("toast nothing")
         }
         //点击上传UTR_picture
         mBinding.addPictureCameraIv.setOnClickListener(View.OnClickListener { //这里上传头

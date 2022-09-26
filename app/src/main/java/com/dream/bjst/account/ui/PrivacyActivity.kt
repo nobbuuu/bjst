@@ -39,19 +39,26 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
     //弹窗控件
     var popupWindow: PopupWindow? = null
     override fun initView(savedInstanceState: Bundle?) {
+        event()
+    }
+
+    override fun initData() {
+    }
+
+    override fun initDataOnResume() {
         viewModel.privacy()
         //利用H5给网络协议添加超链接
         callService(
             "Accept Terms & Conditions and Privacy Policy and to receive notification from SMS and email",
             mBinding.privacyPolicyTv
         )
-        event()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         MmkvUtil.encode("isFirst", false)
     }
+
     /**
      * 获取数据
      */
@@ -87,7 +94,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
                 ToastUtils.showShort("Please check this box and continue")
             } else {
                 val isFirst = MmkvUtil.decodeBooleanOpen("isFirst")
-                if (isFirst == true){
+                if (isFirst == true) {
                     ktStartActivity(LoginActivity::class)
                 }
                 finish()
@@ -105,7 +112,8 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
     @SuppressLint("ResourceType")
     private fun showPopWindow() {
         // 加载弹窗布局
-        val pwView = LayoutInflater.from(this).inflate(R.layout.item_popupwindow_privacy, null, false)
+        val pwView =
+            LayoutInflater.from(this).inflate(R.layout.item_popupwindow_privacy, null, false)
         // 实例化 PopupWindow
         popupWindow = PopupWindow(
             pwView,
@@ -140,7 +148,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
                 ToastUtils.showShort("Please check this box and continue")
             } else {
                 val isFirst = MmkvUtil.decodeBooleanOpen("isFirst")
-                if (isFirst == true){
+                if (isFirst == true) {
                     ktStartActivity(LoginActivity::class)
                 }
                 finish()
@@ -185,8 +193,8 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         builder.setSpan(object : ClickableSpan() {
             override fun onClick(widget: View) {
                 viewModel.privacyResult.value?.`8691939D87809186B59386919199919A80A18698`?.let {
-                    ktStartActivity(WebViewActivity::class){
-                        putExtra("webUrl",it)
+                    ktStartActivity(WebViewActivity::class) {
+                        putExtra("webUrl", it)
                     }
                 }
             }
@@ -215,9 +223,4 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         textView.movementMethod = LinkMovementMethod.getInstance()
     }
 
-    override fun initData() {
-    }
-
-    override fun initDataOnResume() {
-    }
 }

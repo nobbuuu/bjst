@@ -20,16 +20,16 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfigs {
             release {
-                storeFile file('./xb_sign.jks')
-                keyAlias 'xb'
-                keyPassword 'xb888888'
-                storePassword 'xb888888'
+                storeFile file('./rapid.jks')
+                keyAlias 'rd'
+                keyPassword '123456'
+                storePassword '123456'
             }
             debug {
-                storeFile file('./xb_sign.jks')
-                keyAlias 'xb'
-                keyPassword 'xb888888'
-                storePassword 'xb888888'
+                storeFile file('./rapid.jks')
+                keyAlias 'rd'
+                keyPassword '123456'
+                storePassword '123456'
             }
         }
         flavorDimensions "env"

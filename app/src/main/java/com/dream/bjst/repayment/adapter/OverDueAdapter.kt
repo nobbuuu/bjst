@@ -32,6 +32,7 @@ class OverDueAdapter : BaseQuickAdapter<OverdueOrder, BaseViewHolder>(R.layout.i
         holder.setText(R.id.repayment_repay_amount,"₹ " +item.`869199959D9AA09B809598B5999B819A80`.toString())
         holder.ktSetImage(R.id.repayment_item_icon, item.`9D979BA18698`)
         holder.setGone(R.id.divider,holder.adapterPosition == data.size-1)
+        holder.setText(R.id.repayment_duTo,"Overdued")
 
     }
 

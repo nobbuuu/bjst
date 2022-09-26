@@ -22,5 +22,6 @@ class NotDueAdapter : BaseQuickAdapter<NotDueOrder, BaseViewHolder>(R.layout.ite
         holder.setText(R.id.repayment_loan_name, item.`84869B90819780BA959991`)
         holder.ktSetImage(R.id.repayment_item_icon, item.`9D979BA18698`)
         holder.setGone(R.id.divider,holder.adapterPosition == data.size-1)
+        holder.setText(R.id.repayment_duTo,"Due in")
     }
 }

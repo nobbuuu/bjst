@@ -110,7 +110,7 @@ class ApproveMainActivity :
            var  isAll = it.`959898BD809199A4958787`
             //判断一下是否所有的项目都全部通过
             if (isAll){
-                mBinding.loanInterest.visibility=View.INVISIBLE
+                mBinding.interestItem.visibility=View.INVISIBLE
                 mBinding.loanAmountItem.visibility=View.INVISIBLE
                 mBinding.loanPeriodItem.visibility=View.INVISIBLE
                 mBinding.identifyGetLoanBtn.visibility=View.INVISIBLE

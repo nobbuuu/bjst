@@ -2,6 +2,8 @@ package com.dream.bjst.identification.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.blankj.utilcode.util.StringUtils
 import com.dream.bjst.R
@@ -12,6 +14,7 @@ import com.dream.bjst.identification.bean.IdentifyBean
 import com.dream.bjst.identification.vm.IdentificationViewModel
 import com.dream.bjst.main.MainActivity
 import com.dream.bjst.utils.StatusBarUtils
+import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
@@ -21,6 +24,7 @@ class ApproveMainActivity :
     BaseActivity<IdentificationViewModel, ActivityIdentificationBinding>() {
     val mApproveList: MutableList<IdentifyBean> = ArrayList()
     var identifyAdapter = IdentifyAdapter()
+    var isAll:Boolean?=null
 
     val iconList = listOf(
         R.mipmap.identify_authentication,
@@ -76,6 +80,12 @@ class ApproveMainActivity :
                 }
             }
         }
+        Log.i(TAG, "initView: "+isAll)
+        //判断一下是否所有的项目都全部通过
+        if (isAll==true){
+            mBinding.approveDescriptionLl.visibility=View.INVISIBLE
+            mBinding.identifyGetLoanBtn.visibility=View.INVISIBLE
+        }
     }
 
     @SuppressLint("ResourceAsColor")
@@ -101,7 +111,7 @@ class ApproveMainActivity :
     override fun startObserve() {
         super.startObserve()
         viewModel.idCardStatus.observe(this) {
-            val isAll = it.`959898BD809199A4958787`
+             isAll = it.`959898BD809199A4958787`
             it.`9A919190B09B9D9A93BD809199`?.let {
                 var tempIndex = 0
                 stepList.forEachIndexed { index, list ->
@@ -115,7 +125,7 @@ class ApproveMainActivity :
                         IdentifyBean(
                             iconList[index],
                             StringUtils.getString(nameList[index]),
-                            isApproved = if (isAll) true else index < tempIndex
+                            isApproved = if (isAll as Boolean) true else index < tempIndex
                         )
                     )
                 }

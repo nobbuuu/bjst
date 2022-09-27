@@ -23,11 +23,14 @@
             app:titleStyle="bold" />
 
         <LinearLayout
+            android:id="@+id/approve_description_ll"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_112"
             android:background="#F8FFF0"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+
+            >
 
             <RelativeLayout
                 android:layout_width="@dimen/dp_118"

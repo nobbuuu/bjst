@@ -78,19 +78,6 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
         }
 
     }
-//
-//    override fun startObserve() {
-//        super.startObserve()
-//        viewModel.privacyResult.observe(this) {
-//            mBinding.webView.loadUrl(it.`849186999D87879D9B9AB18C8498959D9AA18698`)//权限说明地址
-//            var privacyAgreementBreviaryUrl =
-//                it.`84869D8295978DB59386919199919A80B68691829D95868DA18698`//隐私权限（简）地址
-//            var privacyAgreementUrl = it.`84869D8295978DB59386919199919A80A18698`//隐私协议地址
-//            var registerAgreementUrl = it.`8691939D87809186B59386919199919A80A18698`//注册协议地址
-//            LogUtils.dTag("urlTag", "privacyAgreementBreviaryUrl = $privacyAgreementBreviaryUrl")
-//            LogUtils.dTag("urlTag", "privacyAgreementUrl = $privacyAgreementUrl")
-//            LogUtils.dTag("urlTag", "registerAgreementUrl = $registerAgreementUrl")
-//        }
-//    }
+
 
 }

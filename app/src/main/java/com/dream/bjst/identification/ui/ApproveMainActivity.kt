@@ -19,6 +19,7 @@ import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.ktToastShow
+import com.tcl.base.utils.MmkvUtil
 
 class ApproveMainActivity :
     BaseActivity<IdentificationViewModel, ActivityIdentificationBinding>() {
@@ -108,6 +109,7 @@ class ApproveMainActivity :
         super.startObserve()
         viewModel.idCardStatus.observe(this) {
            var  isAll = it.`959898BD809199A4958787`
+            MmkvUtil.encode("isAll",isAll)
             //判断一下是否所有的项目都全部通过
             if (isAll){
                 mBinding.interestItem.visibility=View.INVISIBLE

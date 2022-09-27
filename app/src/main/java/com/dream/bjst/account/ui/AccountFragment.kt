@@ -2,6 +2,7 @@ package com.dream.bjst.account.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.blankj.utilcode.util.LogUtils
 import com.dream.bjst.R
@@ -13,10 +14,7 @@ import com.dream.bjst.loan.ui.LoanRecordsActivity
 import com.dream.bjst.other.WebViewActivity
 import com.dream.bjst.utils.StatusBarUtils.adjustWindow
 import com.tcl.base.common.ui.BaseFragment
-import com.tcl.base.kt.ktClick
-import com.tcl.base.kt.ktStartActivity
-import com.tcl.base.kt.ktStartActivity4Result
-import com.tcl.base.kt.text
+import com.tcl.base.kt.*
 import com.tcl.base.utils.MmkvUtil
 
 class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>() {
@@ -28,6 +26,12 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
         mBinding.accountName.text=UserManager.getUserName()
         //设置电话号码
         mBinding.accountPhone.text=UserManager.getUserPhone()
+        //判断认证是否通过了身份证认证
+        var isAllProve=MmkvUtil.decodeBoolean("isAll")
+        isAllProve.let {
+            mBinding.approveIdCard.text="Re-enter A/C No."
+            mBinding.identifyAuthenticationIv.visibility= View.VISIBLE
+        }
     }
 
     override fun initDataOnViewCreated() {

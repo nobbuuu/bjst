@@ -139,7 +139,7 @@
                     android:src="@mipmap/account_reenter" />
 
                 <com.ruffian.library.widget.RTextView
-
+                      android:id="@+id/approveIdCard"
                     android:layout_width="@dimen/dp_94"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

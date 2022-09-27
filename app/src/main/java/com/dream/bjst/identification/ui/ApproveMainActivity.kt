@@ -24,7 +24,7 @@ class ApproveMainActivity :
     BaseActivity<IdentificationViewModel, ActivityIdentificationBinding>() {
     val mApproveList: MutableList<IdentifyBean> = ArrayList()
     var identifyAdapter = IdentifyAdapter()
-    var isAll:Boolean?=null
+
 
     val iconList = listOf(
         R.mipmap.identify_authentication,
@@ -80,12 +80,8 @@ class ApproveMainActivity :
                 }
             }
         }
-        Log.i(TAG, "initView: "+isAll)
-        //判断一下是否所有的项目都全部通过
-        if (isAll==true){
-            mBinding.approveDescriptionLl.visibility=View.INVISIBLE
-            mBinding.identifyGetLoanBtn.visibility=View.INVISIBLE
-        }
+
+
     }
 
     @SuppressLint("ResourceAsColor")
@@ -111,7 +107,12 @@ class ApproveMainActivity :
     override fun startObserve() {
         super.startObserve()
         viewModel.idCardStatus.observe(this) {
-             isAll = it.`959898BD809199A4958787`
+           var  isAll = it.`959898BD809199A4958787`
+            //判断一下是否所有的项目都全部通过
+            if (isAll){
+                mBinding.approveDescriptionLl.visibility=View.INVISIBLE
+                mBinding.identifyGetLoanBtn.visibility=View.INVISIBLE
+            }
             it.`9A919190B09B9D9A93BD809199`?.let {
                 var tempIndex = 0
                 stepList.forEachIndexed { index, list ->
@@ -125,7 +126,7 @@ class ApproveMainActivity :
                         IdentifyBean(
                             iconList[index],
                             StringUtils.getString(nameList[index]),
-                            isApproved = if (isAll as Boolean) true else index < tempIndex
+                            isApproved = if (isAll) true else index < tempIndex
                         )
                     )
                 }

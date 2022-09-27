@@ -33,6 +33,7 @@
             >
 
             <RelativeLayout
+                android:id="@+id/loanAmountItem"
                 android:layout_width="@dimen/dp_118"
                 android:layout_height="@dimen/dp_52"
                 android:layout_weight="1"
@@ -62,6 +63,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/interestItem"
                 android:layout_width="@dimen/dp_118"
                 android:layout_height="@dimen/dp_52"
                 android:layout_marginLeft="@dimen/dp_11"
@@ -91,6 +93,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/loanPeriodItem"
                 android:layout_width="@dimen/dp_118"
                 android:layout_height="@dimen/dp_52"
                 android:layout_marginLeft="@dimen/dp_11"

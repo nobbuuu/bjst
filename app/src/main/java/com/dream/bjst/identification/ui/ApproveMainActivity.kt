@@ -2,6 +2,8 @@ package com.dream.bjst.identification.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.blankj.utilcode.util.StringUtils
 import com.dream.bjst.R
@@ -12,15 +14,18 @@ import com.dream.bjst.identification.bean.IdentifyBean
 import com.dream.bjst.identification.vm.IdentificationViewModel
 import com.dream.bjst.main.MainActivity
 import com.dream.bjst.utils.StatusBarUtils
+import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.ktToastShow
+import com.tcl.base.utils.MmkvUtil
 
 class ApproveMainActivity :
     BaseActivity<IdentificationViewModel, ActivityIdentificationBinding>() {
     val mApproveList: MutableList<IdentifyBean> = ArrayList()
     var identifyAdapter = IdentifyAdapter()
+
 
     val iconList = listOf(
         R.mipmap.identify_authentication,
@@ -76,6 +81,8 @@ class ApproveMainActivity :
                 }
             }
         }
+
+
     }
 
     @SuppressLint("ResourceAsColor")
@@ -101,7 +108,15 @@ class ApproveMainActivity :
     override fun startObserve() {
         super.startObserve()
         viewModel.idCardStatus.observe(this) {
-            val isAll = it.`959898BD809199A4958787`
+           var  isAll = it.`959898BD809199A4958787`
+            MmkvUtil.encode("isAll",isAll)
+            //判断一下是否所有的项目都全部通过
+            if (isAll){
+                mBinding.interestItem.visibility=View.INVISIBLE
+                mBinding.loanAmountItem.visibility=View.INVISIBLE
+                mBinding.loanPeriodItem.visibility=View.INVISIBLE
+                mBinding.identifyGetLoanBtn.visibility=View.INVISIBLE
+            }
             it.`9A919190B09B9D9A93BD809199`?.let {
                 var tempIndex = 0
                 stepList.forEachIndexed { index, list ->

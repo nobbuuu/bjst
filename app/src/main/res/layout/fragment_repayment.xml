@@ -41,6 +41,7 @@
 
                     <!-- Overdue-->
                     <RelativeLayout
+                        android:id="@+id/overdue_rl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp_10"
@@ -58,7 +59,7 @@
 
                         <com.ruffian.library.widget.RTextView
                             android:id="@+id/overDue_notice"
-                            android:layout_width="@dimen/dp_185"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/overDue_name"
                             android:layout_marginLeft="@dimen/dp_15"
@@ -92,6 +93,7 @@
                     </RelativeLayout>
                     <!-- dueToday-->
                     <RelativeLayout
+                        android:id="@+id/dueTodayRl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp_10"
@@ -136,6 +138,7 @@
                     </RelativeLayout>
                     <!--not due-->
                     <RelativeLayout
+                        android:id="@+id/notDueRl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp_10"

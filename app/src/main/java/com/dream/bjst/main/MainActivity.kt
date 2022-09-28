@@ -20,6 +20,7 @@ import com.google.android.material.tabs.TabLayout
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.download.DownloadApkBetterHelper
 import com.tcl.base.kt.nullToEmpty
+import com.tcl.base.utils.MmkvUtil
 import com.tcl.tclzjpro.main.FixFragmentNavigator
 
 /**
@@ -107,13 +108,18 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun onBlockBackPressed(): Boolean {
-        return curPos != MAIN_TAB_REPAYMENT
+        return curPos != MAIN_TAB_LOAN
     }
 
     override fun doOnBlockBackPressed() {
         super.doOnBlockBackPressed()
-        findNavController(R.id.main_container).navigate(R.id.navigation_repayment)
+        findNavController(R.id.main_container).navigate(R.id.navigation_loan)
     }
+
+//    override fun onResume() {
+//        super.onResume()
+//
+//    }
 
     /**监听新的intent*/
     override fun onNewIntent(intent: Intent?) {
@@ -178,6 +184,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun initDataOnResume() {
+        findNavController(R.id.main_container).navigate(R.id.navigation_repayment)
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

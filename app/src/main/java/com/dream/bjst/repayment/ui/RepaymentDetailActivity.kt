@@ -129,27 +129,27 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         /**
          * 正常还款数据
          */
-        viewModel.reqRepaymentResult.observe(this){
+        viewModel.reqRepaymentResult.observe(this) {
 
-           when(it.`84958DA08D8491`){
-               "1"->{
-                   ktStartActivity(ReqPaymentActivity::class){
-                       putExtra("reqUrl",it.`84958DB89D9A9F`)
-                   }
+            when (it.`84958DA08D8491`) {
+                "1" -> {
+                    ktStartActivity(ReqPaymentActivity::class) {
+                        putExtra("reqUrl", it.`84958DB89D9A9F`)
+                    }
 
-               }
-               "0"->{
-                   try {
-                       val intent = Intent(Intent.ACTION_VIEW)
-                       intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                       intent.data=(Uri.parse(it.`84958DB89D9A9F`))
-                       startActivity(intent)
-                   } catch (e: Exception) {
-                       println("There is no browser on the current phone!")
-                   }
+                }
+                "0" -> {
+                    try {
+                        val intent = Intent(Intent.ACTION_VIEW)
+                        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                        intent.data = (Uri.parse(it.`84958DB89D9A9F`))
+                        startActivity(intent)
+                    } catch (e: Exception) {
+                        println("There is no browser on the current phone!")
+                    }
 
-               }
-           }
+                }
+            }
         }
 
     }
@@ -168,7 +168,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             var reqPaymentParam = GsonUtils.toJson(
                 requestRepaymentParam(
                     `969B86869B83BD90` = borrowId,
-                    `869184958DA08D8491`=10
+                    `869184958DA08D8491` = 10
                 )
             )
             viewModel.reqPaymentData(reqPaymentParam)
@@ -196,11 +196,12 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             )
             viewModel.paymentUTRData(UTRParam)
 
-            if(utrCode!!.isEmpty()&& bitmapStr?.length==null){
-                mBinding.notionTv.visibility=View.VISIBLE
-//                mBinding.notionTv.setTextColor(colorPrimaryDark)
-                mBinding.pictureTv.visibility=View.VISIBLE
-//                mBinding.pictureTv.setTextColor(colorPrimaryDark)
+            if (utrCode!!.isEmpty() && bitmapStr?.length == null) {
+                mBinding.notionTv.visibility = View.VISIBLE
+                mBinding.pictureTv.visibility = View.VISIBLE
+            } else {
+
+                ToastUtils.showShort("toast nothing")
             }
         }
         //点击上传UTR_picture

@@ -23,13 +23,17 @@
             app:titleStyle="bold" />
 
         <LinearLayout
+            android:id="@+id/approve_description_ll"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_112"
             android:background="#F8FFF0"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+
+            >
 
             <RelativeLayout
+                android:id="@+id/loanAmountItem"
                 android:layout_width="@dimen/dp_118"
                 android:layout_height="@dimen/dp_52"
                 android:layout_weight="1"
@@ -59,6 +63,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/interestItem"
                 android:layout_width="@dimen/dp_118"
                 android:layout_height="@dimen/dp_52"
                 android:layout_marginLeft="@dimen/dp_11"
@@ -88,6 +93,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/loanPeriodItem"
                 android:layout_width="@dimen/dp_118"
                 android:layout_height="@dimen/dp_52"
                 android:layout_marginLeft="@dimen/dp_11"

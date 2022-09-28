@@ -2,6 +2,7 @@ package com.dream.bjst.repayment.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
 import com.blankj.utilcode.util.BarUtils
@@ -16,6 +17,7 @@ import com.tcl.base.common.ui.BaseFragment
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktSeriesClick
 import com.tcl.base.kt.ktStartActivity
+import rxhttp.wrapper.param.IFile
 
 /**
  * 创建日期：2022-09-05 on 0:50
@@ -32,7 +34,6 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.repayment)
         initRv()
         viewModel.repaymentData()
-
         mBinding.smartRefresh.setOnRefreshListener {
             viewModel.repaymentData()
         }
@@ -45,9 +46,30 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
         super.startObserve()
         viewModel.repaymentResult.observe(this) {
             mBinding.smartRefresh.finishRefresh()
-            overDueAdapter.setList(it.`9B829186908191BB8690918687`)
+
+            if (it.`9B829186908191BB8690918687`.isNotEmpty()){
+
+                overDueAdapter.setList(it.`9B829186908191BB8690918687`)
+                mBinding.overDueNotice.text="Daily penalty interest rate ${
+                    it.`9B829186908191BB8690918687`[0].`9B829186908191BD9A809186918780A6958091`.toFloatOrNull()
+                        ?.times(100)?.toUInt()
+                } %"
+
+            }else{
+                mBinding.overdueRl.visibility=View.GONE
+            }
+            if (it.`908191A09B90958DBB8690918687`.isNotEmpty()){
+
             dueTodayAdapter.setList(it.`908191A09B90958DBB8690918687`)
+            }else{
+                mBinding.dueTodayRl.visibility=View.GONE
+            }
+            if (it.`9A9B80B08191BB8690918687`.isNotEmpty()){
+
             notDueAdapter.setList(it.`9A9B80B08191BB8690918687`)
+            }else{
+                mBinding.notDueRl.visibility=View.GONE
+            }
 
             val noData =
                 overDueAdapter.data.isEmpty() && dueTodayAdapter.data.isEmpty() && notDueAdapter.data.isEmpty()

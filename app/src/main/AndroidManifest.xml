@@ -20,7 +20,7 @@
         android:theme="@style/Theme.CbgBase">
         <activity
             android:name=".identification.ui.ApproveMainActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".account.ui.DeleteProgressActivity"
             android:exported="false" />
@@ -33,9 +33,9 @@
         <activity
             android:name=".account.ui.ChatMessageActivity"
             android:exported="false" />
-        <activity
-            android:name=".account.ui.PrivacyActivity"
-            android:exported="false" />
+        <activity android:name=".account.ui.PrivacyActivity">
+
+        </activity>
         <activity
             android:name=".account.ui.AccountDeleteActivity"
             android:exported="false" />
@@ -88,20 +88,20 @@
 
         </activity>
         <activity android:name=".identification.ui.ApproveContactsActivity" />
-        <activity android:name=".home.HomeActivity"/>
         <activity android:name=".login.LoginActivity">
 
         </activity>
         <activity android:name=".identification.ui.ApproveIdCardConfirmActivity" />
         <activity android:name=".identification.ui.ApproveBankCardActivity" />
         <activity android:name=".identification.ui.ApproveBankListActivity" />
-        <activity android:name=".other.WebViewActivity"/>
+        <activity android:name=".other.WebViewActivity" />
         <activity android:name=".other.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".home.HomeImgActivity" />
     </application>
 
 </manifest>

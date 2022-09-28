@@ -18,11 +18,11 @@ class MainViewModel : BaseViewModel() {
     /**
      * 版本更新
      */
-    fun upGradeContent(){
+    fun upGradeContent() {
         rxLaunchUI({
             val upGradeResult = Api.upGradeData()
             upGradeResults.postValue(upGradeResult)
-        })
+        }, showToast = false)
     }
 
     fun fetchCustomerKycStatus() {

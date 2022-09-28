@@ -18,5 +18,6 @@ object BaseConstant {
     const val EVENT_ADD_BANKCARD: String = "event_add_bankcard"
     const val EVENT_GOTO_CATEGORY: String = "goto_category"
 
-    const val LOGOUT_STATUS_CODE = 1000
+    const val LOGOUT_CODE_1 = "1000"
+    const val LOGOUT_CODE_2 = "402"
 }

@@ -4,16 +4,12 @@ import android.os.Bundle
 import android.view.View
 import com.dream.bjst.BuildConfig
 import com.dream.bjst.account.vm.AccountViewModel
-import com.dream.bjst.common.Constant
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.ActivityAccountSettingBinding
-import com.dream.bjst.home.HomeActivity
 import com.dream.bjst.login.LoginActivity
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
-import com.tcl.base.kt.text
-import com.tcl.base.utils.MmkvUtil
 
 class AccountSettingActivity :BaseActivity<AccountViewModel,ActivityAccountSettingBinding>() {
     override fun initView(savedInstanceState: Bundle?) {

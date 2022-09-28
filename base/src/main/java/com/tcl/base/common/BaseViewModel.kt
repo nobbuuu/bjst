@@ -113,7 +113,7 @@ open class BaseViewModel : AndroidViewModel(Utils.getApp()), LifecycleObserver {
     }
 
     private fun doLogoutParser(exception: rxhttp.wrapper.exception.ParseException) {
-        if (exception.errorCode == BaseConstant.LOGOUT_STATUS_CODE.toString()) {//code 是-500 的时候，表示token 过时，或者被占线
+        if (exception.errorCode == BaseConstant.LOGOUT_CODE_1 || exception.errorCode == BaseConstant.LOGOUT_CODE_2) {
             LiveEventBus.get(BaseConstant.EVENT_LOGOUT).post(LogoutTipsBean(false, ""))
         }
         exception.show()
@@ -125,7 +125,7 @@ open class BaseViewModel : AndroidViewModel(Utils.getApp()), LifecycleObserver {
         errorBlock: ((Throwable) -> Unit)? = null,
         @Suppress("UNUSED_PARAMETER") showToast: Boolean = true
     ) {
-        if (throwable.code == BaseConstant.LOGOUT_STATUS_CODE.toString()) {
+        if (throwable.code == BaseConstant.LOGOUT_CODE_1 || throwable.code == BaseConstant.LOGOUT_CODE_2) {
             LiveEventBus.get(BaseConstant.EVENT_LOGOUT)
                 .post(LogoutTipsBean(true, throwable.message ?: ""))
         } else {

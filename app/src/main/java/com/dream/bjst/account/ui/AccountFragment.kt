@@ -48,7 +48,9 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
         //隐私界面
 
         mBinding.accountPrivacyPolice.ktClick {
-            ktStartActivity(PrivacyActivity::class)
+            ktStartActivity(PrivacyActivity::class){
+                putExtra("actionType",2)
+            }
         }
 
         //顾客聊天服务

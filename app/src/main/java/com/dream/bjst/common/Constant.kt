@@ -22,6 +22,12 @@ object Constant {
     const val CHOOSE_PHOTO_CODE = 0x00000014
     const val CHOOSE_CONTACTS_CODE = 0x00000015
 
+    //main page type
+    const val ACTION_TYPE_IMG = -1//假首页，类似一张图片
+    const val ACTION_TYPE_HOME = 0//未认证的首页
+    const val ACTION_TYPE_MAIN = 1//认证后的首页
+    const val actionType = "actionType"
+
 }
 
 object ShoppingAddressConstant {
@@ -80,7 +86,7 @@ object MmkvConstant {
     const val KEY_USER_PHONE = "user_phone"
     const val KEY_CUSTOMER_UID = "customer_uid"
     const val KEY_CUSTOMER_EMAIL = "customer_email"
-    const val KEY_CUSTOMER_ID="customer_id"
+    const val KEY_CUSTOMER_ID = "customer_id"
 
     const val AGREE_PRIVACY_VERSION_KEY = "AGREE_PRIVACY_VERSION_KEY" //隐私协议版本
     const val TAP_ICON_CHANGE_KEY = "TAP_ICON_CHANGE_KEY" //隐私协议版本

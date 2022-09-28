@@ -10,7 +10,6 @@ import com.dream.bjst.R
 import com.dream.bjst.account.ui.PrivacyActivity
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.ActivityLaunchBinding
-import com.dream.bjst.home.HomeActivity
 import com.dream.bjst.login.LoginActivity
 import com.dream.bjst.main.MainActivity
 import com.dream.bjst.main.vm.MainViewModel
@@ -45,7 +44,9 @@ class LaunchActivity : BaseActivity<MainViewModel, ActivityLaunchBinding>() {
         mHandler.postDelayed(Runnable {
             val isFirst = MmkvUtil.decodeBooleanOpen("isFirst")
             if (isFirst == true) {
-                ktStartActivity(PrivacyActivity::class)
+                ktStartActivity(PrivacyActivity::class) {
+                    putExtra("actionType", 1)
+                }
             } else {
                 if (UserManager.isLogin()) {
                     viewModel.fetchCustomerKycStatus()
@@ -74,7 +75,9 @@ class LaunchActivity : BaseActivity<MainViewModel, ActivityLaunchBinding>() {
             if (it.`959898BD809199A4958787`) {
                 ktStartActivity(MainActivity::class)
             } else {
-                ktStartActivity(HomeActivity::class)
+                ktStartActivity(MainActivity::class){
+                    putExtra("actionType",1)
+                }
             }
             finish()
         }

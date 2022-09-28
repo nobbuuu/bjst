@@ -37,5 +37,4 @@
         app:tabIndicatorHeight="@dimen/dp_0"
         app:tabRippleColor="@android:color/transparent" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

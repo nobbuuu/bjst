@@ -1,9 +1,7 @@
 package com.dream.bjst.account.ui
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -12,15 +10,16 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.*
 import android.webkit.WebView
-import android.widget.CheckBox
 import android.widget.PopupWindow
 import android.widget.TextView
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
 import com.dream.bjst.account.vm.AccountViewModel
+import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityPrivacyBinding
+import com.dream.bjst.home.HomeImgActivity
 import com.dream.bjst.login.LoginActivity
+import com.dream.bjst.main.MainActivity
 import com.dream.bjst.other.WebViewActivity
 import com.ruffian.library.widget.RCheckBox
 import com.ruffian.library.widget.RImageView
@@ -38,7 +37,9 @@ import com.tcl.base.utils.MmkvUtil
 class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>() {
     //弹窗控件
     var popupWindow: PopupWindow? = null
+    var actionType: Int = -1
     override fun initView(savedInstanceState: Bundle?) {
+        actionType = intent.getIntExtra("actionType", -1)
         event()
     }
 
@@ -54,25 +55,14 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         )
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        MmkvUtil.encode("isFirst", false)
-    }
-
     /**
      * 获取数据
      */
     override fun startObserve() {
         super.startObserve()
         viewModel.privacyResult.observe(this) {
-            mBinding.webView.loadUrl(it.`849186999D87879D9B9AB18C8498959D9AA18698`)//权限说明地址
-            var privacyAgreementBreviaryUrl =
-                it.`84869D8295978DB59386919199919A80B68691829D95868DA18698`//隐私权限（简）地址
-            var privacyAgreementUrl = it.`84869D8295978DB59386919199919A80A18698`//隐私协议地址
-            var registerAgreementUrl = it.`8691939D87809186B59386919199919A80A18698`//注册协议地址
-            LogUtils.dTag("urlTag", "privacyAgreementBreviaryUrl = $privacyAgreementBreviaryUrl")
-            LogUtils.dTag("urlTag", "privacyAgreementUrl = $privacyAgreementUrl")
-            LogUtils.dTag("urlTag", "registerAgreementUrl = $registerAgreementUrl")
+            mBinding.webView.loadUrl(it.`849186999D87879D9B9AB18C8498959D9AA18698`)
+            showPopWindow()
         }
     }
 
@@ -93,17 +83,19 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
             if (!mBinding.privacyCb.isChecked) {
                 ToastUtils.showShort("Please check this box and continue")
             } else {
-                val isFirst = MmkvUtil.decodeBooleanOpen("isFirst")
-                if (isFirst == true) {
-                    ktStartActivity(LoginActivity::class)
+                ktStartActivity(MainActivity::class) {
+                    putExtra("actionType", Constant.ACTION_TYPE_HOME)
                 }
                 finish()
             }
         }
 
         //disagree
-        mBinding.privacyDisagreeButton.setOnClickListener(View.OnClickListener { onBackPressed() })
-        //测试弹窗
+        mBinding.privacyDisagreeButton.setOnClickListener(View.OnClickListener {
+            if (actionType == 1) {
+                ktStartActivity(HomeImgActivity::class)
+            }
+        })
     }
 
     /**
@@ -120,28 +112,24 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
+        if (actionType == 1) {
+            popupWindow?.isOutsideTouchable = false
+            popupWindow?.isFocusable = false
+        }
         val webView = pwView.findViewById<WebView>(R.id.webView)
-        viewModel.privacyResult.value?.`84869D8295978DB59386919199919A80A18698`?.let {
-            webView.loadUrl(it)//隐私协议
+        viewModel.privacyResult.value?.`84869D8295978DB59386919199919A80B68691829D95868DA18698`?.let {
+            webView.loadUrl(it)
         }
 
         //设置关闭popup按钮
         val closeImage = pwView.findViewById<RImageView>(R.id.privacy_fault_image)
         closeImage.setOnClickListener {
             popupWindow?.dismiss()
-            windowAlpha(1f)
         }
         //设置popupWindow里面的未选中按钮
         val unselectImage = pwView.findViewById<RCheckBox>(R.id.privacyPopupCb)
         val checkButton = pwView.findViewById<RTextView>(R.id.privacy_box_button)
         unselectImage.isChecked = mBinding.privacyCb.isChecked
-        unselectImage.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                checkButton.text = "Continue"
-            } else {
-                checkButton.text = "Please check this box and continue"
-            }
-        }
         //设置continue按钮
         checkButton.ktClick {
             if (!unselectImage.isChecked) {
@@ -149,14 +137,21 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
             } else {
                 val isFirst = MmkvUtil.decodeBooleanOpen("isFirst")
                 if (isFirst == true) {
-                    ktStartActivity(LoginActivity::class)
+                    ktStartActivity(MainActivity::class) {
+                        putExtra(Constant.actionType, Constant.ACTION_TYPE_HOME)
+                    }
                 }
                 finish()
             }
         }
         //设置disagree按钮
         val disagreeButton = pwView.findViewById<RTextView>(R.id.privacy_dis_agree_button)
-        disagreeButton?.setOnClickListener { popupWindow?.dismiss() }
+        disagreeButton?.setOnClickListener {
+            popupWindow?.dismiss()
+            if (actionType == 1) {
+                ktStartActivity(HomeImgActivity::class)
+            }
+        }
         // 设置 popupWindow
         popupWindow?.isFocusable = true // 取得焦点
         //点击外部消失
@@ -209,7 +204,12 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         val m = content.indexOf("P") //截取文字开始的下标
         builder.setSpan(object : ClickableSpan() {
             override fun onClick(widget: View) {
-                showPopWindow()
+                //完整隐私协议
+                viewModel.privacyResult.value?.`84869D8295978DB59386919199919A80A18698`?.let {
+                    ktStartActivity(WebViewActivity::class) {
+                        putExtra("webUrl", it)
+                    }
+                }
             }
 
             override fun updateDrawState(ds: TextPaint) {

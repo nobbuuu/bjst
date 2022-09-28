@@ -9,17 +9,23 @@
         android:id="@+id/navigation_loan"
         android:name="com.dream.bjst.loan.ui.LoanFragment"
         android:label="@string/title_area"
-        tools:layout="@layout/fragment_loan" >
+        tools:layout="@layout/fragment_loan">
         <action
             android:id="@+id/loan_to_navigation_repayment"
             app:destination="@id/navigation_repayment" />
     </fixFragment>
 
     <fixFragment
+        android:id="@+id/navigation_home"
+        android:name="com.dream.bjst.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home"/>
+
+    <fixFragment
         android:id="@+id/navigation_repayment"
         android:name="com.dream.bjst.repayment.ui.RepaymentFragment"
         android:label="@string/title_square"
-        tools:layout="@layout/fragment_repayment" >
+        tools:layout="@layout/fragment_repayment">
         <action
             android:id="@+id/repayment_to_navigation_loan"
             app:destination="@id/navigation_loan" />

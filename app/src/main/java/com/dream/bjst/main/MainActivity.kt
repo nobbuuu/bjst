@@ -10,6 +10,7 @@ import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ColorUtils
 import com.dream.bjst.BuildConfig
 import com.dream.bjst.R
+import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityMainBinding
 import com.dream.bjst.main.menu.*
 import com.dream.bjst.main.vm.MainViewModel
@@ -26,10 +27,12 @@ import com.tcl.tclzjpro.main.FixFragmentNavigator
  *@date   2021/12/8
  *description
  */
+
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     var lastPos = -1
     var curPos = MAIN_TAB_LOAN
     private lateinit var controller: NavController
+    private var actionType = Constant.ACTION_TYPE_MAIN
 
     init {
         config.isDoubleBack = true
@@ -40,17 +43,25 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-
+        actionType = intent.getIntExtra("actionType", actionType)
         controller = findNavController(R.id.main_container)
         val fragment =
             supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
         val navigator = FixFragmentNavigator(this, supportFragmentManager, fragment.id)
         controller.navigatorProvider.addNavigator(navigator)
-        controller.setGraph(R.navigation.main_navigation)
+        val navInflater = controller.navInflater
+        val navGraph = navInflater.inflate(R.navigation.main_navigation)
+        if (actionType == Constant.ACTION_TYPE_MAIN) {
+            navGraph.startDestination = R.id.navigation_loan
+        } else {
+            navGraph.startDestination = R.id.navigation_home
+        }
+        controller.graph = navGraph
 
         repeat(TabManager.menus.size) {
             val tab = mBinding.mainTab.newTab()
-            tab.customView = MainTabView(this, TabManager.menus[it])
+            val mainTab = MainTabView(this, TabManager.menus[it])
+            tab.customView = mainTab
             mBinding.mainTab.addTab(tab)
         }
 
@@ -76,7 +87,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             when (destination.id) {
                 R.id.navigation_loan -> {
                     curPos = MAIN_TAB_LOAN
-                    BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.white))
+                    if (actionType == Constant.ACTION_TYPE_MAIN) {
+                        BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.white))
+                    } else {
+                        BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.color_F8FFF0))
+                    }
                 }
                 R.id.navigation_repayment -> {
                     curPos = MAIN_TAB_REPAYMENT
@@ -112,7 +127,13 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     /**根据下标切换页面*/
     private fun switchTab(curPos: Int) {
         when (curPos) {
-            MAIN_TAB_LOAN -> controller.navigate(R.id.navigation_loan)
+            MAIN_TAB_LOAN -> {
+                if (actionType == Constant.ACTION_TYPE_MAIN) {
+                    controller.navigate(R.id.navigation_loan)
+                } else {
+                    controller.navigate(R.id.navigation_home)
+                }
+            }
             MAIN_TAB_REPAYMENT -> controller.navigate(R.id.navigation_repayment)
             MAIN_TAB_ACCOUNT -> controller.navigate(R.id.navigation_account)
         }

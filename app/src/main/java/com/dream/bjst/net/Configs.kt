@@ -53,7 +53,7 @@ object Configs {
                 URL_APP_UAT
             APP_PRODUCT_TYPE ->
                 URL_APP_PRODUCT
-            else -> URL_APP_PRODUCT
+            else -> URL_APP_TEST_20022
         }
     }
 

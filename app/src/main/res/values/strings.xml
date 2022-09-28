@@ -2,6 +2,7 @@
     <string name="title_area">LOAN</string>
     <string name="title_square">REPAYMENT</string>
     <string name="title_mine">ACCOUNT</string>
+    <string name="title_home">HOME</string>
     <string name="authentication">Authentication</string>
     <string name="facial_verification">Facial\nVerification</string>
     <string name="emergency_contact">Emergency\nContact</string>

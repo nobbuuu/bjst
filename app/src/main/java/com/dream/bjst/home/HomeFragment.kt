@@ -3,19 +3,19 @@ package com.dream.bjst.home
 import android.os.Bundle
 import com.dream.bjst.R
 import com.dream.bjst.common.UserManager
-import com.dream.bjst.databinding.ActivityHomeBinding
+import com.dream.bjst.databinding.FragmentHomeBinding
 import com.dream.bjst.home.vm.HomeViewModel
 import com.dream.bjst.identification.ui.ApproveMainActivity
 import com.dream.bjst.login.LoginActivity
-import com.dream.bjst.utils.DateUtils
 import com.dream.bjst.utils.StatusBarUtils
-import com.tcl.base.common.ui.BaseActivity
+import com.tcl.base.common.ui.BaseFragment
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 
-class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
+class HomeFragment:BaseFragment<HomeViewModel,FragmentHomeBinding>() {
+
     override fun initView(savedInstanceState: Bundle?) {
-        StatusBarUtils.adjustWindow(this, R.color.color_F8FFF0, mBinding.topLay)
+        StatusBarUtils.adjustWindow(requireActivity(), R.color.color_F8FFF0, mBinding.topLay)
         //当前页面是未登录展示，如果已经登录将不展示
         mBinding.homeRequestBtn.ktClick {
             if (UserManager.isLogin()) {
@@ -24,14 +24,7 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
                 ktStartActivity(LoginActivity::class)
             }
         }
-    }
-
-    override fun initData() {
         viewModel.fetchHomeInfo()
-    }
-
-    override fun initDataOnResume() {
-
     }
 
     override fun startObserve() {

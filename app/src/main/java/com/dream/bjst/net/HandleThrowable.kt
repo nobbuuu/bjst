@@ -68,7 +68,7 @@ object HandleThrowable {
         val result = throwable.result
         try {
             val fromJson = GsonUtils.fromJson(result, ErrorResponse::class.java)
-            if (fromJson.code == BaseConstant.LOGOUT_STATUS_CODE.toString()) {
+            if (fromJson.code == BaseConstant.LOGOUT_CODE_1 || fromJson.code == BaseConstant.LOGOUT_CODE_2) {
                 LiveEventBus.get(BaseConstant.EVENT_LOGOUT)
                     .post(LogoutTipsBean(true, fromJson.msg ?: "00:00"))
             } else {

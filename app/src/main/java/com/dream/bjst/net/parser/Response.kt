@@ -34,7 +34,8 @@ class Response<T> : Serializable {
 
     fun isBusinessException(): Boolean = code.startsWith("KY")
 
-    fun isTokenTimeOut(): Boolean = code == BaseConstant.LOGOUT_STATUS_CODE.toString()
+    fun isTokenTimeOut(): Boolean =
+        code == BaseConstant.LOGOUT_CODE_1 || code == BaseConstant.LOGOUT_CODE_2
 
     fun isMultiDeviceLogin(): Boolean = code == "406"
 

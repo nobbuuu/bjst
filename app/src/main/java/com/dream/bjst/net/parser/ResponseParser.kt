@@ -54,8 +54,8 @@ open class ResponseParser<T> : AbstractParser<T> {
         val encryptResponse = GsonUtils.fromJson(originalStr, BaseEncryptResponse::class.java)
         val result = EncryptUtil.decode(encryptResponse?.poiuytrggeqwr22fbc)
         Log.d("http", "result = $result")
-        val  type: Type = ParameterizedTypeImpl[Response::class.java, mType] //获取泛型类型
-        val responseData =JsonUtil.getObject<Response<T>>(result, type)
+        val type: Type = ParameterizedTypeImpl[Response::class.java, mType] //获取泛型类型
+        val responseData = JsonUtil.getObject<Response<T>>(result, type)
 
         if (responseData == null) {
             val specialResponse =
@@ -76,7 +76,7 @@ open class ResponseParser<T> : AbstractParser<T> {
             }
         } else {
             when {
-                responseData.isNotSaleManException() -> {
+                /*responseData.isNotSaleManException() -> {
                     throw NotSaleManException(responseData.code, responseData.msg ?: "")
                 }
                 responseData.isMultiDeviceLogin() -> {
@@ -91,7 +91,7 @@ open class ResponseParser<T> : AbstractParser<T> {
                         responseData.code,
                         responseData.msg ?: "报错信息为空"
                     )
-                }
+                }*/
                 responseData.isTokenTimeOut() -> {
                     throw TokenTimeOutException(
                         responseData.code,
@@ -106,11 +106,6 @@ open class ResponseParser<T> : AbstractParser<T> {
 
                     if (t == null) {
                         if (mType === String::class.java) {
-                            /*
-                             * 考虑到有些时候服务端会返回：{"code":0,"errorMsg":"关注成功"}  类似没有data的数据
-                             * 此时code正确，但是data字段为空，直接返回data的话，会报空指针错误，
-                             * 所以，判断泛型为String类型时，重新赋值，并确保赋值不为null
-                             */
                             @Suppress("UNCHECKED_CAST")
                             t = response.message as T
                             return t

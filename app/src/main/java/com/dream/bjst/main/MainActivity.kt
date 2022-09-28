@@ -39,12 +39,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         config.isDoubleBack = true
     }
 
-    override fun initStateBar(stateBarColor: Int, isLightMode: Boolean, fakeView: View?) {
-        super.initStateBar(ColorUtils.getColor(R.color.white), false, fakeView)
-    }
-
     override fun initView(savedInstanceState: Bundle?) {
-        actionType = intent.getIntExtra("actionType", actionType)
+        actionType = intent.getIntExtra(Constant.actionType, actionType)
         controller = findNavController(R.id.main_container)
         val fragment =
             supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
@@ -88,19 +84,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             when (destination.id) {
                 R.id.navigation_loan -> {
                     curPos = MAIN_TAB_LOAN
-                    if (actionType == Constant.ACTION_TYPE_MAIN) {
-                        BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.white))
-                    } else {
-                        BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.color_F8FFF0))
-                    }
                 }
                 R.id.navigation_repayment -> {
                     curPos = MAIN_TAB_REPAYMENT
-                    BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.white))
                 }
                 R.id.navigation_account -> {
                     curPos = MAIN_TAB_ACCOUNT
-                    BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.color_F8FFF0))
                 }
             }
             mBinding.mainTab.selectTab(mBinding.mainTab.getTabAt(curPos))
@@ -116,32 +105,26 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         findNavController(R.id.main_container).navigate(R.id.navigation_loan)
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//
-//    }
-
-    /**监听新的intent*/
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        intent?.run {
-            val position = getIntExtra(KEY_TAB_POSITION, 0)
-            switchTab(position)
-        }
-    }
-
     /**根据下标切换页面*/
     private fun switchTab(curPos: Int) {
         when (curPos) {
             MAIN_TAB_LOAN -> {
                 if (actionType == Constant.ACTION_TYPE_MAIN) {
+                    BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.white))
                     controller.navigate(R.id.navigation_loan)
                 } else {
+                    BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.color_F8FFF0))
                     controller.navigate(R.id.navigation_home)
                 }
             }
-            MAIN_TAB_REPAYMENT -> controller.navigate(R.id.navigation_repayment)
-            MAIN_TAB_ACCOUNT -> controller.navigate(R.id.navigation_account)
+            MAIN_TAB_REPAYMENT -> {
+                BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.white))
+                controller.navigate(R.id.navigation_repayment)
+            }
+            MAIN_TAB_ACCOUNT -> {
+                BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.color_F8FFF0))
+                controller.navigate(R.id.navigation_account)
+            }
         }
     }
 
@@ -184,8 +167,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun initDataOnResume() {
-        findNavController(R.id.main_container).navigate(R.id.navigation_repayment)
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

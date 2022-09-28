@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.ColorUtils
 import com.blankj.utilcode.util.GsonUtils
+import com.blankj.utilcode.util.RegexUtils
 import com.dream.bjst.BuildConfig
 import com.dream.bjst.R
 import com.dream.bjst.bean.PhoneCodeParam
@@ -23,7 +24,6 @@ import com.dream.bjst.common.MmkvConstant
 import com.dream.bjst.databinding.ActivityLoginBinding
 
 import com.dream.bjst.dialog.VoiceDialog
-import com.dream.bjst.identification.ui.ApproveMainActivity
 import com.dream.bjst.main.MainActivity
 import com.dream.bjst.net.Configs
 import com.dream.bjst.net.Url
@@ -47,24 +47,29 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
 
         mBinding.nextTv.ktClick {
-
-            if (!isSendCode) {//获取验证码
-                mBinding.phoneLay.isVisible = false
-                mBinding.codeLay.isVisible = true
-                mBinding.horiProgress.progress = 100
-                isSendCode = true
-            } else {//登录
+            if (mBinding.loginCb.isChecked) {
                 val phone = mBinding.phoneEdt.text.toString()
-                val code = mBinding.codeEdt.text.toString()
-                if (code.isNotEmpty()) {
-                    viewModel.login(phone, code)
-
-
-                } else {
-                    "Obtain the verification code first".ktToastShow()
+                val reg = "^([0][1-9]\\d{9})|([1-9]\\d{9})\$"
+                if (!isSendCode) {//获取验证码
+                    if (RegexUtils.isMatch(reg,phone)) {
+                        mBinding.phoneLay.isVisible = false
+                        mBinding.codeLay.isVisible = true
+                        mBinding.horiProgress.progress = 100
+                        isSendCode = true
+                    } else {
+                        "Please enter the correct cell phone number".ktToastShow()
+                    }
+                } else {//登录
+                    val code = mBinding.codeEdt.text.toString()
+                    if (code.isNotEmpty()) {
+                        viewModel.login(phone, code)
+                    } else {
+                        "Obtain the verification code first".ktToastShow()
+                    }
                 }
+            } else {
+                "Please check this box and continue.".ktToastShow()
             }
-
         }
 
         mBinding.resendTv.ktClick {
@@ -108,14 +113,14 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 "选择环境",
                 list
             ) { position, text ->
-                when(position){
-                    0 ->{
+                when (position) {
+                    0 -> {
                         Configs.curAppType = Configs.APP_TEST_TYPE_20222
                     }
-                    1 ->{
+                    1 -> {
                         Configs.curAppType = Configs.APP_TEST_TYPE_20022
                     }
-                    2 ->{
+                    2 -> {
                         Configs.curAppType = Configs.APP_TEST_TYPE_20002
                     }
                 }
@@ -138,10 +143,8 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
     private fun sendCode() {
         var phone = mBinding.phoneEdt.text.toString()
-        if (phone.isNotEmpty() && phone.length == 10 || phone.length == 11) {
-            if (phone[0].equals("0")) {
-                phone = phone.substring(1)
-            }
+        val reg = "^([0][1-9]\\d{9})|([1-9]\\d{9})\$"
+        if (RegexUtils.isMatch(reg, phone)) {
             val param = GsonUtils.toJson(
                 PhoneCodeParam(
                     `978187809B999186B99B969D9891` = phone,
@@ -150,7 +153,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             )
             viewModel.sendCode(param)
         } else {
-            "please input mobile number".ktToastShow()
+            "Please enter the correct cell phone number".ktToastShow()
         }
     }
 
@@ -214,10 +217,12 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         }
 
         viewModel.idCardStatus.observe(this) {
+            var action = Constant.ACTION_TYPE_HOME
             if (it.`959898BD809199A4958787`) {
-                ktStartActivity(MainActivity::class)
-            } else {
-                ktStartActivity(ApproveMainActivity::class)
+                action = Constant.ACTION_TYPE_MAIN
+            }
+            ktStartActivity(MainActivity::class) {
+                putExtra(Constant.actionType, action)
             }
             finish()
         }

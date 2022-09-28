@@ -98,7 +98,7 @@ class ApproveMainActivity :
             )
         }
         identifyAdapter.setList(mApproveList)
-
+        viewModel.fetchHomeInfo()
     }
 
     override fun initDataOnResume() {
@@ -107,15 +107,27 @@ class ApproveMainActivity :
 
     override fun startObserve() {
         super.startObserve()
+        viewModel.homeData.observe(this) {
+            mBinding.loanAmount.text = "₹ " + it.`989B959AB5999B819A80`
+            when (it.`8491869B9D90A19A9D80`) {
+                10 -> {//天
+                    mBinding.days.text = it.`8491869B9D90`.toString() + " Days"
+                }
+                20 -> {//月
+                    mBinding.days.text = it.`8491869B9D90`.toString() + " months"
+                }
+            }
+            mBinding.interestRateTv.text = it.`8D919586A6958091` + "%p.a."
+        }
         viewModel.idCardStatus.observe(this) {
-           var  isAll = it.`959898BD809199A4958787`
-            MmkvUtil.encode("isAll",isAll)
+            var isAll = it.`959898BD809199A4958787`
+            MmkvUtil.encode("isAll", isAll)
             //判断一下是否所有的项目都全部通过
-            if (isAll){
-                mBinding.interestItem.visibility=View.INVISIBLE
-                mBinding.loanAmountItem.visibility=View.INVISIBLE
-                mBinding.loanPeriodItem.visibility=View.INVISIBLE
-                mBinding.identifyGetLoanBtn.visibility=View.INVISIBLE
+            if (isAll) {
+                mBinding.interestItem.visibility = View.INVISIBLE
+                mBinding.loanAmountItem.visibility = View.INVISIBLE
+                mBinding.loanPeriodItem.visibility = View.INVISIBLE
+                mBinding.identifyGetLoanBtn.visibility = View.INVISIBLE
             }
             it.`9A919190B09B9D9A93BD809199`?.let {
                 var tempIndex = 0

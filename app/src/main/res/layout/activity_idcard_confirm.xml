@@ -56,7 +56,7 @@
             app:startText="Pan No."
             app:startTextColor="@color/colorBlack666"
             app:startTextSize="15sp"
-            app:viewType="2" />
+            app:viewType="1" />
 
         <com.dream.bjst.widget.StartEndLayout
             android:id="@+id/aadNo"
@@ -68,7 +68,7 @@
             app:startText="Aadhaar No."
             app:startTextColor="@color/colorBlack666"
             app:startTextSize="15sp"
-            app:viewType="2" />
+            app:viewType="1" />
 
         <com.dream.bjst.widget.StartEndLayout
             android:id="@+id/birthday"
@@ -80,7 +80,7 @@
             app:startText="Date Of Birth"
             app:startTextColor="@color/colorBlack666"
             app:startTextSize="15sp"
-            app:viewType="2" />
+            app:viewType="1" />
 
         <com.dream.bjst.widget.StartEndLayout
             android:id="@+id/gender"
@@ -92,7 +92,7 @@
             app:startText="Gender"
             app:startTextColor="@color/colorBlack666"
             app:startTextSize="15sp"
-            app:viewType="2" />
+            app:viewType="1" />
 
         <com.dream.bjst.widget.StartEndLayout
             android:id="@+id/pinCode"
@@ -113,6 +113,7 @@
             app:endText=""
             app:endTextColor="@color/dk_color_999999"
             app:endTextSize="15sp"
+            app:isMust="true"
             app:startText="Email"
             app:startTextColor="@color/colorBlack666"
             app:startTextSize="15sp"

@@ -83,7 +83,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
             if (!mBinding.privacyCb.isChecked) {
                 ToastUtils.showShort("Please check this box and continue")
             } else {
-                MmkvUtil.encode("isFirst", true)
+                MmkvUtil.encode("isFirst", false)
                 ktStartActivity(MainActivity::class) {
                     putExtra("actionType", Constant.ACTION_TYPE_HOME)
                 }
@@ -141,7 +141,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
                     ktStartActivity(MainActivity::class) {
                         putExtra(Constant.actionType, Constant.ACTION_TYPE_HOME)
                     }
-                    MmkvUtil.encode("isFirst", true)
+                    MmkvUtil.encode("isFirst", false)
                 }
                 finish()
             }

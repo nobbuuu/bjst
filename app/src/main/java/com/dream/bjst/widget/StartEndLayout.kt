@@ -20,6 +20,7 @@ class StartEndLayout @JvmOverloads constructor(
     var mStartTv: TextView
     var mEndTv: TextView? = null
     var mEndEdt: EditText? = null
+    var mLineView: View? = null
 
     init {
         val array = context.obtainStyledAttributes(attrs, R.styleable.startEndLayout)
@@ -39,14 +40,18 @@ class StartEndLayout @JvmOverloads constructor(
         val hintText = array.getString(R.styleable.startEndLayout_hintText)
         val endTextSize = array.getDimension(R.styleable.startEndLayout_endTextSize, 18.sp)
         val endTextColor = array.getInteger(R.styleable.startEndLayout_endTextColor, R.color.black)
+        val lineColor =
+            array.getInteger(R.styleable.startEndLayout_lineColor, R.color._xpopup_list_divider)
         val isDivider = array.getBoolean(R.styleable.startEndLayout_isDivider, true)
         val isSelect = array.getBoolean(R.styleable.startEndLayout_isSelect, false)
+        val isMust = array.getBoolean(R.styleable.startEndLayout_isMust, false)
         mStartTv = findViewById(R.id.startTv)
         mStartTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, startTextSize)
         mStartTv.setTextColor(startTextColor)
         mStartTv.text = "$startText"
         mEndTv = findViewById(R.id.endTv)
         mEndEdt = findViewById(R.id.endEdt)
+        mLineView = findViewById(R.id.divider)
         mEndTv?.setTextSize(TypedValue.COMPLEX_UNIT_PX, endTextSize)
         mEndEdt?.setTextSize(TypedValue.COMPLEX_UNIT_PX, endTextSize)
         mEndTv?.setTextColor(endTextColor)
@@ -58,6 +63,8 @@ class StartEndLayout @JvmOverloads constructor(
         mDivider.isVisible = isDivider
         val mSelectIv = findViewById<ImageView>(R.id.nextIv)
         mSelectIv.isVisible = isSelect
+        val mustIv = findViewById<ImageView>(R.id.mustIv)
+        mustIv.isVisible = isMust
     }
 
     fun setStartText(text: String) {
@@ -78,6 +85,10 @@ class StartEndLayout @JvmOverloads constructor(
 
     fun setEndTextColor(color: Int) {
         mEndTv?.setTextColor(ColorUtils.getColor(color))
+    }
+
+    fun setLineColor(color: Int) {
+        mLineView?.setBackgroundColor(ColorUtils.getColor(color))
     }
 
     fun getEndEdtText(): String {

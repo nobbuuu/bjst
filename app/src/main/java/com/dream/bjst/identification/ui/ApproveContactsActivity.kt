@@ -129,11 +129,11 @@ class ApproveContactsActivity :
                                 if (phoneType == 1) {
                                     param.`979B9A80959780C5BA959991` = name
                                     param.`979B9A80959780C5B99B969D9891` = phone
-                                    mBinding.phone1.setEndText(name)
+                                    mBinding.phone1.setEndText(phone)
                                 } else {
                                     param.`979B9A80959780C6BA959991` = name
                                     param.`979B9A80959780C6B99B969D9891` = phone
-                                    mBinding.phone2.setEndText(name)
+                                    mBinding.phone2.setEndText(phone)
                                 }
                             }
                             cursor.close()

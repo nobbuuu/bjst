@@ -50,6 +50,7 @@
                     android:textSize="@dimen/sp_11" />
 
                 <com.ruffian.library.widget.RTextView
+                    android:id="@+id/loanAmount"
                     android:layout_width="@dimen/dp_84"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/loanMount"
@@ -82,6 +83,7 @@
                     android:textSize="@dimen/sp_11" />
 
                 <com.ruffian.library.widget.RTextView
+                    android:id="@+id/interestRateTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/loanInterest"
@@ -112,6 +114,7 @@
                     android:textSize="@dimen/sp_11" />
 
                 <com.ruffian.library.widget.RTextView
+                    android:id="@+id/days"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/loanPeriod"

@@ -694,7 +694,9 @@
         <attr name="endTextColor" format="color|reference" />
         <attr name="isDivider" format="boolean|reference" />
         <attr name="isSelect" format="boolean|reference" />
+        <attr name="isMust" format="boolean|reference" />
         <attr name="viewType" format="integer|reference" />
+        <attr name="lineColor" format="color|reference" />
     </declare-styleable>
 
 

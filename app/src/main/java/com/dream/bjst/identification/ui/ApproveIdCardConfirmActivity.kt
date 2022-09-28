@@ -18,18 +18,22 @@ class ApproveIdCardConfirmActivity :
     override fun initView(savedInstanceState: Bundle?) {
 
         mBinding.sureBtn.ktClick {
-            val bean = IdCardConfirmParam().apply {
-                `84959ABA8199969186` = mBinding.panNo.getEndEdtText()
-                `95909086918787` = mBinding.address.getEndEdtText()
-                `969D86809C90958D` = mBinding.birthday.getEndEdtText()
-                `9199959D98` = mBinding.email.getEndEdtText()
-                `9D90B7958690BA8199969186` = mBinding.aadNo.getEndEdtText()
-                `999B909D928DBD90B7958690BA959991` = mBinding.nameAad.getEndEdtText()
-                `999B909D928DA4959ABA959991` = mBinding.namePan.getEndEdtText()
+            if (mBinding.email.getEndEdtText().isNotEmpty()){
+                val bean = IdCardConfirmParam().apply {
+                    `84959ABA8199969186` = mBinding.panNo.getEndEdtText()
+                    `95909086918787` = mBinding.address.getEndEdtText()
+                    `969D86809C90958D` = mBinding.birthday.getEndEdtText()
+                    `9199959D98` = mBinding.email.getEndEdtText()
+                    `9D90B7958690BA8199969186` = mBinding.aadNo.getEndEdtText()
+                    `999B909D928DBD90B7958690BA959991` = mBinding.nameAad.getEndEdtText()
+                    `999B909D928DA4959ABA959991` = mBinding.namePan.getEndEdtText()
+                }
+                val toJson = GsonUtils.toJson(bean)
+                LogUtils.dTag("jsonParam",toJson)
+                viewModel.submitAdjustInfo(toJson)
+            }else{
+                "Please enter your email address".ktToastShow()
             }
-            val toJson = GsonUtils.toJson(bean)
-            LogUtils.dTag("jsonParam",toJson)
-            viewModel.submitAdjustInfo(toJson)
         }
     }
 

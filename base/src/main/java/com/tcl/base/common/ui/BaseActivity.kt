@@ -162,18 +162,18 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding>(var config: Ac
      * 注册 UI 事件
      */
     private fun registorDefUIChange() {
-        viewModel.defUI.showDialog.observe(this, {
+        viewModel.defUI.showDialog.observe(this) {
             showLoading()
-        })
-        viewModel.defUI.dismissDialog.observe(this, {
+        }
+        viewModel.defUI.dismissDialog.observe(this) {
             dismissLoading()
-        })
-        viewModel.defUI.toastEvent.observe(this, {
+        }
+        viewModel.defUI.toastEvent.observe(this) {
             TxkToastUtil.showCentreText(it)
-        })
-        viewModel.defUI.msgEvent.observe(this, {
+        }
+        viewModel.defUI.msgEvent.observe(this) {
             handleEvent(it)
-        })
+        }
     }
 
     open fun handleEvent(msg: Message) {}

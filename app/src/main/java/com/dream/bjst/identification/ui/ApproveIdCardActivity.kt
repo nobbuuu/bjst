@@ -57,22 +57,22 @@ class ApproveIdCardActivity :
 
         viewModel.fetchCustomerKycStatus()
         mBinding.sureBtn.ktClick {
-            if (isApproveComplete()){
+            if (isApproveComplete()) {
                 ktStartActivity(ApproveIdCardConfirmActivity::class)
             }
         }
     }
 
-    fun isApproveComplete() : Boolean{
-        if (!isFront){
+    fun isApproveComplete(): Boolean {
+        if (!isFront) {
             "Please upload the front photo first".ktToastShow()
             return false
         }
-        if (!isBack){
+        if (!isBack) {
             "Please upload the back photo first".ktToastShow()
             return false
         }
-        if (!isPan){
+        if (!isPan) {
             "Please upload the pan photo first".ktToastShow()
             return false
         }
@@ -89,14 +89,17 @@ class ApproveIdCardActivity :
                 1 -> {
                     mBinding.frontIv.setImageBitmap(tempBitmap)
                     isFront = true
+                    mBinding.frontIv.isEnabled = !isFront
                 }
                 2 -> {
                     mBinding.backIv.setImageBitmap(tempBitmap)
                     isBack = true
+                    mBinding.backIv.isEnabled = !isBack
                 }
                 3 -> {
                     mBinding.panCardIv.setImageBitmap(tempBitmap)
                     isPan = true
+                    mBinding.panCardIv.isEnabled = !isPan
                 }
             }
         }
@@ -114,9 +117,9 @@ class ApproveIdCardActivity :
                 mBinding.panCardIv.loadGif(it)
                 isPan = true
             }
-            mBinding.frontIv.isEnabled = it.`9D90B7958690B2869B9A80A49C9B809BA18698`.isNullOrEmpty()
-            mBinding.backIv.isEnabled = it.`9D90B7958690B695979FA49C9B809BA18698`.isNullOrEmpty()
-            mBinding.panCardIv.isEnabled = it.`84959AA49C9B809BA18698`.isNullOrEmpty()
+            mBinding.frontIv.isEnabled = !isFront
+            mBinding.backIv.isEnabled = !isBack
+            mBinding.panCardIv.isEnabled = !isPan
         }
     }
 

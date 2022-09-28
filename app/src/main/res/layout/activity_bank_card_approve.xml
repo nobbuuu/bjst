@@ -87,9 +87,19 @@
             app:viewType="2" />
 
         <TextView
+            android:id="@+id/tipsTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_34"
+            android:text="The Account No. does not match."
+            android:textColor="#ffe80000"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:textSize="11sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_13"
             android:lineSpacingExtra="10dp"
             android:text="Warm tips：\n
 1.After certification approved, we will disbruse fund to your bank account.\n

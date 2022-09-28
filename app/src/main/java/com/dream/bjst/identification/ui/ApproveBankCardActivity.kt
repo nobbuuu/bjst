@@ -2,6 +2,8 @@ package com.dream.bjst.identification.ui
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.R
 import com.dream.bjst.databinding.ActivityBankCardApproveBinding
@@ -45,10 +47,23 @@ class ApproveBankCardActivity :
                         )
                     )
                 } else {
-                    "The two entered accounts are different".ktToastShow()
+                    mBinding.tipsTv.isVisible = true
+                    mBinding.accountNo.setLineColor(R.color.color_E80000)
+                    mBinding.reAccNo.setLineColor(R.color.color_E80000)
                 }
             }
         }
+        mBinding.accountNo.mEndEdt?.addTextChangedListener {
+            mBinding.tipsTv.isVisible = false
+            mBinding.accountNo.setLineColor(R.color._xpopup_list_divider)
+            mBinding.reAccNo.setLineColor(R.color._xpopup_list_divider)
+        }
+        mBinding.reAccNo.mEndEdt?.addTextChangedListener {
+            mBinding.tipsTv.isVisible = false
+            mBinding.accountNo.setLineColor(R.color._xpopup_list_divider)
+            mBinding.reAccNo.setLineColor(R.color._xpopup_list_divider)
+        }
+
     }
 
     override fun initData() {

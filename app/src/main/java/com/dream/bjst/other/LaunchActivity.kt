@@ -1,6 +1,5 @@
 package com.dream.bjst.other
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,6 +7,7 @@ import android.view.View
 import com.blankj.utilcode.util.ColorUtils
 import com.dream.bjst.R
 import com.dream.bjst.account.ui.PrivacyActivity
+import com.dream.bjst.common.Constant
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.ActivityLaunchBinding
 import com.dream.bjst.login.LoginActivity
@@ -28,16 +28,12 @@ class LaunchActivity : BaseActivity<MainViewModel, ActivityLaunchBinding>() {
         super.initStateBar(ColorUtils.getColor(R.color.transparent), isLightMode, fakeView)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initView(savedInstanceState: Bundle?) {
         if (!this.isTaskRoot) {
             finish()
             overridePendingTransition(0, 0)
             return
         }
-    }
-
-    override fun initView(savedInstanceState: Bundle?) {
     }
 
     override fun initData() {
@@ -47,37 +43,27 @@ class LaunchActivity : BaseActivity<MainViewModel, ActivityLaunchBinding>() {
                 ktStartActivity(PrivacyActivity::class) {
                     putExtra("actionType", 1)
                 }
+                finish()
             } else {
                 if (UserManager.isLogin()) {
                     viewModel.fetchCustomerKycStatus()
                 } else {
                     ktStartActivity(LoginActivity::class)
-                }
-            }
-            finish()
-        }, 4000) //3秒
-
-        if (!this.isTaskRoot) { // 判断当前activity是不是所在任务栈的根
-            val intent = intent
-            if (intent != null) {
-                val action = intent.action
-                if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN == action) {
                     finish()
-                    return
                 }
             }
-        }
+        }, 2000) //3秒
     }
 
     override fun startObserve() {
         super.startObserve()
         viewModel.userStatus.observe(this) {
+            var action = Constant.ACTION_TYPE_HOME
             if (it.`959898BD809199A4958787`) {
-                ktStartActivity(MainActivity::class)
-            } else {
-                ktStartActivity(MainActivity::class){
-                    putExtra("actionType",1)
-                }
+                action = Constant.ACTION_TYPE_MAIN
+            }
+            ktStartActivity(MainActivity::class) {
+                putExtra(Constant.actionType, action)
             }
             finish()
         }

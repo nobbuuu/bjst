@@ -26,13 +26,13 @@ import com.dream.bjst.common.Constant.CAMERA_REQUEST_CODE
 import com.dream.bjst.common.Constant.CHOOSE_PHOTO_CODE
 import com.dream.bjst.common.Constant.PERMISSION_CAMERA_REQUEST_CODE
 import com.dream.bjst.common.Constant.PERMISSION_STORAGE_REQUEST_CODE
-import com.dream.bjst.utils.FileUtils.bitmap2File
 import java.io.File
 import java.io.FileDescriptor
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-class PhotoManager (activity: Activity){
+
+class PhotoManager(activity: Activity) {
 
 
     //用于保存拍照图片的uri
@@ -65,11 +65,11 @@ class PhotoManager (activity: Activity){
         if (!file.exists()) {
             file.mkdirs()
         }
-         /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-             //7.0适配
-             oriUri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
-         }else{
-         }*/
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            //7.0适配
+            oriUri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
+        }else{
+        }*/
         oriUri = Uri.fromFile(file)
     }
 
@@ -103,7 +103,6 @@ class PhotoManager (activity: Activity){
             Manifest.permission.READ_EXTERNAL_STORAGE
         )
         if (hasCameraPermission == PackageManager.PERMISSION_GRANTED) {
-            //有调起相机拍照。
             goPhotoAlbum()
         } else {
             //没有权限，申请权限。
@@ -115,10 +114,14 @@ class PhotoManager (activity: Activity){
     }
 
     fun goPhotoAlbum() {
-        Intent(Intent.ACTION_GET_CONTENT).apply {
-            type = "image/*"
-            context.startActivityForResult(this, CHOOSE_PHOTO_CODE)
+        val intent: Intent
+        if (Build.VERSION.SDK_INT < 19) {
+            intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "image/*"
+        } else {
+            intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         }
+        context.startActivityForResult(intent, CHOOSE_PHOTO_CODE)
     }
 
     /**
@@ -297,7 +300,11 @@ class PhotoManager (activity: Activity){
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             //7.0适配
-            oriUri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", File(imagePath))
+            oriUri = FileProvider.getUriForFile(
+                context,
+                "${context.packageName}.fileprovider",
+                File(imagePath)
+            )
         }
         return MediaStore.Images.Media.getBitmap(context.contentResolver, oriUri)
     }
@@ -306,7 +313,8 @@ class PhotoManager (activity: Activity){
     fun getBitmapFromUri(uri: Uri?): Bitmap? {
         uri?.let {
             try {
-                val parcelFileDescriptor: ParcelFileDescriptor? = context.contentResolver.openFileDescriptor(uri, "r")
+                val parcelFileDescriptor: ParcelFileDescriptor? =
+                    context.contentResolver.openFileDescriptor(uri, "r")
                 parcelFileDescriptor?.let {
                     val fileDescriptor: FileDescriptor = it.fileDescriptor
                     val image = BitmapFactory.decodeFileDescriptor(fileDescriptor)
@@ -320,7 +328,7 @@ class PhotoManager (activity: Activity){
         return null
     }
 
-    fun getBitmapWithCamara():Bitmap?{
+    fun getBitmapWithCamara(): Bitmap? {
         return if (isAndroidQ) {
             // Android 10 使用图片uri加载
             getBitmapFromUri(mCameraUri)

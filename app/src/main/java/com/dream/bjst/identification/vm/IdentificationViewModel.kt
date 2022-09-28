@@ -4,6 +4,7 @@ import com.dream.bjst.identification.bean.BankListBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
+import com.dream.bjst.loan.bean.HomeInfoBean
 import com.dream.bjst.net.Api
 import com.dream.bjst.net.parser.Response
 import com.tcl.base.common.BaseViewModel
@@ -25,6 +26,14 @@ class IdentificationViewModel : BaseViewModel() {
     val pushContacts = SingleLiveEvent<Boolean>()
     val bankList = SingleLiveEvent<List<BankListBean>>()
     val bindBank = SingleLiveEvent<ConfirmResultBean>()
+
+    val homeData = SingleLiveEvent<HomeInfoBean>()
+    fun fetchHomeInfo(){
+        rxLaunchUI({
+            val  result = Api.fetchHomeInfo()
+            homeData.postValue(result)
+        })
+    }
 
     fun idCardFrontOcr(param: String) {
         rxLaunchUI({

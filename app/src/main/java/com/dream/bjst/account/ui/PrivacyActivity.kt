@@ -2,13 +2,18 @@ package com.dream.bjst.account.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.util.Log
 import android.view.*
 import android.webkit.WebView
 import android.widget.PopupWindow
@@ -16,12 +21,14 @@ import android.widget.TextView
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
 import com.dream.bjst.account.vm.AccountViewModel
+import com.dream.bjst.app.MyApp
 import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityPrivacyBinding
 import com.dream.bjst.home.HomeImgActivity
 import com.dream.bjst.login.LoginActivity
 import com.dream.bjst.main.MainActivity
 import com.dream.bjst.other.WebViewActivity
+import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.permissionx.guolindev.PermissionX
 import com.ruffian.library.widget.RCheckBox
 import com.ruffian.library.widget.RImageView
@@ -30,6 +37,8 @@ import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.utils.MmkvUtil
+import io.github.kongpf8848.tkpermission.permission
+import io.github.kongpf8848.tkpermission.permissions
 
 /**
  * 创建日期：2022-09-05 on 0:17
@@ -41,33 +50,67 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
     var popupWindow: PopupWindow? = null
     var actionType: Int = -1
     override fun initView(savedInstanceState: Bundle?) {
-        //申请隐私弹窗
-        PermissionX.init(this)
-            .permissions(Manifest.permission.CAMERA, Manifest.permission.LOCATION_HARDWARE, Manifest.permission.READ_CONTACTS,Manifest.permission.SEND_RESPOND_VIA_MESSAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
-            .onExplainRequestReason { scope, deniedList ->
-                scope.showRequestReasonDialog(deniedList, "Core fundamental are based on these permissions", "OK", "Cancel")
-            }
-            .onForwardToSettings { scope, deniedList ->
-                scope.showForwardToSettingsDialog(deniedList, "You need to allow necessary permissions in Settings manually", "OK", "Cancel")
-            }
-            .request { allGranted, grantedList, deniedList ->
-                if (allGranted) {
-                    ToastUtils.showShort("All permissions are granted")
-                } else {
-                    ToastUtils.showShort("These permissions are denied: $deniedList")
-                }
-            }
+
+//        PermissionX.init(this)
+//            .permissions(Manifest.permission.CAMERA, Manifest.permission.LOCATION_HARDWARE, Manifest.permission.READ_CONTACTS,Manifest.permission.SEND_RESPOND_VIA_MESSAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
+//            .onExplainRequestReason { scope, deniedList ->
+//                scope.showRequestReasonDialog(deniedList, "Core fundamental are based on these permissions", "OK", "Cancel")
+//            }
+//            .onForwardToSettings { scope, deniedList ->
+//                scope.showForwardToSettingsDialog(deniedList, "You need to allow necessary permissions in Settings manually", "OK", "Cancel")
+//            }
+//            .request { allGranted, grantedList, deniedList ->
+//                if (allGranted) {
+//                    ToastUtils.showShort("All permissions are granted")
+//                } else {
+//                    ToastUtils.showShort("These permissions are denied: $deniedList")
+//                }
+//            }
+        getPermissions()
 
         actionType = intent.getIntExtra("actionType", -1)
         event()
     }
 
-    override fun initData() {
 
-
+    /**
+     * 申请隐私弹窗
+     */
+    fun getPermissions() {
+        permissions(
+            Manifest.permission.CAMERA,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.READ_CONTACTS,
+            Manifest.permission.RECEIVE_SMS,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        ) {
+            /**
+             * 多个权限全部被允许时回调
+             */
+            allGranted {
+//                ToastUtils.showShort("All permissions have been passed")
+            }
+            /**
+             * 被拒绝的权限列表
+             */
+            denied {
+                gotoAppDetail(applicationContext)
+            }
+        }
     }
 
-    override fun initDataOnResume() {
+    /**
+     * 跳转到应用程序信息
+     */
+    fun gotoAppDetail(context: Context) {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        intent.data = Uri.parse("package:" + context.packageName)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(intent)
+    }
+
+    override fun initData() {
+
         viewModel.privacy()
         //利用H5给网络协议添加超链接
         callService(
@@ -75,6 +118,15 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
             mBinding.privacyPolicyTv
         )
     }
+
+    override fun initDataOnResume() {
+
+
+
+    }
+
+
+
 
     /**
      * 获取数据
@@ -147,6 +199,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         val closeImage = pwView.findViewById<RImageView>(R.id.privacy_fault_image)
         closeImage.setOnClickListener {
             popupWindow?.dismiss()
+
         }
         //设置popupWindow里面的未选中按钮
         val unselectImage = pwView.findViewById<RCheckBox>(R.id.privacyPopupCb)

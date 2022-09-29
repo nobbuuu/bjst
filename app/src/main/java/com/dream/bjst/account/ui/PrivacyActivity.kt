@@ -1,5 +1,6 @@
 package com.dream.bjst.account.ui
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
@@ -21,6 +22,7 @@ import com.dream.bjst.home.HomeImgActivity
 import com.dream.bjst.login.LoginActivity
 import com.dream.bjst.main.MainActivity
 import com.dream.bjst.other.WebViewActivity
+import com.permissionx.guolindev.PermissionX
 import com.ruffian.library.widget.RCheckBox
 import com.ruffian.library.widget.RImageView
 import com.ruffian.library.widget.RTextView
@@ -39,11 +41,30 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
     var popupWindow: PopupWindow? = null
     var actionType: Int = -1
     override fun initView(savedInstanceState: Bundle?) {
+        //申请隐私弹窗
+        PermissionX.init(this)
+            .permissions(Manifest.permission.CAMERA, Manifest.permission.LOCATION_HARDWARE, Manifest.permission.READ_CONTACTS,Manifest.permission.SEND_RESPOND_VIA_MESSAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
+            .onExplainRequestReason { scope, deniedList ->
+                scope.showRequestReasonDialog(deniedList, "Core fundamental are based on these permissions", "OK", "Cancel")
+            }
+            .onForwardToSettings { scope, deniedList ->
+                scope.showForwardToSettingsDialog(deniedList, "You need to allow necessary permissions in Settings manually", "OK", "Cancel")
+            }
+            .request { allGranted, grantedList, deniedList ->
+                if (allGranted) {
+                    ToastUtils.showShort("All permissions are granted")
+                } else {
+                    ToastUtils.showShort("These permissions are denied: $deniedList")
+                }
+            }
+
         actionType = intent.getIntExtra("actionType", -1)
         event()
     }
 
     override fun initData() {
+
+
     }
 
     override fun initDataOnResume() {

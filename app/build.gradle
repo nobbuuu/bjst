@@ -128,6 +128,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.android.support:cardview-v7:23.1.1'
+    //权限申请
+    implementation 'com.guolindev.permissionx:permissionx:1.7.1'
 
     //json解析
     implementation 'com.google.code.gson:gson:2.8.1'

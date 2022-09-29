@@ -11,7 +11,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tcl.launcher.task.Task
 
 /**
- * @author : Yzq
+ * @author : tz
  * time : 2020/11/10 13:55
  */
 class InitOtherTask : Task() {
@@ -47,10 +47,7 @@ class InitOtherTask : Task() {
         }
     }
 
-
     private fun initTitleBar() {
         TitleBar.setDefaultStyle(TclTitleBarStyle())
     }
-
-
 }

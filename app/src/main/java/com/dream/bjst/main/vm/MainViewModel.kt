@@ -1,7 +1,7 @@
 package com.dream.bjst.main.vm
 
 import com.dream.bjst.identification.bean.IdCardStatusBean
-import com.dream.bjst.login.bean.UpgradeDialogBean
+import com.dream.bjst.bean.UpgradeDialogBean
 import com.dream.bjst.net.Api
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent

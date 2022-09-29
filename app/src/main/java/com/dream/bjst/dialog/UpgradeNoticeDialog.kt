@@ -18,7 +18,7 @@
 //import com.dream.bjst.BuildConfig
 //import com.dream.bjst.R
 //import com.dream.bjst.databinding.DialogNoticeUpgradeBinding
-//import com.dream.bjst.login.bean.ResAppUpdateTxtInfo
+//import com.dream.bjst.bean.ResAppUpdateTxtInfo
 //import com.tcl.base.download.DownloadApkBetterHelper
 //import com.tcl.base.download.IUpgradeListener
 //import com.tcl.base.download.InstallApkHelper

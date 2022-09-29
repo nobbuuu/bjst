@@ -6,7 +6,6 @@ import com.dream.bjst.bean.LoginBean
 import com.dream.bjst.bean.LoginParam
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.identification.bean.IdCardStatusBean
-import com.dream.bjst.login.bean.UpgradeDialogBean
 import com.dream.bjst.net.Api
 import com.dream.bjst.utils.DeviceUtils
 import com.tcl.base.common.BaseViewModel

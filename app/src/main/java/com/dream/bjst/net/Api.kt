@@ -1,11 +1,10 @@
 package com.dream.bjst.net
 
-import android.util.Log
 import com.blankj.utilcode.util.GsonUtils
-import com.dream.bjst.account.bean.AccountDeleteBean
 import com.dream.bjst.account.bean.ChatMessageBean
 import com.dream.bjst.account.bean.PrivacyBean
 import com.dream.bjst.bean.BaseParamBean
+import com.dream.bjst.bean.DeviceUpStatusBean
 import com.dream.bjst.bean.LoginBean
 
 import com.dream.bjst.identification.bean.BankListBean
@@ -13,22 +12,12 @@ import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.IdCardStatusBean
 import com.dream.bjst.loan.bean.*
-import com.dream.bjst.login.bean.UpgradeDialogBean
-import com.dream.bjst.net.parser.JsonUtil
-import com.dream.bjst.net.parser.Response
+import com.dream.bjst.bean.UpgradeDialogBean
 import com.dream.bjst.other.toBoolean
 import com.dream.bjst.repayment.bean.*
-import com.google.gson.reflect.TypeToken
-import com.tcl.base.rxnetword.EncryptUtil
-import com.tcl.base.rxnetword.parser.BaseEncryptResponse
-import rxhttp.map
-import rxhttp.toClass
-import rxhttp.toStr
-import rxhttp.wrapper.entity.ParameterizedTypeImpl
+import com.dream.bjst.utils.DeviceUtils
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse
-import rxhttp.wrapper.utils.convert
-import java.lang.reflect.Type
 
 
 /**
@@ -228,7 +217,7 @@ object Api {
     suspend fun fetchProducts(): LoanInfoBean {
         //core/product/fetchProducts
         return RxHttp.postJson("/DB979B8691DB84869B90819780DB929180979CA4869B9081978087")
-            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .addAll(GsonUtils.toJson(QueryProductBean(DeviceUtils.getLocalIPAddress())))
             .toResponse<LoanInfoBean>()
             .await()
 
@@ -344,6 +333,18 @@ object Api {
         return RxHttp.postJson("/DB979B8691DB958484DB929180979CB58484A29186879D9B9AA2C6")
             .addAll(GsonUtils.toJson(BaseParamBean()))
             .toResponse<UpgradeDialogBean>()
+            .await()
+
+    }
+
+    /**
+     *判断客户是否完成设备信息上传(详细信息)
+     */
+    suspend fun hadUploadDeviceInfoDetails(): DeviceUpStatusBean {
+        //core/device/hadUploadDeviceInfoDetails
+        return RxHttp.postJson("/DB979B8691DB9091829D9791DB9C9590A184989B9590B091829D9791BD9A929BB09180959D9887")
+            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .toResponse<DeviceUpStatusBean>()
             .await()
 
     }

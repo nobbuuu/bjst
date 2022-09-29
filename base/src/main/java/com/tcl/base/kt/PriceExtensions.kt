@@ -68,3 +68,19 @@ fun String?.bigDecimalMinus(num: String = "0.00"): String {
     }
 }
 
+/**
+ * 价格计算（除法运算）（避免丢失精度）
+ */
+fun String?.bigDecimalDivide(num: String = "1"): String {
+    try {
+        if (this.isNullOrEmpty()) {
+            return ""
+        }
+        val minus = BigDecimal(this).divide(BigDecimal(num),2,BigDecimal.ROUND_HALF_UP)
+        return minus.toString().deleteUnUseZero()
+    } catch (e: Exception) {
+        e.printStackTrace()
+        return ""
+    }
+}
+

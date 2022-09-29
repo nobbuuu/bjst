@@ -1,4 +1,4 @@
-package com.dream.bjst.login.bean
+package com.dream.bjst.bean
 
 import java.io.Serializable
 

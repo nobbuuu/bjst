@@ -46,10 +46,14 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             addItemDecoration(RecycleViewDivider(requireContext(), LinearLayoutManager.VERTICAL))
         }
 
+        loadData()
+        onEvent()
+    }
+
+    private fun loadData() {
         viewModel.fetchCreditAmount()
         viewModel.fetchProducts()
         viewModel.fetchProcessingOrderCount()
-        onEvent()
     }
 
     override fun onStart() {
@@ -63,6 +67,9 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
     }
 
     fun onEvent() {
+        mBinding.smartRefresh.setOnRefreshListener {
+            loadData()
+        }
         mBinding.ordersLay.ktClick {
             ktStartActivity4Result(LoanRecordsActivity::class, 920)
         }
@@ -196,7 +203,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             }
         }
         viewModel.loanData.observe(this) {
-
+            mBinding.smartRefresh.finishRefresh()
             //刷新Amount弹框数据和产品列表数据
             val defaultChooseNum = it.`90919295819880A79198919780A4869B90819780B79B819A80`
             it.`84869B90819780B89D8780`?.forEachIndexed { index, bean ->
@@ -254,10 +261,21 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
                     )
                 )
             }
+            var months = "1"
             if (periodList.isNotEmpty()) {
                 mBinding.days.text = periodList[0].num + " Days"
+                months = periodList[0].num.bigDecimalDivide("30")
             }
             mBinding.fkAccountLay.isVisible = it.`929FB597979B819A80`
+            var tempAmount = "0"
+            if (amountList.size >= defaultChooseNum) {
+                val amount = amountList[defaultChooseNum - 1].num
+                val pa = amount.bigDecimalDivide(months.toString())
+                tempAmount = amount.bigDecimalPrice("0.02").bigDecimalPlus(pa)
+            }
+            mBinding.accrualTv.text =
+                "Monthly repayment ₹ $tempAmount, ₹ $tempAmount=loan mount*2%+loan amount/loan months"
+
         }
     }
 

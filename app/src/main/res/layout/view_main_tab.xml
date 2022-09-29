@@ -62,7 +62,7 @@
 
     <com.ruffian.library.widget.RTextView
         android:id="@+id/tabUnreadCount"
-        style="@style/common_badge"
+        style="@style/common_badge_no_border"
         app:layout_constraintCircle="@id/tabImgIv"
         app:layout_constraintCircleAngle="45"
         app:layout_constraintCircleRadius="@dimen/dp_12"
@@ -70,7 +70,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:text_color_normal="@color/white"
         tools:ignore="SmallSp"
-        tools:text="99+"
+        tools:text=""
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

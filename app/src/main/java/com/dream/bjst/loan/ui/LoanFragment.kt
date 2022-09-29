@@ -10,7 +10,7 @@ import com.blankj.utilcode.util.BarUtils
 import com.dream.bjst.R
 import com.dream.bjst.account.ui.DeleteProgressActivity
 import com.dream.bjst.databinding.FragmentLoanBinding
-import com.dream.bjst.dialog.AmountDialog
+import com.dream.bjst.dialog.AmountPeriodDialog
 import com.dream.bjst.dialog.LoanInfoDialog
 import com.dream.bjst.dialog.UnLoanDialog
 import com.dream.bjst.loan.adapter.LoanProductAdapter
@@ -30,8 +30,8 @@ import java.util.*
 class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     lateinit var loanAdapter: LoanProductAdapter
-    lateinit var mAmountDialog: AmountDialog
-    lateinit var mPeriodDialog: AmountDialog
+    lateinit var mAmountPeriodDialog: AmountPeriodDialog
+    lateinit var mPeriodDialog: AmountPeriodDialog
     private val amountList = arrayListOf<AmountPeriodBean>()
     private val periodList = arrayListOf<AmountPeriodBean>()
     private val mHandler = Handler(Looper.getMainLooper())
@@ -39,14 +39,16 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.userIcon)
         loanAdapter = LoanProductAdapter()
-        mAmountDialog = AmountDialog(requireContext())
-        mPeriodDialog = AmountDialog(requireContext(), type = 2)
+        mAmountPeriodDialog = AmountPeriodDialog(requireContext())
+        mPeriodDialog = AmountPeriodDialog(requireContext(), type = 2)
         mBinding.otherLoanRv.apply {
             adapter = loanAdapter
             addItemDecoration(RecycleViewDivider(requireContext(), LinearLayoutManager.VERTICAL))
         }
 
+        viewModel.fetchCreditAmount()
         viewModel.fetchProducts()
+        viewModel.fetchProcessingOrderCount()
         onEvent()
     }
 
@@ -62,23 +64,23 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     fun onEvent() {
         mBinding.ordersLay.ktClick {
-            ktStartActivity4Result(LoanRecordsActivity::class,920)
+            ktStartActivity4Result(LoanRecordsActivity::class, 920)
         }
         mBinding.amountLay.ktClick {
-            mAmountDialog.setData(amountList).show()
+            mAmountPeriodDialog.setData(amountList).show()
         }
         mBinding.periodLay.ktClick {
             mPeriodDialog.setData(periodList).show()
         }
         //选择贷款金额后刷新产品列表
-        mAmountDialog.setOnSelectListener {
+        mAmountPeriodDialog.setOnSelectListener {
             mBinding.amountTv.text = "₹ " + it.num
             var tempAmount = 0
             var amountReceive = 0
             var repayAmount = 0
             loanAdapter.data.forEachIndexed { index, bean ->
                 tempAmount += bean.`989B959AB5999B819A80`
-                bean.isCheck = tempAmount <= it.num
+                bean.isCheck = tempAmount <= it.num.toDouble()
                 if (bean.isCheck) {
                     amountReceive += bean.`869197919D8291B5999B819A80`
                     repayAmount += bean.`9A919190A69184958DB5999B819A80`
@@ -97,7 +99,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
                 viewModel.fetchCustomerKycStatus()
             } else {
                 viewModel.loanPreData.value?.let {
-                    if (it.`83959D80A69184958DB5999B819A80` <= 0) {
+                    if (it.`83959D80A69184958DB5999B819A80` > 0) {
                         UnLoanDialog(requireContext()) {
                             Navigation.findNavController(mBinding.loanRoot)
                                 .navigate(R.id.loan_to_navigation_repayment)
@@ -128,6 +130,19 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     override fun startObserve() {
         super.startObserve()
+        viewModel.processOrders.observe(this) {//处理中的订单数量
+            mBinding.processNumTv.text = "$it orders processing currently"
+            try {
+                val haveProcessOrder = it.toInt() > 0
+                mBinding.ordersLay.isVisible = haveProcessOrder
+                if (haveProcessOrder) {
+                    Navigation.findNavController(mBinding.loanRoot)
+                        .navigate(R.id.loan_to_navigation_repayment)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
         viewModel.userStatus.observe(this) {
 
             //是否黑名单
@@ -166,7 +181,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
                     it.`869187B29180979CA4869B90819780`.`84869B90819780B89D8780`
                 )
                 LoanInfoDialog(requireContext(), bean) {
-                    ktStartActivity4Result(LoanRecordsActivity::class,920)
+                    ktStartActivity4Result(LoanRecordsActivity::class, 920)
                 }.show()
             }
         }
@@ -174,7 +189,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             val unLoan =
                 it.`978691909D80B5999B819A80` <= 0 || it.`83959D80A69184958DB5999B819A80` <= 0
             mBinding.unLoanLay.isVisible = unLoan
-            if (it.`83959D80A69184958DB5999B819A80` <= 0) {
+            if (it.`83959D80A69184958DB5999B819A80` > 0) {
                 mBinding.unLoanSummary.text = "Recovery amount after repayment"
             } else if (it.`978691909D80B5999B819A80` <= 0) {
                 mBinding.unLoanSummary.text = "No application product available"
@@ -195,25 +210,38 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             amountList.clear()
 
             loanAdapter.data.forEachIndexed { index, bean ->
-                amount += bean.`989B959AB5999B819A80`
-                amountList.add(
-                    AmountPeriodBean(
-                        num = amount,
-                        isEnable = index < it.`99958CB89B959AA4869B90819780B79B819A80`,
-                        isCheck = defaultChooseNum == index + 1
+                val canLoanProduct = index < it.`99958CB89B959AA4869B90819780B79B819A80`
+                if (canLoanProduct) {
+                    amount += bean.`989B959AB5999B819A80`
+                    amountList.add(
+                        AmountPeriodBean(
+                            num = amount.toString(),
+                            isEnable = canLoanProduct,
+                            isCheck = defaultChooseNum == index + 1
+                        )
                     )
-                )
+                }
+
                 if (index < defaultChooseNum) {
                     amountReceive += bean.`869197919D8291B5999B819A80`
                     repayAmount += bean.`9A919190A69184958DB5999B819A80`
                 }
             }
+
+            if (amountList.isNotEmpty()) {
+                amountList.add(AmountPeriodBean(num = amountList.last().num.bigDecimalPrice("1.2")))
+            } else {
+                amountList.add(AmountPeriodBean(num = "0"))
+            }
+            amountList.add(AmountPeriodBean(num = "300000"))
+
             if (amountList.size >= defaultChooseNum) {
                 mBinding.amountTv.text = "₹ " + amountList[defaultChooseNum - 1].num
                 mBinding.amountReceiveNum.text = "₹ $amountReceive"
                 mBinding.repayAmount.text = "₹ $repayAmount"
                 mBinding.repaymentDate.text = it.`869184958DB0958091`
             }
+
 
             //借款周期
             periodList.clear()

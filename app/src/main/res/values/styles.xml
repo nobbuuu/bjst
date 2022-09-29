@@ -622,8 +622,8 @@
 
     <style name="common_badge_no_border">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">14dp</item>
-        <item name="android:minWidth">14dp</item>
+        <item name="android:layout_height">10dp</item>
+        <item name="android:minWidth">10dp</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingStart">3dp</item>
         <item name="android:paddingEnd">3dp</item>

@@ -17,6 +17,7 @@ class AmountPeriodAdapter(val type: Int = 1, val block: ((AmountPeriodBean) -> U
             holder.setText(R.id.amountTv, "₹ " + item.num)
         } else {
             holder.setText(R.id.amountTv, item.num.toString() + " Days")
+            holder.setText(R.id.tipsTv,"repay in time, longer tenure")
         }
         val amountSelectIv = holder.getView<ImageView>(R.id.amountSelectIv)
         amountSelectIv.isVisible = item.isEnable

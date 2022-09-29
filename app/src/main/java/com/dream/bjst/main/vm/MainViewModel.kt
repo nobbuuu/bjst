@@ -29,6 +29,6 @@ class MainViewModel : BaseViewModel() {
         rxLaunchUI({
             val result = Api.fetchCustomerKycStatus()
             userStatus.postValue(result)
-        })
+        }, showDialog = false)
     }
 }

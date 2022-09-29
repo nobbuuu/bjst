@@ -3,6 +3,7 @@ package com.dream.bjst.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -17,6 +18,7 @@ import com.dream.bjst.main.vm.MainViewModel
 import com.dream.bjst.upgrade.NewVersionBean
 import com.dream.bjst.upgrade.UpgradeDialogFragment
 import com.google.android.material.tabs.TabLayout
+import com.ruffian.library.widget.RTextView
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.download.DownloadApkBetterHelper
 import com.tcl.base.kt.nullToEmpty
@@ -57,8 +59,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
         repeat(TabManager.menus.size) {
             val tab = mBinding.mainTab.newTab()
-            val mainTab = MainTabView(this, TabManager.menus[it])
-            tab.customView = mainTab
+            tab.customView = MainTabView(this, TabManager.menus[it])
             mBinding.mainTab.addTab(tab)
         }
 
@@ -147,6 +148,15 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 }
             }
         }
+
+        viewModel.userStatus.observe(this) {
+            if (it.`9A919190B09B9D9A93BD809199` == "90") {//银行卡重绑定
+                val lastTab = mBinding.mainTab.getTabAt(TabManager.menus.lastIndex)
+                if (lastTab?.customView is MainTabView) {
+                    lastTab?.customView?.findViewById<RTextView>(R.id.tabUnreadCount)?.isVisible = true
+                }
+            }
+        }
     }
 
     lateinit var upgradeDialogFragment: UpgradeDialogFragment
@@ -164,6 +174,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     override fun initData() {
         //版本更新
         viewModel.upGradeContent()
+        viewModel.fetchCustomerKycStatus()
     }
 
     override fun initDataOnResume() {

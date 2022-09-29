@@ -17,6 +17,7 @@ class LoanViewModel : BaseViewModel() {
     val applyData = SingleLiveEvent<ApplyResultBean>()
     val historyData = SingleLiveEvent<OrderResultBean>()
     val userStatus = SingleLiveEvent<IdCardStatusBean>()
+    val processOrders = SingleLiveEvent<String>()
 
     fun fetchCustomerKycStatus() {
         rxLaunchUI({
@@ -49,6 +50,12 @@ class LoanViewModel : BaseViewModel() {
         rxLaunchUI({
             val result = Api.fetchOrderHistory(param)
             historyData.postValue(result)
+        }, showDialog = false)
+    }
+    fun fetchProcessingOrderCount() {
+        rxLaunchUI({
+            val result = Api.fetchProcessingOrderCount()
+            processOrders.postValue(result)
         }, showDialog = false)
     }
 }

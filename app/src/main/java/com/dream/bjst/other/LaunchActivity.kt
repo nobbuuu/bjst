@@ -58,14 +58,16 @@ class LaunchActivity : BaseActivity<MainViewModel, ActivityLaunchBinding>() {
     override fun startObserve() {
         super.startObserve()
         viewModel.userStatus.observe(this) {
-            var action = Constant.ACTION_TYPE_HOME
-            if (it.`959898BD809199A4958787`) {
-                action = Constant.ACTION_TYPE_MAIN
+            mBinding.rootLay.post {
+                var action = Constant.ACTION_TYPE_HOME
+                if (it.`959898BD809199A4958787`) {
+                    action = Constant.ACTION_TYPE_MAIN
+                }
+                ktStartActivity(MainActivity::class) {
+                    putExtra(Constant.actionType, action)
+                }
+                finish()
             }
-            ktStartActivity(MainActivity::class) {
-                putExtra(Constant.actionType, action)
-            }
-            finish()
         }
     }
 

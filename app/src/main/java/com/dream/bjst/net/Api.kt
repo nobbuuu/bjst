@@ -271,6 +271,18 @@ object Api {
     }
 
     /**
+     * 获取处理中的订单数量
+     */
+    suspend fun fetchProcessingOrderCount(): String {
+        //core/borrow/fetchProcessingOrderCount
+        return RxHttp.postJson("/DB979B8691DB969B86869B83DB929180979CA4869B979187879D9A93BB86909186B79B819A80")
+            .addAll(GsonUtils.toJson(BaseParamBean()))
+            .toResponse<String>()
+            .await()
+
+    }
+
+    /**
      * 还款首页
      */
 

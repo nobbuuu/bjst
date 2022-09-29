@@ -18,7 +18,7 @@ import com.tcl.base.weiget.recylerview.RecycleViewDivider
  *  Period
  *  分期弹窗
  */
-class AmountDialog(context: Context, val list: List<AmountPeriodBean>? = null,val type: Int = 1) :
+class AmountPeriodDialog(context: Context, val list: List<AmountPeriodBean>? = null, val type: Int = 1) :
     BaseBindingDialog<DialogAmountBinding>(context, gravity = Gravity.CENTER) {
     var listener: ((AmountPeriodBean) -> Unit)? = null
     val mAdapter = AmountPeriodAdapter(type = type) {
@@ -28,6 +28,9 @@ class AmountDialog(context: Context, val list: List<AmountPeriodBean>? = null,va
     val divider = RecycleViewDivider(context, LinearLayoutManager.VERTICAL)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (type == 2){
+            mBinding.title.text = "Period"
+        }
         mBinding.dialogRv.apply {
             adapter = mAdapter
             removeItemDecoration(divider)
@@ -38,7 +41,7 @@ class AmountDialog(context: Context, val list: List<AmountPeriodBean>? = null,va
         }
     }
 
-    fun setData(data: List<AmountPeriodBean>): AmountDialog {
+    fun setData(data: List<AmountPeriodBean>): AmountPeriodDialog {
         mAdapter.setList(data)
         return this
     }

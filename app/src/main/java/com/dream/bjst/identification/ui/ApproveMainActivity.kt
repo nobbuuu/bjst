@@ -117,7 +117,7 @@ class ApproveMainActivity :
                     mBinding.days.text = it.`8491869B9D90`.toString() + " months"
                 }
             }
-            mBinding.interestRateTv.text = it.`8D919586A6958091` + "%p.a."
+            mBinding.interestRateTv.text = it.`8D919586A6958091` + "%"
         }
         viewModel.idCardStatus.observe(this) {
             var isAll = it.`959898BD809199A4958787`

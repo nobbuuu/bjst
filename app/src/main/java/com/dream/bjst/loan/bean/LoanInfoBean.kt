@@ -11,7 +11,7 @@ data class LoanInfoBean(
 
 data class PeriodBean(
     val `919A95969891`: Boolean,
-    val `989B959AA6959A9391`: Int
+    val `989B959AA6959A9391`: String
 )
 
 data class ProductListBean(

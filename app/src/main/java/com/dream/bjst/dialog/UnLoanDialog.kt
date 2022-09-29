@@ -41,6 +41,7 @@ class UnLoanDialog(
         }
         mBinding.contentTV.isVisible = type == 1
         mBinding.countDownTv.isVisible = type == 2
+        mBinding.closeIv.isVisible = type == 1
         mBinding.sureBtn.ktClick {
             dismiss()
             block?.invoke()

@@ -73,7 +73,7 @@
         app:lrTitle="Expiration time：" />
 
     <com.ruffian.library.widget.RTextView
-        android:id="@+id/repayNow"
+        android:id="@+id/actionTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/dp_11"
@@ -83,6 +83,7 @@
         android:text="Repay now"
         android:textColor="@color/white"
         android:textSize="@dimen/sp_11"
+        android:visibility="gone"
         app:background_normal="@color/color_389830"
         app:corner_radius="@dimen/dp_4"
         app:layout_constraintBottom_toBottomOf="parent"

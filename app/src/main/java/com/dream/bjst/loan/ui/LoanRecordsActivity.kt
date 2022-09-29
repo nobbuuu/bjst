@@ -22,7 +22,7 @@ class LoanRecordsActivity : BaseActivity<LoanViewModel, ActivityLoanRecordsBindi
 
     private var curPage = 1
     val mLoanRecordsAdapter = LoanRecordsAdapter {
-        setResult(921)
+        setResult(it * 10)
         finish()
     }
     private val dataList = arrayListOf<OrderResultBean>()

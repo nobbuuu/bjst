@@ -8,6 +8,7 @@ import com.dream.bjst.common.UserManager
 import com.dream.bjst.identification.bean.IdCardStatusBean
 import com.dream.bjst.login.bean.UpgradeDialogBean
 import com.dream.bjst.net.Api
+import com.dream.bjst.utils.DeviceUtils
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
 import com.tcl.base.kt.ktToastShow
@@ -46,7 +47,8 @@ class LoginViewModel : BaseViewModel() {
                 LoginParam(
                     `978187809B999186B99B969D9891` = phone,
                     `9B8084B79B9091` = code,
-                    `9A9B8091A09B9F919A` = mNetToken
+                    `9A9B8091A09B9F919A` = mNetToken,
+                    `9D84` = DeviceUtils.getLocalIPAddress()
                 )
             )
             val result = Api.loginOrRegByOtp(param)

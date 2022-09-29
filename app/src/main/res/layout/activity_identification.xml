@@ -55,9 +55,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/loanMount"
                     android:layout_centerHorizontal="true"
-                    android:text="₹ 50,000"
+                    tools:text="₹ 50,000"
                     android:textColor="#ffffffff"
-                    android:textSize="@dimen/sp_20" />
+                    android:textSize="@dimen/sp_16" />
 
 
             </RelativeLayout>
@@ -88,9 +88,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/loanInterest"
                     android:layout_centerHorizontal="true"
-                    android:text="0.923%"
+                    tools:text="0.923%"
                     android:textColor="#ffffffff"
-                    android:textSize="@dimen/sp_20" />
+                    android:textSize="@dimen/sp_16" />
 
             </RelativeLayout>
 
@@ -121,7 +121,7 @@
                     android:layout_centerHorizontal="true"
                     tools:text="24months"
                     android:textColor="#ffffffff"
-                    android:textSize="@dimen/sp_19" />
+                    android:textSize="@dimen/sp_16" />
 
             </RelativeLayout>
 

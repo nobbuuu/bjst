@@ -255,7 +255,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
                 )
             }
             if (periodList.isNotEmpty()) {
-                mBinding.days.text = periodList[0].num.toString() + " Days"
+                mBinding.days.text = periodList[0].num + " Days"
             }
             mBinding.fkAccountLay.isVisible = it.`929FB597979B819A80`
         }

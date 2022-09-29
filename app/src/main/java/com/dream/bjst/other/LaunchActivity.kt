@@ -52,7 +52,7 @@ class LaunchActivity : BaseActivity<MainViewModel, ActivityLaunchBinding>() {
                     finish()
                 }
             }
-        }, 2000) //3秒
+        }, 3000) //3秒
     }
 
     override fun startObserve() {
@@ -67,6 +67,12 @@ class LaunchActivity : BaseActivity<MainViewModel, ActivityLaunchBinding>() {
                     putExtra(Constant.actionType, action)
                 }
                 finish()
+            }
+        }
+
+        viewModel.unLogin.observe(this) {
+            mBinding.rootLay.post {
+                ktStartActivity(LoginActivity::class)
             }
         }
     }

@@ -11,8 +11,10 @@ import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ColorUtils
 import com.dream.bjst.BuildConfig
 import com.dream.bjst.R
+import com.dream.bjst.account.ui.DeleteProgressActivity
 import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityMainBinding
+import com.dream.bjst.dialog.UnLoanDialog
 import com.dream.bjst.main.menu.*
 import com.dream.bjst.main.vm.MainViewModel
 import com.dream.bjst.upgrade.NewVersionBean
@@ -21,6 +23,7 @@ import com.google.android.material.tabs.TabLayout
 import com.ruffian.library.widget.RTextView
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.download.DownloadApkBetterHelper
+import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.nullToEmpty
 import com.tcl.base.utils.MmkvUtil
 import com.tcl.tclzjpro.main.FixFragmentNavigator
@@ -150,10 +153,17 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         }
 
         viewModel.userStatus.observe(this) {
+            //是否黑名单
+            if (it.`969895979F`) {
+                UnLoanDialog(this, type = 2) {
+                    ktStartActivity(DeleteProgressActivity::class)
+                }.show()
+            }
             if (it.`9A919190B09B9D9A93BD809199` == "90") {//银行卡重绑定
                 val lastTab = mBinding.mainTab.getTabAt(TabManager.menus.lastIndex)
                 if (lastTab?.customView is MainTabView) {
-                    lastTab?.customView?.findViewById<RTextView>(R.id.tabUnreadCount)?.isVisible = true
+                    lastTab?.customView?.findViewById<RTextView>(R.id.tabUnreadCount)?.isVisible =
+                        true
                 }
             }
         }
@@ -182,8 +192,13 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == 921) {
-            controller.navigate(R.id.navigation_repayment)
+        when (resultCode) {
+            300 -> {
+                controller.navigate(R.id.navigation_repayment)
+            }
+            400, 500 -> {
+                controller.navigate(R.id.navigation_loan)
+            }
         }
     }
 }

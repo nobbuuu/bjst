@@ -14,6 +14,7 @@ import com.tcl.base.event.SingleLiveEvent
 class MainViewModel : BaseViewModel() {
     val upGradeResults = SingleLiveEvent<UpgradeDialogBean>()//版本更新
     val userStatus = SingleLiveEvent<IdCardStatusBean>()
+    val unLogin = SingleLiveEvent<Boolean>()
 
     /**
      * 版本更新
@@ -29,6 +30,8 @@ class MainViewModel : BaseViewModel() {
         rxLaunchUI({
             val result = Api.fetchCustomerKycStatus()
             userStatus.postValue(result)
-        }, showDialog = false)
+        }, showDialog = false, errorBlock = {
+            unLogin.postValue(true)
+        })
     }
 }

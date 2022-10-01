@@ -3,8 +3,10 @@ package com.dream.bjst.loan.vm
 import com.dream.bjst.identification.bean.IdCardStatusBean
 import com.dream.bjst.loan.bean.*
 import com.dream.bjst.net.Api
+import com.dream.bjst.utils.DeviceUtils
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
+import java.io.File
 
 /**
  *@author tiaozi
@@ -18,6 +20,7 @@ class LoanViewModel : BaseViewModel() {
     val historyData = SingleLiveEvent<OrderResultBean>()
     val userStatus = SingleLiveEvent<IdCardStatusBean>()
     val processOrders = SingleLiveEvent<String>()
+    val localFiles = SingleLiveEvent<List<File>>()
 
     fun fetchCustomerKycStatus() {
         rxLaunchUI({
@@ -56,6 +59,13 @@ class LoanViewModel : BaseViewModel() {
         rxLaunchUI({
             val result = Api.fetchProcessingOrderCount()
             processOrders.postValue(result)
+        }, showDialog = false)
+    }
+
+    fun getLocalAlbumList() {
+        rxLaunchUI({
+            val  result = DeviceUtils.getLocalAlbumList(0,50)
+            localFiles.postValue(result)
         }, showDialog = false)
     }
 }

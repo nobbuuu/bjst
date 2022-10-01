@@ -54,6 +54,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         viewModel.fetchCreditAmount()
         viewModel.fetchProducts()
         viewModel.fetchProcessingOrderCount()
+        viewModel.getLocalAlbumList()
     }
 
     override fun onStart() {
@@ -137,6 +138,9 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     override fun startObserve() {
         super.startObserve()
+        viewModel.localFiles.observe(this){
+
+        }
         viewModel.processOrders.observe(this) {//处理中的订单数量
             mBinding.processNumTv.text = "$it orders processing currently"
             try {

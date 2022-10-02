@@ -18,6 +18,8 @@ import android.view.*
 import android.webkit.WebView
 import android.widget.PopupWindow
 import android.widget.TextView
+import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.PermissionUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
 import com.dream.bjst.account.vm.AccountViewModel
@@ -36,6 +38,7 @@ import com.ruffian.library.widget.RTextView
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
+import com.tcl.base.kt.ktToastShow
 import com.tcl.base.utils.MmkvUtil
 import io.github.kongpf8848.tkpermission.permission
 import io.github.kongpf8848.tkpermission.permissions
@@ -50,24 +53,6 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
     var popupWindow: PopupWindow? = null
     var actionType: Int = -1
     override fun initView(savedInstanceState: Bundle?) {
-
-//        PermissionX.init(this)
-//            .permissions(Manifest.permission.CAMERA, Manifest.permission.LOCATION_HARDWARE, Manifest.permission.READ_CONTACTS,Manifest.permission.SEND_RESPOND_VIA_MESSAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
-//            .onExplainRequestReason { scope, deniedList ->
-//                scope.showRequestReasonDialog(deniedList, "Core fundamental are based on these permissions", "OK", "Cancel")
-//            }
-//            .onForwardToSettings { scope, deniedList ->
-//                scope.showForwardToSettingsDialog(deniedList, "You need to allow necessary permissions in Settings manually", "OK", "Cancel")
-//            }
-//            .request { allGranted, grantedList, deniedList ->
-//                if (allGranted) {
-//                    ToastUtils.showShort("All permissions are granted")
-//                } else {
-//                    ToastUtils.showShort("These permissions are denied: $deniedList")
-//                }
-//            }
-        getPermissions()
-
         actionType = intent.getIntExtra("actionType", -1)
         event()
     }
@@ -77,26 +62,26 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
      * 申请隐私弹窗
      */
     fun getPermissions() {
-        permissions(
-            Manifest.permission.CAMERA,
+        PermissionUtils.permission(Manifest.permission.CAMERA,
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.READ_CONTACTS,
             Manifest.permission.RECEIVE_SMS,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        ) {
-            /**
-             * 多个权限全部被允许时回调
-             */
-            allGranted {
-//                ToastUtils.showShort("All permissions have been passed")
-            }
-            /**
-             * 被拒绝的权限列表
-             */
-            denied {
-                gotoAppDetail(applicationContext)
-            }
-        }
+            Manifest.permission.READ_EXTERNAL_STORAGE)
+            .callback(object : PermissionUtils.FullCallback {
+                override fun onGranted(granted: MutableList<String>) {
+                    if (granted.size ==5){
+                        goMain()
+                    }
+                }
+
+                override fun onDenied(
+                    deniedForever: MutableList<String>,
+                    denied: MutableList<String>
+                ) {
+                   "The authorization can be used normally".ktToastShow()
+                }
+
+            }).request()
     }
 
     /**
@@ -122,10 +107,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
     override fun initDataOnResume() {
 
 
-
     }
-
-
 
 
     /**
@@ -156,11 +138,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
             if (!mBinding.privacyCb.isChecked) {
                 ToastUtils.showShort("Please check this box and continue")
             } else {
-                MmkvUtil.encode("isFirst", false)
-                ktStartActivity(MainActivity::class) {
-                    putExtra("actionType", Constant.ACTION_TYPE_HOME)
-                }
-                finish()
+                getPermissions()
             }
         }
 
@@ -170,6 +148,19 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
                 ktStartActivity(HomeImgActivity::class)
             }
         })
+    }
+
+    private fun goMain() {
+        mBinding.webView.post {
+            val isFirst = MmkvUtil.decodeBooleanOpen("isFirst")
+            if (isFirst == true) {
+                ktStartActivity(MainActivity::class) {
+                    putExtra(Constant.actionType, Constant.ACTION_TYPE_HOME)
+                }
+                MmkvUtil.encode("isFirst", false)
+            }
+            finish()
+        }
     }
 
     /**
@@ -210,14 +201,8 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
             if (!unselectImage.isChecked) {
                 ToastUtils.showShort("Please check this box and continue")
             } else {
-                val isFirst = MmkvUtil.decodeBooleanOpen("isFirst")
-                if (isFirst == true) {
-                    ktStartActivity(MainActivity::class) {
-                        putExtra(Constant.actionType, Constant.ACTION_TYPE_HOME)
-                    }
-                    MmkvUtil.encode("isFirst", false)
-                }
-                finish()
+                popupWindow?.dismiss()
+                getPermissions()
             }
         }
         //设置disagree按钮

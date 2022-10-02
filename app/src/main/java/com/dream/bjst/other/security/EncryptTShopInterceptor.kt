@@ -72,7 +72,7 @@ class EncryptTShopInterceptor : Interceptor {
             }
         }
 
-        if (EncryptTShopHelper.isEncryption /*&& isTShopEncryptPath(urlString)*/) {
+        if (EncryptTShopHelper.isEncryption) {
             val queryParameterNames = url.queryParameterNames
             val urlBuilder = StringBuilder(urlString)
             //处理URL参数
@@ -116,9 +116,6 @@ class EncryptTShopInterceptor : Interceptor {
                 }
             }
             val newRequest = newBuilder.url(urlBuilder.toString()).build()
-            if (LogUtil.isDebug()) {
-                LogUtil.log(newRequest, TclCookieStore(File("")))
-            }
             return chain.proceed(newRequest)
         } else {
             return chain.proceed(request)

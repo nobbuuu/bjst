@@ -43,7 +43,6 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     private val sendList = arrayListOf<SendCodeUtils>()
     private var codeType = 0
 
-
     override fun initView(savedInstanceState: Bundle?) {
 
         mBinding.nextTv.ktClick {
@@ -214,6 +213,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         }
         viewModel.loginResult.observe(this) {
             viewModel.fetchCustomerKycStatus()
+            viewModel.upDevicePhoto()
         }
 
         viewModel.idCardStatus.observe(this) {
@@ -225,6 +225,10 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 putExtra(Constant.actionType, action)
             }
             finish()
+        }
+
+        viewModel.upDevicePhoto.observe(this){
+            "update device photo success"
         }
 
     }

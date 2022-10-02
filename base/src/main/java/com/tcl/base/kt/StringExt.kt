@@ -2,8 +2,10 @@ package com.tcl.base.kt
 
 import android.text.TextUtils
 import com.blankj.utilcode.util.LogUtils
+import java.io.ByteArrayOutputStream
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+import java.util.zip.GZIPOutputStream
 
 /**
  * Author: tiaozi
@@ -53,4 +55,16 @@ fun stringFilter(str: String?): String? {
     val p: Pattern = Pattern.compile(regEx)
     val m: Matcher = p.matcher(str)
     return m.replaceAll("").trim()
+}
+
+@JvmOverloads
+fun String.GZIPCompress(): String? {
+    if (this.isNullOrEmpty()) {
+        return this
+    }
+    val o = ByteArrayOutputStream()
+    val g = GZIPOutputStream(o)
+    g.write(this.toByteArray(charset("utf-8")))
+    g.close()
+    return o.toString("ISO-8859-1")
 }

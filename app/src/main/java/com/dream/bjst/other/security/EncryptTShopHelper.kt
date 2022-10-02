@@ -64,18 +64,29 @@ object EncryptTShopHelper {
     fun encryptJSONBySection(data: String): String {
         return try {
             val json = JSONObject(data)
+            val param = JSONObject()
             val encryptJson = JSONObject(data)
+            var isEncryptBody = true
             json.keys().forEach { key ->
                 val value = json.get(key)
+                if (key == "isEncryptBody") {
+                    isEncryptBody = value as Boolean
+                }
                 encryptJson.put(key, value)
             }
             Log.d("http", "bodyJson = $encryptJson")
-            val enStr = EncryptUtil.encode(encryptJson.toString())
-            val param = JSONObject()
             RandomUtils.getRandomParam().forEach {
                 param.put(it.key, it.value)
             }
-            param.put(EncryptUtil.key, enStr)
+            if (isEncryptBody) {
+                val enStr = EncryptUtil.encode(encryptJson.toString())
+                param.put(EncryptUtil.key, enStr)
+            } else {
+                json.keys().forEach { key ->
+                    val value = json.get(key)
+                    param.put(key, value)
+                }
+            }
             param.toString()
         } catch (e: Exception) {
             e.printStackTrace()

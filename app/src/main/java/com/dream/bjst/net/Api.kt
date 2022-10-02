@@ -295,6 +295,7 @@ object Api {
             .toResponse<RepaymentInDetailBean>()
             .await()
     }
+
     /**
      * 延期还款界面
      */
@@ -305,6 +306,7 @@ object Api {
             .toResponse<ExtendRePaymentBean>()
             .await()
     }
+
     /**
      *post UTR数字和图片
      */
@@ -326,6 +328,7 @@ object Api {
             .await()
 
     }
+
     /**
      *版本更新
      */
@@ -345,6 +348,19 @@ object Api {
         return RxHttp.postJson("/DB979B8691DB9091829D9791DB9C9590A184989B9590B091829D9791BD9A929BB09180959D9887")
             .addAll(GsonUtils.toJson(BaseParamBean()))
             .toResponse<DeviceUpStatusBean>()
+            .await()
+
+    }
+
+    /**
+     *上传设备信息(相册信息)，注意：此接口的参数值需要进行压缩，所以不需要进行全body加密
+     */
+    suspend fun uploadDeviceAlbumInfo(param: String): ConfirmResultBean {
+        //core/device/uploadDeviceAlbumInfo
+        return RxHttp.postJson("/DB979B8691DB9091829D9791DB8184989B9590B091829D9791B598968199BD9A929B")
+            .addAll(param)
+            .add("isEncryptBody", false)
+            .toResponse<ConfirmResultBean>()
             .await()
 
     }

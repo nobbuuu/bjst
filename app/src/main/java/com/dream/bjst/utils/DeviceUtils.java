@@ -6,7 +6,10 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.Utils;
+import com.dream.bjst.bean.PhotoInfoBean;
+import com.tcl.base.kt.StringExtKt;
 
 import java.io.File;
 import java.net.Inet4Address;
@@ -52,8 +55,8 @@ public class DeviceUtils {
      * @param pageSize  页码大小
      */
 
-    public static List<File> getLocalAlbumList(int pageIndex, int pageSize) {
-        List<File> files = new ArrayList<>();
+    public static String getLocalAlbumList(int pageIndex, int pageSize) {
+        List<PhotoInfoBean> photos = new ArrayList<>();
         Uri mImageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         try {
             Cursor mCursor = Utils.getApp().getContentResolver().query(mImageUri, null,
@@ -62,13 +65,18 @@ public class DeviceUtils {
                     new String[]{"image/jpeg", "image/png"}, MediaStore.Images.Media.DATE_MODIFIED + " limit " + (pageIndex * pageSize) + "," + pageSize);
 
             while (mCursor.moveToNext()) {
-                String path = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                Log.e(TAG, "path=" + path);
-                files.add(new File(path));
+                String createDate = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.DATE_ADDED));
+                String height = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.HEIGHT));
+                String width = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.WIDTH));
+                String name = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME));
+                //String author = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.AUTHOR));
+                PhotoInfoBean bean = new PhotoInfoBean(name,"author",createDate,width,height);
+                photos.add(bean);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return files;
+        return StringExtKt.GZIPCompress(GsonUtils.toJson(photos));
     }
+
 }

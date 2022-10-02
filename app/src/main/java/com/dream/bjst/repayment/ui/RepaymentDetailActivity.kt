@@ -12,7 +12,6 @@ import android.text.TextWatcher
 import android.util.Base64
 import android.view.View
 import com.blankj.utilcode.util.GsonUtils
-import com.blankj.utilcode.util.IntentUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
 import com.dream.bjst.R.color.colorPrimaryDark
@@ -22,17 +21,14 @@ import com.dream.bjst.repayment.bean.PaymentUtrParam
 import com.dream.bjst.repayment.bean.RepaymentDetailParam
 import com.dream.bjst.repayment.bean.requestRepaymentParam
 import com.dream.bjst.repayment.vm.RepaymentViewModel
-import com.dream.bjst.utils.BitmapUtils
 import com.dream.bjst.utils.PhotoManager
 import com.dream.bjst.utils.PhotoSelectDialog
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.loadGif
-import com.tcl.base.kt.remove
 import com.tcl.base.utils.PhotoUtils.getPath
 import java.io.ByteArrayOutputStream
-import java.net.URI
 import java.util.zip.GZIPOutputStream
 
 /**
@@ -114,8 +110,6 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                 "20" -> mBinding.repaymentDetailStatus.text = "DueToday"
                 "30" -> mBinding.repaymentDetailStatus.text = "OverDue"
             }
-
-
         }
         /**
          * 上传utr返回数据
@@ -294,21 +288,6 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
 
             //上传图片
         }
-    }
-
-    /**
-     * base64位加压
-     */
-
-    fun compress(str: String?): String? {
-        if (str.isNullOrEmpty()) {
-            return str
-        }
-        val o = ByteArrayOutputStream()
-        val g = GZIPOutputStream(o)
-        g.write(str.toByteArray(charset("utf-8")))
-        g.close()
-        return o.toString("ISO-8859-1")
     }
 
     /**

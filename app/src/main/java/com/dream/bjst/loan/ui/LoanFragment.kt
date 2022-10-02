@@ -54,7 +54,6 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         viewModel.fetchCreditAmount()
         viewModel.fetchProducts()
         viewModel.fetchProcessingOrderCount()
-        viewModel.getLocalAlbumList()
     }
 
     override fun onStart() {
@@ -69,7 +68,8 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     fun onEvent() {
         mBinding.smartRefresh.setOnRefreshListener {
-            loadData()
+            //loadData()
+            viewModel.upDevicePhoto()
         }
         mBinding.ordersLay.ktClick {
             ktStartActivity4Result(LoanRecordsActivity::class, 920)

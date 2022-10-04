@@ -1,14 +1,16 @@
 package com.dream.bjst.main
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.location.Location
 import android.os.Bundle
-import android.view.View
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ColorUtils
+import com.didichuxing.doraemonkit.util.LocationUtils
 import com.dream.bjst.BuildConfig
 import com.dream.bjst.R
 import com.dream.bjst.account.ui.DeleteProgressActivity
@@ -181,10 +183,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         upgradeDialogFragment.show(supportFragmentManager, UpgradeDialogFragment::class.java.name)
     }
 
+    @SuppressLint("MissingPermission")
     override fun initData() {
         //版本更新
         viewModel.upGradeContent()
         viewModel.fetchCustomerKycStatus()
+
     }
 
     override fun initDataOnResume() {

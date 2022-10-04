@@ -1,5 +1,9 @@
 package com.dream.bjst.loan.ui
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.IntentFilter
+import android.location.Location
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -7,8 +11,11 @@ import androidx.core.view.isVisible
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.LogUtils
+import com.didichuxing.doraemonkit.util.LocationUtils
 import com.dream.bjst.R
 import com.dream.bjst.account.ui.DeleteProgressActivity
+import com.dream.bjst.bean.LocationBean
 import com.dream.bjst.databinding.FragmentLoanBinding
 import com.dream.bjst.dialog.AmountPeriodDialog
 import com.dream.bjst.dialog.LoanInfoDialog
@@ -19,13 +26,16 @@ import com.dream.bjst.loan.bean.ApplyListParamBean
 import com.dream.bjst.loan.bean.ApplyParamBean
 import com.dream.bjst.loan.bean.LoanConfirmBean
 import com.dream.bjst.loan.vm.LoanViewModel
+import com.dream.bjst.receiver.BatteryReceiver
 import com.dream.bjst.utils.DeviceUtils
 import com.tcl.base.common.ui.BaseFragment
 import com.tcl.base.kt.*
+import com.tcl.base.utils.MmkvUtil
 import com.tcl.base.weiget.recylerview.RecycleViewDivider
 import rxhttp.wrapper.utils.GsonUtil
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
@@ -36,6 +46,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
     private val periodList = arrayListOf<AmountPeriodBean>()
     private val mHandler = Handler(Looper.getMainLooper())
     private var countDown: Long = 3 * 60 * (1000L)
+    private var batteryReceiver: BatteryReceiver? = null
     override fun initView(savedInstanceState: Bundle?) {
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.userIcon)
         loanAdapter = LoanProductAdapter()
@@ -48,6 +59,14 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
         loadData()
         onEvent()
+        initReceiver()
+    }
+
+    private fun initReceiver() {
+        batteryReceiver = BatteryReceiver()
+        val batteryFilter = IntentFilter()
+        batteryFilter.addAction(Intent.ACTION_BATTERY_CHANGED)
+        requireActivity().registerReceiver(batteryReceiver, batteryFilter)
     }
 
     private fun loadData() {
@@ -56,9 +75,33 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         viewModel.fetchProcessingOrderCount()
     }
 
+    @SuppressLint("MissingPermission")
     override fun onStart() {
         super.onStart()
         mHandler.postDelayed(mRunnable, 1000)
+        LocationUtils.register(0, 0, object : LocationUtils.OnLocationChangeListener {
+            override fun getLastKnownLocation(location: Location?) {
+                LogUtils.dTag("locationTag", "getLastKnownLocation----------")
+                location?.let {
+                    LogUtils.dTag("locationTag", LocationUtils.getLocality(it.latitude, it.longitude))
+                    MmkvUtil.encode("curLatitude", it.latitude)
+                    MmkvUtil.encode("curLongitude", it.longitude)
+                }
+            }
+
+            override fun onLocationChanged(location: Location?) {
+                LogUtils.dTag("locationTag", "onLocationChanged----------")
+                location?.let {
+                    LogUtils.dTag("locationTag", LocationUtils.getLocality(it.latitude, it.longitude))
+                    MmkvUtil.encode("curLatitude", it.latitude)
+                    MmkvUtil.encode("curLongitude", it.longitude)
+                }
+            }
+
+            override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+
+            }
+        })
     }
 
     override fun onStop() {
@@ -66,10 +109,16 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         mHandler.removeCallbacks(mRunnable)
     }
 
+    override fun onDestroy() {
+        requireActivity().unregisterReceiver(batteryReceiver)
+        super.onDestroy()
+    }
+
     fun onEvent() {
         mBinding.smartRefresh.setOnRefreshListener {
             //loadData()
             viewModel.upDevicePhoto()
+            viewModel.uploadDeviceBaseInfo()
         }
         mBinding.ordersLay.ktClick {
             ktStartActivity4Result(LoanRecordsActivity::class, 920)
@@ -138,8 +187,8 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     override fun startObserve() {
         super.startObserve()
-        viewModel.localFiles.observe(this){
-
+        viewModel.upDeviceInfo.observe(this) {
+            mBinding.smartRefresh.finishRefresh()
         }
         viewModel.processOrders.observe(this) {//处理中的订单数量
             mBinding.processNumTv.text = "$it orders processing currently"

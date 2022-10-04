@@ -137,6 +137,8 @@ dependencies {
     implementation project(':DFLivenessLibrary')
     implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.7.1'
 
+    implementation group: 'com.google.android.gms', name: 'play-services-ads', version: '15.0.0'
+
     testImplementation Testing.jUnit
     androidTestImplementation Testing.androidJunit
     androidTestImplementation Testing.espresso

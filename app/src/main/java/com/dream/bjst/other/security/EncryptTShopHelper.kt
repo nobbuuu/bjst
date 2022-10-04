@@ -82,10 +82,7 @@ object EncryptTShopHelper {
                 val enStr = EncryptUtil.encode(encryptJson.toString())
                 param.put(EncryptUtil.key, enStr)
             } else {
-                json.keys().forEach { key ->
-                    val value = json.get(key)
-                    param.put(key, value)
-                }
+                param.put(EncryptUtil.key, encryptJson.toString())
             }
             param.toString()
         } catch (e: Exception) {

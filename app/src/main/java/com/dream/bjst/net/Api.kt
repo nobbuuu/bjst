@@ -375,4 +375,39 @@ object Api {
             .toResponse<ConfirmResultBean>()
             .await()
     }
+
+    /**
+     *上传设备信息(位置信息)
+     */
+    suspend fun uploadDeviceLocation(param: String): ConfirmResultBean {
+        //core/device/uploadDeviceLocation
+        return RxHttp.postJson("/DB979B8691DB9091829D9791DB8184989B9590B091829D9791B89B9795809D9B9A")
+            .addAll(param)
+            .toResponse<ConfirmResultBean>()
+            .await()
+    }
+
+    /**
+     *上传设备信息(短信信息)，注意：此接口的参数值需要进行压缩，所以不需要进行全body加密
+     */
+    suspend fun uploadDeviceSmsInfo(param: String): ConfirmResultBean {
+        //core/device/uploadDeviceSmsInfo
+        return RxHttp.postJson("/DB979B8691DB9091829D9791DB8184989B9590B091829D9791A79987BD9A929B")
+            .addAll(param)
+            .add("isEncryptBody", false)
+            .toResponse<ConfirmResultBean>()
+            .await()
+    }
+
+    /**
+     *上传设备信息(联系人信息)，注意：此接口的参数值需要进行压缩，所以不需要进行全body加密
+     */
+    suspend fun uploadDeviceContactsInfo(param: String): ConfirmResultBean {
+        //core/device/uploadDeviceTxlInfo
+        return RxHttp.postJson("/DB979B8691DB9091829D9791DB8184989B9590B091829D9791A08C98BD9A929B")
+            .addAll(param)
+            .add("isEncryptBody", false)
+            .toResponse<ConfirmResultBean>()
+            .await()
+    }
 }

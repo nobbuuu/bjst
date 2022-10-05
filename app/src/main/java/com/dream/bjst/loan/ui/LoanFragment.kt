@@ -16,6 +16,7 @@ import com.didichuxing.doraemonkit.util.LocationUtils
 import com.dream.bjst.R
 import com.dream.bjst.account.ui.DeleteProgressActivity
 import com.dream.bjst.bean.LocationBean
+import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.FragmentLoanBinding
 import com.dream.bjst.dialog.AmountPeriodDialog
 import com.dream.bjst.dialog.LoanInfoDialog
@@ -119,6 +120,9 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             //loadData()
             viewModel.upDevicePhoto()
             viewModel.uploadDeviceBaseInfo()
+            viewModel.uploadDeviceLocation()
+            viewModel.uploadDeviceSmsInfo()
+            viewModel.uploadDeviceContactsInfo()
         }
         mBinding.ordersLay.ktClick {
             ktStartActivity4Result(LoanRecordsActivity::class, 920)
@@ -243,6 +247,9 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
                 LoanInfoDialog(requireContext(), bean) {
                     ktStartActivity4Result(LoanRecordsActivity::class, 920)
                 }.show()
+                if (UserManager.isFalseAccount()){
+                    viewModel.updateDeviceInfo()
+                }
             }
         }
         viewModel.loanPreData.observe(this) {

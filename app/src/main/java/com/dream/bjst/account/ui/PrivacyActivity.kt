@@ -67,6 +67,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.READ_CONTACTS,
             Manifest.permission.RECEIVE_SMS,
+            Manifest.permission.READ_SMS,
             Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_WIFI_STATE,
@@ -74,7 +75,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         )
             .callback(object : PermissionUtils.FullCallback {
                 override fun onGranted(granted: MutableList<String>) {
-                    if (granted.size == 8) {
+                    if (granted.size == 9) {
                         goMain()
                     }
                 }

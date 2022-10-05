@@ -7,6 +7,7 @@ import com.dream.bjst.identification.bean.IdCardStatusBean
 import com.dream.bjst.loan.bean.HomeInfoBean
 import com.dream.bjst.net.Api
 import com.dream.bjst.net.parser.Response
+import com.dream.bjst.other.DeviceInfoViewModel
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
 import com.tcl.base.kt.ktToastShow
@@ -16,7 +17,7 @@ import com.tcl.base.kt.ktToastShow
  * 描述:衣带渐宽终不悔、为伊消得人憔悴
  * 作者:HeGuiCun Administrator
  */
-class IdentificationViewModel : BaseViewModel() {
+class IdentificationViewModel : DeviceInfoViewModel() {
 
     val idCardInfo = SingleLiveEvent<IdCardDetailsBean>()
     val idCardStatus = SingleLiveEvent<IdCardStatusBean>()

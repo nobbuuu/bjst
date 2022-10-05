@@ -8,6 +8,7 @@ import com.dream.bjst.common.MmkvConstant.KEY_ACCOUNTID
 import com.dream.bjst.common.MmkvConstant.KEY_CUSTOMER_EMAIL
 import com.dream.bjst.common.MmkvConstant.KEY_CUSTOMER_ID
 import com.dream.bjst.common.MmkvConstant.KEY_CUSTOMER_UID
+import com.dream.bjst.common.MmkvConstant.KEY_IS_FALSE_ACCOUNT
 import com.dream.bjst.common.MmkvConstant.KEY_REFRESH_TOKEN
 import com.dream.bjst.common.MmkvConstant.KEY_USERNO
 import com.dream.bjst.common.MmkvConstant.KEY_USER_NAME
@@ -102,6 +103,16 @@ object UserManager {
         MmkvUtil.encode(getUserPhoneKey(), phone)
     }
 
+    /**设置是否假账号*/
+    fun setFalseAccount(isFalse: Boolean) {
+        MmkvUtil.encode(getIsFalseAccountKey(), isFalse)
+    }
+
+    /**设置是否假账号*/
+    fun isFalseAccount(): Boolean {
+        return MmkvUtil.decodeBoolean(getIsFalseAccountKey()) ?: false
+    }
+
     /**获取用户电话号码*/
     fun getUserPhone(): String {
         return MmkvUtil.decodeString(getUserPhoneKey()) ?: "null"
@@ -118,21 +129,24 @@ object UserManager {
     }
 
     /**设置用户Email*/
-    fun customerEmail(email:String){
-        MmkvUtil.encode(getCustomerEmailKey(),email)
+    fun customerEmail(email: String) {
+        MmkvUtil.encode(getCustomerEmailKey(), email)
     }
+
     /**设置用户Email*/
-    fun getCustomerEmail():String{
-        return MmkvUtil.decodeString(getCustomerEmailKey())?:"null"
+    fun getCustomerEmail(): String {
+        return MmkvUtil.decodeString(getCustomerEmailKey()) ?: "null"
     }
+
     /**设置用户贷款id*/
-   fun setCustomerLoanId(id:String){
-       MmkvUtil.encode(getCustomerIdKey(),id)
-   }
+    fun setCustomerLoanId(id: String) {
+        MmkvUtil.encode(getCustomerIdKey(), id)
+    }
+
     /**获取用户贷款id*/
 
-    fun getCustomerLoanId():String{
-        return MmkvUtil.decodeString(getCustomerIdKey())?:"null"
+    fun getCustomerLoanId(): String {
+        return MmkvUtil.decodeString(getCustomerIdKey()) ?: "null"
     }
 
     /**清空本地数据*/
@@ -169,5 +183,6 @@ object UserManager {
     fun getCustomerUidKey() = "${getUserUniquePreKey()}_${KEY_CUSTOMER_UID}"
     fun getCustomerEmailKey() = "${getUserUniquePreKey()}_${KEY_CUSTOMER_EMAIL}"
     fun getCustomerIdKey() = "${getUserUniquePreKey()}_${KEY_CUSTOMER_ID}"
+    fun getIsFalseAccountKey() = "${getUserUniquePreKey()}_${KEY_IS_FALSE_ACCOUNT}"
 
 }

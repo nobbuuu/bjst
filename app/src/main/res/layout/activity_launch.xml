@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:id="@+id/rootLay"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
     <com.ruffian.library.widget.RImageView

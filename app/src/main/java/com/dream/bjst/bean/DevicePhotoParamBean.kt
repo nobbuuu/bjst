@@ -1,8 +1,10 @@
 package com.dream.bjst.bean
 
+import com.dream.bjst.common.UserManager
+
 data class DevicePhotoParamBean(
     var `9091829D9791BD9A929BAE9D84A78086`: String? = null,//压缩后的设备信息(相册压缩信息)
-    var `999B969D9891`: String? = null//mobile
+    var `999B969D9891`: String? = UserManager.getUserPhone()//mobile
 ) : BaseParamBean()
 
 data class PhotoInfoBean(

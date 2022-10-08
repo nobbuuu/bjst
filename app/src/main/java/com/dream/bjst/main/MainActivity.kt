@@ -15,6 +15,7 @@ import com.dream.bjst.BuildConfig
 import com.dream.bjst.R
 import com.dream.bjst.account.ui.DeleteProgressActivity
 import com.dream.bjst.common.Constant
+import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.ActivityMainBinding
 import com.dream.bjst.dialog.UnLoanDialog
 import com.dream.bjst.main.menu.*
@@ -186,7 +187,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     @SuppressLint("MissingPermission")
     override fun initData() {
         //版本更新
-        viewModel.upGradeContent()
+        if (!UserManager.isFalseAccount()){
+            viewModel.upGradeContent()
+        }
         viewModel.fetchCustomerKycStatus()
 
     }

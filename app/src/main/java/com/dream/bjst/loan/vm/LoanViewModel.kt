@@ -1,9 +1,9 @@
 package com.dream.bjst.loan.vm
 
-import com.dream.bjst.identification.bean.IdCardStatusBean
+import com.dream.bjst.identification.bean.KYCStatusBean
 import com.dream.bjst.loan.bean.*
 import com.dream.bjst.net.Api
-import com.dream.bjst.other.DeviceInfoViewModel
+import com.dream.bjst.common.vm.DeviceInfoViewModel
 import com.tcl.base.event.SingleLiveEvent
 
 /**
@@ -16,7 +16,7 @@ class LoanViewModel : DeviceInfoViewModel() {
     val loanPreData = SingleLiveEvent<LoanPreBean>()
     val applyData = SingleLiveEvent<ApplyResultBean>()
     val historyData = SingleLiveEvent<OrderResultBean>()
-    val userStatus = SingleLiveEvent<IdCardStatusBean>()
+    val userStatus = SingleLiveEvent<KYCStatusBean>()
     val processOrders = SingleLiveEvent<String>()
 
     fun fetchCustomerKycStatus() {

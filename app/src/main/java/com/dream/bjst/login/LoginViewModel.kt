@@ -2,15 +2,13 @@ package com.dream.bjst.login
 
 import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.account.bean.PrivacyBean
-import com.dream.bjst.bean.DevicePhotoParamBean
 import com.dream.bjst.bean.LoginBean
 import com.dream.bjst.bean.LoginParam
 import com.dream.bjst.common.UserManager
-import com.dream.bjst.identification.bean.IdCardStatusBean
+import com.dream.bjst.identification.bean.KYCStatusBean
 import com.dream.bjst.net.Api
-import com.dream.bjst.other.DeviceInfoViewModel
+import com.dream.bjst.common.vm.DeviceInfoViewModel
 import com.dream.bjst.utils.DeviceUtils
-import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
 import com.tcl.base.kt.ktToastShow
 
@@ -22,7 +20,7 @@ import com.tcl.base.kt.ktToastShow
 class LoginViewModel : DeviceInfoViewModel() {
     val sendCode = SingleLiveEvent<Boolean>()
     val loginResult = SingleLiveEvent<LoginBean>()
-    val idCardStatus = SingleLiveEvent<IdCardStatusBean>()
+    val idCardStatus = SingleLiveEvent<KYCStatusBean>()
     val privacyResult = SingleLiveEvent<PrivacyBean>()
     val upDevicePhoto = SingleLiveEvent<Boolean>()
 

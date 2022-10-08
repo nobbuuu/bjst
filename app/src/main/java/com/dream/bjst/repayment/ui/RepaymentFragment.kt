@@ -46,29 +46,21 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
         super.startObserve()
         viewModel.repaymentResult.observe(this) {
             mBinding.smartRefresh.finishRefresh()
-
-            if (it.`9B829186908191BB8690918687`.isNotEmpty()){
-
+            mBinding.overdueRl.isVisible = !it.`9B829186908191BB8690918687`.isNullOrEmpty()
+            if (!it.`9B829186908191BB8690918687`.isNullOrEmpty()) {
                 overDueAdapter.setList(it.`9B829186908191BB8690918687`)
-                mBinding.overDueNotice.text="Daily penalty interest rate ${
+                mBinding.overDueNotice.text = "Daily penalty interest rate ${
                     it.`9B829186908191BB8690918687`[0].`9B829186908191BD9A809186918780A6958091`.toFloatOrNull()
                         ?.times(100)?.toUInt()
                 } %"
-
-            }else{
-                mBinding.overdueRl.visibility=View.GONE
             }
-            if (it.`908191A09B90958DBB8690918687`.isNotEmpty()){
-
-            dueTodayAdapter.setList(it.`908191A09B90958DBB8690918687`)
-            }else{
-                mBinding.dueTodayRl.visibility=View.GONE
+            mBinding.dueTodayRl.isVisible = !it.`908191A09B90958DBB8690918687`.isNullOrEmpty()
+            if (!it.`908191A09B90958DBB8690918687`.isNullOrEmpty()) {
+                dueTodayAdapter.setList(it.`908191A09B90958DBB8690918687`)
             }
-            if (it.`9A9B80B08191BB8690918687`.isNotEmpty()){
-
-            notDueAdapter.setList(it.`9A9B80B08191BB8690918687`)
-            }else{
-                mBinding.notDueRl.visibility=View.GONE
+            mBinding.notDueRl.isVisible = !it.`9A9B80B08191BB8690918687`.isNullOrEmpty()
+            if (!it.`9A9B80B08191BB8690918687`.isNullOrEmpty()) {
+                notDueAdapter.setList(it.`9A9B80B08191BB8690918687`)
             }
 
             val noData =
@@ -94,24 +86,24 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
                 .navigate(R.id.repayment_to_navigation_loan)
         }
         overDueAdapter.setOnItemChildClickListener { adapter, view, position ->
-            when(view.id){
-                R.id.settleNowBtn->
+            when (view.id) {
+                R.id.settleNowBtn ->
                     ktStartActivity(RepaymentDetailActivity::class) {
                         putExtra("detailId", overDueAdapter.data[position].`969B86869B83BD90`)
                     }
             }
         }
         notDueAdapter.setOnItemChildClickListener { adapter, view, position ->
-            when(view.id){
-                R.id.settleNowBtn->   ktStartActivity(RepaymentDetailActivity::class) {
+            when (view.id) {
+                R.id.settleNowBtn -> ktStartActivity(RepaymentDetailActivity::class) {
                     putExtra("detailId", notDueAdapter.data[position].`969B86869B83BD90`)
                 }
             }
 
         }
         dueTodayAdapter.setOnItemChildClickListener { adapter, view, position ->
-            when(view.id){
-                R.id.settleNowBtn-> ktStartActivity(RepaymentDetailActivity::class) {
+            when (view.id) {
+                R.id.settleNowBtn -> ktStartActivity(RepaymentDetailActivity::class) {
                     putExtra("detailId", dueTodayAdapter.data[position].`969B86869B83BD90`)
                 }
             }

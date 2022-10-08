@@ -10,7 +10,7 @@ import com.dream.bjst.bean.LoginBean
 import com.dream.bjst.identification.bean.BankListBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
-import com.dream.bjst.identification.bean.IdCardStatusBean
+import com.dream.bjst.identification.bean.KYCStatusBean
 import com.dream.bjst.loan.bean.*
 import com.dream.bjst.bean.UpgradeDialogBean
 import com.dream.bjst.other.toBoolean
@@ -88,11 +88,11 @@ object Api {
      * 获取客户kyc进行到的步骤
      */
 
-    suspend fun fetchCustomerKycStatus(): IdCardStatusBean {
+    suspend fun fetchCustomerKycStatus(): KYCStatusBean {
         //customer/fetchCustomerKycStatus
         return RxHttp.postJson("/DB978187809B999186DB929180979CB78187809B999186BF8D97A78095808187")
             .addAll(GsonUtils.toJson(BaseParamBean()))
-            .toResponse<IdCardStatusBean>()
+            .toResponse<KYCStatusBean>()
             .await()
     }
 

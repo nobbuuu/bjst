@@ -3,9 +3,9 @@ package com.dream.bjst.repayment.bean
 import java.io.Serializable
 
 data class RepaymentBean(
-    val `908191A09B90958DBB8690918687`: List<DueTodayOrder>,//当日到期订单
-    val `9A9B80B08191BB8690918687`: List<NotDueOrder>,//未到期订单
-    val `9B829186908191BB8690918687`: List<OverdueOrder>,//逾期中的订单
+    val `908191A09B90958DBB8690918687`: List<DueTodayOrder>?,//当日到期订单
+    val `9A9B80B08191BB8690918687`: List<NotDueOrder>?,//未到期订单
+    val `9B829186908191BB8690918687`: List<OverdueOrder>?,//逾期中的订单
     val `9B829186908191BD9A809186918780A6958091`: String//逾期时的利率（即计算滞纳金的利率）
 ):Serializable
 

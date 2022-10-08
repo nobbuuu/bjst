@@ -45,6 +45,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp_10"
+                        android:visibility="gone"
                         android:background="@drawable/shap_repayment_out_bg">
 
                         <com.ruffian.library.widget.RTextView
@@ -97,6 +98,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp_10"
+                        android:visibility="gone"
                         android:background="@drawable/shap_repayment_due_today">
 
                         <com.ruffian.library.widget.RTextView
@@ -131,9 +133,9 @@
                             android:layout_marginTop="@dimen/dp_5"
                             android:layout_marginEnd="@dimen/dp_10"
                             android:layout_marginBottom="@dimen/dp_10"
-                            android:padding="@dimen/dp_4"
                             android:background="@drawable/shap_repayment_item"
                             android:overScrollMode="never"
+                            android:padding="@dimen/dp_4"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                     </RelativeLayout>
                     <!--not due-->
@@ -142,6 +144,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp_10"
+                        android:visibility="gone"
                         android:background="@drawable/shap_repayment_not_due">
 
                         <com.ruffian.library.widget.RTextView

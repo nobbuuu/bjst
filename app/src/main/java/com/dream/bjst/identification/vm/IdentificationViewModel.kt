@@ -3,14 +3,11 @@ package com.dream.bjst.identification.vm
 import com.dream.bjst.identification.bean.BankListBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
-import com.dream.bjst.identification.bean.IdCardStatusBean
+import com.dream.bjst.identification.bean.KYCStatusBean
 import com.dream.bjst.loan.bean.HomeInfoBean
 import com.dream.bjst.net.Api
-import com.dream.bjst.net.parser.Response
-import com.dream.bjst.other.DeviceInfoViewModel
-import com.tcl.base.common.BaseViewModel
+import com.dream.bjst.common.vm.DeviceInfoViewModel
 import com.tcl.base.event.SingleLiveEvent
-import com.tcl.base.kt.ktToastShow
 
 /**
  * 创建日期：2022-08-27 on 0:59
@@ -20,7 +17,7 @@ import com.tcl.base.kt.ktToastShow
 class IdentificationViewModel : DeviceInfoViewModel() {
 
     val idCardInfo = SingleLiveEvent<IdCardDetailsBean>()
-    val idCardStatus = SingleLiveEvent<IdCardStatusBean>()
+    val idCardStatus = SingleLiveEvent<KYCStatusBean>()
     val idCardDetails = SingleLiveEvent<IdCardDetailsBean>()
     val confirmResult = SingleLiveEvent<ConfirmResultBean>()
     val detectPictureResult = SingleLiveEvent<ConfirmResultBean>()

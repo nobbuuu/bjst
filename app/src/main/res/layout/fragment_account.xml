@@ -156,7 +156,7 @@
                     android:layout_height="@dimen/dp_22"
                     android:layout_gravity="center"
                     android:scaleType="fitXY"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     android:src="@mipmap/redadus" />
 
 

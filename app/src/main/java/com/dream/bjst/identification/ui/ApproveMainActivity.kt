@@ -121,13 +121,12 @@ class ApproveMainActivity :
         }
         viewModel.idCardStatus.observe(this) {
             var isAll = it.`959898BD809199A4958787`
-            MmkvUtil.encode("isAll", isAll)
             //判断一下是否所有的项目都全部通过
             if (isAll) {
-                mBinding.interestItem.visibility = View.INVISIBLE
-                mBinding.loanAmountItem.visibility = View.INVISIBLE
-                mBinding.loanPeriodItem.visibility = View.INVISIBLE
-                mBinding.identifyGetLoanBtn.visibility = View.INVISIBLE
+                mBinding.interestItem.visibility = View.GONE
+                mBinding.loanAmountItem.visibility = View.GONE
+                mBinding.loanPeriodItem.visibility = View.GONE
+                mBinding.identifyGetLoanBtn.visibility = View.GONE
             }
             it.`9A919190B09B9D9A93BD809199`?.let {
                 var tempIndex = 0

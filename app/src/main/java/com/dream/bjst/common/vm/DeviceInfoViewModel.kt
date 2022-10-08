@@ -1,4 +1,4 @@
-package com.dream.bjst.other
+package com.dream.bjst.common.vm
 
 import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.Utils

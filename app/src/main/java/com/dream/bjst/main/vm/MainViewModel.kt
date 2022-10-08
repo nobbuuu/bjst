@@ -1,6 +1,6 @@
 package com.dream.bjst.main.vm
 
-import com.dream.bjst.identification.bean.IdCardStatusBean
+import com.dream.bjst.identification.bean.KYCStatusBean
 import com.dream.bjst.bean.UpgradeDialogBean
 import com.dream.bjst.net.Api
 import com.tcl.base.common.BaseViewModel
@@ -13,7 +13,7 @@ import com.tcl.base.event.SingleLiveEvent
  */
 class MainViewModel : BaseViewModel() {
     val upGradeResults = SingleLiveEvent<UpgradeDialogBean>()//版本更新
-    val userStatus = SingleLiveEvent<IdCardStatusBean>()
+    val userStatus = SingleLiveEvent<KYCStatusBean>()
     val unLogin = SingleLiveEvent<Boolean>()
 
     /**

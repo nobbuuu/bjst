@@ -16,13 +16,13 @@ import com.tcl.base.kt.*
 class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
-        viewModel.privacy()
         adjustWindow(requireActivity(), R.color.color_F8FFF0, mBinding.topLay)
         //设置用户姓名
         mBinding.accountName.text = UserManager.getUserName()
         //设置电话号码
         mBinding.accountPhone.text = UserManager.getUserPhone()
         viewModel.fetchCustomerKycStatus()
+        mBinding.accountCustomerService.isVisible = UserManager.isFalseAccount()
     }
 
     override fun startObserve() {

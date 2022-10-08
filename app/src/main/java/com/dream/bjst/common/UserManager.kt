@@ -108,7 +108,7 @@ object UserManager {
         MmkvUtil.encode(getIsFalseAccountKey(), isFalse)
     }
 
-    /**设置是否假账号*/
+    /**是否假账号*/
     fun isFalseAccount(): Boolean {
         return MmkvUtil.decodeBoolean(getIsFalseAccountKey()) ?: false
     }

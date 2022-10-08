@@ -150,9 +150,10 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
 
         //disagree
         mBinding.privacyDisagreeButton.setOnClickListener(View.OnClickListener {
-            if (actionType == 1) {
+            /*if (actionType == 1) {
                 ktStartActivity(HomeImgActivity::class)
-            }
+            }*/
+            finish()
         })
     }
 
@@ -196,7 +197,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         val closeImage = pwView.findViewById<RImageView>(R.id.privacy_fault_image)
         closeImage.setOnClickListener {
             popupWindow?.dismiss()
-
+            finish()
         }
         //设置popupWindow里面的未选中按钮
         val unselectImage = pwView.findViewById<RCheckBox>(R.id.privacyPopupCb)
@@ -215,9 +216,10 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         val disagreeButton = pwView.findViewById<RTextView>(R.id.privacy_dis_agree_button)
         disagreeButton?.setOnClickListener {
             popupWindow?.dismiss()
-            if (actionType == 1) {
+            /*if (actionType == 1) {
                 ktStartActivity(HomeImgActivity::class)
-            }
+            }*/
+            finish()
         }
         // 设置 popupWindow
         popupWindow?.isFocusable = true // 取得焦点

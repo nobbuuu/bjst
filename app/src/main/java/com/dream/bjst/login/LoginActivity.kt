@@ -77,9 +77,10 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         }
 
         mBinding.voiceTv.ktClick {
+            codeType = 2
+            sendCode()
             VoiceDialog(this) {
-                codeType = 2
-                sendCode()
+
             }.show()
         }
         initPolicyUi()

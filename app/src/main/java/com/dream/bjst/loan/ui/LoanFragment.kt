@@ -7,8 +7,10 @@ import android.location.Location
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.LogUtils
@@ -61,6 +63,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         loadData()
         onEvent()
         initReceiver()
+        viewModel.repaymentData()
     }
 
     private fun initReceiver() {
@@ -84,7 +87,10 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             override fun getLastKnownLocation(location: Location?) {
                 LogUtils.dTag("locationTag", "getLastKnownLocation----------")
                 location?.let {
-                    LogUtils.dTag("locationTag", LocationUtils.getLocality(it.latitude, it.longitude))
+                    LogUtils.dTag(
+                        "locationTag",
+                        LocationUtils.getLocality(it.latitude, it.longitude)
+                    )
                     MmkvUtil.encode("curLatitude", it.latitude)
                     MmkvUtil.encode("curLongitude", it.longitude)
                 }
@@ -93,7 +99,10 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             override fun onLocationChanged(location: Location?) {
                 LogUtils.dTag("locationTag", "onLocationChanged----------")
                 location?.let {
-                    LogUtils.dTag("locationTag", LocationUtils.getLocality(it.latitude, it.longitude))
+                    LogUtils.dTag(
+                        "locationTag",
+                        LocationUtils.getLocality(it.latitude, it.longitude)
+                    )
                     MmkvUtil.encode("curLatitude", it.latitude)
                     MmkvUtil.encode("curLongitude", it.longitude)
                 }
@@ -103,6 +112,16 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
             }
         })
+
+        viewModel.repaymentResult.observe(this) {
+            //存在待还款订单
+            if (!it.`908191A09B90958DBB8690918687`.isNullOrEmpty() || !it.`9A9B80B08191BB8690918687`.isNullOrEmpty() || !it.`9B829186908191BB8690918687`.isNullOrEmpty()) {
+                val bundle = bundleOf()
+                bundle.putSerializable("reData", it)
+                Navigation.findNavController(mBinding.smartRefresh)
+                    .navigate(R.id.loan_to_navigation_repayment, bundle)
+            }
+        }
     }
 
     override fun onStop() {
@@ -186,21 +205,11 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     override fun startObserve() {
         super.startObserve()
-        viewModel.upDeviceInfo.observe(this) {
+        viewModel.refreshResult.observe(this) {
             mBinding.smartRefresh.finishRefresh()
         }
         viewModel.processOrders.observe(this) {//处理中的订单数量
             mBinding.processNumTv.text = "$it orders processing currently"
-            try {
-                val haveProcessOrder = it.toInt() > 0
-                mBinding.ordersLay.isVisible = haveProcessOrder
-                if (haveProcessOrder) {
-                    Navigation.findNavController(mBinding.loanRoot)
-                        .navigate(R.id.loan_to_navigation_repayment)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
         }
         viewModel.userStatus.observe(this) {
 
@@ -229,23 +238,23 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             }
         }
         viewModel.applyData.observe(this) {
-            viewModel.fetchProducts()
-            if (!it.`90809BB69B86869B83B58484988DA6918781988087`.isNullOrEmpty()) {
+            if (!it.`90809BB69B86869B83B58484988DA6918781988087`.isNullOrEmpty()) {//申请成功
                 val loanAmount = mBinding.amountTv.text.toString()
                 val repayAmount = mBinding.repayAmount.text.toString()
                 val bean = LoanConfirmBean(
                     loanAmount,
                     repayAmount,
-                    it.`908191B0958091`.nullToEmpty(),
-                    it.`869187B29180979CA4869B90819780`.`84869B90819780B89D8780`
+                    mBinding.repaymentDate.text.toString(),
+                    loanAdapter.data.filter { it.isCheck }
                 )
                 LoanInfoDialog(requireContext(), bean) {
                     ktStartActivity4Result(LoanRecordsActivity::class, 920)
                 }.show()
-                if (UserManager.isFalseAccount()){
+                if (UserManager.isFalseAccount()) {
                     viewModel.updateDeviceInfo()
                 }
             }
+            viewModel.fetchProducts()
         }
         viewModel.loanPreData.observe(this) {
             val unLoan =

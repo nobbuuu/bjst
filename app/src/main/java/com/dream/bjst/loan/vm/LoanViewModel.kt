@@ -4,6 +4,7 @@ import com.dream.bjst.identification.bean.KYCStatusBean
 import com.dream.bjst.loan.bean.*
 import com.dream.bjst.net.Api
 import com.dream.bjst.common.vm.DeviceInfoViewModel
+import com.dream.bjst.repayment.bean.RepaymentBean
 import com.tcl.base.event.SingleLiveEvent
 
 /**
@@ -18,6 +19,8 @@ class LoanViewModel : DeviceInfoViewModel() {
     val historyData = SingleLiveEvent<OrderResultBean>()
     val userStatus = SingleLiveEvent<KYCStatusBean>()
     val processOrders = SingleLiveEvent<String>()
+    val repaymentResult = SingleLiveEvent<RepaymentBean>()
+    val refreshResult = SingleLiveEvent<Boolean>()
 
     fun fetchCustomerKycStatus() {
         rxLaunchUI({
@@ -30,6 +33,8 @@ class LoanViewModel : DeviceInfoViewModel() {
         rxLaunchUI({
             val result = Api.fetchProducts()
             loanData.postValue(result)
+        }, finalBlock = {
+            refreshResult.postValue(true)
         })
     }
 
@@ -59,5 +64,17 @@ class LoanViewModel : DeviceInfoViewModel() {
             val result = Api.fetchProcessingOrderCount()
             processOrders.postValue(result)
         }, showDialog = false)
+    }
+
+    /**
+     * 还款数据计划
+     */
+    fun repaymentData() {
+        rxLaunchUI({
+            var paymentResult = Api.repayment()
+            repaymentResult.postValue(paymentResult)
+        }, finalBlock = {
+            refreshResult.postValue(true)
+        })
     }
 }

@@ -13,6 +13,9 @@ import com.dream.bjst.identification.bean.BankListBean
 import com.dream.bjst.identification.bean.BindBankCardParam
 import com.dream.bjst.identification.vm.IdentificationViewModel
 import com.dream.bjst.main.MainActivity
+import com.dream.bjst.main.MainTabView
+import com.dream.bjst.main.menu.TabManager
+import com.ruffian.library.widget.RTextView
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
@@ -22,6 +25,7 @@ import com.tcl.base.kt.ktToastShow
 class ApproveBankCardActivity :
     BaseActivity<IdentificationViewModel, ActivityBankCardApproveBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
+        viewModel.fetchCustomerKycStatus()
         mBinding.bankLay.ktClick {
             ktStartActivity4Result(ApproveBankListActivity::class, 960)
         }
@@ -42,7 +46,7 @@ class ApproveBankCardActivity :
                                 `96959A9FBA959991` = bankName,
                                 `9D928797` = ifscCode,
                                 `96959A9FA1879186BA959991` = beneName,
-                                `8295989D90958091A08D8491` = "10",
+                                `8295989D90958091A08D8491` = if (viewModel.idCardStatus.value?.`9A919190B09B9D9A93BD809199` == "90") "20" else "10",
                                 `96959A9FB597979B819A80` = accountNo,
                             )
                         )
@@ -68,7 +72,7 @@ class ApproveBankCardActivity :
     }
 
     override fun initData() {
-        if (UserManager.isFalseAccount()){
+        if (UserManager.isFalseAccount()) {
             viewModel.updateDeviceInfo()
         }
     }

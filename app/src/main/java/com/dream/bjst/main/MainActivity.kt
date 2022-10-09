@@ -2,7 +2,6 @@ package com.dream.bjst.main
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.location.Location
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -10,7 +9,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ColorUtils
-import com.didichuxing.doraemonkit.util.LocationUtils
 import com.dream.bjst.BuildConfig
 import com.dream.bjst.R
 import com.dream.bjst.account.ui.DeleteProgressActivity
@@ -28,7 +26,6 @@ import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.download.DownloadApkBetterHelper
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.nullToEmpty
-import com.tcl.base.utils.MmkvUtil
 import com.tcl.tclzjpro.main.FixFragmentNavigator
 
 /**
@@ -187,11 +184,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     @SuppressLint("MissingPermission")
     override fun initData() {
         //版本更新
-        if (!UserManager.isFalseAccount()){
+        if (!UserManager.isFalseAccount()) {
             viewModel.upGradeContent()
         }
         viewModel.fetchCustomerKycStatus()
-
     }
 
     override fun initDataOnResume() {

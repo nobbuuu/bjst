@@ -2,6 +2,7 @@ package com.dream.bjst.account.ui
 
 import android.os.Bundle
 import android.view.View
+import com.blankj.utilcode.util.ActivityUtils
 import com.dream.bjst.BuildConfig
 import com.dream.bjst.account.vm.AccountViewModel
 import com.dream.bjst.common.UserManager
@@ -11,7 +12,7 @@ import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 
-class AccountSettingActivity :BaseActivity<AccountViewModel,ActivityAccountSettingBinding>() {
+class AccountSettingActivity : BaseActivity<AccountViewModel, ActivityAccountSettingBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
     }
 
@@ -19,13 +20,13 @@ class AccountSettingActivity :BaseActivity<AccountViewModel,ActivityAccountSetti
         //获取标题栏的返回按钮
         mBinding.accountMySettingTitle.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
         //获取安卓版本号
-        mBinding.settingVersion.text=(BuildConfig.VERSION_NAME)
+        mBinding.settingVersion.text = (BuildConfig.VERSION_NAME)
         //获取Email
-        mBinding.accountEmail.text=UserManager.getCustomerEmail()
+        mBinding.accountEmail.text = UserManager.getCustomerEmail()
         //设置用户姓名
-        mBinding.accountName.text=UserManager.getUserName()
+        mBinding.accountName.text = UserManager.getUserName()
         //设置电话号码
-        mBinding.accountPhone.text=UserManager.getUserPhone()
+        mBinding.accountPhone.text = UserManager.getUserPhone()
         event()
 
     }
@@ -34,6 +35,7 @@ class AccountSettingActivity :BaseActivity<AccountViewModel,ActivityAccountSetti
         mBinding.logOutBtn.ktClick {
             UserManager.clearUserInfo()
             ktStartActivity(LoginActivity::class)
+            ActivityUtils.finishAllActivities()
         }
 
 

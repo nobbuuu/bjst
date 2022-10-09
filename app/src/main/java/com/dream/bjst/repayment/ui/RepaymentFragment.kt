@@ -12,6 +12,7 @@ import com.dream.bjst.R
 
 import com.dream.bjst.databinding.FragmentRepaymentBinding
 import com.dream.bjst.repayment.adapter.*
+import com.dream.bjst.repayment.bean.RepaymentBean
 import com.dream.bjst.repayment.vm.RepaymentViewModel
 import com.tcl.base.common.ui.BaseFragment
 import com.tcl.base.kt.ktClick
@@ -33,8 +34,15 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
     override fun initView(savedInstanceState: Bundle?) {
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.repayment)
         initRv()
-        viewModel.repaymentData()
         mBinding.smartRefresh.setOnRefreshListener {
+            viewModel.repaymentData()
+        }
+        val data = arguments?.getSerializable("reData")?.let {
+            if (it is RepaymentBean) {
+                viewModel.repaymentResult.postValue(it)
+            }
+        }
+        if (data == null) {
             viewModel.repaymentData()
         }
     }
@@ -45,7 +53,6 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
     override fun startObserve() {
         super.startObserve()
         viewModel.repaymentResult.observe(this) {
-            mBinding.smartRefresh.finishRefresh()
             mBinding.overdueRl.isVisible = !it.`9B829186908191BB8690918687`.isNullOrEmpty()
             if (!it.`9B829186908191BB8690918687`.isNullOrEmpty()) {
                 overDueAdapter.setList(it.`9B829186908191BB8690918687`)
@@ -67,6 +74,9 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
                 overDueAdapter.data.isEmpty() && dueTodayAdapter.data.isEmpty() && notDueAdapter.data.isEmpty()
             mBinding.dataLay.isVisible = !noData
             mBinding.emptyLay.rootLay.isVisible = noData
+        }
+        viewModel.refreshResult.observe(this) {
+            mBinding.smartRefresh.finishRefresh()
         }
     }
 

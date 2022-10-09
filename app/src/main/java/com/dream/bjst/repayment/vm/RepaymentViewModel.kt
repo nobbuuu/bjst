@@ -18,8 +18,7 @@ class RepaymentViewModel : BaseViewModel() {
     val repaymentExtendResult = SingleLiveEvent<ExtendRePaymentBean>()
     val repaymentUTRResult = SingleLiveEvent<PaymentUtrBean>()
     val reqRepaymentResult = SingleLiveEvent<requestRepaymentBean>()
-
-
+    val refreshResult = SingleLiveEvent<Boolean>()
 
     /**
      * 还款数据计划
@@ -28,22 +27,25 @@ class RepaymentViewModel : BaseViewModel() {
         rxLaunchUI({
             var paymentResult = Api.repayment()
             repaymentResult.postValue(paymentResult)
+        }, finalBlock = {
+            refreshResult.postValue(true)
         })
-
     }
+
     /**
      * 还款详情界面
      */
-    fun repaymentDetailData(param:String){
+    fun repaymentDetailData(param: String) {
         rxLaunchUI({
             var payDetailResult = Api.repaymentDetail(param)
             repaymentDetailResult.postValue(payDetailResult)
         })
     }
+
     /**
      * 延期还款界面
      */
-    fun paymentExtendData(param: String){
+    fun paymentExtendData(param: String) {
         rxLaunchUI({
             var payExtendResult = Api.paymentExtend(param)
             repaymentExtendResult.postValue(payExtendResult)
@@ -53,16 +55,17 @@ class RepaymentViewModel : BaseViewModel() {
     /**
      * post UTR数字延期
      */
-    fun paymentUTRData(param: String){
+    fun paymentUTRData(param: String) {
         rxLaunchUI({
             var payUTRResult = Api.payUTRData(param)
             repaymentUTRResult.postValue(payUTRResult)
         })
     }
+
     /**
      * post 在线还款
      */
-    fun reqPaymentData(param: String){
+    fun reqPaymentData(param: String) {
         rxLaunchUI({
             var reqPResult = Api.reqPayData(param)
             reqRepaymentResult.postValue(reqPResult)

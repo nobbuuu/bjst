@@ -61,7 +61,7 @@ class ApproveIdCardConfirmActivity :
         viewModel.confirmResult.observe(this){
             if (it.`869187819880`){
                 //缓存姓名
-                UserManager.setUserName(mBinding.aadNo.getEndEdtText())
+                //UserManager.setUserName(mBinding.aadNo.getEndEdtText())
                 ktStartActivity(LivenessDetectionActivity::class)
                 finish()
             }else{

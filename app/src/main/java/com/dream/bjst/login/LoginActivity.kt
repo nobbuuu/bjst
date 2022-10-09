@@ -50,7 +50,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 val phone = mBinding.phoneEdt.text.toString()
                 val reg = "^([0][1-9]\\d{9})|([1-9]\\d{9})\$"
                 if (!isSendCode) {//获取验证码
-                    if (RegexUtils.isMatch(reg,phone)) {
+                    if (RegexUtils.isMatch(reg, phone)) {
                         mBinding.phoneLay.isVisible = false
                         mBinding.codeLay.isVisible = true
                         mBinding.horiProgress.progress = 100
@@ -68,6 +68,22 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 }
             } else {
                 "Please check this box and continue.".ktToastShow()
+            }
+        }
+
+        mBinding.titleBar.leftView.ktClick {
+            if (isSendCode) {
+                mBinding.phoneLay.isVisible = true
+                mBinding.codeLay.isVisible = false
+                mBinding.horiProgress.progress = 50
+                isSendCode = false
+                mBinding.codeEdt.setText("")
+                sendList.forEach {
+                    it.onPause()
+                }
+                sendList.clear()
+            }else{
+                finish()
             }
         }
 
@@ -228,7 +244,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             finish()
         }
 
-        viewModel.upDevicePhoto.observe(this){
+        viewModel.upDevicePhoto.observe(this) {
             "update device photo success"
         }
 

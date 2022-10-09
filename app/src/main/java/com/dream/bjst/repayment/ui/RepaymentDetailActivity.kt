@@ -116,7 +116,12 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
          */
         viewModel.repaymentUTRResult.observe(this) {
 
-            it.takeIf { it.`869187819880` }?.let { ToastUtils.showShort(it.`99918787959391`) }
+            it.takeIf { it.`869187819880` }?.let { ToastUtils.showShort("Submit successfully")
+                mBinding.footerRv.setVisibility(View.GONE)
+                mBinding.headerRv.setVisibility(View.VISIBLE)
+                mBinding.digitalEt.text=null
+                mBinding.addPictureCameraIv.setImageResource(R.mipmap.addpicturecamer)
+                mBinding.headerArrow.setImageResource(R.mipmap.ic_up_one_level)}?:ToastUtils.showShort("Submit utr failed")
 
         }
 
@@ -184,7 +189,8 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                 PaymentUtrParam(
                     `969B86869B83BD90` = borrowId,
                     `818086B79B9091` = utrCode,
-                    `818086BD9993A18698B6958791C2C0` = bitmapStr
+                    `818086BD9993A18698B6958791C2C0` = bitmapStr,
+                    `979B9984869187879190` = true
 
                 )
             )
@@ -193,9 +199,9 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             if (utrCode!!.isEmpty() && bitmapStr?.length == null) {
                 mBinding.notionTv.visibility = View.VISIBLE
                 mBinding.pictureTv.visibility = View.VISIBLE
-                ToastUtils.showShort("Submit utr failed")
+                //ToastUtils.showShort("Submit utr failed")                //ToastUtils.showShort("Submit successfully")
             } else {
-                ToastUtils.showShort("Submit successfully")
+
             }
         }
         //点击上传UTR_picture
@@ -283,8 +289,8 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         mBinding.addPictureCameraIv.setImageBitmap(rotateBitmap)
         rotateBitmap?.let {
 
-            // bitmapStr = compress(byte2Base64(bitmap2Byte(rotateBitmap)))
-            bitmapStr = byte2Base64(bitmap2Byte(rotateBitmap))
+            bitmapStr = compress(byte2Base64(bitmap2Byte(rotateBitmap)))  //加压图片上传
+//            bitmapStr = byte2Base64(bitmap2Byte(rotateBitmap))//未加压图片
 
             //上传图片
         }
@@ -310,6 +316,20 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
      */
     fun byte2Base64(imageByte: ByteArray?): String? {
         return if (null == imageByte) null else Base64.encodeToString(imageByte, Base64.NO_WRAP)
+    }
+
+    /**
+     * 加压图片数据
+     */
+    fun compress(str: String?): String? {
+        if (str.isNullOrEmpty()) {
+            return str
+        }
+        val o = ByteArrayOutputStream()
+        val g = GZIPOutputStream(o)
+        g.write(str.toByteArray(charset("utf-8")))
+        g.close()
+        return o.toString("ISO-8859-1")
     }
 
 

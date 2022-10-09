@@ -57,6 +57,7 @@ class LoginViewModel : DeviceInfoViewModel() {
             UserManager.setUserNo(result.`9D90`)
             UserManager.setCustomerUid(result.`978187809B999186A19D90`)
             UserManager.setUserPhone(result.`978187809B999186B99B969D9891`)
+            UserManager.setUserName(result.`978187809B999186BA959991`)
             UserManager.setFalseAccount(result.`939B9B939891A09187809186`)
             loginResult.postValue(result)
             if (result.`939B9B939891A09187809186`) {

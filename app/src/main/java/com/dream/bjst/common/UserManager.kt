@@ -157,6 +157,9 @@ object UserManager {
         MmkvUtil.removeKey(getUserPhoneKey())
         MmkvUtil.removeKey(getCustomerEmailKey())
         MmkvUtil.removeKey(getCustomerUidKey())
+        MmkvUtil.removeKey(getCustomerUidKey())
+        MmkvUtil.removeKey(getAccountIdKey())
+        MmkvUtil.removeKey(getIsFalseAccountKey())
 
         MmkvUtil.removeKey(MmkvConstant.KEY_USER_INFO)
         MmkvUtil.removeKey(getAccountIdKey())

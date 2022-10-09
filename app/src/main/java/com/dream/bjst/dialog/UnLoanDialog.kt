@@ -37,7 +37,6 @@ class UnLoanDialog(
             mBinding.contentTV.text = "repay on time to increase your credit limit"
             mBinding.sureBtn.text = "Make a repayment"
         } else if (type == 2) {
-
             VerifyCodeTimeDownUtil(3000,1000,mBinding.countDownTv).startNow()
             mBinding.tipIv.setImageResource(R.mipmap.ic_reject)
             mBinding.title.text = "We regret to inform you that your application was rejected"

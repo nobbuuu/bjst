@@ -106,9 +106,9 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             mBinding.repaymentDetailOverDueAmount.text = "₹ " + it.`869199959D9ABB829186908191`
 
             when (it.`9B86909186A78095808187`) {
-                "10" -> mBinding.repaymentDetailStatus.text = "NotDue"
-                "20" -> mBinding.repaymentDetailStatus.text = "DueToday"
-                "30" -> mBinding.repaymentDetailStatus.text = "OverDue"
+                "10" -> mBinding.repaymentDetailStatus.text = "Not Due"
+                "20" -> mBinding.repaymentDetailStatus.text = "Due Today"
+                "30" -> mBinding.repaymentDetailStatus.text = "Over Due"
             }
         }
         /**
@@ -193,9 +193,9 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
             if (utrCode!!.isEmpty() && bitmapStr?.length == null) {
                 mBinding.notionTv.visibility = View.VISIBLE
                 mBinding.pictureTv.visibility = View.VISIBLE
+                ToastUtils.showShort("Submit utr failed")
             } else {
-
-                ToastUtils.showShort("toast nothing")
+                ToastUtils.showShort("Submit successfully")
             }
         }
         //点击上传UTR_picture

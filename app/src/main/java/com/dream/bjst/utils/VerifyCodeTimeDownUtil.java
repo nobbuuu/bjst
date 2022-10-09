@@ -19,7 +19,7 @@ class VerifyCodeTimeDownUtil extends CountDownTimer {
 
     @Override
     public void onTick(long millisUntilFinished) {
-        btGetVerifyCode.setText(millisUntilFinished / 1000 + "秒后重新获取");
+        btGetVerifyCode.setText(millisUntilFinished / 1000 + "S");
     }
 
     @Override

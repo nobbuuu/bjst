@@ -13,14 +13,14 @@ class DeleteProgressActivity : BaseActivity<AccountViewModel, ActivityDeleteProg
 
     override fun initView(savedInstanceState: Bundle?) {
         Thread {
-            for (i: Int in 10..100 step 10) {
+            for (i: Int in 10..100 step 20) {
                 mBinding.deleteProgressBar.setProgress(i)
                 Thread.sleep(1000)
                 if (i == 100) {
                     runOnUiThread() {
                         UserManager.clearUserInfo()
                         mBinding.deteTv.text = "All your date has been cleared!"
-                        Thread.sleep(3000)
+                        Thread.sleep(2000)
                       ktStartActivity(MainActivity::class)
                     }
                 }

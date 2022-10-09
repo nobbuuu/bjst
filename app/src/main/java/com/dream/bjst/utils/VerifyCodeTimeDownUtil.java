@@ -24,7 +24,7 @@ public class VerifyCodeTimeDownUtil extends CountDownTimer {
 
     @Override
     public void onFinish() {
-        btGetVerifyCode.setText("3S");
+        btGetVerifyCode.setText("0S");
         btGetVerifyCode.setClickable(true);
     }
 

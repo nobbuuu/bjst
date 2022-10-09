@@ -20,7 +20,7 @@ import com.tcl.base.weiget.recylerview.RecycleViewDivider
 /**
  * 贷款申请被拒
  */
-var verifyUtils :VerifyCodeTimeDownUtil = TODO()
+
 
 class UnLoanDialog(
     context: Context,
@@ -37,11 +37,12 @@ class UnLoanDialog(
             mBinding.contentTV.text = "repay on time to increase your credit limit"
             mBinding.sureBtn.text = "Make a repayment"
         } else if (type == 2) {
-            verifyUtils= VerifyCodeTimeDownUtil(3000,1000,mBinding.countDownTv)
+
+            VerifyCodeTimeDownUtil(3000,1000,mBinding.countDownTv).startNow()
             mBinding.tipIv.setImageResource(R.mipmap.ic_reject)
             mBinding.title.text = "We regret to inform you that your application was rejected"
             mBinding.sureBtn.text = "Delete individual data and log out"
-            verifyUtils.startNow()
+
         }
         mBinding.contentTV.isVisible = type == 1
         mBinding.countDownTv.isVisible = type == 2

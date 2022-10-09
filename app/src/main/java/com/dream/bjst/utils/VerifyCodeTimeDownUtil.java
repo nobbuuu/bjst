@@ -24,7 +24,7 @@ public class VerifyCodeTimeDownUtil extends CountDownTimer {
 
     @Override
     public void onFinish() {
-        btGetVerifyCode.setText("重新获取验证码");
+        btGetVerifyCode.setText("3S");
         btGetVerifyCode.setClickable(true);
     }
 

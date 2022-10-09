@@ -8,6 +8,6 @@ object BuildConfig {
     const val buildToolsVersion = "30.0.3"
     const val minSdkVersion = 22
     const val targetSdkVersion = 30
-    const val versionCode = 20221008
+    const val versionCode = 2
     const val versionName = "1.0.1"
 }

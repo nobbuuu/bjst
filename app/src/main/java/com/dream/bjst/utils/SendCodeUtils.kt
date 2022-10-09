@@ -32,6 +32,7 @@ class SendCodeUtils(
     fun onPause() {
         countdown = 60
         sendTv?.text = endStr
+        sendTv?.isEnabled = true
         handler?.removeCallbacks(mRunnable)
     }
 }

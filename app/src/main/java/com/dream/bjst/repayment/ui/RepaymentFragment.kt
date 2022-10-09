@@ -9,6 +9,7 @@ import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
+import com.dream.bjst.common.UserManager
 
 import com.dream.bjst.databinding.FragmentRepaymentBinding
 import com.dream.bjst.repayment.adapter.*
@@ -53,27 +54,29 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
     override fun startObserve() {
         super.startObserve()
         viewModel.repaymentResult.observe(this) {
-            mBinding.overdueRl.isVisible = !it.`9B829186908191BB8690918687`.isNullOrEmpty()
-            if (!it.`9B829186908191BB8690918687`.isNullOrEmpty()) {
-                overDueAdapter.setList(it.`9B829186908191BB8690918687`)
-                mBinding.overDueNotice.text = "Daily penalty interest rate ${
-                    it.`9B829186908191BB8690918687`[0].`9B829186908191BD9A809186918780A6958091`.toFloatOrNull()
-                        ?.times(100)?.toUInt()
-                } %"
-            }
-            mBinding.dueTodayRl.isVisible = !it.`908191A09B90958DBB8690918687`.isNullOrEmpty()
-            if (!it.`908191A09B90958DBB8690918687`.isNullOrEmpty()) {
-                dueTodayAdapter.setList(it.`908191A09B90958DBB8690918687`)
-            }
-            mBinding.notDueRl.isVisible = !it.`9A9B80B08191BB8690918687`.isNullOrEmpty()
-            if (!it.`9A9B80B08191BB8690918687`.isNullOrEmpty()) {
-                notDueAdapter.setList(it.`9A9B80B08191BB8690918687`)
-            }
+            if (UserManager.isLogin()) {
+                mBinding.overdueRl.isVisible = !it.`9B829186908191BB8690918687`.isNullOrEmpty()
+                if (!it.`9B829186908191BB8690918687`.isNullOrEmpty()) {
+                    overDueAdapter.setList(it.`9B829186908191BB8690918687`)
+                    mBinding.overDueNotice.text = "Daily penalty interest rate ${
+                        it.`9B829186908191BB8690918687`[0].`9B829186908191BD9A809186918780A6958091`.toFloatOrNull()
+                            ?.times(100)?.toUInt()
+                    } %"
+                }
+                mBinding.dueTodayRl.isVisible = !it.`908191A09B90958DBB8690918687`.isNullOrEmpty()
+                if (!it.`908191A09B90958DBB8690918687`.isNullOrEmpty()) {
+                    dueTodayAdapter.setList(it.`908191A09B90958DBB8690918687`)
+                }
+                mBinding.notDueRl.isVisible = !it.`9A9B80B08191BB8690918687`.isNullOrEmpty()
+                if (!it.`9A9B80B08191BB8690918687`.isNullOrEmpty()) {
+                    notDueAdapter.setList(it.`9A9B80B08191BB8690918687`)
+                }
 
-            val noData =
-                overDueAdapter.data.isEmpty() && dueTodayAdapter.data.isEmpty() && notDueAdapter.data.isEmpty()
-            mBinding.dataLay.isVisible = !noData
-            mBinding.emptyLay.rootLay.isVisible = noData
+                val noData =
+                    overDueAdapter.data.isEmpty() && dueTodayAdapter.data.isEmpty() && notDueAdapter.data.isEmpty()
+                mBinding.dataLay.isVisible = !noData
+                mBinding.emptyLay.rootLay.isVisible = noData
+            }
         }
         viewModel.refreshResult.observe(this) {
             mBinding.smartRefresh.finishRefresh()

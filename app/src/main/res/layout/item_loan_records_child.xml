@@ -48,7 +48,7 @@
         android:textSize="@dimen/sp_13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/platformIcon"
-        app:lrTitle="Order Number：" />
+        app:lrTitle="Order Number" />
 
     <com.dream.bjst.widget.LrKvTextview
         android:id="@+id/amount"
@@ -59,7 +59,7 @@
         android:textSize="@dimen/sp_13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lrOrderNo"
-        app:lrTitle="Repay Amount：" />
+        app:lrTitle="Repay Amount" />
 
     <com.dream.bjst.widget.LrKvTextview
         android:id="@+id/exTime"
@@ -70,7 +70,7 @@
         android:textSize="@dimen/sp_13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amount"
-        app:lrTitle="Expiration time：" />
+        app:lrTitle="Expiration time" />
 
     <com.ruffian.library.widget.RTextView
         android:id="@+id/actionTv"

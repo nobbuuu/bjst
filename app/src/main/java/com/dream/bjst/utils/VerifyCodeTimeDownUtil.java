@@ -8,7 +8,7 @@ import android.widget.TextView;
  * 描述:衣带渐宽终不悔、为伊消得人憔悴
  * 作者:HeGuiCun Administrator
  */
-class VerifyCodeTimeDownUtil extends CountDownTimer {
+public class VerifyCodeTimeDownUtil extends CountDownTimer {
 
     private TextView btGetVerifyCode;
 

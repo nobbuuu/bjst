@@ -150,9 +150,6 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
 
         //disagree
         mBinding.privacyDisagreeButton.setOnClickListener(View.OnClickListener {
-            /*if (actionType == 1) {
-                ktStartActivity(HomeImgActivity::class)
-            }*/
             finish()
         })
     }
@@ -182,12 +179,10 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         popupWindow = PopupWindow(
             pwView,
             ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
+            ViewGroup.LayoutParams.MATCH_PARENT
         )
-        if (actionType == 1) {
-            popupWindow?.isOutsideTouchable = false
-            popupWindow?.isFocusable = false
-        }
+        popupWindow?.isOutsideTouchable = false
+        popupWindow?.isFocusable = false
         val webView = pwView.findViewById<WebView>(R.id.webView)
         viewModel.privacyResult.value?.`84869D8295978DB59386919199919A80B68691829D95868DA18698`?.let {
             webView.loadUrl(it)
@@ -202,23 +197,18 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         //设置popupWindow里面的未选中按钮
         val unselectImage = pwView.findViewById<RCheckBox>(R.id.privacyPopupCb)
         val checkButton = pwView.findViewById<RTextView>(R.id.privacy_box_button)
-        unselectImage.isChecked = mBinding.privacyCb.isChecked
         //设置continue按钮
         checkButton.ktClick {
             if (!unselectImage.isChecked) {
                 ToastUtils.showShort("Please check this box and continue")
             } else {
                 popupWindow?.dismiss()
-                getPermissions()
             }
         }
         //设置disagree按钮
         val disagreeButton = pwView.findViewById<RTextView>(R.id.privacy_dis_agree_button)
         disagreeButton?.setOnClickListener {
             popupWindow?.dismiss()
-            /*if (actionType == 1) {
-                ktStartActivity(HomeImgActivity::class)
-            }*/
             finish()
         }
         // 设置 popupWindow
@@ -235,7 +225,6 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
         // 设置弹窗关闭监听——恢复亮度
         popupWindow?.setOnDismissListener {
             windowAlpha(1f)
-            mBinding.privacyCb.isChecked = unselectImage.isChecked
         }
     }
 

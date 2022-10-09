@@ -187,7 +187,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         if (!UserManager.isFalseAccount()) {
             viewModel.upGradeContent()
         }
-        viewModel.fetchCustomerKycStatus()
+        mBinding.shadow.postDelayed({
+            viewModel.fetchCustomerKycStatus()
+        },1500)
     }
 
     override fun initDataOnResume() {

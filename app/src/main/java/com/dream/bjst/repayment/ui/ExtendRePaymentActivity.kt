@@ -75,7 +75,7 @@ class ExtendRePaymentActivity : BaseActivity<RepaymentViewModel, ActivityExtendR
                 mBinding.extendPaymentPeriod.text = bean.`909198958DB19A90`
                 mBinding.extendPaymentFee.text = "₹ " + bean.`909198958DB5999B819A80`
                 mBinding.overDueAmount.text = "₹ " + bean.`9B829186908191B5999B819A80`
-                mBinding.dueTimeAfterExtension.text = bean.`909198958DB0958D87` + "days"
+                mBinding.dueTimeAfterExtension.text = bean.`909198958DB0958D87` + " days"
             }
         }
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.dream.bjst.account.vm.AccountViewModel
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.ActivityDeleteProgressBinding
+import com.dream.bjst.login.LoginActivity
 import com.dream.bjst.main.MainActivity
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktStartActivity
@@ -13,7 +14,7 @@ class DeleteProgressActivity : BaseActivity<AccountViewModel, ActivityDeleteProg
 
     override fun initView(savedInstanceState: Bundle?) {
         Thread {
-            for (i: Int in 10..100 step 10) {
+            for (i: Int in 0..100 step 20) {
                 mBinding.deleteProgressBar.setProgress(i)
                 Thread.sleep(1000)
                 if (i == 100) {
@@ -21,7 +22,7 @@ class DeleteProgressActivity : BaseActivity<AccountViewModel, ActivityDeleteProg
                         UserManager.clearUserInfo()
                         mBinding.deteTv.text = "All your date has been cleared!"
                         Thread.sleep(3000)
-                      ktStartActivity(MainActivity::class)
+                      ktStartActivity(LoginActivity::class)
                     }
                 }
             }

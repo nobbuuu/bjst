@@ -144,6 +144,7 @@
             android:layout_marginBottom="@dimen/dp_78"
             android:background="#ff009b12"
             android:text="Logout"
+            android:textAllCaps="false"
             android:textColor="@color/white" />
 
     </LinearLayout>

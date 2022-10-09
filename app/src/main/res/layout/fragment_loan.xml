@@ -247,7 +247,7 @@
                                 android:textSize="@dimen/sp_15"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                tools:text="24%" />
+                                android:text="24%" />
 
                             <View
                                 android:id="@+id/line"
@@ -345,6 +345,7 @@
                     android:orientation="vertical"
                     app:background_normal="@color/black_60"
                     app:corner_radius="@dimen/dp_4"
+                    android:visibility="gone"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toBottomOf="@+id/otherLoanRv"
                     app:layout_constraintTop_toBottomOf="@+id/summaryTv">
@@ -361,7 +362,7 @@
                         android:layout_marginTop="@dimen/dp_20"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp_15"
-                        tools:text="Recovery amount after repayment" />
+                        android:text="Recovery amount after repayment" />
                 </com.ruffian.library.widget.RLinearLayout>
             </com.ruffian.library.widget.RConstraintLayout>
         </androidx.core.widget.NestedScrollView>

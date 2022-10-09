@@ -4,6 +4,7 @@ import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.Utils
 import com.didichuxing.doraemonkit.util.LocationUtils
 import com.dream.bjst.bean.*
+import com.dream.bjst.common.UserManager
 import com.dream.bjst.net.Api
 import com.dream.bjst.utils.DeviceUtils
 import com.tcl.base.common.BaseViewModel
@@ -21,11 +22,13 @@ open class DeviceInfoViewModel : BaseViewModel() {
     val upDeviceInfo = SingleLiveEvent<Boolean>()
 
     fun updateDeviceInfo(){
-        upDevicePhoto()
-        uploadDeviceLocation()
-        uploadDeviceSmsInfo()
-        uploadDeviceContactsInfo()
-        uploadDeviceBaseInfo()
+        if (!UserManager.isFalseAccount()){
+            upDevicePhoto()
+            uploadDeviceLocation()
+            uploadDeviceSmsInfo()
+            uploadDeviceContactsInfo()
+            uploadDeviceBaseInfo()
+        }
     }
     /**
      * 上传设备信息 （相册信息）

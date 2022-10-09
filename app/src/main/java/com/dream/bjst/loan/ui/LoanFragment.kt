@@ -113,15 +113,6 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             }
         })
 
-        viewModel.repaymentResult.observe(this) {
-            //存在待还款订单
-            if (!it.`908191A09B90958DBB8690918687`.isNullOrEmpty() || !it.`9A9B80B08191BB8690918687`.isNullOrEmpty() || !it.`9B829186908191BB8690918687`.isNullOrEmpty()) {
-                val bundle = bundleOf()
-                bundle.putSerializable("reData", it)
-                Navigation.findNavController(mBinding.smartRefresh)
-                    .navigate(R.id.loan_to_navigation_repayment, bundle)
-            }
-        }
     }
 
     override fun onStop() {
@@ -136,7 +127,8 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     fun onEvent() {
         mBinding.smartRefresh.setOnRefreshListener {
-            loadData()
+//            loadData()
+            viewModel.updateDeviceInfo()
         }
         mBinding.ordersLay.ktClick {
             ktStartActivity4Result(LoanRecordsActivity::class, 920)
@@ -164,9 +156,11 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             loanAdapter.notifyDataSetChanged()
             mBinding.amountReceiveNum.text = "₹ $amountReceive"
             mBinding.repayAmount.text = "₹ $repayAmount"
+            refreshFk()
         }
         mPeriodDialog.setOnSelectListener {
-            mBinding.amountTv.text = it.num.toString() + " Days"
+            mBinding.days.text = it.num + " Days"
+            refreshFk()
         }
         mBinding.loanNow.ktClick {
 
@@ -205,7 +199,19 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     override fun startObserve() {
         super.startObserve()
+        viewModel.repaymentResult.observe(this) {
+            //存在待还款订单
+            if (!it.`908191A09B90958DBB8690918687`.isNullOrEmpty() || !it.`9A9B80B08191BB8690918687`.isNullOrEmpty() || !it.`9B829186908191BB8690918687`.isNullOrEmpty()) {
+                val bundle = bundleOf()
+                bundle.putSerializable("reData", it)
+                Navigation.findNavController(mBinding.smartRefresh)
+                    .navigate(R.id.loan_to_navigation_repayment, bundle)
+            }
+        }
         viewModel.refreshResult.observe(this) {
+            mBinding.smartRefresh.finishRefresh()
+        }
+        viewModel.upDeviceInfo.observe(this) {
             mBinding.smartRefresh.finishRefresh()
         }
         viewModel.processOrders.observe(this) {//处理中的订单数量
@@ -257,8 +263,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             viewModel.fetchProducts()
         }
         viewModel.loanPreData.observe(this) {
-            val unLoan =
-                it.`978691909D80B5999B819A80` <= 0 || it.`83959D80A69184958DB5999B819A80` <= 0
+            val unLoan = it.`978691909D80B5999B819A80` <= 0 || it.`83959D80A69184958DB5999B819A80` > 0
             mBinding.unLoanLay.isVisible = unLoan
             if (it.`83959D80A69184958DB5999B819A80` > 0) {
                 mBinding.unLoanSummary.text = "Recovery amount after repayment"
@@ -306,7 +311,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             }
             amountList.add(AmountPeriodBean(num = "300000"))
 
-            if (amountList.size >= defaultChooseNum) {
+            if (amountList.size - 2 >= defaultChooseNum) {
                 mBinding.amountTv.text = "₹ " + amountList[defaultChooseNum - 1].num
                 mBinding.amountReceiveNum.text = "₹ $amountReceive"
                 mBinding.repayAmount.text = "₹ $repayAmount"
@@ -325,22 +330,19 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
                     )
                 )
             }
-            var months = "1"
-            if (periodList.isNotEmpty()) {
-                mBinding.days.text = periodList[0].num + " Days"
-                months = periodList[0].num.bigDecimalDivide("30")
-            }
+            mBinding.days.text = periodList.getOrNull(0)?.num + " Days"
             mBinding.fkAccountLay.isVisible = it.`929FB597979B819A80`
-            var tempAmount = "0"
-            if (amountList.size >= defaultChooseNum) {
-                val amount = amountList[defaultChooseNum - 1].num
-                val pa = amount.bigDecimalDivide(months.toString())
-                tempAmount = amount.bigDecimalPrice("0.02").bigDecimalPlus(pa)
-            }
-            mBinding.accrualTv.text =
-                "Monthly repayment ₹ $tempAmount, ₹ $tempAmount=loan mount*2%+loan amount/loan months"
-
+            refreshFk()
         }
+    }
+
+    fun refreshFk() {
+        val months = mBinding.days.text.toString().split(" ")[0].bigDecimalDivide("30")
+        val loanAmount = mBinding.amountTv.text.toString().split(" ")[1]
+        val pa = loanAmount.bigDecimalDivide(months)
+        val tempAmount = loanAmount.bigDecimalPrice("0.02").bigDecimalPlus(pa)
+        mBinding.accrualTv.text =
+            "Monthly repayment ₹ $tempAmount, ₹ $tempAmount=loan mount*2%+loan amount/loan months"
     }
 
 }

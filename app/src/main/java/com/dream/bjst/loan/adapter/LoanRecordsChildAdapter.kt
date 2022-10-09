@@ -17,7 +17,8 @@ class LoanRecordsChildAdapter :
         holder.ktSetImage(R.id.platformIcon, item.`84869B90819780BD979B`)
         holder.setText(R.id.nameTv, item.`84869B90819780BA959991`)
         holder.getView<LrKvTextview>(R.id.lrOrderNo).setContent(item.`9B86909186BA8199969186`)
-        holder.getView<LrKvTextview>(R.id.amount).setContent(item.`989B959AB5999B819A80`.toString())
+        val amountView = holder.getView<LrKvTextview>(R.id.amount)
+        amountView.setContent("₹ "+item.`989B959AB5999B819A80`.toString())
         holder.getView<LrKvTextview>(R.id.exTime).setContent(item.`918C849D8695809D9B9AA09D9991`)
         //订单状态,10:审核中，20：审核拒绝，30：待还款，40:已逾期，50：已完成，60：其他，70：订单关闭
         when (item.`9B86909186A78095808187`) {
@@ -36,11 +37,13 @@ class LoanRecordsChildAdapter :
                 holder.setText(R.id.loanStatus, "Overdued")
                 holder.setGone(R.id.actionTv,false)
                 holder.setText(R.id.actionTv, "apply")
+                amountView.setTitle("Loan Amount")
             }
             50 -> {
                 holder.setText(R.id.loanStatus, "Completed")
                 holder.setGone(R.id.actionTv,false)
                 holder.setText(R.id.actionTv, "apply")
+                amountView.setTitle("Loan Amount")
             }
             60 -> {
                 holder.setText(R.id.loanStatus, "Other")

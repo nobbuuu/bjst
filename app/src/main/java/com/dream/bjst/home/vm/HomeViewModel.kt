@@ -1,5 +1,6 @@
 package com.dream.bjst.home.vm
 
+import com.dream.bjst.common.vm.KYCStatusViewModel
 import com.dream.bjst.loan.bean.HomeInfoBean
 import com.dream.bjst.net.Api
 import com.tcl.base.common.BaseViewModel
@@ -10,7 +11,7 @@ import com.tcl.base.event.SingleLiveEvent
  * 描述:衣带渐宽终不悔、为伊消得人憔悴
  * 作者:HeGuiCun Administrator
  */
-class HomeViewModel : BaseViewModel() {
+class HomeViewModel : KYCStatusViewModel() {
     val homeData = SingleLiveEvent<HomeInfoBean>()
     fun fetchHomeInfo(){
         rxLaunchUI({

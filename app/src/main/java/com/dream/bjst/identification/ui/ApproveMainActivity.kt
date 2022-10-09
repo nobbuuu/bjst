@@ -81,8 +81,6 @@ class ApproveMainActivity :
                 }
             }
         }
-
-
     }
 
     @SuppressLint("ResourceAsColor")

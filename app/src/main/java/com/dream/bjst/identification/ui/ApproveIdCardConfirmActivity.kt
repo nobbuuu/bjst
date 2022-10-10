@@ -48,14 +48,15 @@ class ApproveIdCardConfirmActivity :
         super.startObserve()
 
         viewModel.idCardDetails.observe(this){
-            mBinding.aadNo.setEndEdtText(it.`9590909586B7958690BA8199969186`.nullToEmpty())
-            mBinding.address.setEndEdtText(it.`95909086918787`.nullToEmpty())
-            mBinding.birthday.setEndEdtText(it.`969D86809C90958D`.nullToEmpty())
             mBinding.nameAad.setEndEdtText(it.`9A959991B2869B99B59590909586`.nullToEmpty())
             mBinding.namePan.setEndEdtText(it.`9A959991BD9AA4959A`.nullToEmpty())
-            mBinding.panNo.setEndEdtText(it.`84959ABD90BA8199969186`.nullToEmpty())
-            mBinding.pinCode.setEndEdtText(it.`849D9AB79B9091`.nullToEmpty())
-            mBinding.gender.setEndEdtText(transferSex(it.`87918C`))
+
+            mBinding.aadNo.setEndText(it.`9590909586B7958690BA8199969186`.nullToEmpty())
+            mBinding.address.setEndText(it.`95909086918787`.nullToEmpty())
+            mBinding.birthday.setEndText(it.`969D86809C90958D`.nullToEmpty())
+            mBinding.panNo.setEndText(it.`84959ABD90BA8199969186`.nullToEmpty())
+            mBinding.pinCode.setEndText(it.`849D9AB79B9091`.nullToEmpty())
+            mBinding.gender.setEndText(transferSex(it.`87918C`))
         }
 
         viewModel.confirmResult.observe(this){

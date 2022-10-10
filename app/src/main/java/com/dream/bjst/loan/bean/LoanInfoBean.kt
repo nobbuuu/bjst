@@ -4,7 +4,7 @@ data class LoanInfoBean(
     val `84869B90819780B89D8780`: List<ProductListBean>?,
     val `869184958DB0958091`: String,
     val `90919295819880A79198919780A4869B90819780B79B819A80`: Int,//默认选中的产品数
-    val `929FB597979B819A80`: Boolean,
+    val `929FB597979B819A80`: Boolean,//是否特殊账户(true是假账号，false是真账号)
     val `989B959AA6959A939187`: List<PeriodBean>,
     val `99958CB89B959AA4869B90819780B79B819A80`: Int//客户当前可贷产品数
 )

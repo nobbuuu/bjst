@@ -19,8 +19,6 @@
         android:id="@+id/startTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_16"
-        android:layout_marginBottom="@dimen/dp_16"
         android:text="Loan Amount"
         android:textColor="@color/dk_color_666666"
         android:textSize="@dimen/sp_15"
@@ -30,12 +28,17 @@
 
     <TextView
         android:id="@+id/endTv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="₹ 50,000"
         android:textColor="@color/black"
         android:textSize="@dimen/sp_18"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/startTv"
+        android:layout_marginStart="@dimen/dp_16"
+        android:gravity="end"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_16"
         app:layout_constraintEnd_toStartOf="@+id/nextIv"
         app:layout_constraintTop_toTopOf="parent" />
 

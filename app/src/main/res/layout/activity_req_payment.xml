@@ -11,7 +11,7 @@
         android:id="@+id/reqTitleBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_44"
-        app:title="ReqRepayment"/>
+        app:title="Extend"/>
 
 <WebView
     android:id="@+id/reqWebView"

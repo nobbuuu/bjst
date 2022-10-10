@@ -104,7 +104,7 @@
             app:startText="Pincode"
             app:startTextColor="@color/colorBlack666"
             app:startTextSize="15sp"
-            app:viewType="2" />
+            app:viewType="1" />
 
         <com.dream.bjst.widget.StartEndLayout
             android:id="@+id/email"
@@ -129,7 +129,7 @@
             app:startText="ADDRESS"
             app:startTextColor="@color/colorBlack666"
             app:startTextSize="15sp"
-            app:viewType="2" />
+            app:viewType="1" />
     </LinearLayout>
 
     <com.ruffian.library.widget.RTextView

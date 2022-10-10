@@ -126,7 +126,7 @@
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/dp_30"
         android:layout_marginBottom="18dp"
-        android:text="Confirm and continue"
+        android:text="Next"
         app:layout_constraintBottom_toTopOf="@+id/loginCb"
         app:layout_constraintStart_toStartOf="parent" />
 </LinearLayout>

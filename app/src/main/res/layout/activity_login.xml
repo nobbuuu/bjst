@@ -65,6 +65,7 @@
                 android:minWidth="@dimen/dp_242"
                 android:textColor="@color/color_333"
                 android:textSize="15sp"
+                android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -157,6 +158,7 @@
                 android:layout_marginStart="@dimen/dp_15"
                 android:background="@null"
                 android:maxLength="11"
+                android:inputType="number"
                 android:hint=" 10 digit mobile number"
                 android:textColor="@color/color_333"
                 android:textColorHint="@color/colorBlack666"

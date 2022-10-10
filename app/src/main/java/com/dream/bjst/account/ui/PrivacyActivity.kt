@@ -150,7 +150,7 @@ class PrivacyActivity : BaseActivity<AccountViewModel, ActivityPrivacyBinding>()
 
         //disagree
         mBinding.privacyDisagreeButton.setOnClickListener(View.OnClickListener {
-            finish()
+            ktStartActivity(HomeImgActivity::class)
         })
     }
 

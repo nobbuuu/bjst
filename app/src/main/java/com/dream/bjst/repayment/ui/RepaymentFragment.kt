@@ -9,9 +9,11 @@ import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.dream.bjst.R
+import com.dream.bjst.common.Constant
 import com.dream.bjst.common.UserManager
 
 import com.dream.bjst.databinding.FragmentRepaymentBinding
+import com.dream.bjst.main.homeType
 import com.dream.bjst.repayment.adapter.*
 import com.dream.bjst.repayment.bean.RepaymentBean
 import com.dream.bjst.repayment.vm.RepaymentViewModel
@@ -95,8 +97,13 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
 
     private fun event() {
         mBinding.emptyLay.btnLoadData.ktClick {
-            Navigation.findNavController(mBinding.emptyLay.rootLay)
-                .navigate(R.id.repayment_to_navigation_loan)
+            if (homeType == Constant.ACTION_TYPE_MAIN){
+                Navigation.findNavController(mBinding.emptyLay.rootLay)
+                    .navigate(R.id.repayment_to_navigation_loan)
+            }else{
+                Navigation.findNavController(mBinding.emptyLay.rootLay)
+                    .navigate(R.id.repayment_to_navigation_home)
+            }
         }
         overDueAdapter.setOnItemChildClickListener { adapter, view, position ->
             when (view.id) {

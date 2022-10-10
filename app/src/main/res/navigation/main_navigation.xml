@@ -29,6 +29,9 @@
         <action
             android:id="@+id/repayment_to_navigation_loan"
             app:destination="@id/navigation_loan" />
+        <action
+            android:id="@+id/repayment_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fixFragment>
 
     <fixFragment

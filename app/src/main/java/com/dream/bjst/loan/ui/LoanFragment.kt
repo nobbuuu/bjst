@@ -127,8 +127,8 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     fun onEvent() {
         mBinding.smartRefresh.setOnRefreshListener {
-//            loadData()
-            viewModel.updateDeviceInfo()
+            loadData()
+//            viewModel.updateDeviceInfo()
         }
         mBinding.ordersLay.ktClick {
             ktStartActivity4Result(LoanRecordsActivity::class, 920)

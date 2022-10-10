@@ -18,6 +18,7 @@ class WebViewActivity : BaseActivity<MainViewModel, ActivityWebBinding>() {
 
     override fun initData() {
         val url  = intent.getStringExtra("webUrl")
+        mBinding.webView.settings.javaScriptEnabled = false
         mBinding.webView.loadUrl(url.nullToEmpty())
     }
 

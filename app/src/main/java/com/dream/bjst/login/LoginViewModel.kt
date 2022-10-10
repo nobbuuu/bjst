@@ -11,6 +11,7 @@ import com.dream.bjst.common.vm.DeviceInfoViewModel
 import com.dream.bjst.utils.DeviceUtils
 import com.tcl.base.event.SingleLiveEvent
 import com.tcl.base.kt.ktToastShow
+import com.tcl.base.kt.nullToEmpty
 
 /**
  *@author tiaozi
@@ -53,11 +54,11 @@ class LoginViewModel : DeviceInfoViewModel() {
             )
             val result = Api.loginOrRegByOtp(param)
             //缓存token
-            UserManager.setAccessToken(result.`809B9F919A`)
-            UserManager.setUserNo(result.`9D90`)
-            UserManager.setCustomerUid(result.`978187809B999186A19D90`)
-            UserManager.setUserPhone(result.`978187809B999186B99B969D9891`)
-            UserManager.setUserName(result.`978187809B999186BA959991`)
+            UserManager.setAccessToken(result.`809B9F919A`.nullToEmpty())
+            UserManager.setUserNo(result.`9D90`.nullToEmpty())
+            UserManager.setCustomerUid(result.`978187809B999186A19D90`.nullToEmpty())
+            UserManager.setUserPhone(result.`978187809B999186B99B969D9891`.nullToEmpty())
+            UserManager.setUserName(result.`978187809B999186BA959991`.nullToEmpty())
             UserManager.setFalseAccount(result.`939B9B939891A09187809186`)
             loginResult.postValue(result)
             if (result.`939B9B939891A09187809186`) {

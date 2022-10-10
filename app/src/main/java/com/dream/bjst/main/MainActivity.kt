@@ -33,19 +33,18 @@ import com.tcl.tclzjpro.main.FixFragmentNavigator
  *@date   2021/12/8
  *description
  */
-
+var homeType = Constant.ACTION_TYPE_MAIN
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     var lastPos = -1
     var curPos = MAIN_TAB_LOAN
     private lateinit var controller: NavController
-    private var actionType = Constant.ACTION_TYPE_MAIN
 
     init {
         config.isDoubleBack = true
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        actionType = intent.getIntExtra(Constant.actionType, actionType)
+        homeType = intent.getIntExtra(Constant.actionType, homeType)
         controller = findNavController(R.id.main_container)
         val fragment =
             supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
@@ -53,7 +52,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         controller.navigatorProvider.addNavigator(navigator)
         val navInflater = controller.navInflater
         val navGraph = navInflater.inflate(R.navigation.main_navigation)
-        if (actionType == Constant.ACTION_TYPE_MAIN) {
+        if (homeType == Constant.ACTION_TYPE_MAIN) {
             navGraph.startDestination = R.id.navigation_loan
         } else {
             navGraph.startDestination = R.id.navigation_home
@@ -113,7 +112,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     private fun switchTab(curPos: Int) {
         when (curPos) {
             MAIN_TAB_LOAN -> {
-                if (actionType == Constant.ACTION_TYPE_MAIN) {
+                if (homeType == Constant.ACTION_TYPE_MAIN) {
                     BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.white))
                     controller.navigate(R.id.navigation_loan)
                 } else {
@@ -187,9 +186,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         if (!UserManager.isFalseAccount()) {
             viewModel.upGradeContent()
         }
-        mBinding.shadow.postDelayed({
+        if (UserManager.isLogin()){
             viewModel.fetchCustomerKycStatus()
-        },1500)
+        }
     }
 
     override fun initDataOnResume() {

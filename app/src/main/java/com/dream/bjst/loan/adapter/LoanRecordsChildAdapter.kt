@@ -43,7 +43,7 @@ class LoanRecordsChildAdapter :
                 holder.setText(R.id.loanStatus, "Completed")
                 holder.setGone(R.id.actionTv,false)
                 holder.setText(R.id.actionTv, "apply")
-                amountView.setTitle("Loan Amount")
+                amountView.setTitle("Loan Amount：")
             }
             60 -> {
                 holder.setText(R.id.loanStatus, "Other")

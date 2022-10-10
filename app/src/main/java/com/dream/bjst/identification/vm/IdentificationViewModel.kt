@@ -7,6 +7,7 @@ import com.dream.bjst.identification.bean.KYCStatusBean
 import com.dream.bjst.loan.bean.HomeInfoBean
 import com.dream.bjst.net.Api
 import com.dream.bjst.common.vm.DeviceInfoViewModel
+import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
 
 /**

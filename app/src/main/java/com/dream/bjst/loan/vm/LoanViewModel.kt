@@ -5,6 +5,7 @@ import com.dream.bjst.loan.bean.*
 import com.dream.bjst.net.Api
 import com.dream.bjst.common.vm.DeviceInfoViewModel
 import com.dream.bjst.repayment.bean.RepaymentBean
+import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
 
 /**

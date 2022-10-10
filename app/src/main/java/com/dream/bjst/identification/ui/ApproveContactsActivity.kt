@@ -7,6 +7,7 @@ import android.provider.ContactsContract
 import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.account.ui.AccountDeleteActivity
 import com.dream.bjst.common.UserManager
+import com.dream.bjst.common.vm.DeviceInfoViewModel
 import com.dream.bjst.databinding.ActivityContactsApproveBinding
 import com.dream.bjst.dialog.RelationDialog
 import com.dream.bjst.identification.bean.ContactsParam

@@ -68,9 +68,9 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
             val versionInfo = getSerializable(KEY_VERSION_INFO)
             if (versionInfo is NewVersionBean) {
                 mBinding.upgradeTitle.text = versionInfo.remarks
-                mBinding.newestVersion.text="Newest version:"+versionInfo.versionNumber
+                mBinding.newestVersion.text = "Newest version:" + versionInfo.versionNumber
 
-                Log.i(TAG, "onViewCreated: "+versionInfo.isForce())
+                Log.i(TAG, "onViewCreated: " + versionInfo.isForce())
                 if (versionInfo.force == true) {
                     mBinding.noticeFinishImage.visibility = View.GONE
                 }
@@ -137,8 +137,6 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
         } else {
             goInstall()
         }
-
-
     }
 
     /**
@@ -149,7 +147,7 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
         val packageURI: Uri = Uri.parse("package:" + BuildConfig.APPLICATION_ID)
         //注意这个是8.0新API
         val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI)
-        startActivityForResult(intent, 1)
+        startActivityForResult(intent, 10086)
     }
 
     private fun goInstall() {
@@ -177,7 +175,14 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
     }
 
     override fun onFinish(file: File) {
-        dismiss()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 10086) {
+            dismiss()
+            goInstall()
+        }
     }
 
     /**

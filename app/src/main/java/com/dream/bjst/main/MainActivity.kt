@@ -185,16 +185,16 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     @SuppressLint("MissingPermission")
     override fun initData() {
-        //版本更新
-        if (!UserManager.isFalseAccount()) {
-            viewModel.upGradeContent()
-        }
         if (UserManager.isLogin()) {
             viewModel.fetchCustomerKycStatus()
         }
     }
 
     override fun initDataOnResume() {
+        //版本更新
+        if (!UserManager.isFalseAccount()) {
+            viewModel.upGradeContent()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

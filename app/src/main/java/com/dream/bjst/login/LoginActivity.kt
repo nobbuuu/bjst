@@ -21,6 +21,7 @@ import com.dream.bjst.R
 import com.dream.bjst.bean.PhoneCodeParam
 import com.dream.bjst.common.Constant
 import com.dream.bjst.common.MmkvConstant
+import com.dream.bjst.common.vm.DeviceInfoViewModel
 import com.dream.bjst.databinding.ActivityLoginBinding
 
 import com.dream.bjst.dialog.VoiceDialog

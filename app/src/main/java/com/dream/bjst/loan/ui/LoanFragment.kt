@@ -232,7 +232,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
                 }
                 val param = GsonUtil.toJson(
                     ApplyParamBean(
-                        `9D84` = DeviceUtils.getLocalIPAddress(),
+                        `9D84` = DeviceUtils.getGlobalIPAddress(),
                         `84869B9081978087` = applyProducts
                     )
                 )

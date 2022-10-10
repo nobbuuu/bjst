@@ -16,6 +16,7 @@ import com.dream.bjst.bean.UpgradeDialogBean
 import com.dream.bjst.other.toBoolean
 import com.dream.bjst.repayment.bean.*
 import com.dream.bjst.utils.DeviceUtils
+import rxhttp.toStr
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse
 
@@ -217,7 +218,7 @@ object Api {
     suspend fun fetchProducts(): LoanInfoBean {
         //core/product/fetchProducts
         return RxHttp.postJson("/DB979B8691DB84869B90819780DB929180979CA4869B9081978087")
-            .addAll(GsonUtils.toJson(QueryProductBean(DeviceUtils.getLocalIPAddress())))
+            .addAll(GsonUtils.toJson(QueryProductBean(DeviceUtils.getGlobalIPAddress())))
             .toResponse<LoanInfoBean>()
             .await()
 
@@ -408,6 +409,27 @@ object Api {
             .addAll(param)
             .add("isEncryptBody", false)
             .toResponse<ConfirmResultBean>()
+            .await()
+    }
+
+    /**
+     *上传设备信息(app列表信息)，注意：此接口的参数值需要进行压缩，所以不需要进行全body加密
+     */
+    suspend fun uploadDeviceAppInfo(param: String): ConfirmResultBean {
+        //core/device/uploadDeviceAppInfo
+        return RxHttp.postJson("/DB979B8691DB9091829D9791DB8184989B9590B091829D9791B58484BD9A929B")
+            .addAll(param)
+            .add("isEncryptBody", false)
+            .toResponse<ConfirmResultBean>()
+            .await()
+    }
+
+    /**
+     *获取ip地址
+     */
+    suspend fun getIpAddress(): String {
+        return RxHttp.get("https://api.ipify.org")
+            .toStr()
             .await()
     }
 }

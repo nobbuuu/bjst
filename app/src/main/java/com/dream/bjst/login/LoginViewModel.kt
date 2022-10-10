@@ -9,6 +9,7 @@ import com.dream.bjst.identification.bean.KYCStatusBean
 import com.dream.bjst.net.Api
 import com.dream.bjst.common.vm.DeviceInfoViewModel
 import com.dream.bjst.utils.DeviceUtils
+import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
 import com.tcl.base.kt.ktToastShow
 import com.tcl.base.kt.nullToEmpty
@@ -24,7 +25,6 @@ class LoginViewModel : DeviceInfoViewModel() {
     val idCardStatus = SingleLiveEvent<KYCStatusBean>()
     val privacyResult = SingleLiveEvent<PrivacyBean>()
     val upDevicePhoto = SingleLiveEvent<Boolean>()
-
     var mNetToken = ""
     fun sendCode(param: String) {
         rxLaunchUI({
@@ -49,7 +49,7 @@ class LoginViewModel : DeviceInfoViewModel() {
                     `978187809B999186B99B969D9891` = phone,
                     `9B8084B79B9091` = code,
                     `9A9B8091A09B9F919A` = mNetToken,
-                    `9D84` = DeviceUtils.getLocalIPAddress()
+                    `9D84` = DeviceUtils.getGlobalIPAddress()
                 )
             )
             val result = Api.loginOrRegByOtp(param)

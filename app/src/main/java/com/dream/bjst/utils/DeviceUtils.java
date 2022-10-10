@@ -3,7 +3,11 @@ package com.dream.bjst.utils;
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.net.Uri;
@@ -34,12 +38,15 @@ import androidx.core.app.ActivityCompat;
 
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.Utils;
+import com.dream.bjst.bean.AppInfoBean;
 import com.dream.bjst.bean.ContactsBean;
 import com.dream.bjst.bean.PhotoInfoBean;
 import com.dream.bjst.bean.SMSInfoBean;
+import com.dream.bjst.common.Constant;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.tcl.base.kt.StringExtKt;
+import com.tcl.base.utils.MmkvUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -65,7 +72,7 @@ public class DeviceUtils {
     private static final String TAG = "DeviceUtils";
 
     /**
-     * 获取ip地址
+     * 获取ip地址(内网)
      */
     public static String getLocalIPAddress() {
         try {
@@ -90,13 +97,20 @@ public class DeviceUtils {
     }
 
     /**
+     * 获取ip地址(公网) 前提是要先请求地址获取
+     */
+    public static String getGlobalIPAddress() {
+        return MmkvUtil.INSTANCE.decodeString(Constant.IPADDRESS);
+    }
+
+    /**
      * 从本地获取相册列表
      *
      * @param pageIndex 从0开始
      * @param pageSize  页码大小
      */
 
-    public static String getLocalAlbumList(int pageIndex, int pageSize) {
+    public static List<PhotoInfoBean> getLocalAlbumList(int pageIndex, int pageSize) {
         List<PhotoInfoBean> photos = new ArrayList<>();
         Uri mImageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         try {
@@ -117,7 +131,7 @@ public class DeviceUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return StringExtKt.GZIPCompress(GsonUtils.toJson(photos));
+        return photos;
     }
 
     /**
@@ -958,7 +972,7 @@ public class DeviceUtils {
         String num = ContactsContract.CommonDataKinds.Phone.NUMBER;
         String name = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
         String updatedTimestamp = ContactsContract.CommonDataKinds.Phone.CONTACT_LAST_UPDATED_TIMESTAMP;
-        Cursor cursor = cr.query(phoneUri, new String[]{num, name,updatedTimestamp}, null, null, null);
+        Cursor cursor = cr.query(phoneUri, new String[]{num, name, updatedTimestamp}, null, null, null);
         while (cursor.moveToNext()) {
             ContactsBean phoneDto = new ContactsBean();
             phoneDto.set879B81869791(cursor.getString(cursor.getColumnIndex(name)));
@@ -967,5 +981,31 @@ public class DeviceUtils {
             contacts.add(phoneDto);
         }
         return contacts;
+    }
+
+    /**
+     * 获取手机已安装应用列表
+     */
+    public static List<AppInfoBean> getAllAppInfo() {
+        ArrayList<AppInfoBean> appBeanList = new ArrayList<>();
+        PackageManager packageManager = Utils.getApp().getPackageManager();
+        List<PackageInfo> list = packageManager.getInstalledPackages(0);
+        for (PackageInfo t : list) {
+            AppInfoBean bean = new AppInfoBean();
+            ApplicationInfo p = t.applicationInfo;
+            bean.set958484BA959991(p.loadLabel(packageManager).toString());
+            bean.set9298959387(p.flags);
+            bean.set8495979FB59391(p.packageName);
+            bean.set829186879D9B9AB79B9091(t.versionCode);
+            bean.set829186879D9B9ABA959991(t.versionName);
+            // 判断是否是属于系统的apk
+            if ((p.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+                bean.set958484A08D8491(1);
+            } else {
+                bean.set958484A08D8491(0);
+            }
+            appBeanList.add(bean);
+        }
+        return appBeanList;
     }
 }

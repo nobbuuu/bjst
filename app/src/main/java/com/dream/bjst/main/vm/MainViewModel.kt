@@ -2,10 +2,12 @@ package com.dream.bjst.main.vm
 
 import com.dream.bjst.identification.bean.KYCStatusBean
 import com.dream.bjst.bean.UpgradeDialogBean
+import com.dream.bjst.common.Constant
 import com.dream.bjst.net.Api
 import com.dream.bjst.repayment.bean.RepaymentBean
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
+import com.tcl.base.utils.MmkvUtil
 
 /**
  *@author tiaozi
@@ -26,6 +28,14 @@ class MainViewModel : BaseViewModel() {
             val upGradeResult = Api.upGradeData()
             upGradeResults.postValue(upGradeResult)
         }, showToast = false)
+    }
+
+
+    fun getIpAddress() {
+        rxLaunchUI({
+            val result = Api.getIpAddress()
+            MmkvUtil.encode(Constant.IPADDRESS,result)
+        }, showDialog = false, showToast = false)
     }
 
     fun fetchCustomerKycStatus() {

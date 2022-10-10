@@ -28,7 +28,7 @@ data class NewVersionBean(
 ) : Serializable {
     fun isNeedPop() = popup == "0"
     fun isNewVersion() = newVersion == "0"
-    fun isForce() = force == null
+    fun isForce() = force == false
 
     /**非强制更新的前提下，无需弹窗 或者 无需更新*/
     fun ableSkipUpgrade() = !isNeedPop() || isNewVersion()

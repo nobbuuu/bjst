@@ -86,7 +86,7 @@ object DownloadApkBetterHelper {
         curDownLoadUrl: String,
         curFileName: String,
         iUpgradeListener: IUpgradeListener,
-        isForce:Boolean
+        isForce:Boolean?
     ) {
         LogUtils.eTag("mars", "下载初始化配置：》》》》》》》》")
         LogUtils.eTag("mars", "版本名：$versionName")

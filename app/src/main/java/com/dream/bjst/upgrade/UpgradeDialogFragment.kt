@@ -71,7 +71,7 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
                 mBinding.newestVersion.text="Newest version:"+versionInfo.versionNumber
 
                 Log.i(TAG, "onViewCreated: "+versionInfo.isForce())
-                if (versionInfo.isForce()) {
+                if (versionInfo.force == true) {
                     mBinding.noticeFinishImage.visibility = View.GONE
                 }
                 mBinding.noticeFinishImage.ktClick {

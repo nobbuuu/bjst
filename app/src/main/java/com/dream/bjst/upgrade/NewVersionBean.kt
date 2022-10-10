@@ -9,7 +9,7 @@ import java.io.Serializable
  */
 data class NewVersionBean(
     val createTime: String? = "",
-    val force: String? = "",
+    val force: Boolean? = null,
     val opeTime: String? = "",
     val oper: String? = "",
     val platform: String? = "",
@@ -28,7 +28,7 @@ data class NewVersionBean(
 ) : Serializable {
     fun isNeedPop() = popup == "0"
     fun isNewVersion() = newVersion == "0"
-    fun isForce() = force == "0"
+    fun isForce() = force == null
 
     /**非强制更新的前提下，无需弹窗 或者 无需更新*/
     fun ableSkipUpgrade() = !isNeedPop() || isNewVersion()

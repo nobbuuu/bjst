@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.dream.bjst.BuildConfig
 import com.dream.bjst.R
 import com.dream.bjst.databinding.PopUpgradeBinding
+import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.NoViewModel
 import com.tcl.base.common.ui.BaseFullScreenDialogFragment
 import com.tcl.base.download.DownloadApkBetterHelper
@@ -67,7 +69,9 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
             if (versionInfo is NewVersionBean) {
                 mBinding.upgradeTitle.text = versionInfo.remarks
                 mBinding.newestVersion.text="Newest version:"+versionInfo.versionNumber
-                if (versionInfo.isForce()) {
+
+                Log.i(TAG, "onViewCreated: "+versionInfo.isForce())
+                if (!versionInfo.isForce()) {
                     mBinding.noticeFinishImage.visibility = View.GONE
                 }
                 mBinding.noticeFinishImage.ktClick {

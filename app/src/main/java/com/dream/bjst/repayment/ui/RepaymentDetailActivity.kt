@@ -131,13 +131,13 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         viewModel.reqRepaymentResult.observe(this) {
 
             when (it.`84958DA08D8491`) {
-                "1" -> {
+                "0" -> {
                     ktStartActivity(ReqPaymentActivity::class) {
                         putExtra("reqUrl", it.`84958DB89D9A9F`)
                     }
 
                 }
-                "0" -> {
+                "1" -> {
                     try {
                         val intent = Intent(Intent.ACTION_VIEW)
                         intent.addCategory(Intent.CATEGORY_BROWSABLE);

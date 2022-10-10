@@ -143,7 +143,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                         versionNumber = it.`97818686919A80A29186879D9B9A`,
                         url = it.`97818686919A80A18698`,
                         content = it.`869187B58484A18490958091A08C80BD9A929B`.`808C80BD809199`,
-                        remarks = it.`869187B58484A18490958091A08C80BD9A929B`.`809D809891`
+                        remarks = it.`869187B58484A18490958091A08C80BD9A929B`.`809D809891`,
+                        force =it.`99959A9095809B868DA18490958091`
 
                     )
                     doUpgrade(bean)
@@ -175,7 +176,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             versionName = newVersionBean.versionNumber.nullToEmpty(),
             curDownLoadUrl = newVersionBean.url.nullToEmpty(),
             curFileName = "luckRupee-${newVersionBean.versionNumber}.apk",
-            iUpgradeListener = upgradeDialogFragment
+            iUpgradeListener = upgradeDialogFragment,
+            isForce = newVersionBean.isForce()
+
         )
         upgradeDialogFragment.show(supportFragmentManager, UpgradeDialogFragment::class.java.name)
     }

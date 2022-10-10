@@ -85,7 +85,8 @@ object DownloadApkBetterHelper {
         versionName: String,
         curDownLoadUrl: String,
         curFileName: String,
-        iUpgradeListener: IUpgradeListener
+        iUpgradeListener: IUpgradeListener,
+        isForce:Boolean
     ) {
         LogUtils.eTag("mars", "下载初始化配置：》》》》》》》》")
         LogUtils.eTag("mars", "版本名：$versionName")
@@ -96,6 +97,9 @@ object DownloadApkBetterHelper {
         config.curDownLoadUrl = curDownLoadUrl
         config.curFileName = curFileName
         config.iupgradeListener = iUpgradeListener
+        config.isForce=isForce
+
+
     }
 
     /**
@@ -297,6 +301,7 @@ object DownloadApkBetterHelper {
         var curFileName: String = ""
         var updateContent: List<String>? = listOf()
         var curDownLoadUrl: String = ""
+        var isForce: Boolean? =null
     }
 
 

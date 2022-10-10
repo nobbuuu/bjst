@@ -26,6 +26,8 @@ public class VerifyCodeTimeDownUtil extends CountDownTimer {
     public void onFinish() {
         btGetVerifyCode.setText("0S");
         btGetVerifyCode.setClickable(true);
+
+
     }
 
     public void startNow() {

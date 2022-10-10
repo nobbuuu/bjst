@@ -1,7 +1,10 @@
 package com.dream.bjst.utils;
 
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.widget.TextView;
+
+import com.dream.bjst.account.ui.DeleteProgressActivity;
 
 /**
  * 创建日期：2022-06-30 on 1:34
@@ -25,9 +28,7 @@ public class VerifyCodeTimeDownUtil extends CountDownTimer {
     @Override
     public void onFinish() {
         btGetVerifyCode.setText("0S");
-        btGetVerifyCode.setClickable(true);
-
-
+        btGetVerifyCode.getContext().startActivity(new Intent(btGetVerifyCode.getContext(), DeleteProgressActivity.class));
     }
 
     public void startNow() {

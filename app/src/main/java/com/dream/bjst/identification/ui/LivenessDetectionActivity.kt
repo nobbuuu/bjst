@@ -15,6 +15,7 @@ import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseActivity
 import com.didichuxing.doraemonkit.util.LogUtils
 import com.dream.bjst.R
+import com.dream.bjst.main.MainActivity
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.ktToastShow
 import com.tcl.base.utils.encipher.Base64
@@ -96,6 +97,7 @@ class LivenessDetectionActivity :
                 }
             }
         } else {
+            onBackPressed()
             Log.e("onActivityResult", "silent liveness cancel，error code:$resultCode")
         }
 
@@ -113,6 +115,11 @@ class LivenessDetectionActivity :
             permissions,
             grantResults
         );
+    }
+
+    override fun onBackPressed() {
+        ktStartActivity(MainActivity::class)
+        super.onBackPressed()
     }
 
 

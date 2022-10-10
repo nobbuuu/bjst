@@ -53,7 +53,7 @@ class LoginViewModel : DeviceInfoViewModel() {
                 )
             )
             val result = Api.loginOrRegByOtp(param)
-            //缓存token
+            //缓存用户数据
             UserManager.setAccessToken(result.`809B9F919A`.nullToEmpty())
             UserManager.setUserNo(result.`9D90`.nullToEmpty())
             UserManager.setCustomerUid(result.`978187809B999186A19D90`.nullToEmpty())
@@ -61,9 +61,6 @@ class LoginViewModel : DeviceInfoViewModel() {
             UserManager.setUserName(result.`978187809B999186BA959991`.nullToEmpty())
             UserManager.setFalseAccount(result.`939B9B939891A09187809186`)
             loginResult.postValue(result)
-            if (result.`939B9B939891A09187809186`) {
-                updateDeviceInfo()
-            }
         }, errorBlock = {
             it.message?.ktToastShow()
         })

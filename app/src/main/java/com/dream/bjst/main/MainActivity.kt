@@ -33,7 +33,7 @@ import com.tcl.tclzjpro.main.FixFragmentNavigator
  *@date   2021/12/8
  *description
  */
-var homeType = Constant.ACTION_TYPE_MAIN
+var homeType = Constant.ACTION_TYPE_HOME
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     var lastPos = -1
@@ -86,13 +86,20 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         })
         controller.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
+                R.id.navigation_home -> {
+                    BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.color_F8FFF0))
+                    curPos = MAIN_TAB_LOAN
+                }
                 R.id.navigation_loan -> {
+                    BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.white))
                     curPos = MAIN_TAB_LOAN
                 }
                 R.id.navigation_repayment -> {
+                    BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.white))
                     curPos = MAIN_TAB_REPAYMENT
                 }
                 R.id.navigation_account -> {
+                    BarUtils.setStatusBarColor(this, ColorUtils.getColor(R.color.color_F8FFF0))
                     curPos = MAIN_TAB_ACCOUNT
                 }
             }
@@ -185,9 +192,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     @SuppressLint("MissingPermission")
     override fun initData() {
-        if (UserManager.isLogin()) {
-            viewModel.fetchCustomerKycStatus()
-        }
+        viewModel.fetchCustomerKycStatus()
     }
 
     override fun initDataOnResume() {

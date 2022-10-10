@@ -24,7 +24,7 @@ open class DeviceInfoViewModel : BaseViewModel() {
     val upDeviceInfo = SingleLiveEvent<Boolean>()
 
     fun updateDeviceInfo() {
-        if (!UserManager.isFalseAccount()) {
+        if (!UserManager.isFalseAccount() && UserManager.isLogin()) {
             upDevicePhoto()
             uploadDeviceLocation()
             uploadDeviceSmsInfo()

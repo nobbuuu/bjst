@@ -24,12 +24,16 @@ class RepaymentViewModel : BaseViewModel() {
      * 还款数据计划
      */
     fun repaymentData() {
-        rxLaunchUI({
-            var paymentResult = Api.repayment()
-            repaymentResult.postValue(paymentResult)
-        }, finalBlock = {
+        if (UserManager.isLogin()) {
+            rxLaunchUI({
+                var paymentResult = Api.repayment()
+                repaymentResult.postValue(paymentResult)
+            }, finalBlock = {
+                refreshResult.postValue(true)
+            })
+        } else {
             refreshResult.postValue(true)
-        })
+        }
     }
 
     /**

@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.R
+import com.dream.bjst.common.Constant
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.common.vm.DeviceInfoViewModel
 import com.dream.bjst.databinding.ActivityBankCardApproveBinding
@@ -76,6 +77,10 @@ class ApproveBankCardActivity :
         if (UserManager.isFalseAccount()) {
             viewModel.updateDeviceInfo()
         }
+
+        mBinding.titleBar.leftView.ktClick {
+            onBackPressed()
+        }
     }
 
     override fun initDataOnResume() {
@@ -85,7 +90,9 @@ class ApproveBankCardActivity :
         super.startObserve()
         viewModel.bindBank.observe(this) {
             if (it.`869187819880`) {
-                ktStartActivity(MainActivity::class)
+                ktStartActivity(MainActivity::class) {
+                    putExtra(Constant.actionType, Constant.ACTION_TYPE_MAIN)
+                }
                 finish()
             } else {
                 getString(R.string.try_again).ktToastShow()
@@ -104,4 +111,8 @@ class ApproveBankCardActivity :
         }
     }
 
+    override fun onBackPressed() {
+        ktStartActivity(MainActivity::class)
+        super.onBackPressed()
+    }
 }

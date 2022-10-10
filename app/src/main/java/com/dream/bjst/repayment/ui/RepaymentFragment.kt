@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
@@ -98,11 +100,9 @@ class RepaymentFragment : BaseFragment<RepaymentViewModel, FragmentRepaymentBind
     private fun event() {
         mBinding.emptyLay.btnLoadData.ktClick {
             if (homeType == Constant.ACTION_TYPE_MAIN){
-                Navigation.findNavController(mBinding.emptyLay.rootLay)
-                    .navigate(R.id.repayment_to_navigation_loan)
+                findNavController().navigate(R.id.navigation_loan)
             }else{
-                Navigation.findNavController(mBinding.emptyLay.rootLay)
-                    .navigate(R.id.repayment_to_navigation_home)
+                findNavController().navigate(R.id.navigation_home)
             }
         }
         overDueAdapter.setOnItemChildClickListener { adapter, view, position ->

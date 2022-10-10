@@ -105,7 +105,8 @@
         </provider>
 
         <activity android:name=".loan.ui.LoanRecordsActivity" />
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".main.MainActivity"
+            android:launchMode="singleTop">
 
         </activity>
         <activity android:name=".identification.ui.ApproveContactsActivity" />

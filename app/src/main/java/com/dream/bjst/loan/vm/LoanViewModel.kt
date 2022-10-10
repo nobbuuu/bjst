@@ -1,5 +1,6 @@
 package com.dream.bjst.loan.vm
 
+import com.dream.bjst.common.UserManager
 import com.dream.bjst.identification.bean.KYCStatusBean
 import com.dream.bjst.loan.bean.*
 import com.dream.bjst.net.Api
@@ -24,10 +25,12 @@ class LoanViewModel : DeviceInfoViewModel() {
     val refreshResult = SingleLiveEvent<Boolean>()
 
     fun fetchCustomerKycStatus() {
-        rxLaunchUI({
-            val result = Api.fetchCustomerKycStatus()
-            userStatus.postValue(result)
-        })
+        if (UserManager.isLogin()) {
+            rxLaunchUI({
+                val result = Api.fetchCustomerKycStatus()
+                userStatus.postValue(result)
+            })
+        }
     }
 
     fun fetchProducts() {
@@ -71,11 +74,13 @@ class LoanViewModel : DeviceInfoViewModel() {
      * 还款数据计划
      */
     fun repaymentData() {
-        rxLaunchUI({
-            var paymentResult = Api.repayment()
-            repaymentResult.postValue(paymentResult)
-        }, finalBlock = {
-            refreshResult.postValue(true)
-        })
+        if (UserManager.isLogin()){
+            rxLaunchUI({
+                var paymentResult = Api.repayment()
+                repaymentResult.postValue(paymentResult)
+            }, finalBlock = {
+                refreshResult.postValue(true)
+            })
+        }
     }
 }

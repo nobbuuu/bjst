@@ -3,6 +3,7 @@ package com.dream.bjst.main.vm
 import com.dream.bjst.identification.bean.KYCStatusBean
 import com.dream.bjst.bean.UpgradeDialogBean
 import com.dream.bjst.common.Constant
+import com.dream.bjst.common.UserManager
 import com.dream.bjst.net.Api
 import com.dream.bjst.repayment.bean.RepaymentBean
 import com.tcl.base.common.BaseViewModel
@@ -27,24 +28,26 @@ class MainViewModel : BaseViewModel() {
         rxLaunchUI({
             val upGradeResult = Api.upGradeData()
             upGradeResults.postValue(upGradeResult)
-        }, showToast = false)
+        }, showToast = false, showDialog = false)
     }
 
 
     fun getIpAddress() {
         rxLaunchUI({
             val result = Api.getIpAddress()
-            MmkvUtil.encode(Constant.IPADDRESS,result)
+            MmkvUtil.encode(Constant.IPADDRESS, result)
         }, showDialog = false, showToast = false)
     }
 
     fun fetchCustomerKycStatus() {
-        rxLaunchUI({
-            val result = Api.fetchCustomerKycStatus()
-            userStatus.postValue(result)
-        }, showDialog = false, errorBlock = {
-            unLogin.postValue(true)
-        })
+        if (UserManager.isLogin()) {
+            rxLaunchUI({
+                val result = Api.fetchCustomerKycStatus()
+                userStatus.postValue(result)
+            }, showDialog = false, errorBlock = {
+                unLogin.postValue(true)
+            })
+        }
     }
 
 

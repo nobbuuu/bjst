@@ -12,6 +12,7 @@ import com.dream.bjst.databinding.ActivityContactsApproveBinding
 import com.dream.bjst.dialog.RelationDialog
 import com.dream.bjst.identification.bean.ContactsParam
 import com.dream.bjst.identification.vm.IdentificationViewModel
+import com.dream.bjst.main.MainActivity
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
@@ -36,6 +37,10 @@ class ApproveContactsActivity :
     }
 
     override fun initData() {
+        mBinding.titleBar.leftView.ktClick {
+            onBackPressed()
+        }
+
         mBinding.relationLay1.ktClick {
             relationType = 1
             relationDialog.show()
@@ -59,7 +64,7 @@ class ApproveContactsActivity :
                 viewModel.pushUrgencyContact(GsonUtils.toJson(param))
             }
         }
-        if (UserManager.isFalseAccount()){
+        if (UserManager.isFalseAccount()) {
             viewModel.updateDeviceInfo()
         }
     }
@@ -104,6 +109,12 @@ class ApproveContactsActivity :
                 "operation failed,please try again".ktToastShow()
             }
         }
+    }
+
+
+    override fun onBackPressed() {
+        ktStartActivity(MainActivity::class)
+        super.onBackPressed()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

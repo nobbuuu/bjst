@@ -5,7 +5,7 @@ import java.io.Serializable
 data class LoginBean(
     val `809B9F919A`: String?,
     val `93`: Boolean,
-    val `939B9B939891A09187809186`: Boolean,
+    val `939B9B939891A09187809186`: Boolean,//与isG字段一样的值：是否谷歌审核人账号,true：是，false: 否
     val `969895979FB78187809B999186`: Boolean,
     val `978187809B999186A08D8491`: String?,
     val `978187809B999186A19D90`: String?,

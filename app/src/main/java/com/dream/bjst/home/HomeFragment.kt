@@ -17,8 +17,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         StatusBarUtils.adjustWindow(requireActivity(), R.color.color_F8FFF0, mBinding.topLay)
-        //当前页面是未登录展示，如果已经登录将不展示
-        viewModel.fetchCustomerKycStatus()
         mBinding.homeRequestBtn.ktClick {
             if (UserManager.isLogin()) {
                 viewModel.userStatus.value?.let {
@@ -48,7 +46,14 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
                 ktStartActivity(LoginActivity::class)
             }
         }
-        viewModel.fetchHomeInfo()
+        if (UserManager.isLogin()) {
+            viewModel.fetchHomeInfo()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetchCustomerKycStatus()
     }
 
     override fun startObserve() {

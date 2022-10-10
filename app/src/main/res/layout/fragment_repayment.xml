@@ -181,8 +181,7 @@
                     android:id="@+id/emptyLay"
                     layout="@layout/item_repayment_empty"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="gone" />
+                    android:layout_height="match_parent" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>

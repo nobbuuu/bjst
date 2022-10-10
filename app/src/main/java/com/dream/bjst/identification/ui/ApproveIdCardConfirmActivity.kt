@@ -7,6 +7,7 @@ import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.ActivityIdcardConfirmBinding
 import com.dream.bjst.identification.bean.IdCardConfirmParam
 import com.dream.bjst.identification.vm.IdentificationViewModel
+import com.dream.bjst.main.MainActivity
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
@@ -18,7 +19,7 @@ class ApproveIdCardConfirmActivity :
     override fun initView(savedInstanceState: Bundle?) {
 
         mBinding.sureBtn.ktClick {
-            if (mBinding.email.getEndEdtText().isNotEmpty()){
+            if (mBinding.email.getEndEdtText().isNotEmpty()) {
                 val bean = IdCardConfirmParam().apply {
                     `84959ABA8199969186` = mBinding.panNo.getEndEdtText()
                     `95909086918787` = mBinding.address.getEndEdtText()
@@ -29,12 +30,17 @@ class ApproveIdCardConfirmActivity :
                     `999B909D928DA4959ABA959991` = mBinding.namePan.getEndEdtText()
                 }
                 val toJson = GsonUtils.toJson(bean)
-                LogUtils.dTag("jsonParam",toJson)
+                LogUtils.dTag("jsonParam", toJson)
                 viewModel.submitAdjustInfo(toJson)
-            }else{
+            } else {
                 "Please enter your email address".ktToastShow()
             }
         }
+
+        mBinding.titleBar.leftView.ktClick {
+            onBackPressed()
+        }
+
     }
 
     override fun initData() {
@@ -47,7 +53,7 @@ class ApproveIdCardConfirmActivity :
     override fun startObserve() {
         super.startObserve()
 
-        viewModel.idCardDetails.observe(this){
+        viewModel.idCardDetails.observe(this) {
             mBinding.nameAad.setEndEdtText(it.`9A959991B2869B99B59590909586`.nullToEmpty())
             mBinding.namePan.setEndEdtText(it.`9A959991BD9AA4959A`.nullToEmpty())
 
@@ -59,35 +65,40 @@ class ApproveIdCardConfirmActivity :
             mBinding.gender.setEndText(transferSex(it.`87918C`))
         }
 
-        viewModel.confirmResult.observe(this){
-            if (it.`869187819880`){
+        viewModel.confirmResult.observe(this) {
+            if (it.`869187819880`) {
                 //缓存姓名
                 //UserManager.setUserName(mBinding.aadNo.getEndEdtText())
                 ktStartActivity(LivenessDetectionActivity::class)
                 finish()
-            }else{
+            } else {
                 "confirm failed,please try again".ktToastShow()
             }
         }
     }
 
-    fun transferSex(sex:Int?) : String{
+    fun transferSex(sex: Int?): String {
         var sexStr = ""
-        when (sex){
-            0 ->{
+        when (sex) {
+            0 -> {
                 sexStr = "unknown"
             }
-            10 ->{
+            10 -> {
                 sexStr = "male"
             }
-            20 ->{
+            20 -> {
                 sexStr = "female"
             }
-            30 ->{
+            30 -> {
                 sexStr = "transgender"
             }
         }
         return sexStr
+    }
+
+    override fun onBackPressed() {
+        ktStartActivity(MainActivity::class)
+        super.onBackPressed()
     }
 
 }

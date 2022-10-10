@@ -49,7 +49,9 @@ class LaunchActivity : BaseActivity<MainViewModel, ActivityLaunchBinding>() {
                 if (UserManager.isLogin()) {
                     viewModel.fetchCustomerKycStatus()
                 } else {
-                    ktStartActivity(LoginActivity::class)
+                    ktStartActivity(MainActivity::class) {
+                        putExtra(Constant.actionType, Constant.ACTION_TYPE_HOME)
+                    }
                     finish()
                 }
             }

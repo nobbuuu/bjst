@@ -8,6 +8,7 @@ import com.dream.bjst.common.UserManager
 import com.dream.bjst.databinding.FragmentAccountBinding
 import com.dream.bjst.identification.ui.ApproveMainActivity
 import com.dream.bjst.loan.ui.LoanRecordsActivity
+import com.dream.bjst.login.LoginActivity
 import com.dream.bjst.other.WebViewActivity
 import com.dream.bjst.utils.StatusBarUtils.adjustWindow
 import com.tcl.base.common.ui.BaseFragment
@@ -47,43 +48,68 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
         super.initDataOnViewCreated()
         //设置页面
         mBinding.accountSetting.ktClick {
-            ktStartActivity(AccountSettingActivity::class)
+            if (UserManager.isLogin()) {
+                ktStartActivity(AccountSettingActivity::class)
+            } else {
+                ktStartActivity(LoginActivity::class)
+            }
         }
         //关于我们
 
         mBinding.accountAboutUs.ktClick {
-            ktStartActivity(AboutUsActivity::class)
+            if (UserManager.isLogin()) {
+                ktStartActivity(AboutUsActivity::class)
+            } else {
+                ktStartActivity(LoginActivity::class)
+            }
         }
 
         //删除数据
 
         mBinding.accountDeleteIndividualData.ktClick {
-            ktStartActivity(AccountDeleteActivity::class)
+            if (UserManager.isLogin()) {
+                ktStartActivity(AccountDeleteActivity::class)
+            } else {
+                ktStartActivity(LoginActivity::class)
+            }
         }
 
         //隐私界面
 
         mBinding.accountPrivacyPolice.ktClick {
-            viewModel.privacy()
+            if (UserManager.isLogin()) {
+                viewModel.privacy()
+            } else {
+                ktStartActivity(LoginActivity::class)
+            }
         }
 
         //顾客聊天服务
 
         mBinding.accountCustomerService.ktClick {
-            ktStartActivity(ChatMessageActivity::class)
+            if (UserManager.isLogin()) {
+                ktStartActivity(ChatMessageActivity::class)
+            } else {
+                ktStartActivity(LoginActivity::class)
+            }
         }
         //进入贷款记录界面
 
         mBinding.accountLoanRecord.ktClick {
-            ktStartActivity4Result(LoanRecordsActivity::class, 922)
+            if (UserManager.isLogin()) {
+                ktStartActivity4Result(LoanRecordsActivity::class, 922)
+            } else {
+                ktStartActivity(LoginActivity::class)
+            }
         }
         //进入认证界面
 
         mBinding.accountReEnterRv.ktClick {
-            ktStartActivity(ApproveMainActivity::class)
+            if (UserManager.isLogin()) {
+                ktStartActivity(ApproveMainActivity::class)
+            } else {
+                ktStartActivity(LoginActivity::class)
+            }
         }
-
     }
-
-
 }

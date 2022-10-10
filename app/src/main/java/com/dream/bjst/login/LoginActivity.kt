@@ -73,19 +73,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         }
 
         mBinding.titleBar.leftView.ktClick {
-            if (isSendCode) {
-                mBinding.phoneLay.isVisible = true
-                mBinding.codeLay.isVisible = false
-                mBinding.horiProgress.progress = 50
-                isSendCode = false
-                mBinding.codeEdt.setText("")
-                sendList.forEach {
-                    it.onPause()
-                }
-                sendList.clear()
-            }else{
-                finish()
-            }
+            onBackPressed()
         }
 
         mBinding.resendTv.ktClick {
@@ -119,6 +107,21 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         }
     }
 
+    override fun onBackPressed() {
+        if (isSendCode) {
+            mBinding.phoneLay.isVisible = true
+            mBinding.codeLay.isVisible = false
+            mBinding.horiProgress.progress = 50
+            isSendCode = false
+            mBinding.codeEdt.setText("")
+            sendList.forEach {
+                it.onPause()
+            }
+            sendList.clear()
+        }else{
+            finish()
+        }
+    }
     private fun showDebugDialog(context: Context) {
         val list = arrayOf(
             Configs.URL_APP_TEST_20222,
@@ -230,8 +233,8 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             }, 1000)
         }
         viewModel.loginResult.observe(this) {
+            viewModel.updateDeviceInfo()
             viewModel.fetchCustomerKycStatus()
-            viewModel.upDevicePhoto()
         }
 
         viewModel.idCardStatus.observe(this) {
@@ -246,7 +249,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         }
 
         viewModel.upDevicePhoto.observe(this) {
-            "update device photo success"
+
         }
 
     }

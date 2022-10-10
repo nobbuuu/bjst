@@ -10,6 +10,7 @@ import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityCertificationIdcardBinding
 import com.dream.bjst.identification.bean.IdCardInfoParam
 import com.dream.bjst.identification.vm.IdentificationViewModel
+import com.dream.bjst.main.MainActivity
 import com.dream.bjst.utils.BitmapUtils
 import com.dream.bjst.utils.PhotoManager
 import com.dream.bjst.utils.PhotoSelectDialog

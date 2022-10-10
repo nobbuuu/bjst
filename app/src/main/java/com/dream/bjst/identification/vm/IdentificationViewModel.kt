@@ -1,5 +1,6 @@
 package com.dream.bjst.identification.vm
 
+import com.dream.bjst.common.UserManager
 import com.dream.bjst.identification.bean.BankListBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
@@ -56,10 +57,12 @@ class IdentificationViewModel : DeviceInfoViewModel() {
     }
 
     fun fetchCustomerKycStatus() {
-        rxLaunchUI({
-            val result = Api.fetchCustomerKycStatus()
-            idCardStatus.postValue(result)
-        })
+        if (UserManager.isLogin()){
+            rxLaunchUI({
+                val result = Api.fetchCustomerKycStatus()
+                idCardStatus.postValue(result)
+            })
+        }
     }
 
     fun fetchCustomerIdCardInfo() {

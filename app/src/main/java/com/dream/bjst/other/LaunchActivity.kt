@@ -29,6 +29,7 @@ class LaunchActivity : BaseActivity<MainViewModel, ActivityLaunchBinding>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        viewModel.getIpAddress()
         if (!this.isTaskRoot) {
             finish()
             overridePendingTransition(0, 0)

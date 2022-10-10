@@ -16,6 +16,7 @@ import com.dream.bjst.bean.UpgradeDialogBean
 import com.dream.bjst.other.toBoolean
 import com.dream.bjst.repayment.bean.*
 import com.dream.bjst.utils.DeviceUtils
+import rxhttp.toStr
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse
 
@@ -217,7 +218,7 @@ object Api {
     suspend fun fetchProducts(): LoanInfoBean {
         //core/product/fetchProducts
         return RxHttp.postJson("/DB979B8691DB84869B90819780DB929180979CA4869B9081978087")
-            .addAll(GsonUtils.toJson(QueryProductBean(DeviceUtils.getLocalIPAddress())))
+            .addAll(GsonUtils.toJson(QueryProductBean(DeviceUtils.getGlobalIPAddress())))
             .toResponse<LoanInfoBean>()
             .await()
 
@@ -420,6 +421,15 @@ object Api {
             .addAll(param)
             .add("isEncryptBody", false)
             .toResponse<ConfirmResultBean>()
+            .await()
+    }
+
+    /**
+     *获取ip地址
+     */
+    suspend fun getIpAddress(): String {
+        return RxHttp.get("https://api.ipify.org")
+            .toStr()
             .await()
     }
 }

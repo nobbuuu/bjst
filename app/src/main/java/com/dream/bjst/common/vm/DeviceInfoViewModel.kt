@@ -5,6 +5,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
 import com.didichuxing.doraemonkit.util.LocationUtils
 import com.dream.bjst.bean.*
+import com.dream.bjst.common.Constant
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.net.Api
 import com.dream.bjst.utils.DeviceUtils
@@ -107,6 +108,13 @@ open class DeviceInfoViewModel : BaseViewModel() {
             val paramBean = DeviceAppsParamBean(paramStr.GZIPCompress())
             val result = Api.uploadDeviceAppInfo(GsonUtils.toJson(paramBean))
             upDeviceInfo.postValue(result.`869187819880`)
+        }, showDialog = false, showToast = false)
+    }
+
+    fun getIpAddress() {
+        rxLaunchUI({
+            val result = Api.getIpAddress()
+            MmkvUtil.encode(Constant.IPADDRESS,result)
         }, showDialog = false, showToast = false)
     }
 

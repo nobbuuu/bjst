@@ -42,9 +42,11 @@ import com.dream.bjst.bean.AppInfoBean;
 import com.dream.bjst.bean.ContactsBean;
 import com.dream.bjst.bean.PhotoInfoBean;
 import com.dream.bjst.bean.SMSInfoBean;
+import com.dream.bjst.common.Constant;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.tcl.base.kt.StringExtKt;
+import com.tcl.base.utils.MmkvUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -70,7 +72,7 @@ public class DeviceUtils {
     private static final String TAG = "DeviceUtils";
 
     /**
-     * 获取ip地址
+     * 获取ip地址(内网)
      */
     public static String getLocalIPAddress() {
         try {
@@ -92,6 +94,13 @@ public class DeviceUtils {
             Log.e("BaseScanTvDeviceClient", "获取本机IP false =" + ex.toString());
         }
         return null;
+    }
+
+    /**
+     * 获取ip地址(公网) 前提是要先请求地址获取
+     */
+    public static String getGlobalIPAddress() {
+        return MmkvUtil.INSTANCE.decodeString(Constant.IPADDRESS);
     }
 
     /**

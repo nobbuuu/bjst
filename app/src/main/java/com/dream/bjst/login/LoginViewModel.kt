@@ -49,7 +49,7 @@ class LoginViewModel : DeviceInfoViewModel() {
                     `978187809B999186B99B969D9891` = phone,
                     `9B8084B79B9091` = code,
                     `9A9B8091A09B9F919A` = mNetToken,
-                    `9D84` = DeviceUtils.getLocalIPAddress()
+                    `9D84` = DeviceUtils.getGlobalIPAddress()
                 )
             )
             val result = Api.loginOrRegByOtp(param)

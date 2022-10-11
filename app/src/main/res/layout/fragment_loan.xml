@@ -362,7 +362,7 @@
                         android:layout_marginTop="@dimen/dp_20"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp_15"
-                        android:text="Recovery amount after repayment" />
+                        android:text="No application product available" />
                 </com.ruffian.library.widget.RLinearLayout>
             </com.ruffian.library.widget.RConstraintLayout>
         </androidx.core.widget.NestedScrollView>

@@ -182,6 +182,7 @@
                 android:layout_height="@dimen/dp_60"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <com.ruffian.library.widget.RImageView

@@ -8,6 +8,7 @@
     <string name="emergency_contact">Emergency\nContact</string>
     <string name="bank_account">Bank Account</string>
     <string name="try_again">operation failed, please try again</string>
+    <string name="detection_try_again">Liveness detection failed, please try again</string>
 
     <string name="upgrade_downloading">正在下载最新版本</string>
     <string name="upgrade_new_version">有新版本啦！</string>

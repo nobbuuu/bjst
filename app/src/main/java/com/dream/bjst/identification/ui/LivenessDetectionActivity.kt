@@ -63,8 +63,8 @@ class LivenessDetectionActivity :
                 ktStartActivity(ApproveContactsActivity::class)
             } else {
                 //人脸对比失败 请重试
-                getString(R.string.try_again).ktToastShow()
-                finish()
+                getString(R.string.detection_try_again).ktToastShow()
+                onBackPressed()
             }
         }
 

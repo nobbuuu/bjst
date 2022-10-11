@@ -115,7 +115,7 @@ object UserManager {
 
     /**获取用户电话号码*/
     fun getUserPhone(): String {
-        return MmkvUtil.decodeString(getUserPhoneKey()) ?: "8019872373"
+        return MmkvUtil.decodeString(getUserPhoneKey()) ?: ""
     }
 
     /**设置用户UID*/

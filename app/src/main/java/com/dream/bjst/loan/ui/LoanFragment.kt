@@ -155,11 +155,11 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     override fun startObserve() {
         super.startObserve()
-        viewModel.repaymentResult.observe(this) {
+        viewModel.repaymentResult.observe(this) { repayBean ->
             //存在待还款订单
-            if (!it.`908191A09B90958DBB8690918687`.isNullOrEmpty() || !it.`9A9B80B08191BB8690918687`.isNullOrEmpty() || !it.`9B829186908191BB8690918687`.isNullOrEmpty()) {
+            if (!repayBean.`908191A09B90958DBB8690918687`.isNullOrEmpty() || !repayBean.`9A9B80B08191BB8690918687`.isNullOrEmpty() || !repayBean.`9B829186908191BB8690918687`.isNullOrEmpty()) {
                 val bundle = bundleOf()
-                bundle.putSerializable("reData", it)
+                bundle.putSerializable("reData", repayBean)
                 Navigation.findNavController(mBinding.smartRefresh)
                     .navigate(R.id.loan_to_navigation_repayment, bundle)
             }
@@ -172,6 +172,11 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         }
         viewModel.processOrders.observe(this) {//处理中的订单数量
             mBinding.processNumTv.text = "$it orders processing currently"
+            try {
+                mBinding.ordersLay.isVisible = it.toInt() > 0
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
         viewModel.userStatus.observe(this) {
 
@@ -219,16 +224,19 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             viewModel.fetchProducts()
         }
         viewModel.loanPreData.observe(this) {
-            val unLoan = it.`978691909D80B5999B819A80` <= 0 || it.`83959D80A69184958DB5999B819A80` > 0
+            /*val unLoan =
+                it.`978691909D80B5999B819A80` <= 0 || it.`83959D80A69184958DB5999B819A80` > 0
             mBinding.unLoanLay.isVisible = unLoan
             if (it.`83959D80A69184958DB5999B819A80` > 0) {
                 mBinding.unLoanSummary.text = "Recovery amount after repayment"
             } else if (it.`978691909D80B5999B819A80` <= 0) {
                 mBinding.unLoanSummary.text = "No application product available"
-            }
+            }*/
         }
         viewModel.loanData.observe(this) {
             mBinding.smartRefresh.finishRefresh()
+            mBinding.unLoanLay.isVisible = it.`99958CB89B959AA4869B90819780B79B819A80` <= 0
+
             //刷新Amount弹框数据和产品列表数据
             val defaultChooseNum = it.`90919295819880A79198919780A4869B90819780B79B819A80`
             it.`84869B90819780B89D8780`?.forEachIndexed { index, bean ->
@@ -271,8 +279,8 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
                 mBinding.amountTv.text = "₹ " + amountList[defaultChooseNum - 1].num
                 mBinding.amountReceiveNum.text = "₹ $amountReceive"
                 mBinding.repayAmount.text = "₹ $repayAmount"
-                mBinding.repaymentDate.text = it.`869184958DB0958091`
             }
+            mBinding.repaymentDate.text = it.`869184958DB0958091`
 
 
             //借款周期

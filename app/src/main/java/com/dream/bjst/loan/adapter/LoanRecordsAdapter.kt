@@ -11,6 +11,7 @@ import com.dream.bjst.loan.bean.OrderResultBean
 class LoanRecordsAdapter(val block: ((Int) -> Unit)? = null) :
     BaseQuickAdapter<OrderResultBean, BaseViewHolder>(R.layout.item_loan_records) {
     override fun convert(holder: BaseViewHolder, item: OrderResultBean) {
+        holder.setText(R.id.timeGroup,item.applyTime)
         val recordsRv = holder.getView<RecyclerView>(R.id.loanRecordsRv)
         val adapter = LoanRecordsChildAdapter()
         adapter.setOnItemChildClickListener { adapter, view, position ->

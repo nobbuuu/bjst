@@ -224,8 +224,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             if (it.`9A919190B09B9D9A93BD809199` == "90") {//银行卡重绑定
                 val lastTab = mBinding.mainTab.getTabAt(TabManager.menus.lastIndex)
                 if (lastTab?.customView is MainTabView) {
-                    lastTab?.customView?.findViewById<RTextView>(R.id.tabUnreadCount)?.isVisible =
-                        true
+                    lastTab?.customView?.findViewById<RTextView>(R.id.tabUnreadCount)?.isVisible = true
                 }
             }
         }

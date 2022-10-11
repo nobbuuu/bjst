@@ -23,7 +23,7 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
         //设置电话号码
         mBinding.accountPhone.text = UserManager.getUserPhone()
         viewModel.fetchCustomerKycStatus()
-        mBinding.accountCustomerService.isVisible = !UserManager.isFalseAccount()
+        mBinding.accountCustomerService.isVisible = !UserManager.isFalseAccount() && UserManager.isLogin()
     }
 
     override fun startObserve() {

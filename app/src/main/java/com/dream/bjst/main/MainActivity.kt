@@ -2,6 +2,8 @@ package com.dream.bjst.main
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.IntentFilter
+import android.location.Location
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -9,6 +11,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ColorUtils
+import com.blankj.utilcode.util.LogUtils
+import com.didichuxing.doraemonkit.util.LocationUtils
 import com.dream.bjst.BuildConfig
 import com.dream.bjst.R
 import com.dream.bjst.account.ui.DeleteProgressActivity
@@ -18,6 +22,7 @@ import com.dream.bjst.databinding.ActivityMainBinding
 import com.dream.bjst.dialog.UnLoanDialog
 import com.dream.bjst.main.menu.*
 import com.dream.bjst.main.vm.MainViewModel
+import com.dream.bjst.receiver.BatteryReceiver
 import com.dream.bjst.upgrade.NewVersionBean
 import com.dream.bjst.upgrade.UpgradeDialogFragment
 import com.google.android.material.tabs.TabLayout
@@ -26,6 +31,7 @@ import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.download.DownloadApkBetterHelper
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.nullToEmpty
+import com.tcl.base.utils.MmkvUtil
 import com.tcl.tclzjpro.main.FixFragmentNavigator
 
 /**
@@ -39,12 +45,20 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     var lastPos = -1
     var curPos = MAIN_TAB_LOAN
     private lateinit var controller: NavController
+    private var batteryReceiver: BatteryReceiver? = null
 
     init {
         config.isDoubleBack = true
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        initLocation()
+        initReceiver()
+        initBotNav()
+        onEvent()
+    }
+
+    private fun initBotNav() {
         homeType = intent.getIntExtra(Constant.actionType, homeType)
         controller = findNavController(R.id.main_container)
         val fragment =
@@ -65,7 +79,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             tab.customView = MainTabView(this, TabManager.menus[it])
             mBinding.mainTab.addTab(tab)
         }
+    }
 
+    private fun onEvent() {
         mBinding.mainTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.run {
@@ -105,6 +121,46 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             }
             mBinding.mainTab.selectTab(mBinding.mainTab.getTabAt(curPos))
         }
+    }
+
+    @SuppressLint("MissingPermission")
+    fun initLocation() {
+        LocationUtils.register(0, 0, object : LocationUtils.OnLocationChangeListener {
+            override fun getLastKnownLocation(location: Location?) {
+                LogUtils.dTag("locationTag", "getLastKnownLocation----------")
+                location?.let {
+                    LogUtils.dTag(
+                        "locationTag",
+                        LocationUtils.getLocality(it.latitude, it.longitude)
+                    )
+                    MmkvUtil.encode("curLatitude", it.latitude)
+                    MmkvUtil.encode("curLongitude", it.longitude)
+                }
+            }
+
+            override fun onLocationChanged(location: Location?) {
+                LogUtils.dTag("locationTag", "onLocationChanged----------")
+                location?.let {
+                    LogUtils.dTag(
+                        "locationTag",
+                        LocationUtils.getLocality(it.latitude, it.longitude)
+                    )
+                    MmkvUtil.encode("curLatitude", it.latitude)
+                    MmkvUtil.encode("curLongitude", it.longitude)
+                }
+            }
+
+            override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+
+            }
+        })
+    }
+
+    private fun initReceiver() {
+        batteryReceiver = BatteryReceiver()
+        val batteryFilter = IntentFilter()
+        batteryFilter.addAction(Intent.ACTION_BATTERY_CHANGED)
+        registerReceiver(batteryReceiver, batteryFilter)
     }
 
     override fun onBlockBackPressed(): Boolean {
@@ -212,5 +268,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 controller.navigate(R.id.navigation_loan)
             }
         }
+    }
+
+    override fun onDestroy() {
+        unregisterReceiver(batteryReceiver)
+        super.onDestroy()
     }
 }

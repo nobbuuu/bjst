@@ -15,118 +15,126 @@
         app:titleSize="@dimen/sp_18"
         app:titleStyle="bold" />
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_20"
-        android:orientation="vertical"
-        android:paddingEnd="@dimen/dp_20">
+        android:layout_height="match_parent">
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/bankLay"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:endText="Bank Name"
-            app:endTextColor="@color/dk_color_999999"
-            app:endTextSize="15sp"
-            app:isSelect="true"
-            app:startText="Bank Name"
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="1" />
+            android:layout_marginStart="@dimen/dp_20"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/dp_20">
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/beneName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endText=""
-            app:endTextColor="@color/black"
-            app:endTextSize="15sp"
-            app:hintText="Match with addahar"
-            app:startText="Beneficiary Name"
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="2" />
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/bankLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endText="Bank Name"
+                app:endTextColor="@color/dk_color_999999"
+                app:endTextSize="15sp"
+                app:isSelect="true"
+                app:startText="Bank Name"
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="1" />
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/ifscCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endText=""
-            app:endTextColor="@color/black"
-            app:endTextSize="15sp"
-            app:hintText="Enter IFSC code"
-            app:startText="IFSC Code"
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="2" />
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/beneName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endText=""
+                app:endTextColor="@color/black"
+                app:endTextSize="15sp"
+                app:hintText="Match with addahar"
+                app:startText="Beneficiary Name"
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="2" />
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/accountNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endTextColor="@color/black"
-            app:endTextSize="15sp"
-            app:hintText="Enter A/C No."
-            app:startText="Account No."
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="2" />
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/ifscCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endText=""
+                app:endTextColor="@color/black"
+                app:endTextSize="15sp"
+                app:hintText="Enter IFSC code"
+                app:startText="IFSC Code"
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="2" />
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/reAccNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endText=""
-            app:endTextColor="@color/black"
-            app:endTextSize="15sp"
-            app:hintText="Re-enter A/C No."
-            app:startText="Re-enter Account No."
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="2" />
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/accountNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endTextColor="@color/black"
+                app:endTextSize="15sp"
+                app:hintText="Enter A/C No."
+                app:startText="Account No."
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="2" />
 
-        <TextView
-            android:id="@+id/tipsTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="The Account No. does not match."
-            android:textColor="#ffe80000"
-            android:visibility="gone"
-            android:layout_marginTop="10dp"
-            android:textSize="11sp" />
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/reAccNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endText=""
+                app:endTextColor="@color/black"
+                app:endTextSize="15sp"
+                app:hintText="Re-enter A/C No."
+                app:startText="Re-enter Account No."
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="2" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_13"
-            android:lineSpacingExtra="10dp"
-            android:text="Warm tips：\n
+            <TextView
+                android:id="@+id/tipsTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="The Account No. does not match."
+                android:textColor="#ffe80000"
+                android:textSize="11sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_13"
+                android:lineSpacingExtra="10dp"
+                android:text="Warm tips：\n
 1.After certification approved, we will disbruse fund to your bank account.\n
 2.Please don't change bank account before repayment done.\n
 3.Please attach the saving account which under your own name."
-            android:textColor="@color/black"
-            android:textSize="13sp" />
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dp_20"
-            android:drawableStart="@mipmap/attention"
-            android:drawablePadding="@dimen/dp_9"
-            android:text="Please confirm all information is true"
-            android:textColor="#ff389830"
-            android:textSize="15sp" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_20"
+                android:drawableStart="@mipmap/attention"
+                android:drawablePadding="@dimen/dp_9"
+                android:text="Please confirm all information is true"
+                android:textColor="#ff389830"
+                android:textSize="15sp" />
 
-    <com.ruffian.library.widget.RTextView
-        android:id="@+id/sureBtn"
-        style="@style/sure_btn"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_30"
-        android:layout_marginBottom="18dp"
-        android:text="Next"
-        app:layout_constraintBottom_toTopOf="@+id/loginCb"
-        app:layout_constraintStart_toStartOf="parent" />
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/sureBtn"
+                style="@style/sure_btn"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp_30"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="18dp"
+                android:text="Next"
+                app:layout_constraintBottom_toTopOf="@+id/loginCb"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

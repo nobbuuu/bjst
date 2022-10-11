@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
+        android:id="@+id/rootLay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:id="@+id/rootLay"
         tools:context=".identification.ui.ApproveMainActivity">
 
         <com.hjq.bar.TitleBar
@@ -55,9 +55,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/loanMount"
                     android:layout_centerHorizontal="true"
-                    tools:text="₹ 50,000"
                     android:textColor="#ffffffff"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_16"
+                    tools:text="₹ 50,000" />
 
 
             </RelativeLayout>
@@ -88,9 +88,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/loanInterest"
                     android:layout_centerHorizontal="true"
-                    tools:text="0.923%"
                     android:textColor="#ffffffff"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_16"
+                    tools:text="0.923%" />
 
             </RelativeLayout>
 
@@ -119,9 +119,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/loanPeriod"
                     android:layout_centerHorizontal="true"
-                    tools:text="24months"
                     android:textColor="#ffffffff"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_16"
+                    tools:text="24months" />
 
             </RelativeLayout>
 
@@ -133,8 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_10"
-           app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            />
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
 
         <com.ruffian.library.widget.RTextView
             android:id="@+id/identifyGetLoanBtn"
@@ -145,10 +144,10 @@
             android:layout_marginTop="@dimen/dp_234"
             android:layout_marginRight="@dimen/dp_20"
             android:layout_marginBottom="@dimen/dp_79"
-            app:background_normal="@color/color_009B12"
-            android:text="Get loan"
             android:gravity="center"
-            app:corner_radius="@dimen/dp_4"
-            android:textColor="@color/white" />
+            android:text="Get loan"
+            android:textColor="@color/white"
+            app:background_normal="@color/color_009B12"
+            app:corner_radius="@dimen/dp_4" />
     </LinearLayout>
 </ScrollView>

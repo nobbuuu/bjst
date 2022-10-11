@@ -15,130 +15,138 @@
         app:titleSize="@dimen/sp_18"
         app:titleStyle="bold" />
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingStart="@dimen/dp_20"
-        android:paddingEnd="@dimen/dp_20">
+        android:layout_height="match_parent">
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/nameAad"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:endText=""
-            app:endTextColor="@color/black"
-            app:endTextSize="15sp"
-            app:startText="Name（Aadhaar）"
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="2" />
+            android:orientation="vertical"
+            android:paddingStart="@dimen/dp_20"
+            android:paddingEnd="@dimen/dp_20">
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/namePan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endText=""
-            app:endTextColor="@color/black"
-            app:endTextSize="15sp"
-            app:startText="Name（PAN）"
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="2" />
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/nameAad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endText=""
+                app:endTextColor="@color/black"
+                app:endTextSize="15sp"
+                app:startText="Name（Aadhaar）"
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="2" />
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/panNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endText=""
-            app:endTextColor="@color/black"
-            app:endTextSize="15sp"
-            app:startText="Pan No."
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="1" />
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/namePan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endText=""
+                app:endTextColor="@color/black"
+                app:endTextSize="15sp"
+                app:startText="Name（PAN）"
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="2" />
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/aadNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endText=""
-            app:endTextColor="@color/dk_color_999999"
-            app:endTextSize="15sp"
-            app:startText="Aadhaar No."
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="1" />
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/panNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endText=""
+                app:endTextColor="@color/black"
+                app:endTextSize="15sp"
+                app:startText="Pan No."
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="1" />
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/birthday"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endText=""
-            app:endTextColor="@color/dk_color_999999"
-            app:endTextSize="15sp"
-            app:startText="Date Of Birth"
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="1" />
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/aadNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endText=""
+                app:endTextColor="@color/dk_color_999999"
+                app:endTextSize="15sp"
+                app:startText="Aadhaar No."
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="1" />
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endText=""
-            app:endTextColor="@color/dk_color_999999"
-            app:endTextSize="15sp"
-            app:startText="Gender"
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="1" />
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endText=""
+                app:endTextColor="@color/dk_color_999999"
+                app:endTextSize="15sp"
+                app:startText="Date Of Birth"
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="1" />
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/pinCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endText=""
-            app:endTextColor="@color/dk_color_999999"
-            app:endTextSize="15sp"
-            app:startText="Pincode"
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="1" />
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endText=""
+                app:endTextColor="@color/dk_color_999999"
+                app:endTextSize="15sp"
+                app:startText="Gender"
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="1" />
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endText=""
-            app:endTextColor="@color/dk_color_999999"
-            app:endTextSize="15sp"
-            app:isMust="true"
-            app:startText="Email"
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="2" />
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/pinCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endText=""
+                app:endTextColor="@color/dk_color_999999"
+                app:endTextSize="15sp"
+                app:startText="Pincode"
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="1" />
 
-        <com.dream.bjst.widget.StartEndLayout
-            android:id="@+id/address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endText=""
-            app:endTextColor="@color/dk_color_999999"
-            app:endTextSize="15sp"
-            app:startText="ADDRESS"
-            app:startTextColor="@color/colorBlack666"
-            app:startTextSize="15sp"
-            app:viewType="1" />
-    </LinearLayout>
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endText=""
+                app:endTextColor="@color/dk_color_999999"
+                app:endTextSize="15sp"
+                app:isMust="true"
+                app:startText="Email"
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="2" />
 
-    <com.ruffian.library.widget.RTextView
-        android:id="@+id/sureBtn"
-        style="@style/sure_btn"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_60"
-        android:layout_marginBottom="18dp"
-        android:text="Confirm and continue"
-        app:layout_constraintBottom_toTopOf="@+id/loginCb"
-        app:layout_constraintStart_toStartOf="parent" />
+            <com.dream.bjst.widget.StartEndLayout
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endText=""
+                app:endTextColor="@color/dk_color_999999"
+                app:endTextSize="15sp"
+                app:startText="ADDRESS"
+                app:startTextColor="@color/colorBlack666"
+                app:startTextSize="15sp"
+                app:viewType="1" />
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/sureBtn"
+                style="@style/sure_btn"
+                android:layout_width="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="@dimen/dp_60"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="18dp"
+                android:text="Confirm and continue"
+                app:layout_constraintBottom_toTopOf="@+id/loginCb"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
 </LinearLayout>

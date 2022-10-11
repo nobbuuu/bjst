@@ -49,7 +49,6 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
     private val periodList = arrayListOf<AmountPeriodBean>()
     private val mHandler = Handler(Looper.getMainLooper())
     private var countDown: Long = 3 * 60 * (1000L)
-    private var batteryReceiver: BatteryReceiver? = null
     override fun initView(savedInstanceState: Bundle?) {
         BarUtils.addMarginTopEqualStatusBarHeight(mBinding.userIcon)
         loanAdapter = LoanProductAdapter()
@@ -62,15 +61,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
         loadData()
         onEvent()
-        initReceiver()
         viewModel.repaymentData()
-    }
-
-    private fun initReceiver() {
-        batteryReceiver = BatteryReceiver()
-        val batteryFilter = IntentFilter()
-        batteryFilter.addAction(Intent.ACTION_BATTERY_CHANGED)
-        requireActivity().registerReceiver(batteryReceiver, batteryFilter)
     }
 
     private fun loadData() {
@@ -83,46 +74,11 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
     override fun onStart() {
         super.onStart()
         mHandler.postDelayed(mRunnable, 1000)
-        LocationUtils.register(0, 0, object : LocationUtils.OnLocationChangeListener {
-            override fun getLastKnownLocation(location: Location?) {
-                LogUtils.dTag("locationTag", "getLastKnownLocation----------")
-                location?.let {
-                    LogUtils.dTag(
-                        "locationTag",
-                        LocationUtils.getLocality(it.latitude, it.longitude)
-                    )
-                    MmkvUtil.encode("curLatitude", it.latitude)
-                    MmkvUtil.encode("curLongitude", it.longitude)
-                }
-            }
-
-            override fun onLocationChanged(location: Location?) {
-                LogUtils.dTag("locationTag", "onLocationChanged----------")
-                location?.let {
-                    LogUtils.dTag(
-                        "locationTag",
-                        LocationUtils.getLocality(it.latitude, it.longitude)
-                    )
-                    MmkvUtil.encode("curLatitude", it.latitude)
-                    MmkvUtil.encode("curLongitude", it.longitude)
-                }
-            }
-
-            override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-
-            }
-        })
-
     }
 
     override fun onStop() {
         super.onStop()
         mHandler.removeCallbacks(mRunnable)
-    }
-
-    override fun onDestroy() {
-        requireActivity().unregisterReceiver(batteryReceiver)
-        super.onDestroy()
     }
 
     fun onEvent() {

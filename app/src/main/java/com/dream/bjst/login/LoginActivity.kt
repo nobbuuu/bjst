@@ -162,7 +162,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     }
 
     private fun sendCode() {
-        var phone = mBinding.phoneEdt.text.toString()
+        val phone = mBinding.phoneEdt.text.toString()
         val reg = "^([0][1-9]\\d{9})|([1-9]\\d{9})\$"
         if (RegexUtils.isMatch(reg, phone)) {
             val param = GsonUtils.toJson(

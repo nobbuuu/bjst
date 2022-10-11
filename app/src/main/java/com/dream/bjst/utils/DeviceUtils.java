@@ -124,7 +124,8 @@ public class DeviceUtils {
                 String height = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.HEIGHT));
                 String width = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.WIDTH));
                 String name = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME));
-                //String author = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.AUTHOR));
+//                String author = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.AUTHOR));
+//                String dateModified = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.DATE_MODIFIED));
                 PhotoInfoBean bean = new PhotoInfoBean(name, "author", createDate, width, height);
                 photos.add(bean);
             }

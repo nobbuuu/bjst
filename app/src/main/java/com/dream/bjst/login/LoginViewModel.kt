@@ -29,7 +29,7 @@ class LoginViewModel : DeviceInfoViewModel() {
     fun sendCode(param: String) {
         rxLaunchUI({
             val result = Api.getAuthCode(param)
-            val netToken = result["9A9B8091A09B9F919A"]
+            val netToken = result.`9A9B8091A09B9F919A`
             if (!netToken.isNullOrEmpty()) {
                 mNetToken = netToken
                 sendCode.postValue(true)
@@ -38,7 +38,6 @@ class LoginViewModel : DeviceInfoViewModel() {
             }
         }, errorBlock = {
             sendCode.postValue(false)
-            it.message?.ktToastShow()
         })
     }
 

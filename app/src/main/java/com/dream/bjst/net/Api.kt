@@ -3,16 +3,13 @@ package com.dream.bjst.net
 import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.account.bean.ChatMessageBean
 import com.dream.bjst.account.bean.PrivacyBean
-import com.dream.bjst.bean.BaseParamBean
-import com.dream.bjst.bean.DeviceUpStatusBean
-import com.dream.bjst.bean.LoginBean
+import com.dream.bjst.bean.*
 
 import com.dream.bjst.identification.bean.BankListBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
 import com.dream.bjst.identification.bean.IdCardDetailsBean
 import com.dream.bjst.identification.bean.KYCStatusBean
 import com.dream.bjst.loan.bean.*
-import com.dream.bjst.bean.UpgradeDialogBean
 import com.dream.bjst.other.toBoolean
 import com.dream.bjst.repayment.bean.*
 import com.dream.bjst.utils.DeviceUtils
@@ -30,11 +27,11 @@ object Api {
     /**
      * 获取验证码
      */
-    suspend fun getAuthCode(param: String): Map<String, String> {
+    suspend fun getAuthCode(param: String): AuthCodeBean {
         //customer/otp
         return RxHttp.postJson("/DB978187809B999186DB9B8084")
             .addAll(param)
-            .toResponse<Map<String, String>>()
+            .toResponse<AuthCodeBean>()
             .await()
     }
 

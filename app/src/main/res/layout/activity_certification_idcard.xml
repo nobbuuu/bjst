@@ -15,147 +15,158 @@
         app:titleSize="@dimen/sp_18"
         app:titleStyle="bold" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingStart="@dimen/dp_20"
-        android:paddingEnd="@dimen/dp_20">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/oneTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_31"
-            android:text="1. Aadhaar Front"
-            android:textColor="#ff000000"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="19dp"
-            android:lineSpacingExtra="9dp"
-            android:text="Please correctly upload your Aadhaar Card front photo. Otherwise the loan will be rejected."
-            android:textColor="@color/colorBlack666"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/frontIv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/oneTitle" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/dp_20"
+                android:paddingEnd="@dimen/dp_20">
 
-        <ImageView
-            android:id="@+id/frontIv"
-            android:layout_width="@dimen/dp_137"
-            android:layout_height="@dimen/dp_92"
-            android:layout_marginTop="@dimen/dp_30"
-            android:src="@mipmap/bg_idcard_front"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/oneTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_31"
+                    android:text="1. Aadhaar Front"
+                    android:textColor="#ff000000"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_45"
-        android:orientation="vertical"
-        android:paddingStart="@dimen/dp_20"
-        android:paddingEnd="@dimen/dp_20">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="19dp"
+                    android:lineSpacingExtra="9dp"
+                    android:text="Please correctly upload your Aadhaar Card front photo. Otherwise the loan will be rejected."
+                    android:textColor="@color/colorBlack666"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toStartOf="@+id/frontIv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/oneTitle" />
 
-        <TextView
-            android:id="@+id/twoTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2. Aadhaar Back"
-            android:textColor="#ff000000"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/frontIv"
+                    android:layout_width="@dimen/dp_137"
+                    android:layout_height="@dimen/dp_92"
+                    android:layout_marginTop="@dimen/dp_30"
+                    android:src="@mipmap/bg_idcard_front"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="19dp"
-            android:lineSpacingExtra="8dp"
-            android:text="Please correctly upload your Aadhaar Card back photo. Otherwise the loan will be rejected."
-            android:textColor="@color/colorBlack666"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/backIv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/twoTitle" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_45"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/dp_20"
+                android:paddingEnd="@dimen/dp_20">
 
-        <ImageView
-            android:id="@+id/backIv"
-            android:layout_width="@dimen/dp_137"
-            android:layout_height="@dimen/dp_92"
-            android:src="@mipmap/bg_idcard_back"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/twoTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2. Aadhaar Back"
+                    android:textColor="#ff000000"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_50"
-        android:orientation="vertical"
-        android:paddingStart="@dimen/dp_20"
-        android:paddingEnd="@dimen/dp_20">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="19dp"
+                    android:lineSpacingExtra="8dp"
+                    android:text="Please correctly upload your Aadhaar Card back photo. Otherwise the loan will be rejected."
+                    android:textColor="@color/colorBlack666"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toStartOf="@+id/backIv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/twoTitle" />
 
-        <TextView
-            android:id="@+id/threeTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3. PAN Card"
-            android:textColor="#ff000000"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/backIv"
+                    android:layout_width="@dimen/dp_137"
+                    android:layout_height="@dimen/dp_92"
+                    android:src="@mipmap/bg_idcard_back"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="19dp"
-            android:text="Please upload your PAN Card"
-            android:textColor="@color/colorBlack666"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/panCardIv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/threeTitle" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_50"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/dp_20"
+                android:paddingEnd="@dimen/dp_20">
 
-        <ImageView
-            android:id="@+id/panCardIv"
-            android:layout_width="@dimen/dp_137"
-            android:layout_height="@dimen/dp_92"
-            android:src="@mipmap/bg_pan_card"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/threeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3. PAN Card"
+                    android:textColor="#ff000000"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/summaryTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_22"
-        android:layout_marginTop="@dimen/dp_50"
-        android:layout_marginEnd="@dimen/dp_22"
-        android:lineSpacingExtra="@dimen/dp_10"
-        android:text="1.Please make sure that all your documents which uploaded are real and clear.
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="19dp"
+                    android:text="Please upload your PAN Card"
+                    android:textColor="@color/colorBlack666"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toStartOf="@+id/panCardIv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/threeTitle" />
+
+                <ImageView
+                    android:id="@+id/panCardIv"
+                    android:layout_width="@dimen/dp_137"
+                    android:layout_height="@dimen/dp_92"
+                    android:src="@mipmap/bg_pan_card"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/summaryTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_22"
+                android:layout_marginTop="@dimen/dp_50"
+                android:layout_marginEnd="@dimen/dp_22"
+                android:lineSpacingExtra="@dimen/dp_10"
+                android:text="1.Please make sure that all your documents which uploaded are real and clear.
 \n2.Incomplete information may lead to verification failure."
-        android:textColor="#ff000000"
-        android:textSize="13sp" />
+                android:textColor="#ff000000"
+                android:textSize="13sp" />
 
-    <com.ruffian.library.widget.RTextView
-        android:id="@+id/sureBtn"
-        style="@style/sure_btn"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_41"
-        android:layout_marginBottom="18dp"
-        android:text="Continue"
-        app:layout_constraintBottom_toTopOf="@+id/loginCb"
-        app:layout_constraintStart_toStartOf="parent" />
-
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/sureBtn"
+                style="@style/sure_btn"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp_41"
+                android:layout_marginBottom="18dp"
+                android:text="Continue"
+                app:layout_constraintBottom_toTopOf="@+id/loginCb"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

@@ -5,7 +5,7 @@ import com.blankj.utilcode.util.LogUtils
 
 object CrashHandler {
 
-   private var isOpen = false
+   private var isOpen = true
 
     fun openCatchCrash(isOpen:Boolean = false){
         this.isOpen = isOpen

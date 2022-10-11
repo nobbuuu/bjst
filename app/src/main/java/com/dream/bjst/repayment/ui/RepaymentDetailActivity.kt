@@ -17,6 +17,7 @@ import com.dream.bjst.R
 import com.dream.bjst.R.color.colorPrimaryDark
 import com.dream.bjst.common.Constant
 import com.dream.bjst.databinding.ActivityRepaymentDetailBinding
+import com.dream.bjst.other.WebViewActivity
 import com.dream.bjst.repayment.bean.PaymentUtrParam
 import com.dream.bjst.repayment.bean.RepaymentDetailParam
 import com.dream.bjst.repayment.bean.requestRepaymentParam
@@ -116,12 +117,14 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
          */
         viewModel.repaymentUTRResult.observe(this) {
 
-            it.takeIf { it.`869187819880` }?.let { ToastUtils.showShort("Submit successfully")
+            it.takeIf { it.`869187819880` }?.let {
+                ToastUtils.showShort("Submit successfully")
                 mBinding.footerRv.setVisibility(View.GONE)
                 mBinding.headerRv.setVisibility(View.VISIBLE)
-                mBinding.digitalEt.text=null
+                mBinding.digitalEt.text = null
                 mBinding.addPictureCameraIv.setImageResource(R.mipmap.addpicturecamer)
-                mBinding.headerArrow.setImageResource(R.mipmap.ic_up_one_level)}?:ToastUtils.showShort("Submit utr failed")
+                mBinding.headerArrow.setImageResource(R.mipmap.ic_up_one_level)
+            } ?: ToastUtils.showShort("Submit utr failed")
 
         }
 
@@ -132,8 +135,9 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
 
             when (it.`84958DA08D8491`) {
                 "0" -> {
-                    ktStartActivity(ReqPaymentActivity::class) {
-                        putExtra("reqUrl", it.`84958DB89D9A9F`)
+                    ktStartActivity(WebViewActivity::class) {
+                        putExtra("webUrl", it.`84958DB89D9A9F`)
+                        putExtra("title", "Extend")
                     }
 
                 }

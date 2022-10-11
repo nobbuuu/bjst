@@ -10,6 +10,8 @@ import com.dream.bjst.login.LoginActivity
 import com.dream.bjst.main.MainActivity
 import com.dream.bjst.utils.StatusBarUtils
 import com.tcl.base.common.ui.BaseFragment
+import com.tcl.base.kt.bigDecimalPrice
+import com.tcl.base.kt.deleteUnUseZero
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 
@@ -59,7 +61,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     override fun startObserve() {
         super.startObserve()
         viewModel.homeData.observe(this) {
-            mBinding.amountNum.text = "₹ " + it.`989B959AB5999B819A80`
+            mBinding.amountNum.text = "₹ " + it.`989B959AB5999B819A80`.deleteUnUseZero()
             when (it.`8491869B9D90A19A9D80`) {
                 10 -> {//天
                     mBinding.period.text = it.`8491869B9D90`.toString() + " Days"
@@ -68,8 +70,8 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
                     mBinding.period.text = it.`8491869B9D90`.toString() + " months"
                 }
             }
-            mBinding.amountReceive.text = "₹ " + it.`869197919D8291B5999B819A80`
-            mBinding.homeRupee.text = "₹ " + it.`879186829D9791B5999B819A80`
+            mBinding.amountReceive.text = "₹ " + it.`869197919D8291B5999B819A80`.deleteUnUseZero()
+            mBinding.homeRupee.text = "₹ " + it.`879186829D9791B5999B819A80`.deleteUnUseZero()
             mBinding.homePercentValue.text = it.`8D919586A6958091` + "%p.a."
             mBinding.pm.text = "Total Interest@" + it.`999B9A809C87A6958091` + "%p.m."
 

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract
 import com.blankj.utilcode.util.GsonUtils
+import com.dream.bjst.R
 import com.dream.bjst.account.ui.AccountDeleteActivity
 import com.dream.bjst.common.UserManager
 import com.dream.bjst.common.vm.DeviceInfoViewModel
@@ -27,9 +28,11 @@ class ApproveContactsActivity :
     override fun initView(savedInstanceState: Bundle?) {
         relationDialog = RelationDialog(this) { it, position ->
             if (relationType == 1) {
+                mBinding.relationLay1.setEndTextColor(R.color.black)
                 mBinding.relationLay1.setEndText(it)
                 param.`979B9A80959780C5A6919895809D9B9A` = position + 1 * 10
             } else {
+                mBinding.relationLay2.setEndTextColor(R.color.black)
                 mBinding.relationLay2.setEndText(it)
                 param.`979B9A80959780C6A6919895809D9B9A` = position + 1 * 10
             }
@@ -144,10 +147,12 @@ class ApproveContactsActivity :
                                 if (phoneType == 1) {
                                     param.`979B9A80959780C5BA959991` = name
                                     param.`979B9A80959780C5B99B969D9891` = phone
+                                    mBinding.phone1.setEndTextColor(R.color.black)
                                     mBinding.phone1.setEndText(phone)
                                 } else {
                                     param.`979B9A80959780C6BA959991` = name
                                     param.`979B9A80959780C6B99B969D9891` = phone
+                                    mBinding.phone2.setEndTextColor(R.color.black)
                                     mBinding.phone2.setEndText(phone)
                                 }
                             }

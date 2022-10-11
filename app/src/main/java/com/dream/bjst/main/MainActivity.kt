@@ -61,8 +61,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     private fun initBotNav() {
         homeType = intent.getIntExtra(Constant.actionType, homeType)
         controller = findNavController(R.id.main_container)
-        val fragment =
-            supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
+        val fragment = supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
         val navigator = FixFragmentNavigator(this, supportFragmentManager, fragment.id)
         controller.navigatorProvider.addNavigator(navigator)
         val navInflater = controller.navInflater

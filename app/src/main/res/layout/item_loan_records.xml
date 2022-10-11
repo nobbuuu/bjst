@@ -6,9 +6,10 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/timeGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2021-12-15"
+        android:text="30-10-2022"
         android:textColor="@color/black"
         android:layout_marginTop="@dimen/dp_28"
         android:layout_marginStart="@dimen/dp_35"

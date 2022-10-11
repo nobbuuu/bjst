@@ -23,11 +23,14 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
         //设置电话号码
         mBinding.accountPhone.text = UserManager.getUserPhone()
         viewModel.fetchCustomerKycStatus()
-        mBinding.accountCustomerService.isVisible = !UserManager.isFalseAccount() && UserManager.isLogin()
+        viewModel.chatMessage()
     }
 
     override fun startObserve() {
         super.startObserve()
+        viewModel.chatMessageResult.observe(this) {
+            mBinding.accountCustomerService.isVisible = UserManager.isLogin() && it.`978187809B999186A79186829D9791A7839D80979C`
+        }
         viewModel.userStatus.observe(this) {
             //银行卡重绑
             if (it.`9A919190B09B9D9A93BD809199` == "90") {

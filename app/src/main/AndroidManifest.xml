@@ -69,10 +69,6 @@
             android:name=".account.ui.AccountSettingActivity"
             android:exported="false" />
         <activity
-            android:name=".repayment.ui.ReqPaymentActivity"
-            android:exported="false" />
-
-        <activity
             android:name=".identification.ui.ApproveIdCardActivity"
             android:exported="false" />
         <activity

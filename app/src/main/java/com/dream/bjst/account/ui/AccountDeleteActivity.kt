@@ -23,7 +23,6 @@ class AccountDeleteActivity :BaseActivity<AccountViewModel,ActivityAccountDelete
 
     override fun initData() {
         viewModel.accountDeleteData()
-
         event()
     }
 

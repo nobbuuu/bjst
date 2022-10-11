@@ -17,7 +17,11 @@ class WebViewActivity : BaseActivity<MainViewModel, ActivityWebBinding>() {
     }
 
     override fun initData() {
-        val url  = intent.getStringExtra("webUrl")
+        val url = intent.getStringExtra("webUrl")
+        val title = intent.getStringExtra("title")
+        title?.let {
+            mBinding.titleBar.title = it
+        }
         mBinding.webView.settings.javaScriptEnabled = false
         mBinding.webView.loadUrl(url.nullToEmpty())
     }

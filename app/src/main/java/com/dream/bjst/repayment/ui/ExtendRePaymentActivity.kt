@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.IntentUtils
 import com.blankj.utilcode.util.ToastUtils
 
 import com.dream.bjst.databinding.ActivityExtendRePaymentBinding
+import com.dream.bjst.other.WebViewActivity
 import com.dream.bjst.repayment.bean.RepaymentDetailParam
 import com.dream.bjst.repayment.bean.requestRepaymentParam
 import com.dream.bjst.repayment.vm.RepaymentViewModel
@@ -82,19 +83,19 @@ class ExtendRePaymentActivity : BaseActivity<RepaymentViewModel, ActivityExtendR
         /**
          * 延期还款请求
          */
-        viewModel.reqRepaymentResult.observe(this){
-            when(it.`84958DA08D8491`){
-                "0"->{
-                    ktStartActivity(ReqPaymentActivity::class){
-                        putExtra("reqUrl",it.`84958DB89D9A9F`)
+        viewModel.reqRepaymentResult.observe(this) {
+            when (it.`84958DA08D8491`) {
+                "0" -> {
+                    ktStartActivity(WebViewActivity::class) {
+                        putExtra("webUrl", it.`84958DB89D9A9F`)
+                        putExtra("title", "Extend")
                     }
-
                 }
-                "1"->{
+                "1" -> {
                     try {
                         val intent = Intent(Intent.ACTION_VIEW)
                         intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                        intent.data=(Uri.parse(it.`84958DB89D9A9F`))
+                        intent.data = (Uri.parse(it.`84958DB89D9A9F`))
                         startActivity(intent)
                     } catch (e: Exception) {
                         println("There is no browser on the current phone!")

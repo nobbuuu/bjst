@@ -19,9 +19,9 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
     override fun initView(savedInstanceState: Bundle?) {
         adjustWindow(requireActivity(), R.color.color_F8FFF0, mBinding.topLay)
         //设置用户姓名
-        mBinding.accountName.text = UserManager.getUserName()
+        mBinding.accountName.text = UserManager.getUserName().ifEmpty { "User name" }
         //设置电话号码
-        mBinding.accountPhone.text = UserManager.getUserPhone()
+        mBinding.accountPhone.text = UserManager.getUserPhone().ifEmpty { "8019872373" }
         viewModel.fetchCustomerKycStatus()
         viewModel.chatMessage()
     }

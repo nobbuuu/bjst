@@ -22,11 +22,11 @@ class AccountSettingActivity : BaseActivity<AccountViewModel, ActivityAccountSet
         //获取安卓版本号
         mBinding.settingVersion.text = (BuildConfig.VERSION_NAME)
         //获取Email
-        mBinding.accountEmail.text = UserManager.getCustomerEmail()
+        mBinding.accountEmail.text = UserManager.getCustomerEmail().ifEmpty { "ajsdklfjksldafa@gmil" }
         //设置用户姓名
-        mBinding.accountName.text = UserManager.getUserName()
+        mBinding.accountName.text = UserManager.getUserName().ifEmpty { "User name" }
         //设置电话号码
-        mBinding.accountPhone.text = UserManager.getUserPhone()
+        mBinding.accountPhone.text = UserManager.getUserPhone().ifEmpty { "8019872373"}
         event()
 
     }

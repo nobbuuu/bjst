@@ -85,7 +85,7 @@ object UserManager {
 
     /**获取customerId客户编号,登录之前的接口可为null*/
     fun getUserNo(): String {
-        return MmkvUtil.decodeString(getUserNoKey()) ?: "null"
+        return MmkvUtil.decodeString(getUserNoKey()) ?: ""
     }
 
     /**获取用户姓名*/
@@ -95,7 +95,7 @@ object UserManager {
 
     /**获取用户姓名*/
     fun getUserName(): String {
-        return MmkvUtil.decodeString(getUserNameKey()) ?: "User name"
+        return MmkvUtil.decodeString(getUserNameKey()) ?: ""
     }
 
     /**设置用户电话号码*/
@@ -125,7 +125,7 @@ object UserManager {
 
     /**获取用户UID*/
     fun getCustomerUid(): String {
-        return MmkvUtil.decodeString(getCustomerUidKey()) ?: "null"
+        return MmkvUtil.decodeString(getCustomerUidKey()) ?: ""
     }
 
     /**设置用户Email*/
@@ -135,7 +135,7 @@ object UserManager {
 
     /**设置用户Email*/
     fun getCustomerEmail(): String {
-        return MmkvUtil.decodeString(getCustomerEmailKey()) ?: "null"
+        return MmkvUtil.decodeString(getCustomerEmailKey()) ?: ""
     }
 
     /**设置用户贷款id*/
@@ -146,7 +146,7 @@ object UserManager {
     /**获取用户贷款id*/
 
     fun getCustomerLoanId(): String {
-        return MmkvUtil.decodeString(getCustomerIdKey()) ?: "null"
+        return MmkvUtil.decodeString(getCustomerIdKey()) ?: ""
     }
 
     /**清空本地数据*/

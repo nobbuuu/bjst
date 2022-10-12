@@ -34,7 +34,7 @@
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
-                <com.dream.bjst.widget.StartEndLayout
+                <com.kredit.cash.loan.app.widget.StartEndLayout
                     android:id="@+id/loanAmountLay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
                     app:startTextColor="@color/colorBlack666"
                     app:startTextSize="15sp" />
 
-                <com.dream.bjst.widget.StartEndLayout
+                <com.kredit.cash.loan.app.widget.StartEndLayout
                     android:id="@+id/repayAmountLay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                     app:startTextColor="@color/colorBlack666"
                     app:startTextSize="15sp" />
 
-                <com.dream.bjst.widget.StartEndLayout
+                <com.kredit.cash.loan.app.widget.StartEndLayout
                     android:id="@+id/dueDateLay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

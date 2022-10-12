@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.dream.bjst">
+    package="com.kredit.cash.loan.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -34,7 +34,7 @@
     </queries>
 
     <application
-        android:name=".app.MyApp"
+        android:name="com.kredit.cash.loan.app.app.MyApp"
         android:allowBackup="false"
         android:allowClearUserData="true"
         android:icon="@mipmap/logo"
@@ -42,37 +42,37 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.CbgBase">
         <activity
-            android:name=".identification.ui.ApproveMainActivity"
+            android:name="com.kredit.cash.loan.app.identification.ui.ApproveMainActivity"
             android:exported="true" />
         <activity
-            android:name=".account.ui.DeleteProgressActivity"
+            android:name="com.kredit.cash.loan.app.account.ui.DeleteProgressActivity"
             android:exported="false" />
         <activity
-            android:name=".repayment.ui.ExtendRePaymentActivity"
+            android:name="com.kredit.cash.loan.app.repayment.ui.ExtendRePaymentActivity"
             android:exported="false" />
         <activity
-            android:name=".repayment.ui.RepaymentDetailActivity"
+            android:name="com.kredit.cash.loan.app.repayment.ui.RepaymentDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".account.ui.ChatMessageActivity"
+            android:name="com.kredit.cash.loan.app.account.ui.ChatMessageActivity"
             android:exported="false" />
-        <activity android:name=".account.ui.PrivacyActivity">
+        <activity android:name="com.kredit.cash.loan.app.account.ui.PrivacyActivity">
 
         </activity>
         <activity
-            android:name=".account.ui.AccountDeleteActivity"
+            android:name="com.kredit.cash.loan.app.account.ui.AccountDeleteActivity"
             android:exported="false" />
         <activity
-            android:name=".account.ui.AboutUsActivity"
+            android:name="com.kredit.cash.loan.app.account.ui.AboutUsActivity"
             android:exported="false" />
         <activity
-            android:name=".account.ui.AccountSettingActivity"
+            android:name="com.kredit.cash.loan.app.account.ui.AccountSettingActivity"
             android:exported="false" />
         <activity
-            android:name=".identification.ui.ApproveIdCardActivity"
+            android:name="com.kredit.cash.loan.app.identification.ui.ApproveIdCardActivity"
             android:exported="false" />
         <activity
-            android:name=".identification.ui.LivenessDetectionActivity"
+            android:name="com.kredit.cash.loan.app.identification.ui.LivenessDetectionActivity"
             android:exported="false" />
 
         <meta-data
@@ -94,7 +94,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.dream.bjst.fileprovider"
+            android:authorities="com.kredit.cash.loan.app.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true"
             tools:replace="android:authorities">
@@ -104,27 +104,27 @@
                 tools:replace="android:resource" />
         </provider>
 
-        <activity android:name=".loan.ui.LoanRecordsActivity" />
-        <activity android:name=".main.MainActivity"
+        <activity android:name="com.kredit.cash.loan.app.loan.ui.LoanRecordsActivity" />
+        <activity android:name="com.kredit.cash.loan.app.main.MainActivity"
             android:launchMode="singleTop">
 
         </activity>
-        <activity android:name=".identification.ui.ApproveContactsActivity" />
-        <activity android:name=".login.LoginActivity"
+        <activity android:name="com.kredit.cash.loan.app.identification.ui.ApproveContactsActivity" />
+        <activity android:name="com.kredit.cash.loan.app.login.LoginActivity"
             android:launchMode="singleTask">
 
         </activity>
-        <activity android:name=".identification.ui.ApproveIdCardConfirmActivity" />
-        <activity android:name=".identification.ui.ApproveBankCardActivity" />
-        <activity android:name=".identification.ui.ApproveBankListActivity" />
-        <activity android:name=".other.WebViewActivity" />
-        <activity android:name=".other.LaunchActivity">
+        <activity android:name="com.kredit.cash.loan.app.identification.ui.ApproveIdCardConfirmActivity" />
+        <activity android:name="com.kredit.cash.loan.app.identification.ui.ApproveBankCardActivity" />
+        <activity android:name="com.kredit.cash.loan.app.identification.ui.ApproveBankListActivity" />
+        <activity android:name="com.kredit.cash.loan.app.other.WebViewActivity" />
+        <activity android:name="com.kredit.cash.loan.app.other.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.HomeImgActivity" />
+        <activity android:name="com.kredit.cash.loan.app.home.HomeImgActivity" />
     </application>
 
 </manifest>

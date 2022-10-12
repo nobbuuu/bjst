@@ -38,8 +38,8 @@ compileTestKotlin {
 gradlePlugin {
     plugins {
         version {
-            id = 'com.dream.version'
-            implementationClass = 'com.dream.version.VersionPlugin'
+            id = 'com.kredit.version'
+            implementationClass = 'com.kredit.version.VersionPlugin'
         }
     }
 }

@@ -26,7 +26,7 @@
             android:paddingStart="@dimen/dp_20"
             android:paddingEnd="@dimen/dp_20">
 
-            <com.dream.bjst.widget.StartEndLayout
+            <com.kredit.cash.loan.app.widget.StartEndLayout
                 android:id="@+id/nameAad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                 app:startTextSize="15sp"
                 app:viewType="2" />
 
-            <com.dream.bjst.widget.StartEndLayout
+            <com.kredit.cash.loan.app.widget.StartEndLayout
                 android:id="@+id/namePan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                 app:startTextSize="15sp"
                 app:viewType="2" />
 
-            <com.dream.bjst.widget.StartEndLayout
+            <com.kredit.cash.loan.app.widget.StartEndLayout
                 android:id="@+id/panNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                 app:startTextSize="15sp"
                 app:viewType="1" />
 
-            <com.dream.bjst.widget.StartEndLayout
+            <com.kredit.cash.loan.app.widget.StartEndLayout
                 android:id="@+id/aadNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                 app:startTextSize="15sp"
                 app:viewType="1" />
 
-            <com.dream.bjst.widget.StartEndLayout
+            <com.kredit.cash.loan.app.widget.StartEndLayout
                 android:id="@+id/birthday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                 app:startTextSize="15sp"
                 app:viewType="1" />
 
-            <com.dream.bjst.widget.StartEndLayout
+            <com.kredit.cash.loan.app.widget.StartEndLayout
                 android:id="@+id/gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
                 app:startTextSize="15sp"
                 app:viewType="1" />
 
-            <com.dream.bjst.widget.StartEndLayout
+            <com.kredit.cash.loan.app.widget.StartEndLayout
                 android:id="@+id/pinCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                 app:startTextSize="15sp"
                 app:viewType="1" />
 
-            <com.dream.bjst.widget.StartEndLayout
+            <com.kredit.cash.loan.app.widget.StartEndLayout
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                 app:startTextSize="15sp"
                 app:viewType="2" />
 
-            <com.dream.bjst.widget.StartEndLayout
+            <com.kredit.cash.loan.app.widget.StartEndLayout
                 android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/main_container"
-        android:name="com.dream.bjst.main.WindowNavHostFragment"
+        android:name="com.kredit.cash.loan.app.main.WindowNavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_0"
         app:defaultNavHost="true"

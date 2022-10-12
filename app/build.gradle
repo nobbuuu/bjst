@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'com.dream.version'
+    id 'com.kredit.version'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
 }
@@ -11,7 +11,7 @@ android {
     buildToolsVersion BuildConfig.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.dream.bjst"
+        applicationId "com.kredit.cash.loan.app"
         minSdkVersion BuildConfig.minSdkVersion
         targetSdkVersion BuildConfig.targetSdkVersion
         versionCode BuildConfig.versionCode

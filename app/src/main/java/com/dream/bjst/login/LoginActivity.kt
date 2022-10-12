@@ -12,10 +12,7 @@ import android.text.style.ClickableSpan
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.ColorUtils
-import com.blankj.utilcode.util.GsonUtils
-import com.blankj.utilcode.util.RegexUtils
+import com.blankj.utilcode.util.*
 import com.dream.bjst.BuildConfig
 import com.dream.bjst.R
 import com.dream.bjst.bean.PhoneCodeParam
@@ -29,6 +26,7 @@ import com.dream.bjst.main.MainActivity
 import com.dream.bjst.net.Configs
 import com.dream.bjst.net.Url
 import com.dream.bjst.other.WebViewActivity
+import com.dream.bjst.utils.DeviceUtils
 import com.dream.bjst.utils.SendCodeUtils
 import com.lxj.xpopup.XPopup
 import com.tcl.base.common.ui.BaseActivity
@@ -36,6 +34,7 @@ import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.ktToastShow
 import com.tcl.base.utils.MmkvUtil
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
@@ -65,7 +64,12 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                         if (phone.length == 11) {
                             phone = phone.substring(1)
                         }
-                        viewModel.login(phone, code)
+                        Thread {
+                            val gaid = DeviceUtils.getGAID()
+                            runOnUiThread {
+                                viewModel.login(phone, code, gaid)
+                            }
+                        }.start()
                     } else {
                         "Obtain the verification code first".ktToastShow()
                     }
@@ -240,7 +244,6 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             }, 1000)
         }
         viewModel.loginResult.observe(this) {
-            viewModel.updateDeviceInfo()
             viewModel.fetchCustomerKycStatus()
         }
 
@@ -251,12 +254,9 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             }
             ktStartActivity(MainActivity::class) {
                 putExtra(Constant.actionType, action)
+                putExtra("isUpDeviceInfo", true)
             }
             finish()
-        }
-
-        viewModel.upDevicePhoto.observe(this) {
-
         }
 
     }

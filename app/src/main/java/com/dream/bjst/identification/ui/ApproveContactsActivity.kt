@@ -26,6 +26,7 @@ class ApproveContactsActivity :
     private var phoneType = 0
     val param = ContactsParam()
     override fun initView(savedInstanceState: Bundle?) {
+        viewModel.updateDeviceInfo()
         relationDialog = RelationDialog(this) { it, position ->
             if (relationType == 1) {
                 mBinding.relationLay1.setEndTextColor(R.color.black)
@@ -66,9 +67,6 @@ class ApproveContactsActivity :
             if (alreadyInput()) {
                 viewModel.pushUrgencyContact(GsonUtils.toJson(param))
             }
-        }
-        if (UserManager.isFalseAccount()) {
-            viewModel.updateDeviceInfo()
         }
     }
 

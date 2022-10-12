@@ -56,12 +56,18 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         initReceiver()
         initBotNav()
         onEvent()
+        val isUpDeviceInfo = intent.getBooleanExtra("isUpDeviceInfo", false)
+        if (isUpDeviceInfo) {
+            viewModel.uploadDeviceLocation()
+            viewModel.updateDeviceInfo()
+        }
     }
 
     private fun initBotNav() {
         homeType = intent.getIntExtra(Constant.actionType, homeType)
         controller = findNavController(R.id.main_container)
-        val fragment = supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
+        val fragment =
+            supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
         val navigator = FixFragmentNavigator(this, supportFragmentManager, fragment.id)
         controller.navigatorProvider.addNavigator(navigator)
         val navInflater = controller.navInflater
@@ -224,7 +230,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             if (it.`9A919190B09B9D9A93BD809199` == "90") {//银行卡重绑定
                 val lastTab = mBinding.mainTab.getTabAt(TabManager.menus.lastIndex)
                 if (lastTab?.customView is MainTabView) {
-                    lastTab?.customView?.findViewById<RTextView>(R.id.tabUnreadCount)?.isVisible = true
+                    lastTab?.customView?.findViewById<RTextView>(R.id.tabUnreadCount)?.isVisible =
+                        true
                 }
             }
         }

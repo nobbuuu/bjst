@@ -83,8 +83,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
 
     fun onEvent() {
         mBinding.smartRefresh.setOnRefreshListener {
-//            loadData()
-            viewModel.updateDeviceInfo()
+            loadData()
         }
         mBinding.ordersLay.ktClick {
             ktStartActivity4Result(LoanRecordsActivity::class, 920)
@@ -206,6 +205,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         }
         viewModel.applyData.observe(this) {
             if (!it.`90809BB69B86869B83B58484988DA6918781988087`.isNullOrEmpty()) {//申请成功
+                viewModel.updateDeviceInfo()
                 val loanAmount = mBinding.amountTv.text.toString()
                 val repayAmount = mBinding.repayAmount.text.toString()
                 val bean = LoanConfirmBean(
@@ -217,9 +217,6 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
                 LoanInfoDialog(requireContext(), bean) {
                     ktStartActivity4Result(LoanRecordsActivity::class, 920)
                 }.show()
-                if (UserManager.isFalseAccount()) {
-                    viewModel.updateDeviceInfo()
-                }
             }
             viewModel.fetchProducts()
         }

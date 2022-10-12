@@ -17,6 +17,8 @@ import com.tcl.base.rxnetword.exception.MultiDevicesException
 import com.tcl.base.rxnetword.exception.NotSaleManException
 import com.tcl.base.rxnetword.exception.TokenTimeOutException
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -60,6 +62,26 @@ open class BaseViewModel : AndroidViewModel(Utils.getApp()), LifecycleObserver {
             rxLifeScope.launch(block,
                 { parseThrowable(it, errorBlock, showToast) },
                 onFinally = { finalBlock?.invoke() })
+        }
+    }
+
+    /**
+     *  所有网络请求都在 GlobalScope 域中启动，不受view生命周期限制
+     *  https://github.com/liujingxing/RxLife-Coroutine
+     *  block 需要协程执行的block
+     *  errorBlock： 需要在自定义在异常情况执行的block
+     *   showToast： 有异常信息的时候，是否弹Toast 显示msg，默认显示
+     *   showDialog：是否在调接口的时候显示Loading弹窗，默认显示
+     */
+    fun rxLaunchGlobal(
+        block: suspend GlobalScope.() -> Unit,
+        errorBlock: ((Throwable) -> Unit)? = null,
+        showToast: Boolean = true,
+        showDialog: Boolean = true,
+        finalBlock: (() -> Unit)? = null
+    ) {
+        GlobalScope.launch{
+            block
         }
     }
 

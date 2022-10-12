@@ -23,22 +23,17 @@ import com.tcl.base.utils.MmkvUtil
 open class DeviceInfoViewModel : BaseViewModel() {
     val upDeviceInfo = SingleLiveEvent<Boolean>()
 
-    fun updateDeviceInfo() {
-        if (!UserManager.isFalseAccount() && UserManager.isLogin()) {
-            hadUploadDeviceInfoDetails()
-        }
-    }
-
     /**
      *判断客户是否完成设备信息上传(详细信息)
      */
     fun hadUploadDeviceInfoDetails() {
         rxLaunchUI({
             val result = Api.hadUploadDeviceInfoDetails()
+            LogUtils.dTag("deviceParam", "isUpload = " + result.`9C9590A184989B9590`)
             if (!result.`9C9590A184989B9590`) {
                 LogUtils.dTag(
-                    "deviceUpStatus",
-                    GsonUtils.toJson(result.`9091829D9791A08D8491BD80919987`)
+                    "deviceParam",
+                    "uploadStatus = " + GsonUtils.toJson(result.`9091829D9791A08D8491BD80919987`)
                 )
                 result.`9091829D9791A08D8491BD80919987`?.forEach {
                     if (it == 10) {
@@ -59,6 +54,12 @@ open class DeviceInfoViewModel : BaseViewModel() {
                 }
             }
         })
+    }
+
+    fun updateDeviceInfo() {
+        if (!UserManager.isFalseAccount() && UserManager.isLogin()) {
+            hadUploadDeviceInfoDetails()
+        }
     }
 
     /**
@@ -160,6 +161,10 @@ open class DeviceInfoViewModel : BaseViewModel() {
                 val curLatitude = MmkvUtil.decodeDouble("curLatitude") ?: 0.0
                 val curLongitude = MmkvUtil.decodeDouble("curLongitude") ?: 0.0
                 val address = LocationUtils.getAddress(curLatitude, curLongitude)
+                var area = address.subLocality
+                if (area.isNullOrEmpty()) {
+                    area = address.subAdminArea + address.thoroughfare
+                }
                 LogUtils.dTag("gaid", gaid)
                 val paramBean = DeviceBaseInfoBean(
                     `9695808091868DA78095808187` = BatteryStatusBean(batteryPct),
@@ -189,7 +194,7 @@ open class DeviceInfoViewModel : BaseViewModel() {
                         `938487` = GpsBean(curLatitude, curLongitude),
                         `938487B5909086918787A4869B829D9A9791` = address?.adminArea.nullToEmpty(),
                         `938487B5909086918787B79D808D` = address?.locality.nullToEmpty(),
-                        `938487B5909086918787B895869391B09D8780869D9780` = address?.subLocality.nullToEmpty()
+                        `938487B5909086918787B895869391B09D8780869D9780` = area
                     ),
                     `9A9180839B869F` = WifiConnectBean(DeviceUtils.getAroundWifiNum()),
                     `87809B86959391` = StorageBean(

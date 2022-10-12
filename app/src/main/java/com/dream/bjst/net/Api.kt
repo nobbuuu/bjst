@@ -4,6 +4,7 @@ import com.blankj.utilcode.util.GsonUtils
 import com.dream.bjst.account.bean.ChatMessageBean
 import com.dream.bjst.account.bean.PrivacyBean
 import com.dream.bjst.bean.*
+import com.dream.bjst.common.Constant
 
 import com.dream.bjst.identification.bean.BankListBean
 import com.dream.bjst.identification.bean.ConfirmResultBean
@@ -357,7 +358,7 @@ object Api {
         //core/device/uploadDeviceAlbumInfo
         return RxHttp.postJson("/DB979B8691DB9091829D9791DB8184989B9590B091829D9791B598968199BD9A929B")
             .addAll(param)
-            .add("isEncryptBody", false)
+            .add(Constant.isEncryptBody, false)
             .toResponse<ConfirmResultBean>()
             .await()
     }
@@ -369,7 +370,7 @@ object Api {
         //core/device/uploadDeviceBaseInfo
         return RxHttp.postJson("/DB979B8691DB9091829D9791DB8184989B9590B091829D9791B6958791BD9A929B")
             .addAll(param)
-            .add("isEncryptBody", false)
+            .add(Constant.isEncryptBody, false)
             .toResponse<ConfirmResultBean>()
             .await()
     }
@@ -392,7 +393,7 @@ object Api {
         //core/device/uploadDeviceSmsInfo
         return RxHttp.postJson("/DB979B8691DB9091829D9791DB8184989B9590B091829D9791A79987BD9A929B")
             .addAll(param)
-            .add("isEncryptBody", false)
+            .add(Constant.isEncryptBody, false)
             .toResponse<ConfirmResultBean>()
             .await()
     }
@@ -404,7 +405,7 @@ object Api {
         //core/device/uploadDeviceTxlInfo
         return RxHttp.postJson("/DB979B8691DB9091829D9791DB8184989B9590B091829D9791A08C98BD9A929B")
             .addAll(param)
-            .add("isEncryptBody", false)
+            .add(Constant.isEncryptBody, false)
             .toResponse<ConfirmResultBean>()
             .await()
     }
@@ -416,7 +417,7 @@ object Api {
         //core/device/uploadDeviceAppInfo
         return RxHttp.postJson("/DB979B8691DB9091829D9791DB8184989B9590B091829D9791B58484BD9A929B")
             .addAll(param)
-            .add("isEncryptBody", false)
+            .add(Constant.isEncryptBody, false)
             .toResponse<ConfirmResultBean>()
             .await()
     }

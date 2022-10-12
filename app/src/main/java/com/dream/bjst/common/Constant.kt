@@ -28,8 +28,8 @@ object Constant {
     const val ACTION_TYPE_MAIN = 1//认证后的首页
     const val actionType = "actionType"
 
-    //ipAddress
     const val IPADDRESS = "ipAddress"
+    const val isEncryptBody = "isEncryptBody"
 
 }
 

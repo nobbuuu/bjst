@@ -74,10 +74,7 @@ class ApproveBankCardActivity :
     }
 
     override fun initData() {
-        if (UserManager.isFalseAccount()) {
-            viewModel.updateDeviceInfo()
-        }
-
+        viewModel.updateDeviceInfo()
         mBinding.titleBar.leftView.ktClick {
             onBackPressed()
         }

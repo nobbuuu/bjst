@@ -1,6 +1,7 @@
 package com.dream.bjst.other.security
 
 import android.util.Log
+import com.dream.bjst.common.Constant
 import com.dream.bjst.net.Configs
 import com.tcl.base.rxnetword.EncryptUtil
 import com.dream.bjst.utils.RandomUtils
@@ -65,14 +66,15 @@ object EncryptTShopHelper {
         return try {
             val json = JSONObject(data)
             val param = JSONObject()
-            val encryptJson = JSONObject(data)
+            val encryptJson = JSONObject()
             var isEncryptBody = true
             json.keys().forEach { key ->
                 val value = json.get(key)
-                if (key == "isEncryptBody") {
+                if (key == Constant.isEncryptBody) {
                     isEncryptBody = value as Boolean
+                } else {
+                    encryptJson.put(key, value)
                 }
-                encryptJson.put(key, value)
             }
             Log.d("http", "bodyJson = $encryptJson")
             RandomUtils.getRandomParam().forEach {

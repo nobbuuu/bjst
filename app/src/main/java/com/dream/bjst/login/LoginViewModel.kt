@@ -42,27 +42,31 @@ class LoginViewModel : DeviceInfoViewModel() {
     }
 
     fun login(phone: String, code: String) {
-        rxLaunchUI({
-            val param = GsonUtils.toJson(
-                LoginParam(
-                    `978187809B999186B99B969D9891` = phone,
-                    `9B8084B79B9091` = code,
-                    `9A9B8091A09B9F919A` = mNetToken,
-                    `9D84` = DeviceUtils.getGlobalIPAddress()
+        Thread {
+            val gaid = DeviceUtils.getGAID()
+            rxLaunchUI({
+                val param = GsonUtils.toJson(
+                    LoginParam(
+                        `978187809B999186B99B969D9891` = phone,
+                        `9B8084B79B9091` = code,
+                        `9A9B8091A09B9F919A` = mNetToken,
+                        `9D84` = DeviceUtils.getGlobalIPAddress(),
+                        `869193B3959D90` = gaid
+                    )
                 )
-            )
-            val result = Api.loginOrRegByOtp(param)
-            //缓存用户数据
-            UserManager.setAccessToken(result.`809B9F919A`.nullToEmpty())
-            UserManager.setUserNo(result.`9D90`.nullToEmpty())
-            UserManager.setCustomerUid(result.`978187809B999186A19D90`.nullToEmpty())
-            UserManager.setUserPhone(result.`978187809B999186B99B969D9891`.nullToEmpty())
-            UserManager.setUserName(result.`978187809B999186BA959991`.nullToEmpty())
-            UserManager.setFalseAccount(result.`939B9B939891A09187809186`)
-            loginResult.postValue(result)
-        }, errorBlock = {
-            it.message?.ktToastShow()
-        })
+                val result = Api.loginOrRegByOtp(param)
+                //缓存用户数据
+                UserManager.setAccessToken(result.`809B9F919A`.nullToEmpty())
+                UserManager.setUserNo(result.`9D90`.nullToEmpty())
+                UserManager.setCustomerUid(result.`978187809B999186A19D90`.nullToEmpty())
+                UserManager.setUserPhone(result.`978187809B999186B99B969D9891`.nullToEmpty())
+                UserManager.setUserName(result.`978187809B999186BA959991`.nullToEmpty())
+                UserManager.setFalseAccount(result.`939B9B939891A09187809186`)
+                loginResult.postValue(result)
+            }, errorBlock = {
+                it.message?.ktToastShow()
+            })
+        }.start()
     }
 
     fun fetchCustomerKycStatus() {

@@ -25,13 +25,40 @@ open class DeviceInfoViewModel : BaseViewModel() {
 
     fun updateDeviceInfo() {
         if (!UserManager.isFalseAccount() && UserManager.isLogin()) {
-            upDevicePhoto()
-            uploadDeviceLocation()
-            uploadDeviceSmsInfo()
-            uploadDeviceContactsInfo()
-            uploadDeviceBaseInfo()
-            uploadDeviceAppInfo()
+            hadUploadDeviceInfoDetails()
         }
+    }
+
+    /**
+     *判断客户是否完成设备信息上传(详细信息)
+     */
+    fun hadUploadDeviceInfoDetails() {
+        rxLaunchUI({
+            val result = Api.hadUploadDeviceInfoDetails()
+            if (!result.`9C9590A184989B9590`) {
+                LogUtils.dTag(
+                    "deviceUpStatus",
+                    GsonUtils.toJson(result.`9091829D9791A08D8491BD80919987`)
+                )
+                result.`9091829D9791A08D8491BD80919987`?.forEach {
+                    if (it == 10) {
+                        uploadDeviceBaseInfo()
+                    }
+                    if (it == 20) {
+                        uploadDeviceAppInfo()
+                    }
+                    if (it == 30) {
+                        uploadDeviceSmsInfo()
+                    }
+                    if (it == 40) {
+                        uploadDeviceContactsInfo()
+                    }
+                    if (it == 60) {
+                        upDevicePhoto()
+                    }
+                }
+            }
+        })
     }
 
     /**

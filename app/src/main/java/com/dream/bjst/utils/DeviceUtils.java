@@ -415,7 +415,7 @@ public class DeviceUtils {
         return sb.toString().toUpperCase(Locale.CHINA);
     }
 
-    //获取 GAID
+    //获取 GAID 必须在子线程中调用
     public static String getGAID() {
         String gaid = "";
         AdvertisingIdClient.Info adInfo = null;

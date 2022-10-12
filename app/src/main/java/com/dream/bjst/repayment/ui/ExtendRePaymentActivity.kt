@@ -89,6 +89,7 @@ class ExtendRePaymentActivity : BaseActivity<RepaymentViewModel, ActivityExtendR
                     ktStartActivity(WebViewActivity::class) {
                         putExtra("webUrl", it.`84958DB89D9A9F`)
                         putExtra("title", "Extend")
+                        putExtra("jsEnable", true)
                     }
                 }
                 "1" -> {

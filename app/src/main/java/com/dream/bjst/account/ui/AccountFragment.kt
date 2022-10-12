@@ -21,9 +21,14 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
         //设置用户姓名
         mBinding.accountName.text = UserManager.getUserName().ifEmpty { "User name" }
         //设置电话号码
-        mBinding.accountPhone.text = UserManager.getUserPhone().ifEmpty { "8019872373" }
+        mBinding.accountPhone.text = UserManager.getUserPhone().ifEmpty { "Login" }
         viewModel.fetchCustomerKycStatus()
         viewModel.chatMessage()
+        mBinding.accountPhone.ktClick {
+            if (!UserManager.isLogin()){
+                ktStartActivity(LoginActivity::class)
+            }
+        }
     }
 
     override fun startObserve() {

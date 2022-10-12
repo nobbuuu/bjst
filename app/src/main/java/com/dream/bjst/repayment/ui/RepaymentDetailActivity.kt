@@ -138,6 +138,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
                     ktStartActivity(WebViewActivity::class) {
                         putExtra("webUrl", it.`84958DB89D9A9F`)
                         putExtra("title", "Extend")
+                        putExtra("jsEnable", true)
                     }
 
                 }

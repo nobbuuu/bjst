@@ -52,7 +52,7 @@
                 android:layout_below="@id/account_name"
                 android:layout_alignLeft="@id/account_name"
                 android:layout_marginTop="@dimen/dp_12"
-                android:text="8019872373"
+                android:text="Login"
                 android:textColor="#837E7E"
                 android:textSize="@dimen/sp_12" />
         </RelativeLayout>

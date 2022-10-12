@@ -10,7 +10,7 @@
     <string name="try_again">operation failed, please try again</string>
     <string name="detection_try_again">Liveness detection failed, please try again</string>
 
-    <string name="upgrade_downloading">正在下载最新版本</string>
+    <!--<string name="upgrade_downloading">正在下载最新版本</string>
     <string name="upgrade_new_version">有新版本啦！</string>
     <string name="upgrade_later">以后</string>
     <string name="upgrade_now">版本更新</string>
@@ -18,5 +18,15 @@
     <string name="upgrade_retry">重试</string>
     <string name="upgrade_finish">下载完成</string>
     <string name="upgrade_network_error">网络出错</string>
-    <string name="isNewVersion">当前无最新版本可更新</string>
+    <string name="isNewVersion">当前无最新版本可更新</string>-->
+
+    <string name="upgrade_downloading">Downloading the latest version</string>
+    <string name="upgrade_new_version">There is a new version!</string>
+    <string name="upgrade_later">after</string>
+    <string name="upgrade_now">Version update</string>
+    <string name="upgrade_install">To install</string>
+    <string name="upgrade_retry">retry</string>
+    <string name="upgrade_finish">The download is complete</string>
+    <string name="upgrade_network_error">Network error</string>
+    <string name="isNewVersion">There is no latest version to update</string>
 </resources>

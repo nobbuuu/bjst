@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:text="lInterest"
+                    android:text="Interest"
                     android:textColor="#ffffffff"
                     android:textSize="@dimen/sp_11" />
 

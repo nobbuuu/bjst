@@ -26,7 +26,7 @@ class AccountSettingActivity : BaseActivity<AccountViewModel, ActivityAccountSet
         //设置用户姓名
         mBinding.accountName.text = UserManager.getUserName().ifEmpty { "User name" }
         //设置电话号码
-        mBinding.accountPhone.text = UserManager.getUserPhone().ifEmpty { "8019872373"}
+        mBinding.accountPhone.text = UserManager.getUserPhone().ifEmpty { "Login"}
         event()
 
     }
@@ -37,7 +37,11 @@ class AccountSettingActivity : BaseActivity<AccountViewModel, ActivityAccountSet
             ktStartActivity(LoginActivity::class)
             ActivityUtils.finishAllActivities()
         }
-
+        mBinding.accountPhone.ktClick {
+            if (!UserManager.isLogin()){
+                ktStartActivity(LoginActivity::class)
+            }
+        }
 
     }
 

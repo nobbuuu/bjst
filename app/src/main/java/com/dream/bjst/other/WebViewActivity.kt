@@ -12,6 +12,7 @@ import com.tcl.base.kt.nullToEmpty
  *description
  */
 class WebViewActivity : BaseActivity<MainViewModel, ActivityWebBinding>() {
+
     override fun initView(savedInstanceState: Bundle?) {
 
     }
@@ -19,10 +20,11 @@ class WebViewActivity : BaseActivity<MainViewModel, ActivityWebBinding>() {
     override fun initData() {
         val url = intent.getStringExtra("webUrl")
         val title = intent.getStringExtra("title")
+        val jsEnable = intent.getBooleanExtra("jsEnable",false)
         title?.let {
             mBinding.titleBar.title = it
         }
-        mBinding.webView.settings.javaScriptEnabled = false
+        mBinding.webView.settings.javaScriptEnabled = jsEnable
         mBinding.webView.loadUrl(url.nullToEmpty())
     }
 

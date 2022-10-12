@@ -48,7 +48,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
         mBinding.nextTv.ktClick {
             if (mBinding.loginCb.isChecked) {
-                val phone = mBinding.phoneEdt.text.toString()
+                var phone = mBinding.phoneEdt.text.toString()
                 val reg = "^([0][1-9]\\d{9})|([1-9]\\d{9})\$"
                 if (!isSendCode) {//获取验证码
                     if (RegexUtils.isMatch(reg, phone)) {
@@ -62,6 +62,9 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 } else {//登录
                     val code = mBinding.codeEdt.text.toString()
                     if (code.isNotEmpty()) {
+                        if (phone.length == 11) {
+                            phone = phone.substring(1)
+                        }
                         viewModel.login(phone, code)
                     } else {
                         "Obtain the verification code first".ktToastShow()
@@ -118,10 +121,11 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 it.onPause()
             }
             sendList.clear()
-        }else{
+        } else {
             finish()
         }
     }
+
     private fun showDebugDialog(context: Context) {
         val list = arrayOf(
             Configs.URL_APP_TEST_20222,
@@ -162,9 +166,12 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     }
 
     private fun sendCode() {
-        val phone = mBinding.phoneEdt.text.toString()
+        var phone = mBinding.phoneEdt.text.toString()
         val reg = "^([0][1-9]\\d{9})|([1-9]\\d{9})\$"
         if (RegexUtils.isMatch(reg, phone)) {
+            if (phone.length == 11) {
+                phone = phone.substring(1)
+            }
             val param = GsonUtils.toJson(
                 PhoneCodeParam(
                     `978187809B999186B99B969D9891` = phone,

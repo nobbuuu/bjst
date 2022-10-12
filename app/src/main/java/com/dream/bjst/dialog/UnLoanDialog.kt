@@ -30,14 +30,14 @@ class UnLoanDialog(
     BaseBindingDialog<DialogUnableLoanBinding>(context, gravity = Gravity.CENTER) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val timeAgent = VerifyCodeTimeDownUtil(3000,1000,mBinding.countDownTv)
         if (type == 1) {
             mBinding.tipIv.setImageResource(R.mipmap.ic_need_repay)
             mBinding.title.text = "No credit amount available"
             mBinding.contentTV.text = "repay on time to increase your credit limit"
             mBinding.sureBtn.text = "Make a repayment"
         } else if (type == 2) {
-            VerifyCodeTimeDownUtil(3000,1000,mBinding.countDownTv).startNow()
+            timeAgent.startNow()
             mBinding.tipIv.setImageResource(R.mipmap.ic_reject)
             mBinding.title.text = "We regret to inform you that your application was rejected"
             mBinding.sureBtn.text = "Delete individual data and log out"
@@ -53,6 +53,9 @@ class UnLoanDialog(
         }
         mBinding.closeIv.ktClick {
             dismiss()
+        }
+        setOnDismissListener {
+            timeAgent.cancel()
         }
         setCanceledOnTouchOutside(false)
         setCancelable(false)

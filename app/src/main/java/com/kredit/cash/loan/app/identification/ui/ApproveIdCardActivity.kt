@@ -11,6 +11,7 @@ import com.kredit.cash.loan.app.databinding.ActivityCertificationIdcardBinding
 import com.kredit.cash.loan.app.identification.bean.IdCardInfoParam
 import com.kredit.cash.loan.app.identification.vm.IdentificationViewModel
 import com.kredit.cash.loan.app.utils.PhotoManager
+import com.kredit.cash.loan.app.utils.PhotoSelectDialog
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.*
 import com.tcl.base.utils.PhotoUtils.getPath
@@ -20,7 +21,7 @@ import java.util.zip.GZIPOutputStream
 class ApproveIdCardActivity :
     BaseActivity<IdentificationViewModel, ActivityCertificationIdcardBinding>() {
     lateinit var mPhotoManager: PhotoManager
-    lateinit var photoDialog: com.kredit.cash.loan.app.utils.PhotoSelectDialog
+    lateinit var photoDialog: PhotoSelectDialog
     private var type = 0
     private var tempBitmap: Bitmap? = null
     private var isFront = false
@@ -28,9 +29,9 @@ class ApproveIdCardActivity :
     private var isPan = false
     override fun initView(savedInstanceState: Bundle?) {
         mPhotoManager = PhotoManager(this)
-        photoDialog = com.kredit.cash.loan.app.utils.PhotoSelectDialog(
+        photoDialog = PhotoSelectDialog(
             this,
-            com.kredit.cash.loan.app.utils.PhotoSelectDialog.PICK_AVATAR
+            PhotoSelectDialog.PICK_AVATAR
         )
         photoDialog.mSelectPicture.ktClick {
             mPhotoManager.checkPermissionAndChosePhoto()

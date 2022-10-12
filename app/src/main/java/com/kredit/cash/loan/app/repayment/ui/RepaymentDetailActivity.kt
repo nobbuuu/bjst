@@ -23,6 +23,7 @@ import com.kredit.cash.loan.app.repayment.bean.RepaymentDetailParam
 import com.kredit.cash.loan.app.repayment.bean.requestRepaymentParam
 import com.kredit.cash.loan.app.repayment.vm.RepaymentViewModel
 import com.kredit.cash.loan.app.utils.PhotoManager
+import com.kredit.cash.loan.app.utils.PhotoSelectDialog
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
@@ -210,10 +211,9 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         }
         //点击上传UTR_picture
         mBinding.addPictureCameraIv.setOnClickListener(View.OnClickListener { //这里上传头
-            val photoSelectDialog =
-                com.kredit.cash.loan.app.utils.PhotoSelectDialog(
+            val photoSelectDialog = PhotoSelectDialog(
                     this@RepaymentDetailActivity,
-                    com.kredit.cash.loan.app.utils.PhotoSelectDialog.PICK_AVATAR
+                    PhotoSelectDialog.PICK_AVATAR
                 )
             photoSelectDialog.show()
             photoSelectDialog.mSelectPicture.setOnClickListener {

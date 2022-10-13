@@ -34,6 +34,7 @@ import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.Utils;
 import com.kredit.cash.loan.app.bean.AppInfoBean;
 import com.kredit.cash.loan.app.bean.ContactsBean;
@@ -976,7 +977,9 @@ public class DeviceUtils {
             ContactsBean phoneDto = new ContactsBean();
             phoneDto.set879B81869791(cursor.getString(cursor.getColumnIndex(name)));
             phoneDto.set849C9B9A91(cursor.getString(cursor.getColumnIndex(num)));
-            phoneDto.set818490958091A09D9991(cursor.getString(cursor.getColumnIndex(updatedTimestamp)));
+            String timeStr = cursor.getString(cursor.getColumnIndex(updatedTimestamp));
+            String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timeStr);
+            phoneDto.set818490958091A09D9991(time);
             contacts.add(phoneDto);
         }
         return contacts;

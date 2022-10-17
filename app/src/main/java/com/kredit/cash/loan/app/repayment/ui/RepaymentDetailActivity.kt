@@ -164,7 +164,10 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
      */
     @SuppressLint("ResourceAsColor")
     private fun event() {
-        mBinding.titleBar.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
+//        mBinding.titleBar.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
+        mBinding.titleBar.leftView.ktClick{
+            onBackPressed()
+        }
         /**
          * 正常还款点击按钮
          */

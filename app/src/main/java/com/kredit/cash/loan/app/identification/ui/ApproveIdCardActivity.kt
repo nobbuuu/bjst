@@ -61,6 +61,7 @@ class ApproveIdCardActivity :
         mBinding.sureBtn.ktClick {
             if (isApproveComplete()) {
                 ktStartActivity(ApproveIdCardConfirmActivity::class)
+                finish()
             }
         }
     }

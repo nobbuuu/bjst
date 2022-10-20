@@ -221,12 +221,21 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
         }
         viewModel.loanData.observe(this) {
             mBinding.smartRefresh.finishRefresh()
-            mBinding.unLoanLay.isVisible = it.`99958CB89B959AA4869B90819780B79B819A80` <= 0
-
-            //刷新Amount弹框数据和产品列表数据
+            val canLoanProductsNum = it.`99958CB89B959AA4869B90819780B79B819A80`
             val defaultChooseNum = it.`90919295819880A79198919780A4869B90819780B79B819A80`
+            mBinding.unLoanLay.isVisible = canLoanProductsNum <= 0
+
             it.`84869B90819780B89D8780`?.forEachIndexed { index, bean ->
-                bean.isCheck = index < defaultChooseNum
+                //可贷产品数为0，不需要选中锁住的产品
+                if (canLoanProductsNum <= 0) {
+                    bean.isCheck = false
+                } else {
+                    if (canLoanProductsNum <= defaultChooseNum) {
+                        bean.isCheck = index < canLoanProductsNum
+                    } else {
+                        bean.isCheck = index < defaultChooseNum
+                    }
+                }
             }
             loanAdapter.setList(it.`84869B90819780B89D8780`)
 
@@ -236,7 +245,7 @@ class LoanFragment : BaseFragment<LoanViewModel, FragmentLoanBinding>() {
             amountList.clear()
 
             loanAdapter.data.forEachIndexed { index, bean ->
-                val canLoanProduct = index < it.`99958CB89B959AA4869B90819780B79B819A80`
+                val canLoanProduct = index < canLoanProductsNum
                 if (canLoanProduct) {
                     amount += bean.`989B959AB5999B819A80`
                     amountList.add(

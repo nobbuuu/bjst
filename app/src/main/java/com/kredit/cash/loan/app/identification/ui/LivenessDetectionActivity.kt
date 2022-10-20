@@ -61,6 +61,7 @@ class LivenessDetectionActivity :
         viewModel.detectPictureResult.observe(this) {
             if (it.`869187819880`) {
                 ktStartActivity(ApproveContactsActivity::class)
+                finish()
             } else {
                 //人脸对比失败 请重试
                 getString(R.string.detection_try_again).ktToastShow()

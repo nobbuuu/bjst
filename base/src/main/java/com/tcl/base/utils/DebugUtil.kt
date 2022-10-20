@@ -13,5 +13,5 @@ fun runInTime(tag: String = "", function: () -> Any) {
     val start = SystemClock.currentThreadTimeMillis()
     function.invoke()
     val end = SystemClock.currentThreadTimeMillis()
-    println("marsInControl $tag 总耗时：${end - start}")
+    println("marsInControl $tag totalTime：${end - start}")
 }

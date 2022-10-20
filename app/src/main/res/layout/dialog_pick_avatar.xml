@@ -38,7 +38,7 @@
         android:layout_height="@dimen/dp_44"
         android:background="#ffffff"
         android:gravity="center"
-        android:text="从相册选择照片"
+        android:text="Select photos from the album"
         android:textColor="#FF171819"
         android:textSize="@dimen/sp_15" />
 
@@ -53,7 +53,7 @@
         android:layout_height="@dimen/dp_44"
         android:background="#ffffff"
         android:gravity="center"
-        android:text="拍照上传"
+        android:text="Photo upload"
         android:textColor="#FF171819"
         android:textSize="15dp" />
 
@@ -65,7 +65,7 @@
         android:layout_marginTop="@dimen/dp_12"
         android:background="#ffffff"
         android:gravity="center"
-        android:text="取消"
+        android:text="Cancel"
         android:textColor="#FF171819"
         android:textSize="@dimen/dp_15" />
 </LinearLayout>

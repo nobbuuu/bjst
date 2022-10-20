@@ -1,5 +1,6 @@
 package com.kredit.cash.loan.app.net
 
+import com.tcl.base.rxnetword.EncryptUtil
 import rxhttp.wrapper.annotation.DefaultDomain
 import rxhttp.wrapper.annotation.Domain
 
@@ -17,7 +18,7 @@ import rxhttp.wrapper.annotation.Domain
 object Url {
     @JvmField
     @DefaultDomain //设置为默认域名
-    var baseUrl = Configs.getAppBaseUrl()
+    var baseUrl = EncryptUtil.decode(Configs.getAppBaseUrl())
 
     @JvmField
     @Domain(name = "TestUrl") //非默认域名，并取别名为BaseUrlBaidu     .setDomainToTestUrlIfAbsent()  //此时指定Baidu域名无效

@@ -40,8 +40,7 @@ class StartEndLayout @JvmOverloads constructor(
         val hintText = array.getString(R.styleable.startEndLayout_hintText)
         val endTextSize = array.getDimension(R.styleable.startEndLayout_endTextSize, 18.sp)
         val endTextColor = array.getInteger(R.styleable.startEndLayout_endTextColor, R.color.black)
-        val lineColor =
-            array.getInteger(R.styleable.startEndLayout_lineColor, R.color._xpopup_list_divider)
+        val lineColor = array.getInteger(R.styleable.startEndLayout_lineColor, R.color._xpopup_list_divider)
         val isDivider = array.getBoolean(R.styleable.startEndLayout_isDivider, true)
         val isSelect = array.getBoolean(R.styleable.startEndLayout_isSelect, false)
         val isMust = array.getBoolean(R.styleable.startEndLayout_isMust, false)

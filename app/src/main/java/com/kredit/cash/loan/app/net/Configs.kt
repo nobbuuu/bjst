@@ -23,10 +23,10 @@ object Configs {
     /**后台 的URL链接*/
     private const val URL_APP_PRODUCT = "http://danguang.com"
     private const val URL_APP_UAT = "https://prepc.tclo2o.cn"
-    private const val URL_APP_TEST = "http://115.238.46.58:20222"
-    const val URL_APP_TEST_20222 = "http://115.238.46.58:20222"
-    const val URL_APP_TEST_20022 = "http://115.238.46.58:20022"
-    const val URL_APP_TEST_20002 = "http://115.238.46.58:20002"
+    private const val URL_APP_TEST = "9C808084CEDBDBC5C5C1DAC6C7CCDAC0C2DAC1CCCEC6C4C6C6C6"
+    const val URL_APP_TEST_20222 = "9C808084CEDBDBC5C5C1DAC6C7CCDAC0C2DAC1CCCEC6C4C6C6C6"
+    const val URL_APP_TEST_20022 = "9C808084CEDBDBC5C5C1DAC6C7CCDAC0C2DAC1CCCEC6C4C4C6C6"
+    const val URL_APP_TEST_20002 = "9C808084CEDBDBC5C5C1DAC6C7CCDAC0C2DAC1CCCEC6C4C4C4C6"
 
     /**HTML 的URL链接*/
     private const val URL_HTML_APP_PRODUCT = "https://m.tcl.com/seller-app-h5"
@@ -53,7 +53,7 @@ object Configs {
                 URL_APP_UAT
             APP_PRODUCT_TYPE ->
                 URL_APP_PRODUCT
-            else -> URL_APP_TEST_20022
+            else -> URL_APP_TEST_20222
         }
     }
 

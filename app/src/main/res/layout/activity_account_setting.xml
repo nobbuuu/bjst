@@ -122,7 +122,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="ajsdklfjksldafa@gmil"
+                android:text="server@tirupatiholdings.com"
                 android:textColor="#ffff9935"
                 android:textSize="@dimen/sp_13" />
         </LinearLayout>

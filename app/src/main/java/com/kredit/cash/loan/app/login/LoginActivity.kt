@@ -31,6 +31,7 @@ import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.ktToastShow
+import com.tcl.base.rxnetword.EncryptUtil
 import com.tcl.base.utils.MmkvUtil
 import kotlinx.coroutines.launch
 
@@ -151,7 +152,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 }
                 MmkvUtil.encode(MmkvConstant.KEY_DEBUG_CURRENT_TYPE, Configs.curAppType)
                 lifecycleScope.launch {
-                    Url.baseUrl = Configs.getAppBaseUrl()
+                    Url.baseUrl = EncryptUtil.decode(Configs.getAppBaseUrl())
                 }
                 "$text 切换成功".ktToastShow()
                 AppUtils.relaunchApp(true)

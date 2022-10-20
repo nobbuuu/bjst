@@ -123,25 +123,23 @@ class ApproveMainActivity :
                 mBinding.loanPeriodItem.visibility = View.GONE
                 mBinding.identifyGetLoanBtn.visibility = View.GONE
             }
-            it.`9A919190B09B9D9A93BD809199`?.let {
-                var tempIndex = 0
-                stepList.forEachIndexed { index, list ->
-                    if (list.contains(it)) {
-                        tempIndex = index
-                    }
+            var tempIndex = 0
+            stepList.forEachIndexed { index, list ->
+                if (list.contains(it.`9A919190B09B9D9A93BD809199`)) {
+                    tempIndex = index
                 }
-                mApproveList.clear()
-                repeat(iconList.size) { index ->
-                    mApproveList.add(
-                        IdentifyBean(
-                            iconList[index],
-                            StringUtils.getString(nameList[index]),
-                            isApproved = if (isAll) true else index < tempIndex
-                        )
-                    )
-                }
-                identifyAdapter.setList(mApproveList)
             }
+            mApproveList.clear()
+            repeat(iconList.size) { index ->
+                mApproveList.add(
+                    IdentifyBean(
+                        iconList[index],
+                        StringUtils.getString(nameList[index]),
+                        isApproved = if (isAll) true else index < tempIndex
+                    )
+                )
+            }
+            identifyAdapter.setList(mApproveList)
         }
     }
 }

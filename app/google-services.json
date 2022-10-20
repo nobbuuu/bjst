@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1022597595174",
+    "project_id": "rapid-coin-1cf70",
+    "storage_bucket": "rapid-coin-1cf70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022597595174:android:4c3f64c57657eee52f26e7",
+        "android_client_info": {
+          "package_name": "com.kredit.cash.loan.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022597595174-e8i0e7iapu0ojqr5riki12btorkcce8g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXAszfxrkOpCrv55oGSYePhPySIMiNmiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022597595174-e8i0e7iapu0ojqr5riki12btorkcce8g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

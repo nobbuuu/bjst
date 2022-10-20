@@ -1,9 +1,12 @@
 package com.kredit.cash.loan.app.task
 
+import com.adjust.sdk.Adjust
+import com.adjust.sdk.AdjustConfig
 import com.blankj.utilcode.util.LogUtils
-import com.kredit.cash.loan.app.BuildConfig
+import com.blankj.utilcode.util.Utils
 import com.hjq.bar.TitleBar
 import com.jeremyliao.liveeventbus.LiveEventBus
+import com.kredit.cash.loan.app.BuildConfig
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -24,6 +27,14 @@ class InitOtherTask : Task() {
         LiveEventBus.config().lifecycleObserverAlwaysActive(true).enableLogger(BuildConfig.DEBUG)
         initSmartRefresh()
         initTitleBar()
+        initAdjust()
+    }
+
+    private fun initAdjust(){
+        val appToken = "iga6r97vwr28"
+        val environment: String = AdjustConfig.ENVIRONMENT_SANDBOX
+        val config = AdjustConfig(Utils.getApp(), appToken, environment)
+        Adjust.onCreate(config)
     }
 
     private fun initSmartRefresh() {

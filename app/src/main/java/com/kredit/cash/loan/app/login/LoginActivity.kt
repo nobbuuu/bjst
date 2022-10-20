@@ -12,14 +12,18 @@ import android.text.style.ClickableSpan
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import com.blankj.utilcode.util.*
+import com.adjust.sdk.Adjust
+import com.adjust.sdk.AdjustEvent
+import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.ColorUtils
+import com.blankj.utilcode.util.GsonUtils
+import com.blankj.utilcode.util.RegexUtils
 import com.kredit.cash.loan.app.BuildConfig
 import com.kredit.cash.loan.app.R
 import com.kredit.cash.loan.app.bean.PhoneCodeParam
 import com.kredit.cash.loan.app.common.Constant
 import com.kredit.cash.loan.app.common.MmkvConstant
 import com.kredit.cash.loan.app.databinding.ActivityLoginBinding
-
 import com.kredit.cash.loan.app.dialog.VoiceDialog
 import com.kredit.cash.loan.app.main.MainActivity
 import com.kredit.cash.loan.app.net.Configs
@@ -34,6 +38,7 @@ import com.tcl.base.kt.ktToastShow
 import com.tcl.base.rxnetword.EncryptUtil
 import com.tcl.base.utils.MmkvUtil
 import kotlinx.coroutines.launch
+
 
 class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
@@ -181,6 +186,8 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 )
             )
             viewModel.sendCode(param)
+            val adjustEvent = AdjustEvent("li3pc9")
+            Adjust.trackEvent(adjustEvent)
         } else {
             "Please enter the correct cell phone number".ktToastShow()
         }

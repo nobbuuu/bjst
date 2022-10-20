@@ -144,7 +144,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             }
 
             override fun onLocationChanged(location: Location?) {
-                LogUtils.dTag("locationTag", "onLocationChanged----------")
                 location?.let {
                     LogUtils.dTag(
                         "locationTag",

@@ -299,12 +299,17 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         mBinding.addPictureCameraIv.setImageBitmap(rotateBitmap)
         rotateBitmap?.let {
 
-            bitmapStr = compress(byte2Base64(bitmap2Byte(rotateBitmap)))  //加压图片上传
+            var iconBitmap=convertStringToIcon( compress(convertIconToString(rotateBitmap)))
+            bitmapStr = compress(byte2Base64(iconBitmap?.let { it1 -> bitmap2Byte(it1) }))  //加压图片上传
 //            bitmapStr = byte2Base64(bitmap2Byte(rotateBitmap))//未加压图片
 
             //上传图片
         }
     }
+
+
+
+
 
     /**
      * 将图片转成byte数组
@@ -316,6 +321,42 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         //把bitmap100%高质量压缩 到 output对象里
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
         return outputStream.toByteArray()
+    }
+
+    /**
+     * 将bitmap转化为string
+     */
+
+
+    fun convertIconToString(bitmap: Bitmap):String{
+       var  baos:ByteArrayOutputStream=ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        var appicon = baos.toByteArray()// 转为byte数组
+        var img =Base64.encodeToString(appicon, Base64.DEFAULT)
+        return img;
+    }
+
+    /**
+     * string转成bitmap
+     *
+     * @param st
+     */
+    fun convertStringToIcon(st: String?): Bitmap? {
+        // OutputStream out;
+        var bitmap: Bitmap? = null
+        return try {
+            // out = new FileOutputStream("/sdcard/aa.jpg");
+            val bitmapArray: ByteArray
+            bitmapArray = Base64.decode(st, Base64.DEFAULT)
+            bitmap = BitmapFactory.decodeByteArray(
+                bitmapArray, 0,
+                bitmapArray.size
+            )
+            // bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+            bitmap
+        } catch (e: java.lang.Exception) {
+            null
+        }
     }
 
     /**

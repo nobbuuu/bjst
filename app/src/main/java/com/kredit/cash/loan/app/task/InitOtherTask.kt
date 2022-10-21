@@ -32,7 +32,7 @@ class InitOtherTask : Task() {
 
     private fun initAdjust(){
         val appToken = "iga6r97vwr28"
-        val environment: String = AdjustConfig.ENVIRONMENT_SANDBOX
+        val environment: String = AdjustConfig.ENVIRONMENT_PRODUCTION
         val config = AdjustConfig(Utils.getApp(), appToken, environment)
         Adjust.onCreate(config)
     }

@@ -25,20 +25,15 @@ import com.kredit.cash.loan.app.repayment.bean.RepaymentDetailParam
 import com.kredit.cash.loan.app.repayment.bean.requestRepaymentParam
 import com.kredit.cash.loan.app.repayment.vm.RepaymentViewModel
 import com.kredit.cash.loan.app.utils.BitmapUtils
-import com.kredit.cash.loan.app.utils.CompressIconUtils
 import com.kredit.cash.loan.app.utils.CompressIconUtils.bitmap2Byte
 import com.kredit.cash.loan.app.utils.PhotoManager
 import com.kredit.cash.loan.app.utils.PhotoSelectDialog
-import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.loadGif
 import com.tcl.base.utils.PhotoUtils.getPath
 import com.tcl.base.utils.encipher.Base64.byte2Base64
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.util.zip.GZIPOutputStream
 
 /**
  * 创建日期：2022-09-05 on 1:03

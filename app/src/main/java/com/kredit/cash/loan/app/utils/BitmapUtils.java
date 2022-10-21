@@ -2,6 +2,8 @@ package com.kredit.cash.loan.app.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Environment;
 import android.util.Base64;
 
@@ -37,7 +39,7 @@ public class BitmapUtils {
                 baos.flush();
                 baos.close();
                 byte[] bitmapBytes = baos.toByteArray();
-                LogUtils.dTag("imgCompress", bitmapBytes.length);
+                LogUtils.dTag("imgCompress",bitmapBytes.length);
                 result = Base64.encodeToString(bitmapBytes, Base64.NO_WRAP);
             }
         } catch (IOException e) {
@@ -66,7 +68,38 @@ public class BitmapUtils {
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 
-    /**
+    public static void recyleBitmap(Bitmap bmp) {
+        if (bmp != null && !bmp.isRecycled()) {
+            bmp.recycle();
+        }
+    }
+
+    public static byte[] convertBmpToJpeg(Bitmap result) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        result.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
+        byte[] jpeg = byteArrayOutputStream.toByteArray();
+        try {
+            byteArrayOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jpeg;
+    }
+
+    public static Bitmap cropResultBitmap(Bitmap cropBitmap, int targetW, int targetH, RectF ratioF) {
+        Rect rect = new Rect();
+        float width_margin = 10;//rectF.width() * ratio;
+        float height_margin = 10;//rectF.height() * ratio;
+        rect.left = (int) (targetH * ratioF.left - width_margin);
+        rect.top = (int) (targetW * ratioF.top - height_margin);
+        rect.right = (int) (targetH * ratioF.right + width_margin);
+        rect.bottom = (int) (targetW * ratioF.bottom + height_margin);
+        Bitmap resultBitmap;
+        resultBitmap = Bitmap.createBitmap(cropBitmap, rect.left, rect.top, rect.width(), rect.height());
+        return resultBitmap;
+    }
+	
+	   /**
      * 图片质量压缩
      *
      * @param image

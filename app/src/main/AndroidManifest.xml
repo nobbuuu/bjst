@@ -119,6 +119,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.kredit.cash.loan.app.home.HomeImgActivity" />
+        <activity android:name=".liveness.LivenessActivity" />
     </application>
 
 </manifest>

@@ -188,6 +188,8 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             viewModel.sendCode(param)
             val adjustEvent = AdjustEvent("li3pc9")
             Adjust.trackEvent(adjustEvent)
+            val adjustEvent2 = AdjustEvent("i5bo4w")
+            Adjust.trackEvent(adjustEvent2)
         } else {
             "Please enter the correct cell phone number".ktToastShow()
         }

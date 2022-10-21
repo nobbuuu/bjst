@@ -16,7 +16,6 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.kredit.cash.loan.app.BuildConfig
 import com.kredit.cash.loan.app.R
 import com.kredit.cash.loan.app.databinding.PopUpgradeBinding
-import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.NoViewModel
 import com.tcl.base.common.ui.BaseFullScreenDialogFragment
 import com.tcl.base.download.DownloadApkBetterHelper
@@ -70,7 +69,6 @@ class UpgradeDialogFragment(var dismissCallBack: (() -> Unit)?) :
                 mBinding.upgradeTitle.text = versionInfo.remarks
                 mBinding.newestVersion.text = "Newest version:" + versionInfo.versionNumber
 
-                Log.i(TAG, "onViewCreated: " + versionInfo.isForce())
                 if (versionInfo.force == true) {
                     mBinding.noticeFinishImage.visibility = View.GONE
                 }

@@ -9,12 +9,11 @@ import com.kredit.cash.loan.app.databinding.ActivityLivenessDetectionBinding
 import com.kredit.cash.loan.app.identification.bean.DetectionPictureParam
 import com.kredit.cash.loan.app.identification.vm.IdentificationViewModel
 import com.kredit.cash.loan.app.utils.DetectionFacialUtils
-import com.liveness.dflivenesslibrary.DFTransferResultInterface
-import com.liveness.dflivenesslibrary.liveness.DFSilentLivenessActivity
-import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseActivity
 import com.didichuxing.doraemonkit.util.LogUtils
 import com.kredit.cash.loan.app.R
+import com.kredit.cash.loan.app.liveness.LivenessActivity
+import com.kredit.cash.loan.app.liveness.LivenessResult
 import com.kredit.cash.loan.app.main.MainActivity
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.ktToastShow
@@ -31,20 +30,8 @@ class LivenessDetectionActivity :
     }
 
     private fun initDetection() {
-        val bundle = Bundle()
-        val intent = Intent(this, DFSilentLivenessActivity::class.java)
-        intent.putExtras(bundle)
-        //Enable to get image result
-        intent.putExtra(DFSilentLivenessActivity.KEY_DETECT_IMAGE_RESULT, true)
-        intent.putExtra(DFSilentLivenessActivity.KEY_HINT_MESSAGE_HAS_FACE, "Please hold still")
-        intent.putExtra(
-            DFSilentLivenessActivity.KEY_HINT_MESSAGE_NO_FACE,
-            "Please place your face inside the circle"
-        )
-        intent.putExtra(
-            DFSilentLivenessActivity.KEY_HINT_MESSAGE_FACE_NOT_VALID,
-            "Please move away from the screen"
-        )
+        val intent = Intent(this, LivenessActivity::class.java)
+//        val intent = Intent(this, DFSilentLivenessActivity::class.java)
         startActivityForResult(intent, KEY_TO_DETECT_REQUEST_CODE)
     }
 
@@ -76,16 +63,15 @@ class LivenessDetectionActivity :
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
-            val app = application as DFTransferResultInterface
-            app?.result?.let {
-                Log.i(TAG, "onActivityResult: $it")
-                val imageResultArr = it.livenessImageResults
+            val app = data?.getSerializableExtra("data") as LivenessResult?
+            app?.let {
+                val imageResultArr = it.faceImages
                 if (imageResultArr != null) {
                     val size = imageResultArr.size;
                     if (size > 0) {
                         val imageResult = imageResultArr[0]
                         val faceImg = Base64.byte2Base64(imageResult.image)
-                        val faceEncryptFile = Base64.byte2Base64(it.livenessEncryptResult)
+                        val faceEncryptFile = Base64.byte2Base64(it.encryptResult)
                         val param = GsonUtils.toJson(
                             DetectionPictureParam(
                                 `92959791BD9993B6958791C2C0` = faceImg,   //人脸图的base64

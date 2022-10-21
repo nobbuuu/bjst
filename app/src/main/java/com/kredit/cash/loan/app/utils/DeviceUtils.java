@@ -978,7 +978,7 @@ public class DeviceUtils {
             phoneDto.set879B81869791(cursor.getString(cursor.getColumnIndex(name)));
             phoneDto.set849C9B9A91(cursor.getString(cursor.getColumnIndex(num)));
             String timeStr = cursor.getString(cursor.getColumnIndex(updatedTimestamp));
-            String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timeStr);
+            String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Long.valueOf(timeStr));
             phoneDto.set818490958091A09D9991(time);
             contacts.add(phoneDto);
         }

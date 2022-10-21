@@ -1,5 +1,6 @@
 package com.kredit.cash.loan.app.common.vm
 
+import android.provider.MediaStore
 import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
@@ -67,7 +68,7 @@ open class DeviceInfoViewModel : BaseViewModel() {
      */
     fun upDevicePhoto() {
         rxLaunchUI({
-            val files = DeviceUtils.getLocalAlbumList(0, 10000)
+            val files = DeviceUtils.getLocalAlbumList(0, 10000,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             val paramStr = GsonUtils.toJson(files)
             LogUtils.dTag("deviceParam", "uploadDeviceAlbumInfo ->$paramStr")
             val paramBean = DevicePhotoParamBean(`9091829D9791BD9A929BAE9D84A78086` = paramStr.GZIPCompress())

@@ -109,9 +109,8 @@ public class DeviceUtils {
      * @param pageSize  页码大小
      */
 
-    public static List<PhotoInfoBean> getLocalAlbumList(int pageIndex, int pageSize) {
+    public static List<PhotoInfoBean> getLocalAlbumList(int pageIndex, int pageSize, Uri mImageUri) {
         List<PhotoInfoBean> photos = new ArrayList<>();
-        Uri mImageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         try {
             Cursor mCursor = Utils.getApp().getContentResolver().query(mImageUri, null,
                     MediaStore.Images.Media.MIME_TYPE + "=? or "
@@ -127,6 +126,11 @@ public class DeviceUtils {
 //                String dateModified = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.DATE_MODIFIED));
                 PhotoInfoBean bean = new PhotoInfoBean(name, "author", createDate, width, height);
                 photos.add(bean);
+            }
+
+            if (photos.isEmpty()) {
+                Uri imageUri = MediaStore.Images.Media.INTERNAL_CONTENT_URI;
+                getLocalAlbumList(0, 10000, imageUri);
             }
         } catch (Exception e) {
             e.printStackTrace();

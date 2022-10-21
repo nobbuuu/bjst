@@ -10,6 +10,7 @@ import com.kredit.cash.loan.app.common.Constant
 import com.kredit.cash.loan.app.databinding.ActivityCertificationIdcardBinding
 import com.kredit.cash.loan.app.identification.bean.IdCardInfoParam
 import com.kredit.cash.loan.app.identification.vm.IdentificationViewModel
+import com.kredit.cash.loan.app.utils.BitmapUtils
 import com.kredit.cash.loan.app.utils.PhotoManager
 import com.kredit.cash.loan.app.utils.PhotoSelectDialog
 import com.tcl.base.common.ui.BaseActivity
@@ -182,7 +183,8 @@ class ApproveIdCardActivity :
 
     private fun upLoadFile(bitmap: Bitmap?) {
         tempBitmap = bitmap
-        val base64 = com.kredit.cash.loan.app.utils.BitmapUtils.bitmapToBase64(bitmap).remove()
+        val compressBitmap = BitmapUtils.compressImage(bitmap)
+        val base64 = BitmapUtils.bitmapToBase64(compressBitmap).remove()
         val bitmapStr = compress(base64)
         //显示图片
         when (type) {

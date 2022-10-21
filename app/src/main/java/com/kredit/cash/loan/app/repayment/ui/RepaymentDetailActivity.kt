@@ -7,11 +7,13 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Base64
+import android.util.Log
 import android.view.View
 import com.blankj.utilcode.util.GsonUtils
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.kredit.cash.loan.app.R
 import com.kredit.cash.loan.app.R.color.colorPrimaryDark
@@ -22,14 +24,20 @@ import com.kredit.cash.loan.app.repayment.bean.PaymentUtrParam
 import com.kredit.cash.loan.app.repayment.bean.RepaymentDetailParam
 import com.kredit.cash.loan.app.repayment.bean.requestRepaymentParam
 import com.kredit.cash.loan.app.repayment.vm.RepaymentViewModel
+import com.kredit.cash.loan.app.utils.BitmapUtils
+import com.kredit.cash.loan.app.utils.CompressIconUtils
+import com.kredit.cash.loan.app.utils.CompressIconUtils.bitmap2Byte
 import com.kredit.cash.loan.app.utils.PhotoManager
 import com.kredit.cash.loan.app.utils.PhotoSelectDialog
+import com.liveness.dflivenesslibrary.view.TimeViewContoller.TAG
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktStartActivity
 import com.tcl.base.kt.loadGif
 import com.tcl.base.utils.PhotoUtils.getPath
+import com.tcl.base.utils.encipher.Base64.byte2Base64
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.util.zip.GZIPOutputStream
 
 /**
@@ -165,7 +173,7 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
     @SuppressLint("ResourceAsColor")
     private fun event() {
 //        mBinding.titleBar.leftView.setOnClickListener(View.OnClickListener { onBackPressed() })
-        mBinding.titleBar.leftView.ktClick{
+        mBinding.titleBar.leftView.ktClick {
             onBackPressed()
         }
         /**
@@ -215,9 +223,9 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         //点击上传UTR_picture
         mBinding.addPictureCameraIv.setOnClickListener(View.OnClickListener { //这里上传头
             val photoSelectDialog = PhotoSelectDialog(
-                    this@RepaymentDetailActivity,
-                    PhotoSelectDialog.PICK_AVATAR
-                )
+                this@RepaymentDetailActivity,
+                PhotoSelectDialog.PICK_AVATAR
+            )
             photoSelectDialog.show()
             photoSelectDialog.mSelectPicture.setOnClickListener {
                 mPhotoManager?.checkPermissionAndChosePhoto()
@@ -297,54 +305,15 @@ class RepaymentDetailActivity : BaseActivity<RepaymentViewModel, ActivityRepayme
         val rotateBitmap = mPhotoManager?.rotateBitmap(bitmap)
         //显示图片
         mBinding.addPictureCameraIv.setImageBitmap(rotateBitmap)
-        rotateBitmap?.let {
-
-            bitmapStr = compress(byte2Base64(bitmap2Byte(rotateBitmap)))  //加压图片上传
-//            bitmapStr = byte2Base64(bitmap2Byte(rotateBitmap))//未加压图片
-
+        val compressBitmap = BitmapUtils.compressImage(rotateBitmap)
+        compressBitmap?.let {
+            bitmapStr = byte2Base64(bitmap2Byte(it))
             //上传图片
         }
     }
 
-    /**
-     * 将图片转成byte数组
-     * @param bitmap 图片
-     * @return 图片的字节数组
-     */
-    fun bitmap2Byte(bitmap: Bitmap): ByteArray? {
-        val outputStream = ByteArrayOutputStream()
-        //把bitmap100%高质量压缩 到 output对象里
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-        return outputStream.toByteArray()
-    }
-
-    /**
-     * 将图片转成byte数组
-     *
-     * @param imageByte 图片
-     * @return Base64 String
-     */
-    fun byte2Base64(imageByte: ByteArray?): String? {
-        return if (null == imageByte) null else Base64.encodeToString(imageByte, Base64.NO_WRAP)
-    }
-
-    /**
-     * 加压图片数据
-     */
-    fun compress(str: String?): String? {
-        if (str.isNullOrEmpty()) {
-            return str
-        }
-        val o = ByteArrayOutputStream()
-        val g = GZIPOutputStream(o)
-        g.write(str.toByteArray(charset("utf-8")))
-        g.close()
-        return o.toString("ISO-8859-1")
-    }
-
 
     override fun initData() {
-
 
     }
 

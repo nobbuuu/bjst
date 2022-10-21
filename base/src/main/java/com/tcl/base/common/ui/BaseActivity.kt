@@ -100,6 +100,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewBinding>(var config: Ac
             when {
                 ViewBinding::class.java.isAssignableFrom(cls) && cls != ViewBinding::class.java -> {
                     cls.getDeclaredMethod("inflate", LayoutInflater::class.java).let {
+                        @Suppress("UNCHECKED_CAST")
                         mBinding = it.invoke("base", layoutInflater) as DB
                         setContentView(mBinding.root)
                     }
